@@ -1,0 +1,90 @@
+                                       Pushpendra Singh
+                                                          Jaipur, India
+             +91 88290 23213 | pushpendrasinghcs@outlook.com | linkedin.com/in/pushpendra-singh-2ba7b9312
+                                        github.com/aetosdios27 | aetosdios.xyz
+Education
+Manipal University Jaipur                                                                                 Expected Aug. 2028
+Bachelor of Technology in Computer Science and Engineering                                                        Jaipur, India
+
+Technical Skills
+  Languages : Rust, C++, Go, TypeScript, Python, SQL
+  Systems : Distributed systems, storage systems, network protocols, concurrency, async runtimes, IPC, CRDTs, TCP/UDP,
+  Kademlia DHT
+  Tools/Frameworks : Tokio, Tauri v2, React, Next.js, Bun, PostgreSQL, Vulkan, GTK4, Docker, GitHub Actions, Vitest,
+  testcontainers
+
+Selected Projects
+ Kiban | Rust, LSM Tree, Storage Engine, Concurrency                                                             2026 – Present
+
+   • Increased 16-thread 90R/10W GET throughput 9.0x from 468K to 4.22M gets/s and cut p99 latency 49x from 368us to
+     7.48us by replacing engine-wide read gating with an atomically published ReadView.
+   • Tripled steady-state throughput and cut write amplification from 23–25x to 8.6–9.5x with an adaptive compaction
+
+     governor; cut recovery-phase PUT p99 17.2x from 1.99ms to 115us and reduced compactions from 232 to 16–18 per 6s.
+   • Built a zero-dependency embedded LSM-tree key-value engine in Rust with two-phase WAL durability, multi-version
+
+     snapshots, atomic write batches, leveled compaction, 10-bit/key Bloom filters, CRC-32 integrity, and deterministic
+     syscall-fault and power-loss recovery testing.
+ Styx | Rust, Tokio, Tauri v2, BitTorrent                                                                        2026 – Present
+
+   • Built a from-scratch BitTorrent client with real v1 download/seeding flows, peer-wire protocol, HTTP/UDP trackers,
+     verified piece storage, resumable daemon state, CLI/TUI/headless modes, and a Tauri desktop shell.
+   • Implemented DHT peer-source ingestion, a runtime-owned DHT worker, BEP 9 metadata exchange, exact-peer magnet
+
+     resolution, and v2/hybrid protocol groundwork while keeping incomplete app-level paths explicitly gated.
+   • Designed correctness-oriented runtime supervision and hostile-input defenses with bounded typed channels, cooperative
+
+     shutdown, strict parsers, cryptographic verification, corruption quarantine, and restart-recovery coverage.
+ Scribe | Rust, TypeScript, MDX, React, Next.js, Vite                                                                        2026
+
+   • Built and publicly shipped an open-source publishing SDK across four packages that compiles Markdown/MDX and
+     semantic article content into publication-grade React pages without a hosted CMS or proprietary content format.
+   • Shipped a platform-native Rust CLI with project-local delegation, framework/package-manager detection, reviewed
+
+     integration plans, transactional install/update with rollback, version-alignment checks, and safe Medium-export import.
+
+   •   Hardened the local authoring Studio with IndexedDB draft recovery, single-writer revision leases, stale/conflict rejection,
+       symlink-safe atomic saves, restartable MDX compilation, and live preview through SSE/Vite HMR.
+ Konto Protocol | TypeScript, PostgreSQL, Bun                                                                                2026
+
+   • Engineered a double-entry ledger across four packages, enforcing zero-sum conservation with bigint-only arithmetic,
+     append-only journals, and deferred PostgreSQL constraint triggers that reject unbalanced commits.
+   • Eliminated deadlocks through lexicographical account locking and validated 1,000+ concurrent transfers and holds with
+
+     zero observed deadlocks; prevented V8 precision loss at PostgreSQL boundaries with explicit text casting.
+   • Designed O(1) balance reads with snapshot checkpoints and LATERAL JOIN, keyset journal pagination,
+
+     UNNEST-based multi-leg insertion, and MCP staged intents that require human approval before financial mutation.
+ Iris | Rust, GTK4, Vulkan, DMA-BUF                                                                                          2026
+
+   •   Built a Linux image viewer around a Vulkan renderer with a DMA-BUF zero-copy presentation fast path and correctness
+       fallbacks, plus RAW support, ICC-aware color conversion, async decoding, thumbnail caching, and directory watching.
+
+   •   Replaced wgpu with raw Vulkan through ash after hitting external-memory ownership constraints; added texture
+       caching, directional prefetching, and early WGSL compute passes for GPU-side image processing.
+ WebNotes | TypeScript, Tauri, Next.js, SQLite, PostgreSQL                                                      2025 – 2026
+
+  • Built a local-first notes application with native desktop and web surfaces, SQLite-backed local ownership, bidirectional
+    links, rich-text/LaTeX editing, and serverless PostgreSQL synchronization.
+  • Generated 120,000+ launch views and received recognition from Jared Palmer while validating demand for a fast,
+
+    user-owned alternative to heavyweight cloud-first knowledge tools.
+
+Open Source
+Contributor | Database, Storage, Search, Runtime Systems                                                     2026 – Present
+
+  • Merged three Rust fixes into HelixDB: capped unrestricted vector/text search at 800 results to bound HNSW work
+    (#1073), reduced multi-key ORDER BY property reads/decodes from one per key to one per row (#1071), and blocked
+    CLI path traversal (#1064); also authored open range-index ordering fixes #1067 and #1068.
+  • Merged Turso #8465 restoring SQLite numeric-affinity parity across 2,346 core tests, Knowhere #1787 eliminating a
+
+    DiskANN AIO pool hang/data race under the 65,536-event Linux AIO budget, and NativeLink #2548 fixing zero-digest
+    handling across 99 Bazel test targets.
+  • Authored active systems fixes in FalkorDB #2717 (BGREWRITEAOF child segfault and replay correctness),
+
+    RocksDB #15126 (per-key JNI local-reference leaks in ByteBuffer multiGet; 14/14 tests), and HydraDB #110 (safe
+    error-class propagation across Bolt/HTTP).
+  • Also authored active fixes in Neon #12930 (fail-closed physical GC scans), Drizzle ORM #6112 (schema-barrel module
+
+    identity), and Zed #61067 (word diffs for unequal hunks), each with targeted regression coverage.
+
