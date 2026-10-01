@@ -27,13 +27,17 @@ Inter Tight is self-hosted through `next/font/local`. The variable font and its 
 
 ## Content
 
-- `src/content/portfolio.ts`: identity, links, project order/copy, additional work, open-source PRs, and Playground title. The first selected project receives the featured treatment.
+- `src/content/portfolio.ts`: identity, links, project order/copy, additional work, open-source PRs, and Playground title. Selected Work and Playground use text-only indexes with short descriptors, category/year metadata, and repository links.
 - `src/content/resume-source.txt`: full text extracted from the supplied résumé, retained as an editorial source rather than displayed wholesale.
 - `src/content/resume-links.json`: embedded links extracted from the résumé.
 - `public/resume.pdf`: supplied downloadable résumé.
 - `public/images/pushpendra.jpg`: the real GitHub avatar.
 
-Public repository descriptions/READMEs and the supplied résumé ground project copy. PR statuses were checked on 2026-10-01. Raijin remains explicitly provisional; the booking URL is unset until supplied. About copy is a first-pass draft. Dispatches has an honest empty state with no publishing infrastructure.
+Public repository descriptions/READMEs, the supplied résumé, and explicit user copy ground project descriptions. PR statuses were checked on 2026-10-01. Raijin’s descriptor follows the supplied third-pass brief; the booking URL is unset until supplied. About copy is a first-pass draft. Dispatches has an honest empty state with no publishing infrastructure.
+
+Navigation uses the compact top header; About omits it per the wireframe. There is no floating navigation dock. No project previews, diagrams, or hover-media systems are included.
+
+Spacing follows an 8px scale defined as `--space-*` tokens in `globals.css`. See [the internal spacing rules](docs/spacing.md) before changing page rhythm.
 
 ## Contribution calendar
 

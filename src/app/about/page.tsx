@@ -1,14 +1,46 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import { identity } from "@/content/portfolio";
-import { ExternalArrow } from "@/components/icons";
+import { fractionalAge } from "./age";
+import { IdentitySentence, LiveAge } from "./living-text";
+import { DottedRule } from "./dotted-rule";
+import { Crosshatch } from "./crosshatch";
+import { PlaygroundLink } from "./playground-link";
+import styles from "./page.module.css";
 
 export const metadata: Metadata = { title: "About" };
 export default function AboutPage() {
-  return <main id="main" className="reading-page">
-    <Image src={identity.avatar} alt="Pushpendra's GitHub profile picture" width={52} height={52} className="profile-picture" />
-    <h1>I’m Pushpendra.<br /><span className="muted">Online, I usually go by Aetos.</span></h1>
-    <div className="prose"><p>I’m interested in systems engineering, design engineering, and learning through building.</p><p>The work here spans storage engines, network protocols, publishing tools, and smaller experiments. I like understanding what happens underneath an interface, and giving just as much care to how it feels to use.</p><p>Open source is another part of that exploration: working inside systems beyond my own, understanding the constraints, and making a useful contribution.</p></div>
-    <a className="text-link" href="https://github.com/aetosdios27">Find me on GitHub <ExternalArrow /></a>
-  </main>;
+  // Server snapshot keeps the initial HTML and hydration value identical;
+  // the client owns subsequent clock updates.
+  // eslint-disable-next-line react-hooks/purity
+  const initialAge = fractionalAge(Date.now());
+  return (
+    <main id="main" className={styles.page}>
+      <DottedRule axis="vertical" className={`${styles.rule} ${styles.leftRule}`} />
+      <DottedRule axis="vertical" className={`${styles.rule} ${styles.rightRule}`} />
+      <div className={styles.content}>
+        <Crosshatch className={`${styles.hatch} ${styles.leftHatch}`} />
+        <Crosshatch className={`${styles.hatch} ${styles.rightHatch}`} />
+        <DottedRule axis="horizontal" className={`${styles.rule} ${styles.topRule}`} />
+        <DottedRule axis="horizontal" className={`${styles.rule} ${styles.bottomRule}`} />
+        <Image
+          src={identity.avatar}
+          alt="Pushpendra’s profile picture"
+          width={40}
+          height={40}
+          className={styles.avatar}
+        />
+
+        <h1 className={styles.greeting}>Hello, <span lang="hi">नमस्ते</span></h1>
+
+        <div className={styles.thoughts}>
+          <p>
+            <IdentitySentence />
+          </p>
+          <p><LiveAge initialAge={initialAge} /> years in. Currently a pre-final year CS undergrad by day, and a builder outside uni hours.</p>
+          <p className={styles.invitation}>Explore my <PlaygroundLink /></p>
+        </div>
+      </div>
+    </main>
+  );
 }

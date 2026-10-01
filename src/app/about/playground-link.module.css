@@ -1,0 +1,52 @@
+.link {
+  display: inline-block;
+  font-weight: 600;
+  color: var(--foreground);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.letter {
+  position: relative;
+  display: inline-block;
+}
+
+.normal {
+  transition: opacity var(--motion-standard) var(--ease-out);
+}
+
+.pixel {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  transform: translateX(-50%);
+  display: block;
+  opacity: 0;
+  pointer-events: none;
+  fill: var(--pixel-color, var(--accent));
+  transition: opacity var(--motion-standard) var(--ease-out);
+}
+
+/* Up to five visited letters follow the pointer, then catch up on a pause.
+   Letter cells never change width, keeping every pointer target stable. */
+@media (hover: hover) and (pointer: fine) {
+  .letter[data-active="true"] .normal {
+    opacity: 0;
+    transition-duration: 60ms;
+  }
+
+  .letter[data-active="true"] .pixel {
+    opacity: 1;
+    transition-duration: 60ms;
+  }
+}
+
+.link:focus-visible .normal {
+  opacity: 0;
+  transition: none;
+}
+
+.link:focus-visible .pixel {
+  opacity: 1;
+  transition: none;
+}

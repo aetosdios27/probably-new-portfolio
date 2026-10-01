@@ -1,5 +1,4 @@
 import calendar from "@/content/contributions.json";
-import { ExternalArrow } from "./icons";
 
 export type ContributionDay = { date: string; contributionCount: number; contributionLevel: string };
 export type ContributionCalendar = { totalContributions: number; weeks: { contributionDays: ContributionDay[] }[] };
@@ -16,7 +15,7 @@ export function ContributionHeatmap({ data = calendar }: { data?: ContributionCa
     <section className="activity-section" aria-labelledby="activity-heading">
       <div className="activity-header">
         <h2 id="activity-heading">A little, often.</h2>
-        <a className="text-link" href="https://github.com/aetosdios27">On GitHub <ExternalArrow /></a>
+        <a className="text-link" href="https://github.com/aetosdios27">On GitHub</a>
       </div>
       <figure className="contribution-figure">
         <div className="heatmap-scroll" tabIndex={0} aria-label="Contribution calendar; scroll horizontally to see all weeks">

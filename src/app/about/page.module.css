@@ -1,0 +1,141 @@
+.page {
+  --guide-gutter: var(--space-4);
+  position: relative;
+  width: 100%;
+  max-width: 620px;
+  margin-inline: auto;
+  padding-top: var(--space-12);
+  color: var(--muted);
+}
+
+.content {
+  position: relative;
+}
+
+.hatch {
+  position: absolute;
+  top: calc(-1 * var(--space-4));
+  height: calc(100% + 2 * var(--space-4));
+  width: max(0px, calc(50vw - 50% - var(--guide-gutter)));
+  color: var(--subtle);
+  opacity: 0.22;
+  pointer-events: none;
+}
+
+.leftHatch {
+  right: calc(100% + var(--guide-gutter));
+}
+
+.rightHatch {
+  left: calc(100% + var(--guide-gutter));
+}
+
+/* Rounded 2.5 × 1px dashes keep the weight and six-pixel rhythm identical
+   across both axes; the guides never affect the prose's layout or hit areas. */
+.rule {
+  position: absolute;
+  display: block;
+  color: var(--subtle);
+  opacity: 0.6;
+  pointer-events: none;
+}
+
+.leftRule,
+.rightRule {
+  top: 0;
+  height: 100%;
+  width: 1.5px;
+}
+
+.leftRule {
+  left: calc(-1 * var(--guide-gutter));
+}
+
+.rightRule {
+  right: calc(-1 * var(--guide-gutter));
+}
+
+.topRule,
+.bottomRule {
+  left: 50%;
+  width: 100vw;
+  height: 1.5px;
+  transform: translateX(-50%);
+}
+
+.topRule {
+  top: calc(-1 * var(--space-4));
+}
+
+.bottomRule {
+  bottom: calc(-1 * var(--space-4));
+}
+
+.avatar {
+  display: block;
+  width: 40px;
+  height: 40px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.greeting {
+  margin-top: var(--space-4);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.6;
+}
+
+.greeting span {
+  color: var(--subtle);
+}
+
+.identity {
+  appearance: none;
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+  color: var(--accent);
+  font: inherit;
+  vertical-align: baseline;
+  cursor: pointer;
+}
+
+.identity:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 2px;
+}
+
+.age {
+  color: var(--accent);
+  font-variant-numeric: tabular-nums;
+}
+
+.thoughts {
+  margin-top: var(--space-3);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.thoughts p + p {
+  margin-top: 0;
+}
+
+.thoughts .invitation {
+  margin-top: var(--space-3);
+}
+
+@media (max-width: 640px) {
+  .page {
+    --guide-gutter: var(--space-2);
+    padding-top: var(--space-8);
+  }
+
+  .greeting {
+    margin-top: var(--space-3);
+  }
+
+}

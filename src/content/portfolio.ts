@@ -1,9 +1,9 @@
 export type Project = {
   name: string;
   description: string;
-  context?: string;
   href: string;
-  language?: string;
+  category: string;
+  year: string;
 };
 
 export const identity = {
@@ -22,41 +22,15 @@ export const socialLinks = [
   { label: "Book a call", icon: "calendar", href: null },
 ] as const;
 
-// Descriptions are grounded in public repository descriptions / READMEs.
-// Order controls the editorial hierarchy; the first project is featured.
+// Keep the index brief. Source repositories and the supplied résumé hold the detail.
 export const selectedWork: Project[] = [
-  {
-    name: "Kiban",
-    description: "An embedded storage engine, built from first principles.",
-    context: "A dependency-free LSM-tree engine in Rust. From write-ahead logging and sorted tables to compaction, snapshots, and crash recovery.",
-    href: "https://github.com/aetosdios27/kiban",
-    language: "Rust",
-  },
-  {
-    name: "Styx",
-    description: "A BitTorrent engine from the wire up.",
-    context: "Peer wire, DHT, verified storage, and seeding. A Rust engine with supervised runtimes, hostile-input defenses, and a Tauri desktop shell.",
-    href: "https://github.com/aetosdios27/Styx",
-    language: "Rust",
-  },
-  {
-    name: "Scribe",
-    description: "A publishing SDK for technical writing.",
-    context: "Four packages, a native Rust CLI, and a local authoring studio. Technical articles on your own site, without a hosted CMS.",
-    href: "https://github.com/aetosdios27/scribe",
-    language: "TypeScript",
-  },
-  {
-    name: "Raijin",
-    description: "Project notes to follow.",
-    href: "https://github.com/aetosdios27/Raijin",
-  },
-];
-
-export const furtherWork: Project[] = [
-  { name: "Konto", description: "A double-entry ledger with zero-sum guarantees.", href: "https://github.com/aetosdios27/Konto" },
-  { name: "Iris", description: "A Linux image viewer with a Vulkan renderer.", href: "https://github.com/aetosdios27/iris" },
-  { name: "WebNotes", description: "Local-first notes, across desktop and web.", href: "https://github.com/aetosdios27/WebNotes" },
+  { name: "Kiban", description: "An embedded storage engine.", category: "Storage / Rust", year: "2026", href: "https://github.com/aetosdios27/kiban" },
+  { name: "Styx", description: "BitTorrent, from the wire up.", category: "P2P / Rust", year: "2026", href: "https://github.com/aetosdios27/Styx" },
+  { name: "Scribe", description: "Infrastructure for technical writing.", category: "Publishing / TypeScript", year: "2026", href: "https://github.com/aetosdios27/scribe" },
+  { name: "Raijin", description: "Deterministic distributed-system testing.", category: "Distributed systems", year: "2026", href: "https://github.com/aetosdios27/Raijin" },
+  { name: "Konto", description: "A double-entry ledger.", category: "Financial infrastructure", year: "2026", href: "https://github.com/aetosdios27/Konto" },
+  { name: "Iris", description: "A Vulkan-powered image viewer.", category: "Graphics / Rust", year: "2026", href: "https://github.com/aetosdios27/iris" },
+  { name: "WebNotes", description: "Your notes. Local first.", category: "Local-first software", year: "2025–26", href: "https://github.com/aetosdios27/WebNotes" },
 ];
 
 export const openSource = [
@@ -74,9 +48,8 @@ openSource.push(
 
 export const playground = {
   title: "Playground",
-  description: "Smaller builds. Different rabbit holes.",
   projects: [
-    { name: "Folio", description: "ArXiv papers to your Obsidian vault, from the terminal.", href: "https://github.com/aetosdios27/Folio" },
-    { name: "Axiom", description: "One set of coding rules. Configs for every agent.", href: "https://github.com/aetosdios27/axiom-core" },
+    { name: "Folio", description: "Research papers, straight to your vault.", category: "Research tools", year: "2026", href: "https://github.com/aetosdios27/Folio" },
+    { name: "Axiom", description: "One rulebook for every coding agent.", category: "Developer tools", year: "2026", href: "https://github.com/aetosdios27/axiom-core" },
   ] satisfies Project[],
 };

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { SiteHeader } from "@/components/site-header";
-import { SiteFooter } from "@/components/site-footer";
 import "./globals.css";
 
 const interTight = localFont({
@@ -13,7 +12,7 @@ const interTight = localFont({
 
 export const metadata: Metadata = {
   title: { default: "Pushpendra Singh — Work", template: "%s — Pushpendra Singh" },
-  description: "Systems, tools, and the interfaces around them. Selected work and open-source contributions by Pushpendra Singh, also known as Aetos.",
+  description: "Systems, tools, and the interfaces around them. Selected work and open-source contributions by Pushpendra Singh, also known as aetos.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
@@ -24,7 +23,6 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <div className="page-shell">
           <SiteHeader />
           {children}
-          <SiteFooter />
         </div>
       </body>
     </html>
