@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
-const routes = [{ label: "Work", href: "/" }, { label: "About", href: "/about" }, { label: "Dispatches", href: "/dispatches" }];
+const routes = [{ label: "About", href: "/" }, { label: "Playground", href: "/playground" }, { label: "Dispatches", href: "/dispatches" }];
 
 function RouteNavigation({ label }: { label: string }) {
   const pathname = usePathname();
@@ -14,7 +14,7 @@ function RouteNavigation({ label }: { label: string }) {
 
 export function SiteHeader() {
   const pathname = usePathname();
-  if (pathname === "/about") return null;
+  if (pathname === "/" || pathname === "/about") return null;
 
   return (
     <header className="site-header">

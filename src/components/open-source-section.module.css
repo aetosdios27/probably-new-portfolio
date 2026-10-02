@@ -1,0 +1,97 @@
+.section {
+  margin-bottom: var(--space-8);
+}
+
+/* Measure the actual canvas, excluding a desktop scrollbar, so the existing
+   full-bleed bands keep their geometry without horizontal overflow. */
+:global(body):has(.section) {
+  container-type: inline-size;
+}
+
+:global(main):has(.section) {
+  --canvas-width: 100cqw;
+}
+
+.heading {
+  color: var(--subtle);
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 1.7;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-2);
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 140px minmax(0, 1fr) 112px;
+  align-items: center;
+  column-gap: var(--space-2);
+  min-height: 40px;
+  padding-block: var(--space-1);
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.repository {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-1);
+  color: rgb(242 242 242 / 85%);
+  font-weight: 500;
+  transition: color var(--motion-hover) ease;
+}
+
+.logo {
+  width: 13px;
+  height: 13px;
+  flex-shrink: 0;
+  object-fit: contain;
+  border-radius: 4px;
+  corner-shape: squircle;
+}
+
+.description {
+  color: var(--muted);
+  transition: color var(--motion-hover) ease;
+}
+
+.metadata {
+  color: var(--subtle);
+  font-size: 11px;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .row:hover .repository {
+    color: var(--foreground);
+  }
+
+  .row:hover .description { color: rgb(242 242 242 / 85%); }
+}
+
+.row:focus-visible .repository {
+  color: var(--foreground);
+  transition: none;
+}
+
+.row:focus-visible .description {
+  color: rgb(242 242 242 / 85%);
+  transition: none;
+}
+
+@media (max-width: 640px) {
+  .row {
+    grid-template-columns: minmax(0, 1fr) auto;
+    row-gap: 4px;
+  }
+
+  .repository { grid-column: 1; grid-row: 1; }
+  .metadata { grid-column: 2; grid-row: 1; }
+  .description { grid-column: 1 / -1; grid-row: 2; }
+}

@@ -15,6 +15,12 @@ About is one connected personal introduction, not several sections. Desktop uses
 
 Center the entire About composition as one column: `width: 100%; max-width: 620px; margin-inline: auto`. Keep text left-aligned within that column. Do not attach a narrower prose column to the shared container's left edge; that creates unequal outer margins. Check equal column margins at wide, tablet, and mobile widths, allowing subpixel rounding.
 
+The personal About composition is now the homepage at `/`; `/about` redirects there. Keep its existing geometry and footer-free treatment. Work has been removed. The two-item Playground index lives at `/playground`, using the existing reading-page measure, compact index styles, and a 24px gap after its heading.
+
+Homepage Highlight Projects shares the same 620px centered column. Use 96px from the introduction's content edge to the section heading: each band extends 32px into that gap, leaving a deliberate 32px clear interval between dashed boundaries. Keep 16px from heading to list, 36px link targets plus 4px row padding on each side, and 64px after the list. Names align to the prose's left edge; dates align to the column's right edge. Only these two authored bands receive exterior shading.
+
+Open source follows Selected Work's existing 64px bottom gap and uses the same column without side patterns. Keep 16px from heading to list, compact 40px desktop rows, and 64px after the section. Mobile rows put repository and metadata above the description, with a 4px internal gap and 8px vertical padding. The homepage canvas uses a body inline-size container so full-bleed decoration measures available width rather than including scrollbar width.
+
 Keep whitespace outside the composition generous while preserving proximity within it. Avoid viewport-relative gaps inside the biography, artificial minimum heights on individual content blocks, and stacked bottom padding plus footer margins. Never add filler to occupy leftover space.
 
 Page framing is separate from content spacing. The shared `.page-shell` must fill at least the visible viewport, with a flexible main region and a footer that stays at the bottom on short pages. On longer pages, the footer follows the complete content in normal document flow. Its existing margin supplies a minimum separation from the prose; the shell absorbs additional available space. Do not use fixed positioning, hard-coded footer offsets, or expanded paragraph gaps to achieve this.

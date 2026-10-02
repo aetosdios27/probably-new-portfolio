@@ -15,3 +15,11 @@ Read `docs/spacing.md` before changing layout spacing. Use the shared `--space-*
 ## Motion quality
 
 Read `docs/motion.md` before adding or changing animations. Use the shared motion/easing tokens, choose timing by purpose, preserve spatial origins, support interruption and reduced motion, and verify entry, held, exit, and rapid reversal states. Quiet, deliberate polish is the standard; do not add motion merely to fill space or demonstrate an effect.
+
+## Link behavior
+
+Use `EditorialLink` and `LinkLabel` from `src/components/editorial-link.tsx` for ordinary content links. The default is a subtle dashed underline at rest, a solid swipe that grows and retracts from the same left origin, and a northeast arrow visible only on hover or keyboard focus. Share this behavior rather than inventing a new effect per section. Preserve reduced motion, immediate keyboard focus, stable hit areas, and interruption. Compact navigation and the intentionally bespoke Playground word retain their established treatments; do not spread pixelation or multicolor trails to other links.
+
+## Open-source feed
+
+Qualifying organizations are explicitly curated in `src/lib/open-source-policy.ts`; never expand this feed to all personal/friend/startup PRs or use activity volume as a quality signal. Display at most six contributions, one per repository, selecting merged first and at most one open PR, then sort the selected list newest first. GitHub data is fetched only on the server and revalidated hourly. Keep credentials out of client code and use the verified snapshot if the API is unavailable.

@@ -33,6 +33,15 @@ export const selectedWork: Project[] = [
   { name: "WebNotes", description: "Your notes. Local first.", category: "Local-first software", year: "2025–26", href: "https://github.com/aetosdios27/WebNotes" },
 ];
 
+// Dates reflect the latest implementation month on GitHub, checked 2026-10-02,
+// rather than claiming a release/completion date. Keep this shortlist at four max.
+export const highlightProjects = [
+  { name: "Kiban", href: "https://github.com/aetosdios27/kiban", date: "2026-09", label: "Sep 2026", context: "An embedded LSM-tree storage engine written from first principles in Rust." },
+  { name: "Styx", href: "https://github.com/aetosdios27/Styx", date: "2026-07", label: "Jul 2026", context: "A from-scratch BitTorrent client implementing the protocol stack in Rust." },
+  { name: "Scribe", href: "https://github.com/aetosdios27/scribe", date: "2026-08", label: "Aug 2026", context: "Publishing infrastructure and an authoring SDK for technical writing." },
+  { name: "Raijin", href: null, date: null, label: "soon", context: "Deterministic testing infrastructure for distributed systems." },
+] as const;
+
 export const openSource = [
   { name: "Zed", description: "Honor window preferences when opening remote projects", number: 61048, status: "Merged", href: "https://github.com/zed-industries/zed/pull/61048" },
   { name: "NativeLink", description: "Handle zero digests in CompressionStore", number: 2548, status: "Merged", href: "https://github.com/TraceMachina/nativelink/pull/2548" },

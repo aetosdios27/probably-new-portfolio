@@ -10,7 +10,7 @@
     "typecheck": "next typegen && tsc --noEmit"
   },
   "dependencies": {
-    "@fontsource/press-start-2p": "^5.3.0",
+    "@radix-ui/react-tooltip": "^1.2.16",
     "@scritto/react": "^0.1.0",
     "next": "16.3.8",
     "react": "19.2.8",

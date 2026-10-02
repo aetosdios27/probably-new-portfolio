@@ -11,8 +11,8 @@ const interTight = localFont({
 });
 
 export const metadata: Metadata = {
-  title: { default: "Pushpendra Singh — Work", template: "%s — Pushpendra Singh" },
-  description: "Systems, tools, and the interfaces around them. Selected work and open-source contributions by Pushpendra Singh, also known as aetos.",
+  title: { default: "aetos — Pushpendra Singh", template: "%s — Pushpendra Singh" },
+  description: "I’m aetos, a systems engineer driven mostly by curiosity and an unreasonable attention to detail.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

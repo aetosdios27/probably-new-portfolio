@@ -16,7 +16,7 @@
   position: absolute;
   top: calc(-1 * var(--space-4));
   height: calc(100% + 2 * var(--space-4));
-  width: max(0px, calc(50vw - 50% - var(--guide-gutter)));
+  width: max(0px, calc(var(--canvas-width, 100vw) / 2 - 50% - var(--guide-gutter)));
   color: var(--subtle);
   opacity: 0.22;
   pointer-events: none;
@@ -58,7 +58,7 @@
 .topRule,
 .bottomRule {
   left: 50%;
-  width: 100vw;
+  width: var(--canvas-width, 100vw);
   height: 1.5px;
   transform: translateX(-50%);
 }
@@ -126,6 +126,42 @@
 
 .thoughts .invitation {
   margin-top: var(--space-3);
+}
+
+.highlights {
+  position: relative;
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-8);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.sectionHeading {
+  color: var(--subtle);
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.projectList {
+  list-style: none;
+  padding: 0;
+  margin-top: var(--space-2);
+}
+
+.projectRow {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: 4px;
+}
+
+.projectRow time,
+.projectStatus {
+  flex-shrink: 0;
+  color: var(--subtle);
+  font-size: 12px;
+  font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 640px) {

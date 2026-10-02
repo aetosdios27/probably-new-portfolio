@@ -1,0 +1,14 @@
+.link {
+  display: inline-flex;
+  align-items: center;
+  min-height: 36px;
+  color: var(--foreground);
+  font-weight: 500;
+  white-space: nowrap;
+}
+
+.pending {
+  color: var(--subtle);
+  font-weight: 400;
+  cursor: not-allowed;
+}

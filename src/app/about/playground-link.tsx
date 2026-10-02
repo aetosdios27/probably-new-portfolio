@@ -64,7 +64,7 @@ export function PlaygroundLink() {
 
   return (
     <Link
-      href="/#playground-heading"
+      href="/playground"
       className={styles.link}
       aria-label="Playground"
       onPointerLeave={clearTrail}

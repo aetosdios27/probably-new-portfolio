@@ -1,9 +1,20 @@
 .link {
+  position: relative;
   display: inline-block;
   font-weight: 600;
   color: var(--foreground);
   text-decoration: none;
   white-space: nowrap;
+}
+
+.link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 1px;
+  border-bottom: 1px dashed rgb(242 242 242 / 26%);
+  pointer-events: none;
 }
 
 .letter {
