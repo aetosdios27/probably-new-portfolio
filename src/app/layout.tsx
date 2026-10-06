@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 import { SiteHeader } from "@/components/site-header";
+import { SocialsDock } from "@/components/socials-dock";
 import "./globals.css";
 
 const interTight = localFont({
@@ -24,6 +25,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <SiteHeader />
           {children}
         </div>
+        <SocialsDock />
       </body>
     </html>
   );

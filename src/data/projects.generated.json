@@ -1,0 +1,1045 @@
+{
+  "fetchedAt": "2026-10-06T08:23:57.212Z",
+  "audit": [
+    {
+      "repo": "100xDevs-Cohort-3.0",
+      "included": false,
+      "reason": "pattern /cohort/i"
+    },
+    {
+      "repo": "aerospike-client-rust",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "aetosdios27",
+      "included": false,
+      "reason": "profile config"
+    },
+    {
+      "repo": "Amboras-Take-Home-Assignment-Solution",
+      "included": false,
+      "reason": "pattern /solution/i"
+    },
+    {
+      "repo": "android-lab-project",
+      "included": true,
+      "reason": "quality gate passed"
+    },
+    {
+      "repo": "Atlas",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "Atlas_",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "axiom-core",
+      "included": true,
+      "reason": "quality gate passed"
+    },
+    {
+      "repo": "axiom-registry",
+      "included": false,
+      "reason": "hidden"
+    },
+    {
+      "repo": "blazecode",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "buddy-net",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "CampusVibe",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "ClickShield",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "CodeVault",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "cofoundme.ai",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "cohort-3-assignments",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "cp-solution-repo",
+      "included": false,
+      "reason": "pattern /solution/i"
+    },
+    {
+      "repo": "CPP-STL-Notes",
+      "included": false,
+      "reason": "pattern /notes/i"
+    },
+    {
+      "repo": "Databuddy",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "datafusion",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "drizzle-orm",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "duckdb",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "FalkorDB",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "finance-tracker",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "Folio",
+      "included": true,
+      "reason": "quality gate passed"
+    },
+    {
+      "repo": "freenet-core",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "golem",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "GravLens",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "helix-db",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "homebrew-axiom",
+      "included": false,
+      "reason": "hidden"
+    },
+    {
+      "repo": "hydradb",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "iris",
+      "included": true,
+      "reason": "force-included"
+    },
+    {
+      "repo": "iris-landing-page",
+      "included": false,
+      "reason": "pattern /landing-page/i"
+    },
+    {
+      "repo": "kiban",
+      "included": true,
+      "reason": "force-included"
+    },
+    {
+      "repo": "knowhere",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "Konto",
+      "included": true,
+      "reason": "force-included"
+    },
+    {
+      "repo": "kurogane",
+      "included": true,
+      "reason": "force-included"
+    },
+    {
+      "repo": "learning-scala",
+      "included": false,
+      "reason": "pattern /^learning-/i"
+    },
+    {
+      "repo": "marketplace",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "middleware",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "nativelink",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "neon",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "new-portfolio",
+      "included": false,
+      "reason": "pattern /portfolio/i"
+    },
+    {
+      "repo": "next.js",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "nix",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "PokeSearch",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "portfolio",
+      "included": false,
+      "reason": "pattern /portfolio/i"
+    },
+    {
+      "repo": "probably-new-portfolio",
+      "included": false,
+      "reason": "pattern /portfolio/i"
+    },
+    {
+      "repo": "Raijin",
+      "included": true,
+      "reason": "force-included (no descriptor)"
+    },
+    {
+      "repo": "Rocket.Chat",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "rocksdb",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "Rust-Logs",
+      "included": false,
+      "reason": "pattern /logs?$/i"
+    },
+    {
+      "repo": "scribe",
+      "included": true,
+      "reason": "force-included"
+    },
+    {
+      "repo": "scribe-site",
+      "included": false,
+      "reason": "pattern /-site$/i"
+    },
+    {
+      "repo": "shiden",
+      "included": true,
+      "reason": "force-included"
+    },
+    {
+      "repo": "spiderverse",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "starship",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "Styx",
+      "included": true,
+      "reason": "force-included"
+    },
+    {
+      "repo": "susano",
+      "included": true,
+      "reason": "force-included"
+    },
+    {
+      "repo": "Swish",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "TeamRocket",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "termchat",
+      "included": false,
+      "reason": "no descriptor"
+    },
+    {
+      "repo": "turso",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "UniWay",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "Visual-Studio-Code-Website-Clone",
+      "included": false,
+      "reason": "pattern /clone$/i"
+    },
+    {
+      "repo": "vmrl",
+      "included": true,
+      "reason": "quality gate passed"
+    },
+    {
+      "repo": "WebNotes",
+      "included": true,
+      "reason": "force-included"
+    },
+    {
+      "repo": "WebNotes-landing-page-",
+      "included": false,
+      "reason": "pattern /notes/i"
+    },
+    {
+      "repo": "zed",
+      "included": false,
+      "reason": "fork"
+    },
+    {
+      "repo": "Zerodha-Website-Clone",
+      "included": false,
+      "reason": "pattern /clone$/i"
+    }
+  ],
+  "sources": [
+    {
+      "slug": "android-lab-project",
+      "pushed_at": "2026-09-08T19:29:25Z",
+      "readme": "# MUJ Student Portal\n\n## Overview\n\nA fully offline university Android project inspired by Manipal University Jaipur's student portal. This is an academic prototype, not an official MUJ application. It uses Kotlin, XML layouts and ordinary Activities rather than Compose or a backend.\n\n## Features\n\n- Demo login with field validation, masked password and optional remembered session.\n- Dashboard with seven explicit-Intent destinations, academic summaries and quick-access cards.\n- Calculated attendance, internal marks, registered courses and weekday timetables.\n- Notice detail dialogs.\n- Validated service request form with Spinner, RadioGroup and CheckBox; incrementing local request IDs and persistent latest request.\n- Editable phone and alternate email, local saving and logout that clears the navigation task.\n- No internet permission, remote images, Firebase, university APIs or network services.\n- Cohesive navy/teal styling, original offline vector artwork, and centered, content-fitting cards and controls.\n- Dashboard rows adapt to compact widths and larger fonts; long inputs and dialog titles wrap rather than truncate.\n\n## Screens\n\n| Activity | Purpose |\n| --- | --- |\n| SplashActivity | One-second introduction and session-based routing |\n| LoginActivity | Demo credentials, errors and Remember me |\n| DashboardActivity | Student overview and portal navigation |\n| AttendanceActivity | RecyclerView with calculated percentages and progress indicators |\n| MarksActivity | Internal marks, grades and GPA summaries |\n| TimetableActivity | Weekday Spinner dynamically updates RecyclerView |\n| CoursesActivity | Course codes, faculty, credits and registration status |\n| NoticesActivity | Notice list and full-detail AlertDialogs |\n| ServiceRequestActivity | Validated form and persistent latest request |\n| ProfileActivity | Student details, editable contacts and logout |\n\nAll seven secondary screens have toolbar Up navigation. System Back returns through the Activity stack. Successful login finishes LoginActivity; logout uses NEW_TASK and CLEAR_TASK so Back cannot reopen the dashboard.\n\n## Android Concepts Demonstrated\n\n- Standard Android Studio/Gradle app module, manifest and resources.\n- Kotlin data classes and a simple mock-data object.\n- Activity lifecycle: onCreate inflates and binds views; SplashActivity schedules in onStart and cancels in onStop; timetable saves selected day in onSaveInstanceState.\n- Explicit Intent navigation between registered Activities.\n- XML TextView, ImageView, TextInputEditText, MaterialButton, CheckBox, Spinner, RadioGroup and RadioButton.\n- RecyclerView, ViewHolder, Adapter, LinearLayoutManager and recycled binding.\n- Material cards, vector drawables, progress indicators, Toasts and dialogs.\n- Input validation before persistence; nullable text and incorrectly typed preference values have safe defaults.\n- ViewBinding gives type-safe view references without deprecated Kotlin synthetics.\n- SharedPreferences for small local key/value records.\n\n## Tech Stack\n\n- Kotlin 2.0.21\n- XML\n- Android SDK (minimum API 23; compile/target API 35)\n- RecyclerView\n- SharedPreferences\n- Material Components\n- Android Gradle Plugin 8.7.3 / Gradle 8.9\n- JDK 17 or 21\n\n## Build and Install\n\nOpen this directory in Android Studio and let Gradle sync. Install Android SDK Platform 35 and Build Tools 35.0.0 through SDK Manager. Android Studio normally writes your SDK path into the ignored `local.properties` file; update that file if building on another machine.\n\n```sh\n./gradlew :app:assembleDebug\nadb install -r app/build/outputs/apk/debug/app-debug.apk\n```\n\nThe APK is `app/build/outputs/apk/debug/app-debug.apk`. Build dependency downloads require internet on the first build; the installed application does not. Once dependencies and the Gradle distribution are cached, build with `./gradlew --offline :app:assembleDebug`.\n\n## Demo Credentials\n\nRegistration Number: **229301234**  \nPassword: **muj123**\n\nThese credentials are also visible on the login screen. They are intentionally embedded for a classroom demo, not secure authentication. Passwords are not saved to preferences.\n\n## Application Flow\n\n```text\nSplash\n  -> Login (unless an active or remembered session exists)\n  -> Dashboard\n      -> Attendance / Marks / Timetable / Courses / Notices\n      -> Service Request\n      -> Profile -> Logout -> Login (cleared back stack)\n```\n\nRemember me persists login across process termination. Without it, login lasts only for the current app process. Logout clears both session flags but deliberately retains profile edits and the latest request. Android can keep a process alive after Back, so removing an Activity is not the same as ending a session process.\n\n## Local Data\n\nAcademic information lives in `data/MockData.kt`. The model and adapter folders contain one model and RecyclerView adapter per academic module. There is no network/repository framework: Activities read the small immutable mock lists directly.\n\n`PortalPreferences` wraps the `muj_portal` SharedPreferences file for remembered-session state, phone and alternate email. `ServiceRequestActivity` uses a separate `muj_requests` file for the counter and latest full request. User data survives screen reopening and process restarts, but uninstalling/clearing app data removes it. Automatic backup is disabled. Request submission is local recording only, not delivery to a university office. The small request record and counter use one checked `commit()` before the success dialog; profile/session updates use `apply()`.\n\nOverall attendance is weighted by class count: `156 / 182 × 100 = 85.71%`, rounded to **86%**. Individual values and progress are calculated. Safe status uses the exact fraction against 75%, not a rounded percentage. GPA figures are illustrative academic summaries. The dashboard's **18 / 24** earned-credit progress and Courses' **19 registered credits** intentionally describe different demo figures, as specified in the assignment.\n\n## 60-Second Demo\n\n1. **0–10 s:** Launch, show visible demo credentials, tick Remember me and log in.\n2. **10–20 s:** Show dashboard, open Attendance and explain calculated progress; Back, open Marks.\n3. **20–30 s:** Open Timetable, change Monday to Tuesday; open Courses and show faculty/credits.\n4. **30–40 s:** Open Notices and tap an announcement to show its full dialog.\n5. **40–52 s:** Open Service Request. Demonstrate an invalid submission, then select Academic, enter `Attendance correction` and `Please review my attendance for the last lab.`, select Normal, confirm and submit. Show generated ID.\n6. **52–60 s:** Reopen the request to show persistence; open Profile, save a phone edit, then log out and demonstrate that Back does not restore Dashboard.\n\nFor a slower viva, restart the app with Remember me enabled and disabled to explain persistent versus process-local sessions.\n\n## Likely Viva Questions\n\n**Why Activities and explicit Intents?** Each module is an independent Activity. An explicit Intent names the exact destination class; Android manages the back stack.\n\n**What is onCreate?** It runs when an Activity instance is created. We inflate the XML binding, setContentView and attach listeners there. Rotation can create a new instance.\n\n**Why XML and ViewBinding?** XML separates view structure from event-handling Kotlin. ViewBinding generates typed references to XML IDs and avoids unsafe casts and synthetic properties.\n\n**How does RecyclerView work?** A LayoutManager positions items. The Adapter inflates a card into a ViewHolder and binds the record for a position. ViewHolders are reused as the list scrolls.\n\n**How does the Spinner update the timetable?** onItemSelected looks up the chosen weekday's local list, passes it to the adapter and scrolls to the first class. Selection is saved across recreation.\n\n**RadioButton versus CheckBox?** A RadioGroup permits one priority at a time. The CheckBox is an independent true/false confirmation.\n\n**How is attendance calculated?** Attended classes divided by total classes times 100. Overall attendance divides summed attended classes by summed total classes, not the average of rounded subject percentages. A zero total is guarded.\n\n**Why SharedPreferences rather than a database?** This prototype stores only a few key/value fields and one latest request. A database would be appropriate for a larger searchable request history.\n\n**apply versus commit?** apply updates memory immediately and writes asynchronously without returning a success result. commit writes synchronously and returns whether persistence succeeded. The tiny request record checks that result before confirming submission.\n\n**How is invalid input handled?** Validation returns before saving. TextInputLayout errors identify text fields; Toasts explain missing Spinner, priority or confirmation choices.\n\n**How does logout prevent going back?** It clears session state and starts LoginActivity with FLAG_ACTIVITY_NEW_TASK and FLAG_ACTIVITY_CLEAR_TASK. The prior task Activities are removed.\n\n**Is authentication secure?** No. This is an offline academic prototype with visible hardcoded demo credentials. A production app needs a trusted server, secure authentication and protected tokens.\n\n## Verification Performed\n\nThe debug APK was built and installed on an Android 15 / API 35 Pixel 5 emulator. Actual UI interactions were exercised with airplane mode enabled:\n\n- Blank registration/password and invalid credentials are rejected.\n- All seven dashboard destinations and both quick-access cards open their Activities; system Back and toolbar Up return correctly.\n- Academic RecyclerViews render records, calculated attendance and registration status.\n- The timetable changes for all five weekdays and retains selection through rotation.\n- Notice dialogs display full descriptions, dates and categories.\n- Service requests reject missing type, blank subject, short description, missing priority and unchecked confirmation.\n- Successful requests produced `SR-2026-001` and `SR-2026-002`; the latest record survived Activity reopening, process restart and logout/login.\n- Request draft text, priority and confirmation survived rotation.\n- Profile rejects invalid phone/email; saved edits survived screen reopening and process restart.\n- Remembered login survives force-stop/relaunch; unchecked Remember me returns to Login after process termination.\n- Logout removes the dashboard from the back stack.\n- All ten redesigned screens were visually inspected, including compact 320dp width with 1.3× system font scaling.\n- Long request subjects, alternate emails, validation captions and notice titles were checked for centered wrapping.\n- Dashboard cards stack on compact screens instead of breaking labels mid-word; the splash has portrait and landscape compositions.\n\nVerification used external throwaway UI automation, not a production dependency or a mocked backend. Runtime checks cover API 35; older supported Android versions were not separately exercised.\n\nFinal verification command: `./gradlew --offline :app:assembleDebug :app:lintDebug` — **BUILD SUCCESSFUL**. Android lint reports no errors; remaining non-blocking warnings include dependency-update suggestions, the explicitly requested custom SplashActivity, and presentation/localization recommendations. The report is generated at `app/build/reports/lint-results-debug.html`. No lint errors or warnings were suppressed.\n\n## Future Scope\n\n- Real university API integration\n- Secure authentication\n- Push notifications\n- Online fee payments\n- Live attendance synchronization\n",
+      "languages": [
+        "Kotlin"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "atlas",
+      "pushed_at": "2025-08-09T16:39:04Z",
+      "readme": "# Atlas",
+      "languages": [],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "axiom-core",
+      "pushed_at": "2026-05-22T21:49:10Z",
+      "readme": "# Axiom Core\n\n> The immutable system of truth for AI agent style guides and coding standards.\n\n**One schema. Every platform. Zero ambiguity.**\n\n## Architecture\n\n```\naxiom-core/\n├── web/          # Astro static site — human-readable rule directory\n├── cli/          # Go binary — fetch & write agent configs\n└── registry/     # Mock data (production: separate repo)\n```\n\n- **Registry** → Raw `.json` files. No database. Version-controlled truth.\n- **Web Hub** → Astro + React + Tailwind v4. Glassmorphic brutalism. Sub-second builds.\n- **CLI Engine** → Compiled Go + Cobra. One binary, seven output formats.\n\n## Web Hub\n\n```bash\ncd web\nbun install\nbun run dev      # → http://localhost:4321\nbun run build    # → static output in dist/\n```\n\n## CLI\n\n### Install\n\n```bash\ncurl -sSL https://raw.githubusercontent.com/aetosdios27/axiom-core/main/install.sh | bash\n```\n\n### Usage\n\n```bash\n# List all available rules\naxiom list\n\n# Initialize rules for your project\naxiom init go-standard --format cursor\naxiom init typescript-strict --format claude\naxiom init go-standard --format all    # writes all 7 formats\n```\n\n### Supported Formats\n\n| Platform | Format Flag | Output File |\n|---|---|---|\n| Cursor | `cursor` | `.cursor/rules/{id}.mdc` |\n| Windsurf | `windsurf` | `.windsurfrules` |\n| Claude Code | `claude` | `CLAUDE.md` |\n| GitHub Copilot | `copilot` | `.github/copilot-instructions.md` |\n| Cline / Roo Code | `cline` | `.clinerules` |\n| Codex | `codex` | `AGENTS.md` |\n| Zed | `zed` | `.rules` |\n\n## Rule Schema\n\nBoth the CLI and web hub consume this exact JSON structure:\n\n```json\n{\n  \"id\": \"go-standard\",\n  \"name\": \"Go Canonical Style\",\n  \"ecosystem\": \"Go\",\n  \"version\": \"1.0.0\",\n  \"cli_target\": {\n    \"extensions\": [\"*.go\"],\n    \"agent_format\": \"cursor\"\n  },\n  \"human_view\": {\n    \"philosophy\": \"...\",\n    \"sections\": [{ \"title\": \"...\", \"content\": \"...\" }]\n  },\n  \"agent_view\": {\n    \"system_prompt\": \"...\",\n    \"rules\": [\"...\"],\n    \"canonical_snippet\": \"...\"\n  }\n}\n```\n\n## Links\n\n- **Registry**: [github.com/aetosdios27/axiom-registry](https://github.com/aetosdios27/axiom-registry)\n- **Core**: [github.com/aetosdios27/axiom-core](https://github.com/aetosdios27/axiom-core)\n",
+      "languages": [
+        "TypeScript",
+        "Go",
+        "Astro",
+        "CSS",
+        "Shell",
+        "JavaScript",
+        "Dockerfile"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "buddy-net",
+      "pushed_at": "2025-02-07T21:05:23Z",
+      "readme": "# buddy-net",
+      "languages": [],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "campusvibe",
+      "pushed_at": "2026-03-18T16:12:18Z",
+      "readme": "",
+      "languages": [
+        "PHP",
+        "CSS",
+        "JavaScript",
+        "HTML",
+        "Hack"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "clickshield",
+      "pushed_at": "2025-04-12T00:00:08Z",
+      "readme": "# ClickShield",
+      "languages": [
+        "JavaScript",
+        "HTML"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "codevault",
+      "pushed_at": "2025-01-29T11:18:24Z",
+      "readme": "# CodeVault",
+      "languages": [
+        "Go"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "cofoundme.ai",
+      "pushed_at": "2025-04-13T13:36:00Z",
+      "readme": "# cofoundme.ai",
+      "languages": [
+        "TypeScript",
+        "CSS",
+        "JavaScript"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "finance-tracker",
+      "pushed_at": "2025-07-11T19:56:35Z",
+      "readme": "# finance-tracker",
+      "languages": [],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "folio",
+      "pushed_at": "2026-05-14T06:16:09Z",
+      "readme": "# Folio\n\n![Crates.io](https://img.shields.io/crates/v/folio)\n![Rust Edition](https://img.shields.io/badge/edition-2021-orange?logo=rust)\n![License](https://img.shields.io/badge/license-MIT-blue)\n\n**A terminal UI for searching ArXiv and importing papers directly into your Obsidian vault as formatted markdown notes.**\n\n---\n\n## Features\n\n- **Instant ArXiv search** — no API key, no rate limits, results in seconds\n- **TUI-first** — browse, preview, and select papers without leaving your terminal\n- **One-command import** — selected papers land in your vault as markdown notes with YAML frontmatter containing:\n  - title\n  - authors\n  - abstract\n  - publication date\n  - ArXiv URL\n- **Paginated results** — navigate through pages of results without retyping your query\n- **Interactive onboarding** — set your vault path once on first launch; change it anytime with `--reconfigure`\n- **Direct query launch** — skip the start screen and jump straight to results with `--query`\n\n---\n\n## Installation\n\nFolio requires an [Obsidian vault](https://obsidian.md?utm_source=chatgpt.com).\n\n### Option A — Install via Crates.io (Recommended)\n\nRequires the [Rust toolchain](https://rustup.rs?utm_source=chatgpt.com).\n\n```bash\ncargo install folio-tui\n```\n\n---\n\n### Option B — Pre-built Binary (No Rust Needed)\n\nDownload the latest binary for your platform from the GitHub Releases page, extract it, and move it somewhere on your `$PATH`.\n\n#### Example — Linux x86_64\n\n```bash\ncurl -L https://github.com/aetos-dev/folio/releases/latest/download/folio-v0.2.0-x86_64-unknown-linux-gnu.tar.gz \\\n  | tar xz\n\nsudo mv folio /usr/local/bin/\n```\n\n---\n\n## Usage\n\n```bash\nfolio                         # Launch the TUI\nfolio --query \"your search\"  # Launch directly into results\nfolio --reconfigure          # Re-run onboarding\nfolio --help                 # Show help\nfolio --version              # Show version\n```\n\nOn first launch, Folio walks you through a short interactive setup to select:\n\n- your Obsidian vault\n- your papers folder\n\nAfter setup, simply run:\n\n```bash\nfolio\n```\n\n---\n\n## Keybindings\n\n| Key | Action |\n|---|---|\n| `j / k` or `↑ / ↓` | Move up / down |\n| `J / K` | Scroll preview |\n| `e` | Edit search query |\n| `Enter` | Fetch papers / Import selected |\n| `Space` | Toggle paper selection |\n| `p` | Preview selected paper |\n| `q` or `Ctrl+C` | Quit |\n\n---\n\n## Configuration\n\nConfiguration is stored at:\n\n```text\n~/.config/folio/config.toml\n```\n\nYou can edit this file directly to change:\n\n- vault path\n- papers subfolder\n- default behavior\n\nTo re-run the interactive onboarding instead:\n\n```bash\nfolio --reconfigure\n```\n\n---\n\n## License\n\nMIT\n",
+      "languages": [
+        "Rust"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "gravlens",
+      "pushed_at": "2025-10-10T12:09:01Z",
+      "readme": "# GravLens",
+      "languages": [
+        "TypeScript",
+        "CSS",
+        "JavaScript",
+        "HTML"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "iris",
+      "pushed_at": "2026-04-14T03:34:46Z",
+      "readme": "# Iris\n\nIris is a Linux image viewer built in Rust with GTK4/libadwaita and a GPU-native rendering stack.\n\nThe current direction is simple:\n\n- ship a fast, reliable Linux image viewer first\n- use zero-copy GPU presentation where the platform supports it\n- keep the architecture strong enough to grow into a programmable image tool later\n\n## Current Status\n\nIris is an active product prototype moving toward a V1 Linux release.\n\nToday the codebase already has:\n\n- GTK4/libadwaita desktop UI\n- Vulkan-based renderer\n- DMA-BUF presentation path for supported Linux environments\n- software fallback when Vulkan is unavailable\n- directory browsing and thumbnail strip\n- RAW image support\n- ICC-aware color conversion\n- zoom, pan, rotation, metadata panel\n- drag and drop for files and directories\n- directory watching\n- early compute-based image processing toggles\n\nWhat it is not yet:\n\n- a polished cross-platform app\n- a guaranteed zero-copy path on every Linux setup\n- a finished V1 release\n\n## Product Direction\n\nThe product roadmap is:\n\n- V1: stable Linux image viewer\n- V2: cross-platform support and live shader layer\n- V3: GPU-native creative platform\n\nMore detail lives in:\n\n- [Product Roadmap](/home/aetos/DevNexus/Code/Projects/iris/docs/PRODUCT_ROADMAP.md)\n- [V1 Release Criteria](/home/aetos/DevNexus/Code/Projects/iris/docs/V1_RELEASE_CRITERIA.md)\n- [V1 Execution Plan](/home/aetos/DevNexus/Code/Projects/iris/docs/V1_EXECUTION_PLAN.md)\n- [Platform Architecture Transition](/home/aetos/DevNexus/Code/Projects/iris/docs/PLATFORM_ARCHITECTURE_TRANSITION.md)\n\n## Rendering Model\n\nIris is built around a GPU-native rendering approach on Linux.\n\nPreferred path:\n\n- decode image\n- upload to GPU\n- render with Vulkan\n- export a DMA-BUF\n- present through GTK/Wayland\n\nFallback path:\n\n- if the preferred path is unavailable or rejected by the environment, Iris falls back to a slower but correct presentation path\n\nThat distinction matters. The goal is not \"Vulkan at any cost.\" The goal is a reliable app with an elite fast path where available.\n\n## Linux Support Model\n\nIris should be thought of as a Linux app with tiered rendering support:\n\n- preferred: Wayland + Vulkan + DMA-BUF path active\n- fallback: GPU rendering without zero-copy presentation\n- fallback: software rendering for correctness\n\nSee the full support framing here:\n\n- [Support Matrix](/home/aetos/DevNexus/Code/Projects/iris/docs/SUPPORT_MATRIX.md)\n\n## Features In Tree\n\n### Viewer\n\n- open files and directories\n- drag and drop files or folders\n- keyboard navigation\n- zoom in/out\n- drag pan\n- per-image rotation\n- metadata/info panel\n- persisted window state\n\n### Image Handling\n\n- common formats through the `image` crate\n- RAW camera formats through `imagepipe`/`rawloader`\n- ICC-aware conversion to sRGB\n- animated GIF support\n\n### Performance\n\n- Vulkan renderer\n- texture caching\n- directional prefetching\n- persistent thumbnail cache\n- async image decode and metadata work\n\n### Processing\n\n- compute-pass toggles for enhance, sharpen, and denoise\n- WGSL shader pipeline compiled through `naga`\n\n## Tech Stack\n\n- Rust\n- GTK4\n- libadwaita\n- Vulkan via `ash`\n- WGSL shaders via `naga`\n- image decoding via `image`\n- RAW decode via `imagepipe` and `rawloader`\n- color transforms via `lcms2`\n\n## Repo Layout\n\n```text\niris/\n├── src/\n│   ├── main.rs                  # app shell, UI, navigation, thumbnails\n│   ├── color.rs                 # ICC/profile handling\n│   ├── config.rs                # persisted config\n│   ├── raw.rs                   # RAW detection and decode helpers\n│   ├── thumbcache.rs            # thumbnail cache helpers\n│   └── viewport/\n│       ├── mod.rs               # viewport, decode flow, presentation bridge\n│       ├── camera.rs            # pan/zoom/rotation math\n│       ├── shaders/             # WGSL shaders\n│       └── vk/                  # Vulkan renderer internals\n├── docs/                        # roadmap, release, architecture docs\n├── tests/\n└── ARCHITECTURE.md\n```\n\n## Build\n\n### Prerequisites\n\nYou need:\n\n- Rust and Cargo\n- Vulkan loader and development libraries\n- GTK4 development libraries\n- libadwaita development libraries\n\nExact package names vary by distro.\n\n### Build\n\n```bash\ncargo build\n```\n\n### Run\n\n```bash\ncargo run -- /path/to/image.jpg\n```\n\nYou can also pass a directory path.\n\n## Development Notes\n\nThe repo includes a broader strategic doc set than the current code alone would suggest. That is intentional. The code is still V1-oriented, but the architecture is being evaluated against later platform ambitions.\n\nUseful docs:\n\n- [Release Checklist](/home/aetos/DevNexus/Code/Projects/iris/docs/RELEASE_CHECKLIST.md)\n- [Benchmark Plan](/home/aetos/DevNexus/Code/Projects/iris/docs/BENCHMARK_PLAN.md)\n- [Support Matrix](/home/aetos/DevNexus/Code/Projects/iris/docs/SUPPORT_MATRIX.md)\n\n## Benchmarks\n\nBenchmark claims should be treated as pending until they are backed by the benchmark plan and measured against:\n\n- eog\n- feh\n- Gwenview\n- Nomacs\n\nThe benchmark methodology is tracked here:\n\n- [Benchmark Plan](/home/aetos/DevNexus/Code/Projects/iris/docs/BENCHMARK_PLAN.md)\n\n## Known Reality\n\nIris is promising, but still under active hardening.\n\nCurrent areas that still matter for V1:\n\n- DMA-BUF compatibility across real Linux stacks\n- render-path observability\n- descriptor/cache safety\n- release packaging\n- benchmark validation\n\n## Contributing\n\nIf you want to contribute, start by reading:\n\n- [V1 Release Criteria](/home/aetos/DevNexus/Code/Projects/iris/docs/V1_RELEASE_CRITERIA.md)\n- [V1 Execution Plan](/home/aetos/DevNexus/Code/Projects/iris/docs/V1_EXECUTION_PLAN.md)\n- [Platform Architecture Transition](/home/aetos/DevNexus/Code/Projects/iris/docs/PLATFORM_ARCHITECTURE_TRANSITION.md)\n\nContributions that improve Linux reliability, rendering correctness, cache safety, or release readiness are the highest leverage for V1.\n",
+      "languages": [
+        "Rust",
+        "WGSL"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "kiban",
+      "pushed_at": "2026-09-11T08:59:06Z",
+      "readme": "# Kiban DB\n\nAn embedded LSM-tree storage engine in Rust. Single node. Zero\ndependencies. Byte keys, byte values, sorted.\n\nWrites go to a write-ahead log, then to an in-memory memtable. Flushes\nproduce sorted SSTables. Compaction merges SSTables and drops versions\nthat no active snapshot can observe. Reads check sources from newest\nto oldest; sequence numbers order everything.\n\n## Status\n\nImplemented:\n\n- Write-ahead log with two-phase durability: `put` reaches the kernel,\n  `sync` reaches the device. Durability is claimed only after sync\n  returns success.\n- SSTables: prefix-compressed blocks with restart points, per-block\n  CRC-32, bloom filters (10 bits/key), fixed footer with magic number.\n- Leveled compaction: L0 compacts as a whole, L1+ maintain disjoint\n  key ranges, outputs split at key boundaries.\n- Snapshots: pin a sequence number and the file set at capture time.\n  Reads through a snapshot are unaffected by later writes and\n  compactions.\n- Deterministic fault injection at syscall boundaries: single-fault and\n  pairwise sweeps over pipeline operations, plus a simulated volatile\n  device where power loss discards exactly the unsynced bytes. After\n  every tested crash point, recovered state must equal the last\n  acknowledged state.\n- Engine poisoning: WAL sync failures and commit ambiguities set a\n  fatal state that refuses mutations until reopen. Reads remain\n  available.\n- Multi-version memtable: superseded entries are retained while an\n  active snapshot can observe them.\n- `WriteBatch`: multiple mutations committed as one WAL record with a\n  contiguous sequence interval. Recovery applies all operations or none.\n- Block cache, lazy table loading, and a bounded shared table-file cache:\n  opening touches footers and indexes only.\n- `SharedKiban::stats()`: a cheap, observation-only snapshot — memtable\n  size, per-level table counts and bytes, snapshot/obsolete-file\n  counts, and raw block-cache/file-cache/compaction/flush counters. No\n  disk I/O, no derived verdicts.\n- Background flush and compaction: the active memtable freezes on a\n  size threshold and hands writers a fresh memtable and WAL\n  immediately; the frozen memtable and compaction both build off the\n  foreground lock, on one shared maintenance worker (flush first),\n  paced to protect foreground read latency (see Performance).\n- Gate-free reads: `SharedKiban::get` never acquires the engine-wide\n  write gate, at any point. A published `ReadView` (shadow memtable +\n  frozen memtable + version, swapped atomically at each structural\n  commit) lets readers run fully decoupled from writers/compaction.\n- Dedicated cache-bypassing bulk reader for compaction: compaction\n  reads input tables through an owned file handle with large\n  sequential read-ahead, never touching the foreground block cache or\n  the shared table-file cache.\n- Adaptive compaction governor (default): a continuous pressure vector\n  (L0 / deep-level debt / read-amp) attributed to whichever source is\n  actually causing it, instead of blended into one mode; candidate\n  scoring weighted by which of those a job would actually relieve; a\n  focus mechanism that commits to a level and works it down instead of\n  re-optimizing from scratch every cycle; adaptive batching that keeps\n  taking free headroom past \"just enough\" relief instead of stopping\n  the instant a candidate clears the immediate debt. See Performance\n  for the measured before/after.\n- Evidence-scored compaction scheduler (opt-in): scores L0 and\n  per-level candidates by urgency/stall-risk/overlap-cost instead of a\n  fixed drain order, plus key-contiguous batching of a level's oldest\n  tables into one job.\n- Fixed-priority compaction scheduler (opt-in): always drains L0\n  first, then cascades levels in order — tight, predictable L0 at the\n  cost of the highest write amplification of the three.\n- Opt-in mmap hybrid read path: maps low-level (hot) SSTables whole\n  instead of leasing through the block/file cache; cold levels keep\n  the pread path. Off by default.\n- Read/write amplification counters (`KibanStats::read_amp`,\n  `MaintenanceStats`): per-get resolution point and physical\n  flush/compaction bytes, for evaluating scheduler and I/O-path\n  changes against evidence rather than intuition.\n\nNot implemented:\n\n- Compression (format reserves a type byte)\n- Range deletes, reverse iterators, transactions\n\n## Architecture\n\n```mermaid\nflowchart TD\n    W[writer] --> WB[\"WriteBatch<br/>(optional group)\"]\n    WB --> WAL[\"WAL record<br/>one frame = one atomic unit\"]\n    WAL --> MEM[\"memtable<br/>(retains versions<br/>snapshots still need)\"]\n    MEM -- \"sync()\" --> DISK1[fdatasync]\n    MEM -- \"flush\" --> IMM[\"frozen memtable\"] --> SST0[\"L0 sstable\"]\n    SST0 -- \"L0 count >= trigger\" --> COMP[\"merge:<br/>newest version per key wins,<br/>versions dropped only when no<br/>active snapshot can read them\"]\n    COMP --> SSTN[\"L1..Ln sstables<br/>(disjoint key ranges)\"]\n```\n\n```mermaid\nflowchart TD\n    Q[get key] --> A{active memtable<br/>contains key?}\n    A -- \"value\" --> R[value]\n    A -- \"tombstone\" --> R0[not found]\n    A -- \"absent\" --> I{immutable memtable<br/>contains key?}\n    I -- \"value\" --> R\n    I -- \"tombstone\" --> R0\n    I -- \"absent\" --> B{\"bloom filter<br/>admits key?\"}\n    B -- \"no\" --> R0\n    B -- \"yes\" --> T[SSTable probe:<br/>index binary search,<br/>then block restart points] --> R\n```\n\nReads consult sources newest-first. A tombstone terminates the search:\nolder values may still exist in older files until compaction removes\nthem. Sequence numbers define recency; log order equals sequence order.\n\n## Concurrency\n\nOne primitive, `ShardedRwLock<T>`, does both jobs in the engine:\n\n- As the **engine-wide gate**: 8 independent shards instead of one\n  lock. A reader takes a read lock on a single shard (round-robin per\n  thread), so readers on different shards never contend with each\n  other at all. A writer takes a serial lock plus every shard's write\n  lock, in ascending order — real exclusivity, no deadlock by\n  construction. A `writer_pending` flag lets an approaching reader\n  bail out early instead of piling up behind a writer; it's a liveness\n  hint only, never load-bearing for safety.\n- As the **published read view**: the same primitive, reused at a\n  smaller scope, holds a shadow memtable and a `ReadView` (memtable +\n  frozen memtable + version, swapped atomically at each structural\n  commit). `SharedKiban::get` reads through this and never touches the\n  engine-wide gate — writers and compactors no longer block readers at\n  all.\n\nEvery acquire/release interleaving of the protocol is checked with\n[loom](https://github.com/tokio-rs/loom) (`cargo test --features loom`),\nbounded to a preemption depth of 3 to keep the search tractable — loom's\nown documented answer for exhaustive search that doesn't finish, since\nalmost every real concurrency bug is reachable within a few context\nswitches. The bound isn't vacuous: a real guard-lifetime bug found\nduring development (`if gate.write().is_some() { .. }`, which drops\nthe guard before the body runs) is still caught by the model in well\nunder a second.\n\n## Correctness rules\n\n1. Acknowledged durability matches the documented contract exactly.\n2. A crash cannot cause sequence-number reuse.\n3. The MANIFEST is authoritative. Files it does not name are deleted.\n4. Internal ordering: user key ASC, sequence DESC.\n5. A snapshot reads the newest version whose sequence is at or below\n   its own.\n6. Newer invisible versions never hide older visible ones.\n7. Tombstones are dropped only when no older value can be resurrected.\n8. Point reads and scans agree.\n\nThese rules are enforced by tests, including exhaustive fault sweeps\nover pipeline syscalls (single faults and pairs) and simulated\npower-loss runs asserting exact equality between recovered state and\nthe last acknowledged state.\n\n## Failure model\n\n- `write()` reaches the kernel page cache, not the device.\n- `fsync` reaching the device is the durability boundary.\n- A rename requires an fsync of the containing directory.\n- Storage media can corrupt bytes. Every block, record, and manifest\n  carries a CRC. Readers validate before use; corruption is reported\n  as an error and never repaired in place.\n- A crash during append leaves a torn tail. Recovery truncates it.\n- `fsync` can fail after the kernel discarded dirty pages. Kiban treats\n  such failures as fatal: the engine enters a poisoned state and\n  refuses further mutations until reopen.\n\nKiban's design and research notes are private; this README is the\npublic design overview.\n\n## Performance\n\nLocal dev-workstation numbers (`cargo bench --bench basic` /\n`--bench steady_state`), treat as relative, not absolute.\n\n**Gate-free reads** — same data, hot in Kiban's own block cache before\nand after, so this isolates the gate's own cost:\n\n| workload            | threads | before          | after            |\n|----------------------|--------|-----------------|------------------|\n| 90R/10W              | 16     | 468K gets/s, p99 368us  | 4.22M gets/s, p99 7.48us (9.0x, 49x)  |\n| 95R/5W               | 32     | 280K gets/s, p99 647us  | 4.91M gets/s, p99 24.8us (17.5x, 26x) |\n| 99R/1W               | 32     | 1.91M gets/s, p99 37us  | 4.59M gets/s, p99 18.5us (2.4x, 2x)   |\n| 100R/0W              | 32     | 5.10M gets/s, p99 13us  | 8.58M gets/s, p99 4.42us (1.7x, 2.9x) |\n\n**Compaction isolation** — dedicated sequential-read-ahead reader for\ncompaction, bypassing the foreground block/file cache (tiny-buffer\nstress workload, concurrent foreground reader on a hot keyspace):\n\n| metric              | before   | after     |\n|----------------------|---------|-----------|\n| wall clock, 40K writes | 948ms  | ~470ms (2x)   |\n| GET p99               | 224us  | ~110-120us (-47%) |\n| compaction throughput | ~8.85 MB/s | ~18 MB/s (2x) |\n\n**Maintenance pacing** — best-effort sleep between background jobs\nwhile L0 has headroom, same stress workload:\n\n| metric        | before        | after                |\n|----------------|--------------|------------------------|\n| GET p99        | ~122us        | ~50-60us (2-2.4x)      |\n| GET throughput | ~71K ops/s    | ~210-315K ops/s (3-4.5x) |\n| PUT p99        | ~234us        | ~120-145us (better)    |\n\n**Compaction governor** (default `Governor` vs. `FixedPriority`) —\nsix-phase changing-workload benchmark, 3-trial median, isolating the\nread-heavy recovery phase that follows a sustained write burst:\n\n| metric                        | FixedPriority | Governor (before fix) | Governor (after fix) |\n|--------------------------------|--------------|------------------------|------------------------|\n| recovery-phase PUT p99        | ~65us         | ~1990us                | ~115us (17.2x vs. before) |\n| recovery-phase compactions/6s | 41            | 232                    | 16-18                 |\n| steady-state write amp (churny) | ~23-25x     | ~23-25x                 | ~8.6-9.5x              |\n| steady-state throughput       | baseline      | baseline                | ~3x                    |\n\nThe scoring bug: `Governor` kept stopping a compaction job the instant\nit cleared a level's *immediate* over-budget excess, so it revisited\nthe same level constantly instead of taking the larger, already-cheap\nbatch that would have held for longer — 232 separate\nforeground-excluding commits in one 6-second recovery window against\n`FixedPriority`'s 41, driving its own PUT tail worse than the\nscheduler it was meant to replace, even though its rewrite-bytes\naccounting looked fine. Fixed by widening adaptive batching so a job\ntakes the largest same-cost batch that's already justified, not the\nsmallest one that clears the threshold — job *count*, not bytes\nrewritten, was what mattered; write amplification improved as a\nside effect of the same change, not the target of it. `Scored`\n(evidence-weighted single-pass scoring, no pressure model) sits\nbetween the two and remains available for workloads that don't need\nthe adaptive behavior.\n\n**mmap hybrid** (opt-in, hot/low levels only) — modest and consistent,\nsmaller than a mmap-vs-pread microbenchmark suggests because real\nworking sets partly fit the OS page cache either way:\n\n- ~5-10% throughput improvement across 1-32 threads, no observed tail\n  regression, on a cache-miss-heavy workload.\n\n## Building\n\n```bash\ncargo test\ncargo clippy --all-targets --all-features -- -D warnings\ncargo fmt --check\n\n# exhaustive concurrency model of the sharded gate protocol\ncargo test --features loom -- --test-threads=1 loom_\n\n# benchmarks\ncargo bench --bench basic\ncargo bench --bench steady_state\n```\n\nZero non-dev dependencies (`loom` is test-only, behind a feature\nflag). Linux-only (POSIX fsync semantics are part of the contract).\n",
+      "languages": [
+        "Rust"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "konto",
+      "pushed_at": "2026-05-12T13:47:25Z",
+      "readme": "## About\n\nKonto is a high-performance, strictly-typed, double-entry accounting ledger system built on PostgreSQL. It ensures financial correctness with a robust core engine and supports integration with autonomous agents.\n\n## Built With\n\n*   **TypeScript:** For robust, type-safe development across the monorepo.\n*   **PostgreSQL:** The foundation for the double-entry accounting ledger, ensuring data integrity.\n*   **pnpm:** Efficient package management for the monorepo.\n*   **Turborepo:** High-performance build system for monorepo optimization.\n\n## Getting Started\n\n### Prerequisites\n\n*   **pnpm:** Ensure you have pnpm installed globally.\n*   **Node.js:** Version 18 or higher is recommended.\n*   **PostgreSQL:** Version 16+ is required for running applications.\n\n### Installation\n\n1.  **Clone the repository:**\n    ```bash\n    git clone https://github.com/your-username/konto.git\n    cd konto\n    ```\n2.  **Install dependencies:**\n    ```bash\n    pnpm install\n    ```\n    This command installs all dependencies across the monorepo using pnpm.\n\n### Initialize and Migrate Database\n\nTo set up the database schema for applications like `mcp-server`:\n\n1.  **Initialize the schema:**\n    ```bash\n    npx @konto/cli init\n    ```\n2.  **Run migrations:**\n    ```bash\n    npx @konto/cli migrate\n    ```\n    These commands prepare your PostgreSQL instance for Konto.\n\n## Usage\n\nInteract with the Konto ledger through its core library, CLI tools, or the MCP server for agent integration.\n\n### Core Library\n\nImport and use Konto's ledger engine directly in your JavaScript/TypeScript applications. Define your ledger schema and execute transactions programmatically.\n\n### CLI Tools\n\nManage your ledger from the command line. Use commands to create accounts, post transactions, and query ledger state.\n\n### MCP Server\n\nExpose the Konto ledger to autonomous agents via the Model Context Protocol. This headless server allows LLM agents to interact with your financial data through a standard interface.\n\n## Architecture\n\n*   **Monorepo Structure:** Organizes independent packages and applications using pnpm and Turborepo.\n*   **Core Engine (`packages/core`):** The heart of Konto, responsible for ledger logic, transfers, holds, and schema enforcement.\n*   **Applications (`apps/`):** House distinct functionalities like the MCP server for autonomous agents and the Stripe webhook integration.\n*   **Tooling (`packages/cli`, `packages/types`, `packages/adapters`):** Provides utilities for database interaction, client generation, and adapter implementations.\n\n# Contributing\n\nWe welcome contributions to the Konto project! Please follow these guidelines to help us maintain a high-quality and secure codebase.\n\n## Reporting Bugs\n\n*   **Security Vulnerabilities:** Report any security issues by emailing `security@konto.dev` or by opening a private vulnerability report through GitHub security advisories. We aim to respond within 72 hours.\n*   **General Bugs:** For non-security related bugs, please open an issue on the GitHub repository. Provide a clear description of the bug, steps to reproduce it, and any relevant environment details.\n\n## Submitting Pull Requests\n\n1.  **Fork the repository** and create a new branch for your feature or fix.\n2.  **Make your changes** and ensure they are well-tested.\n3.  **Submit a pull request** with a clear description of your changes.\n4.  We will review your PR and provide feedback.\n\n## Development Focus Areas\n\nWe are actively looking for contributions in the following areas:\n\n*   **Frontend / Studio App:** Developing a graphical interface for viewing accounts, journals, and pending staged intents.\n*   **npm Publishing:** Publishing all packages (`@konto/core`, `@konto/cli`, `@konto/types`, `@konto/adapters`) to the npm registry.\n\n## License\n\nThis project is licensed under the MIT License.\n\n*   **Permissions:** Use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software.\n*   **Conditions:** Include the original copyright notice and permission notice in all copies or substantial portions of the software.\n\nSee the [LICENSE](LICENSE) file for full details.\n\n## Roadmap\n\nThis section outlines planned features and future development for Konto.\n\n### Studio Graphical Dashboard\n\n*   **Goal:** Develop a user-friendly graphical interface for managing financial data.\n*   **Features:**\n    *   Visualize accounts and journals.\n    *   Review and approve staged financial intents.\n    *   Provide an intuitive dashboard for monitoring ledger activity.\n\n### npm Package Publishing\n\n*   **Goal:** Make Konto's core libraries readily available for public use.\n*   **Action:** Publish `@konto/core`, `@konto/cli`, `@konto/types`, and `@konto/adapters` to the npm registry.\n*   **Benefit:** Enables easier integration and adoption of Konto in other projects.\n\n---\n\n*This README was generated by [DevDoq](https://devdoq.com)*",
+      "languages": [
+        "TypeScript",
+        "PLpgSQL",
+        "CSS",
+        "JavaScript",
+        "MDX"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "kurogane",
+      "pushed_at": "2026-08-23T11:51:29Z",
+      "readme": "# Kurogane\n\nKurogane is a from-scratch Rust implementation of Raft and a replicated in-memory key/value state machine. It was built transport-free deterministic core first, then controlled simulation, and only later networking, persistence, and client-facing behavior — not an imported Raft library and not aimed at being production-ready today.\n\n## Status: feature-frozen\n\nAll nine roadmap milestones are complete and the project has been reconciled end-to-end against the Raft paper (Figure 2/3, §5.4, §5.6, §6, §7, §8). One genuine correctness gap found during that audit — a local-membership check wrongly gating `AppendEntries`/`InstallSnapshot`, which could permanently strand a follower partitioned across a membership change — was fixed and regression-tested. Everything else is either compliant or an intentional, documented deviation.\n\nImplemented:\n\n- Elections, heartbeats, and `RequestVote` log-freshness voting\n- Log replication with conflict detection/truncation and leader-tracked `next_index`/`match_index`\n- A replicated key/value state machine (`Set`/`Delete`/`Get`, `Get` routed through the log for linearizability)\n- Hard-state/log persistence with crash recovery\n- A real Tokio/gRPC runtime (`kurogane-runtime`): real sockets, real disk I/O, authenticated peer identity, leader-redirecting clients\n- Snapshots and log compaction, including the `InstallSnapshot` RPC for catching up a lagging peer\n- Cluster membership changes via joint consensus (dual-majority quorum, learners, config-triggered leader step-down, a removed-server disruption guard)\n- Client-visible consistency verification: `Propose` blocks until its index applies and returns the real value; a seeded, fault-injecting harness (`kurogane-verify`) drives real replicas through partition/crash/restart scenarios checked against a hand-rolled linearizability checker\n\n\"Feature-frozen\" means frozen at this documented scope, not \"nothing left to build.\" Deliberately still open, by documented choice, not oversight:\n\n- Snapshot chunking / resumable transfer\n- Client-retry deduplication (the paper's §8 serial-number mechanism — safe today only because nothing in this project retries a `Propose` after an `Indeterminate` outcome)\n- Real-process network partition/delay fault injection (real-process fault injection today is kill/restart only)\n- A real-process history generator (the linearizability checker is currently exercised only via the deterministic simulator)\n\n## Workspace\n\n```text\ncrates/\n├── kurogane-raft/     # protocol types, node state, synchronous transitions (std only)\n├── kurogane-sim/      # deterministic cluster scheduling, fault injection, traces\n├── kurogane-kv/       # replicated key/value state machine\n├── kurogane-runtime/  # Tokio/gRPC runtime, file-based storage, kurogane-node binary\n└── kurogane-verify/   # seeded fault-injecting harness + linearizability checker\n```\n\n`kurogane-sim`, `kurogane-kv`, and `kurogane-runtime` depend one-directionally on `kurogane-raft`, which depends on nothing but the standard library — no async runtime, sockets, wall-clock timers, random source, or protobuf. `kurogane-verify` depends on `kurogane-sim` and `kurogane-kv`. `unsafe_code = \"forbid\"` is set workspace-wide.\n\n## Architecture\n\n- **`kurogane-raft`** — protocol types, node state, and synchronous state transitions (`Node::step`, `Node::propose`, `Node::recover`, `Node::compact`). Time and randomness only ever enter as explicit inputs, never read internally; persistence is the same shape — `PersistHardState`/`PersistLog`/`PersistSnapshot` are effects the owner must honor, not I/O this crate performs itself.\n- **`kurogane-sim`** — deterministic cluster ownership, scheduling, fault injection, traces, and invariant checks for the raft layer, plus simulated-disk state and node replacement for crash-and-recovery tests.\n- **`kurogane-kv`** — the replicated key/value state machine: `Command` (`Set`/`Delete`/`Get`), `StateMachine` (applies committed entries one at a time, snapshots/restores for compaction), and `Replica` (wraps a `Node`, auto-drains newly committed entries into the state machine).\n- **`kurogane-runtime`** — the real (non-simulated) runtime adapter: Tokio task ownership, gRPC transport, and file-based storage. The one place Tokio, tonic, and prost are allowed. Owns protobuf conversions, file-based persistence, the actor that exclusively owns one `Replica` per process, the gRPC peer/client services, the wall-clock timer, and the `kurogane-node` binary.\n- **`kurogane-verify`** — a deterministic-but-fault-injecting harness over real `kurogane-kv::Replica`s, plus a hand-rolled linearizability checker over the client-visible histories it produces.\n\nNode transitions are effect-driven: a `Node` consumes an `Event` (`Tick` or `Step` with a `Message`) and emits `Effect`s (e.g. `Send`) for its owner to interpret, rather than performing I/O itself. Reads (`Command::Get`) are routed through the log like writes rather than served from local state — the simplest proven linearizable-read mechanism, deliberately not the faster heartbeat-lease optimization.\n\n## Development\n\nRequires Rust 1.85+ (edition 2024).\n\n```bash\ncargo fmt --all -- --check                           # formatting check\ncargo test --workspace                                # run all tests\ncargo clippy --workspace --all-targets -- -D warnings  # lint, warnings are errors\n```\n",
+      "languages": [
+        "Rust"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "marketplace",
+      "pushed_at": "2026-05-10T14:10:49Z",
+      "readme": "",
+      "languages": [],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "pokesearch",
+      "pushed_at": "2025-08-25T09:32:50Z",
+      "readme": "This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).\n\n## Getting Started\n\nFirst, run the development server:\n\n```bash\nnpm run dev\n# or\nyarn dev\n# or\npnpm dev\n# or\nbun dev\n```\n\nOpen [http://localhost:3000](http://localhost:3000) with your browser to see the result.\n\nYou can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.\n\nThis project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.\n\n## Learn More\n\nTo learn more about Next.js, take a look at the following resources:\n\n- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.\n- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.\n\nYou can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!\n\n## Deploy on Vercel\n\nThe easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.\n\nCheck out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.\n",
+      "languages": [
+        "TypeScript",
+        "CSS",
+        "JavaScript"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "raijin",
+      "pushed_at": "2026-07-29T11:17:33Z",
+      "readme": "",
+      "languages": [],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "scribe",
+      "pushed_at": "2026-09-21T03:36:18Z",
+      "readme": "# Scribe\n\nScribe is an open-source publishing SDK that turns ordinary Markdown, MDX, semantic HTML, and JSX into beautiful technical articles on websites you already own.\n\n> Just write. Scribe handles the rest.\n\nScribe is for developers who already own a React website built with Next.js or Vite and want publication-grade typography, code, tables, banners, callouts, figures, responsive behavior, and accessibility without assembling a publishing design system themselves. It transforms semantic article content at build time and renders it through a small React component map plus scoped CSS.\n\nScribe is not a hosted blogging platform, CMS, website builder, rich-text editor, proprietary content format, collaboration service, or replacement for React, Next.js, MDX, routing, deployment, analytics, or content storage.\n\n## Packages\n\n| Package | Purpose | Public entry points |\n| --- | --- | --- |\n| `@scribe-sdk/react` | Publication boundary, component map, and editorial primitives | package root |\n| `@scribe-sdk/styles` | Scoped publishing mechanics and optional editorial presentation | `/foundation.css`, `/default.css`, `/tailwind.css` |\n| `@scribe-sdk/mdx` | Shared compile-time MDX configuration and validation | package root, `/next`, `/next-remote`, `/remark`, `/rehype` |\n| `@scribe-sdk/cli` | Validation, deliberate setup, and the local authoring Studio | `scribe` binary |\n\nEach installed package includes the same canonical `SKILL.md`. Agents can discover it at `node_modules/@scribe-sdk/<package>/SKILL.md`; the repository source of truth is [`SKILL.md`](./SKILL.md).\n\n## Install\n\nThe recommended path bootstraps through the beta CLI. It installs the four Scribe packages, connects Scribe to the project, and verifies the result as one reviewed transaction:\n\n```bash\nbunx @scribe-sdk/cli@beta integrate --dry-run   # inspect the proposed plan\nbunx @scribe-sdk/cli@beta integrate             # review, confirm, and apply\n```\n\nWith npm:\n\n```bash\nnpx @scribe-sdk/cli@beta integrate --dry-run    # inspect the proposed plan\nnpx @scribe-sdk/cli@beta integrate              # review, confirm, and apply\n```\n\n## Quickstart\n\n```bash\nbunx scribe studio init      # create a minimal article and open the local Studio\nbunx scribe validate ./content/article.mdx   # compile and validate before shipping\n```\n\n`scribe studio init` detects the content directory, writes minimal frontmatter, and opens Studio so you can write and save the article. `scribe validate` compiles it through the production pipeline before you run the host project's build.\n\n## Documentation\n\nFull guides live at **[scribeit.dev/docs](https://scribeit.dev/docs)**, including:\n\n- [Getting Started](https://scribeit.dev/docs/getting-started) — install, first integration checklist, project-local CLI\n- [CLI Reference](https://scribeit.dev/docs/cli-reference) — every command and flag\n- [Style Modes](https://scribeit.dev/docs/style-modes) — Foundation, Default, and Tailwind\n- [Next.js Integration](https://scribeit.dev/docs/nextjs) and [Vite Integration](https://scribeit.dev/docs/vite)\n- [Components](https://scribeit.dev/docs/components) — Publication, Banner, Callout, Figure, Video, code fences, Mermaid\n- [Local Studio](https://scribeit.dev/docs/studio) — the source-authoritative Markdown/MDX editor\n- [Theming & CSS Tokens](https://scribeit.dev/docs/theming) — the full token reference\n- [Validate & Troubleshoot](https://scribeit.dev/docs/troubleshooting)\n- [Migrating from `0.1.0-alpha.2`](https://scribeit.dev/docs/migration)\n- [Compatibility & Responsibility Boundary](https://scribeit.dev/docs/compatibility)\n\nScribe 0.1.0-beta is a public beta. The API may evolve before a stable release.\n\n## License\n\nLicensed under Apache-2.0. See [`LICENSE`](./LICENSE).\n",
+      "languages": [
+        "TypeScript",
+        "JavaScript",
+        "Rust",
+        "CSS",
+        "MDX",
+        "HTML"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "shiden",
+      "pushed_at": "2026-08-12T12:36:07Z",
+      "readme": "# Shiden\n\nShiden is a deliberately small Redis-compatible in-memory database server written from first principles in Go. It implements the complete path from a TCP byte stream through RESP2 framing and command execution to shared, synchronized process state.\n\nShiden is a learning system, not a production Redis replacement. It uses only the Go standard library.\n\n## Status\n\nComplete at its bounded scope:\n\n- TCP listener on port `6380`\n- one goroutine per client connection\n- persistent connections and pipelined commands\n- streaming RESP2 decoding and encoding\n- one process-wide binary-safe store\n- lazy expiration plus periodic expired-key cleanup\n- signal-aware shutdown for SIGINT and SIGTERM\n\n## Run\n\n```bash\ngo run ./cmd/shiden\n```\n\nThe server logs its bound address after the listener is ready. Press Ctrl-C to stop accepting clients, close active connections, and wait for connection handlers to exit.\n\n## Commands\n\n| Command | Behavior |\n|---|---|\n| `PING` | Returns `PONG` |\n| `PING message` | Returns `message` |\n| `ECHO message` | Returns `message` |\n| `SET key value` | Stores a binary-safe value and clears any previous expiry |\n| `GET key` | Returns the value, or a null bulk string when missing or expired |\n| `DEL key [key ...]` | Deletes live keys and returns the number removed |\n| `EXPIRE key seconds` | Sets a lifetime and returns `1`, or `0` when the key is missing or expired |\n\n`EXPIRE` accepts signed integer seconds. Zero or negative seconds delete a live key immediately. Options such as NX, XX, GT, and LT are intentionally unsupported.\n\n## Redis CLI\n\nShiden speaks RESP2 and works with a real Redis-compatible CLI:\n\n```bash\nredis-cli -p 6380 PING\nredis-cli -p 6380 SET name shiden\nredis-cli -p 6380 GET name\nredis-cli -p 6380 EXPIRE name 10\nredis-cli -p 6380 DEL name\n```\n\nSeparate CLI invocations use separate TCP connections while observing the same server-owned state.\n\n## Verify\n\n```bash\ngo test ./...\ngo test -race ./...\ngo vet ./...\n```\n\nThe tests cover RESP2 values and malformed frames, one-byte fragmentation, pipelining, command validation, missing versus empty values, arbitrary binary payloads, byte ownership, deterministic expiration, shared state across real TCP clients, concurrent store access, and controlled server shutdown.\n\n## Architecture\n\n- `cmd/shiden` owns process signals and starts the server.\n- `internal/server` owns the listener, active connections, buffered connection loop, cleanup loop, and shutdown.\n- `internal/resp` owns RESP2 framing and encoding.\n- `internal/command` owns command parsing, validation, and execution.\n- `internal/store` owns key/value state, expiration, byte ownership, and synchronization.\n\n## Explicit limitations\n\nShiden does not implement persistence, advanced Redis data structures, transactions, pub/sub, eviction, replication, clustering, authentication, broad Redis compatibility, production resource controls, or performance claims. Those are outside this project's finish line.\n",
+      "languages": [
+        "Go"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "spiderverse",
+      "pushed_at": "2026-03-16T10:09:15Z",
+      "readme": "",
+      "languages": [
+        "TypeScript",
+        "JavaScript",
+        "CSS"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "styx",
+      "pushed_at": "2026-07-11T16:51:11Z",
+      "readme": "# Styx\n\nA BitTorrent client written in Rust, built around strict protocol handling, verified storage, and private-by-default runtime identity.\n\nStyx is not a wrapper around an existing torrent engine. The core protocol, tracker, disk, peer policy, runtime, CLI, and desktop shell are implemented in this repository.\n\n## Status\n\nStyx is under active development. It can currently run real v1 torrent flows through the runtime path: parse `.torrent` files, announce to trackers, connect to TCP peers, download verified pieces, persist daemon state, and seed verified data back to peers.\n\nPhase 23 work is now underway: Styx has the protocol pieces for DHT/magnet support, a runtime-owned DHT worker primitive, BEP 9 metadata exchange, and an exact-peer magnet resolver. Full app-level DHT-only downloads are still being wired.\n\n| Capability | Status |\n|---|---|\n| Bencode and metainfo parsing | Implemented |\n| Peer-wire handshake and framing | Implemented |\n| HTTP and UDP trackers | Implemented |\n| Piece/block verification and disk IO | Implemented |\n| v1 peer downloads | Implemented |\n| Verified seeding/uploading | Implemented |\n| Daemon persistence | Implemented |\n| CLI, TUI, and headless mode | Implemented |\n| Tauri desktop shell | Implemented |\n| BitTorrent v2/hybrid groundwork | Implemented |\n| DHT runtime worker | Implemented |\n| DHT peer source ingestion | Implemented |\n| Magnet URI parsing | Implemented |\n| BEP 9 metadata exchange | Implemented |\n| Exact-peer magnet resolution | Implemented as runtime API |\n| DHT-only app/CLI downloads | In progress |\n| uTP runtime integration | Planned |\n| NAT traversal, encryption, proxy support | Planned |\n\n## Install\n\nPrerequisites:\n\n- Rust toolchain compatible with the workspace `rust-version`\n- Cargo\n- Bun, for the desktop frontend\n- Tauri platform dependencies if running the GUI\n\nBuild the workspace:\n\n```sh\ncargo build --workspace --locked\n```\n\nRun the test suite:\n\n```sh\ncargo test --workspace --locked\n```\n\n## Usage\n\nDownload a legal v1 torrent:\n\n```sh\ncargo run -p styx-cli -- download \\\n  --torrent /absolute/path/file.torrent \\\n  --dest /tmp/styx-download \\\n  --listen-port 6881\n```\n\nRun a one-piece real-network smoke test:\n\n```sh\ncargo run -p styx-cli -- smoke \\\n  --torrent /absolute/path/file.torrent \\\n  --dest /tmp/styx-smoke \\\n  --listen-port 6881\n```\n\nRun the daemon:\n\n```sh\ncargo run -p styx-cli -- daemon start \\\n  --state-dir /tmp/styx-state \\\n  --socket /tmp/styx.sock\n```\n\nQuery or stop it:\n\n```sh\ncargo run -p styx-cli -- daemon status --socket /tmp/styx.sock\ncargo run -p styx-cli -- daemon stop --socket /tmp/styx.sock\n```\n\nExact-peer magnet resolution is available as a runtime API for BEP 9 metadata exchange from `x.pe` peers. The CLI/GUI `add-magnet` flow and DHT-backed peer discovery are still in progress.\n\nRun the desktop app:\n\n```sh\ncd apps/styx-gui\nbun install\nbun run app:dev\n```\n\nFor frontend-only iteration:\n\n```sh\ncd apps/styx-gui\nbun run dev\n```\n\n## Workspace\n\n```text\n.\n├── apps/\n│   ├── styx-cli/       # CLI, TUI, headless mode, daemon commands\n│   └── styx-gui/       # Tauri v2 desktop shell\n├── crates/\n│   ├── styx-app/       # shared app command/snapshot/event contract\n│   ├── styx-core/      # peer policy and transfer decisions\n│   ├── styx-dht/       # DHT protocol core and UDP socket adapter\n│   ├── styx-disk/      # storage, verification, resume\n│   ├── styx-ml/        # throttling detection core\n│   ├── styx-proto/     # bencode, metainfo, peer protocol, magnets\n│   ├── styx-runtime/   # orchestration, daemon, persistence, metadata resolution\n│   ├── styx-tracker/   # HTTP/UDP tracker protocol\n│   └── styx-utp/       # uTP protocol implementation\n└── sim/\n    └── swarm-sim/      # swarm simulation experiments\n```\n\n## Architecture\n\n```text\napps/styx-cli ─┐\n               ├─ styx-app ─ styx-runtime ─┬─ styx-core\napps/styx-gui ─┘                            ├─ styx-disk\n                                            ├─ styx-tracker\n                                            ├─ styx-dht\n                                            └─ styx-proto\n\nstyx-dht, styx-utp, and styx-ml are protocol/policy crates that are being integrated progressively into the runtime.\n```\n\n## Roadmap\n\nNear-term work:\n\n- Route the daemon-owned DHT worker into active torrents\n- Add app/CLI/GUI `add-magnet` command flow\n- Persist pending magnet resolution state\n- Trackerless torrent startup\n- Peer exchange and local service discovery\n- Platform packaging\n\nLonger-term work:\n\n- Runtime uTP transport\n- NAT traversal\n- Protocol encryption and proxy support\n- Bandwidth scheduling\n- ONNX-backed throttling detection\n- Web API and web UI\n\n## License\n\nNo license has been declared yet.\n",
+      "languages": [
+        "Rust",
+        "TypeScript",
+        "CSS",
+        "Python",
+        "HTML"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "susano",
+      "pushed_at": "2026-08-23T20:38:29Z",
+      "readme": "# Susano\n\nSusano is a from-scratch, high-performance in-memory analytical database under active development. The project studies database systems ideas directly and will keep its implementation understandable, measurable, and independently testable.\n\nThe repository currently contains only a C++23 executable and a CTest smoke test. No query language, storage engine, catalog, or execution machinery has been implemented yet.\n\n## Requirements\n\n- CMake 3.25 or newer\n- A C++23 compiler (GCC and Clang are supported targets)\n\n## Build and Test\n\nConfigure and build the default development tree:\n\n```sh\ncmake -S . -B build\ncmake --build build\n```\n\nRun the complete test suite through CTest:\n\n```sh\nctest --test-dir build --output-on-failure\n```\n\nTo build with AddressSanitizer and UndefinedBehaviorSanitizer enabled:\n\n```sh\ncmake -S . -B build-sanitized -DSUSANO_ENABLE_SANITIZERS=ON\ncmake --build build-sanitized\nctest --test-dir build-sanitized --output-on-failure\n```\n\nThe normal build does not enable sanitizers. Keep performance-sensitive choices backed by benchmarks and correctness tests as the system grows.\n",
+      "languages": [
+        "C++",
+        "CMake",
+        "Python"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "swish",
+      "pushed_at": "2025-06-26T19:13:25Z",
+      "readme": "# Swish",
+      "languages": [],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "termchat",
+      "pushed_at": "2026-01-22T09:38:13Z",
+      "readme": "",
+      "languages": [],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "vmrl",
+      "pushed_at": "2026-09-16T07:51:05Z",
+      "readme": "# VMRL\n\nVMRL anchors release artifacts on an EVM chain. A publisher hashes a real release\nfile (SHA-256) and posts a **receipt** containing the repository label, tag,\nGit `HEAD`, artifact digest, timestamp, and signer address. Anyone can later\nverify a local file against one explicitly selected receipt and an independently\ntrusted publisher address.\n\nReceipts record a publisher's claim; they do not prove that a binary was built\nfrom the declared source, that it is reproducible, or that it is safe.\n\n## Repository layout\n\n| Path | Description |\n| --- | --- |\n| `packages/contracts` | `VMRL.sol` — the on-chain receipt ledger (Foundry layout) |\n| `packages/cli` | Bun/TypeScript CLI for anchoring and verifying artifacts |\n| `packages/web` | Next.js browser explorer and local artifact verifier |\n| `scripts/demo.ts` | One-command local demo (chain + contract + sample release + web) |\n\n## Requirements\n\nBun and Git. Dependencies are installed once while online:\n\n```bash\nbun install\n```\n\n## One-command local demo\n\nFrom the repository root:\n\n```bash\nbun run demo\n```\n\nThe launcher starts an in-memory Ganache EVM on `127.0.0.1:8545` (chain\n`31337`), compiles and deploys the real `packages/contracts/src/VMRL.sol`,\nbuilds a small sample application from a separate clean Git checkout, and\nanchors it through the real CLI. It also creates a copy that differs by exactly\none appended byte, checks all verification outcomes, then opens the dashboard at\n`http://127.0.0.1:3000`.\n\nUse `bun run demo --no-open` to skip opening the browser. In another terminal,\nreplay the CLI scenarios while the demo runs:\n\n```bash\nbun run demo:check\n```\n\nThis expects original/trusted verification to exit `0`, changed bytes `4`, an\nuntrusted publisher `5`, and a missing receipt `3`. `Ctrl+C` stops both\nservices; restarting creates a fresh chain, receipt, and sample checkout.\n\nEverything runs on loopback after dependencies are installed. Generated files\nlive under the ignored `.vmrl-demo/`. Override busy ports with\n`VMRL_DEMO_RPC_PORT` and `VMRL_DEMO_WEB_PORT`.\n\n**The deterministic development wallets are publicly known. Never send real\nfunds to them.**\n\n## CLI\n\nThe entry point is `packages/cli/index.ts`; run `bun run packages/cli/index.ts --help`.\nBun loads `.env` automatically. Never commit a private key.\n\n| Environment variable | Default / purpose |\n| --- | --- |\n| `VMRL_RPC_URL` | `https://sepolia.base.org` |\n| `VMRL_CHAIN_ID` | `84532` (Base Sepolia); checked against the RPC |\n| `VMRL_CONTRACT_ADDRESS` | `0xe0C0B432380a07177372d10DF61BAFedAB9D8367` |\n| `VMRL_PRIVATE_KEY` | Required only for `anchor` |\n\n### Anchor a release\n\nRun inside the release's Git working tree:\n\n```bash\nbun run packages/cli/index.ts anchor --repo owner/project --tag v1.2.3 --artifact /path/to/release.tar.gz\n```\n\nAll options are required. The CLI streams the file through SHA-256, records Git\n`HEAD`, and rejects staged or unstaged tracked changes. The transaction must\nmine successfully and emit the expected `NewReceipt` event before it is reported\nas anchored.\n\n### Verify a receipt\n\nObtain the trusted publisher address independently, not from the receipt:\n\n```bash\nbun run packages/cli/index.ts verify --repo owner/project --receipt 12 \\\n  --artifact /path/to/release.tar.gz \\\n  --trusted-signer 0xYourIndependentlyTrustedPublisherAddress\n```\n\nAdd `--commit <sha>` to also check the declared source revision. Verification\nneeds no private key or Git repository.\n\nList receipts, or revoke one you published:\n\n```bash\nbun run packages/cli/index.ts list --repo owner/project\nbun run packages/cli/index.ts revoke --receipt 12\n```\n\n`anchor`, `verify`, `list`, and `revoke` accept `--json` for scripting. `anchor`\nalso accepts `--verify-tag` to require `--tag` to resolve to `HEAD`, and can sign\nfrom an encrypted keystore with `VMRL_KEYSTORE_FILE` + `VMRL_KEYSTORE_PASSWORD`\ninstead of `VMRL_PRIVATE_KEY`. `verify` fails on revoked receipts.\n\n| Exit code | Meaning |\n| --- | --- |\n| 0 | Successful anchor, fully matched verification, or help/version |\n| 2 | Invalid options, configuration, artifact, or Git state |\n| 3 | Selected receipt does not exist |\n| 4 | Repository, requested revision, or SHA-256 mismatch |\n| 5 | Untrusted publisher |\n| 6 | RPC/network unavailable, chain mismatch, missing contract code |\n| 7 | Contract/transaction failure or missing expected mined event |\n| 8 | Receipt revoked by its signer |\n\n## Web explorer\n\nInstall dependencies from the root, then run `bun run dev` in `packages/web`\nand open http://localhost:3000. Configure via public variables in\n`packages/web/.env.local`:\n\n```dotenv\nNEXT_PUBLIC_VMRL_RPC_URL=https://sepolia.base.org\nNEXT_PUBLIC_VMRL_CONTRACT_ADDRESS=0xe0C0B432380a07177372d10DF61BAFedAB9D8367\nNEXT_PUBLIC_VMRL_CHAIN_ID=84532\n```\n\nThe dashboard reads receipts from the configured RPC and hashes a selected\nlocal file in-browser using Web Crypto. It never uploads artifact bytes and\nrequires no wallet. Publisher policy is an explicit user input and is never\nauto-filled from the receipt.\n\n## Contracts\n\n`packages/contracts/src/VMRL.sol` stores a public `Receipt[] receipts` array\n(storage slot 0) and a `repoId` hash index. It exposes `postReceipt`,\n`getRepoReceipts`, `verifyCommit`, plus `receiptCount`, paged getters,\nsigner-only revocation, and EIP-712 relayed `postReceiptWithSig`. It emits\n`NewReceipt`.\n\nWith Foundry installed:\n\n```bash\nforge build\nforge test\n```\n\n## Development\n\n```bash\nbun test             # contract + CLI suites (compile with solc, run on local Ganache)\nbun run typecheck    # CLI and demo script\nbun run lint         # web ESLint\n```\n\nCI runs all three plus a production `next build` and a Foundry compile. See\n`.github/workflows/ci.yml`.\n\n## Verification model\n\n- The digest is SHA-256 over the exact file bytes, not a filename or Git revision.\n- Publisher trust is an explicit address comparison, not a reputation claim.\n- Reads trust the configured RPC; one mined confirmation is not a finality guarantee.\n- A matching receipt does not establish source-to-build correspondence or safety.\n\nSee `packages/cli/README.md` and `packages/web/README.md` for full details.\n",
+      "languages": [
+        "Solidity",
+        "TypeScript",
+        "Python",
+        "CSS",
+        "JavaScript"
+      ],
+      "readme_path": "README.md"
+    },
+    {
+      "slug": "webnotes",
+      "pushed_at": "2026-04-08T10:17:03Z",
+      "readme": "# WebNotes\n\n**The missing link between Apple Notes and Obsidian.**\n\nWebNotes is a high-performance, local-first knowledge base designed to bring the polish of macOS-native tools to Windows and Linux, without sacrificing the power features developers need.\n\nIt runs on **Tauri (Rust)** for native performance and **Next.js** for cloud synchronization.\n\n---\n\n## Why WebNotes?\n\nMost note-taking apps force you to choose:\n\n1. **Simple & Fast:** Apple Notes, Notepad  \n   *(Limited features, platform locked)*  \n2. **Powerful & Complex:** Obsidian, Emacs  \n   *(High learning curve, ugly UI)*  \n3. **Collaborative & Slow:** Notion  \n   *(Electron bloat, online-only)*  \n\nWebNotes takes the **Block-Based Editor** of Notion, the **Bidirectional Linking** of Obsidian, and wraps it in a **Native Rust Binary** that launches instantly.\n\n---\n\n## Key Capabilities\n\n- **Zero-Latency Typing:** Sub-10ms editor response.\n- **Bidirectional Linking:** Type `[[` to instantly link or create notes.\n- **Mathematical Typesetting:** First-class LaTeX (`$E=mc^2$`) with live preview.\n- **Local-First Architecture:** Notes stored in a local SQLite database.\n- **Hybrid Sync:** Desktop for deep work, web for access anywhere.\n\n---\n\n## Technical Stack\n\n| Component | Technology | Reasoning |\n|---------|------------|-----------|\n| **Desktop Runtime** | **Tauri (Rust)** | <10MB binary, native performance, no Electron bloat. |\n| **Web Runtime** | **Next.js 15** | SSR + edge caching for global speed. |\n| **Editor Engine** | **Tiptap (ProseMirror)** | Headless, schema-based, fully extensible. |\n| **State** | **Zustand** | Predictable, optimistic UI state. |\n| **Storage (Desktop)** | **SQLite** | Instant, file-based, local ownership. |\n| **Storage (Web)** | **PostgreSQL (Neon)** | Serverless, scalable sync layer. |\n\n---\n\n## Installation\n\n### Desktop (Windows, macOS, Linux)\n\n**Mac / Linux**\n```bash\ncurl -fsSL https://web-notes-lyart.vercel.app/install.sh | sh\n````\n\n**Windows (PowerShell)**\n\n```powershell\nirm https://web-notes-lyart.vercel.app/install.ps1 | iex\n```\n\n---\n\n### Web Access\n\nVisit:\n👉 [https://web-notes-lyart.vercel.app](https://web-notes-lyart.vercel.app)\n\n---\n\n## Development\n\nWebNotes is a monorepo powering both web and desktop clients.\n\n### Prerequisites\n\n* Node.js 18+\n* Rust (stable)\n* PostgreSQL\n\n### Setup\n\n```bash\ngit clone https://github.com/aetosdios27/WebNotes.git\ncd WebNotes\nnpm install\n```\n\nCreate `.env`:\n\n```env\nDATABASE_URL=\"postgres://...\"\nAUTH_SECRET=\"...\"\nGOOGLE_CLIENT_ID=\"...\"\nGOOGLE_CLIENT_SECRET=\"...\"\n```\n\nRun:\n\n```bash\n# Web\nnpm run dev\n\n# Desktop\nnpm run tauri dev\n```\n\n---\n\n## Roadmap\n\n* [x] Wiki-Links (`[[`)\n* [x] Backlinks Sidebar\n* [ ] Graph View\n* [ ] Rust/WASM Editor Core (DOM-less, ultra-performance engine)\n\n---\n\n## License\n\nMIT © [Aetos Dios](https://github.com/aetosdios27)\n",
+      "languages": [
+        "TypeScript",
+        "Rust",
+        "CSS",
+        "Shell",
+        "JavaScript",
+        "PowerShell"
+      ],
+      "readme_path": "README.md"
+    }
+  ],
+  "projects": [
+    {
+      "name": "Kiban",
+      "slug": "kiban",
+      "description": "A durable LSM-tree storage engine exploring WALs, memtables, SSTables, compaction, and crash recovery from first principles.",
+      "homepage": null,
+      "languages": [
+        "Rust"
+      ],
+      "stars": 2,
+      "pushed_at": "2026-09-11T08:59:06Z",
+      "readme": "# Kiban DB\n\nAn embedded LSM-tree storage engine in Rust. Single node. Zero\ndependencies. Byte keys, byte values, sorted.\n\nWrites go to a write-ahead log, then to an in-memory memtable. Flushes\nproduce sorted SSTables. Compaction merges SSTables and drops versions\nthat no active snapshot can observe. Reads check sources from newest\nto oldest; sequence numbers order everything.\n\n## Status\n\nImplemented:\n\n- Write-ahead log with two-phase durability: `put` reaches the kernel,\n  `sync` reaches the device. Durability is claimed only after sync\n  returns success.\n- SSTables: prefix-compressed blocks with restart points, per-block\n  CRC-32, bloom filters (10 bits/key), fixed footer with magic number.\n- Leveled compaction: L0 compacts as a whole, L1+ maintain disjoint\n  key ranges, outputs split at key boundaries.\n- Snapshots: pin a sequence number and the file set at capture time.\n  Reads through a snapshot are unaffected by later writes and\n  compactions.\n- Deterministic fault injection at syscall boundaries: single-fault and\n  pairwise sweeps over pipeline operations, plus a simulated volatile\n  device where power loss discards exactly the unsynced bytes. After\n  every tested crash point, recovered state must equal the last\n  acknowledged state.\n- Engine poisoning: WAL sync failures and commit ambiguities set a\n  fatal state that refuses mutations until reopen. Reads remain\n  available.\n- Multi-version memtable: superseded entries are retained while an\n  active snapshot can observe them.\n- `WriteBatch`: multiple mutations committed as one WAL record with a\n  contiguous sequence interval. Recovery applies all operations or none.\n- Block cache, lazy table loading, and a bounded shared table-file cache:\n  opening touches footers and indexes only.\n- `SharedKiban::stats()`: a cheap, observation-only snapshot — memtable\n  size, per-level table counts and bytes, snapshot/obsolete-file\n  counts, and raw block-cache/file-cache/compaction/flush counters. No\n  disk I/O, no derived verdicts.\n- Background flush and compaction: the active memtable freezes on a\n  size threshold and hands writers a fresh memtable and WAL\n  immediately; the frozen memtable and compaction both build off the\n  foreground lock, on one shared maintenance worker (flush first),\n  paced to protect foreground read latency (see Performance).\n- Gate-free reads: `SharedKiban::get` never acquires the engine-wide\n  write gate, at any point. A published `ReadView` (shadow memtable +\n  frozen memtable + version, swapped atomically at each structural\n  commit) lets readers run fully decoupled from writers/compaction.\n- Dedicated cache-bypassing bulk reader for compaction: compaction\n  reads input tables through an owned file handle with large\n  sequential read-ahead, never touching the foreground block cache or\n  the shared table-file cache.\n- Adaptive compaction governor (default): a continuous pressure vector\n  (L0 / deep-level debt / read-amp) attributed to whichever source is\n  actually causing it, instead of blended into one mode; candidate\n  scoring weighted by which of those a job would actually relieve; a\n  focus mechanism that commits to a level and works it down instead of\n  re-optimizing from scratch every cycle; adaptive batching that keeps\n  taking free headroom past \"just enough\" relief instead of stopping\n  the instant a candidate clears the immediate debt. See Performance\n  for the measured before/after.\n- Evidence-scored compaction scheduler (opt-in): scores L0 and\n  per-level candidates by urgency/stall-risk/overlap-cost instead of a\n  fixed drain order, plus key-contiguous batching of a level's oldest\n  tables into one job.\n- Fixed-priority compaction scheduler (opt-in): always drains L0\n  first, then cascades levels in order — tight, predictable L0 at the\n  cost of the highest write amplification of the three.\n- Opt-in mmap hybrid read path: maps low-level (hot) SSTables whole\n  instead of leasing through the block/file cache; cold levels keep\n  the pread path. Off by default.\n- Read/write amplification counters (`KibanStats::read_amp`,\n  `MaintenanceStats`): per-get resolution point and physical\n  flush/compaction bytes, for evaluating scheduler and I/O-path\n  changes against evidence rather than intuition.\n\nNot implemented:\n\n- Compression (format reserves a type byte)\n- Range deletes, reverse iterators, transactions\n\n## Architecture\n\n```mermaid\nflowchart TD\n    W[writer] --> WB[\"WriteBatch<br/>(optional group)\"]\n    WB --> WAL[\"WAL record<br/>one frame = one atomic unit\"]\n    WAL --> MEM[\"memtable<br/>(retains versions<br/>snapshots still need)\"]\n    MEM -- \"sync()\" --> DISK1[fdatasync]\n    MEM -- \"flush\" --> IMM[\"frozen memtable\"] --> SST0[\"L0 sstable\"]\n    SST0 -- \"L0 count >= trigger\" --> COMP[\"merge:<br/>newest version per key wins,<br/>versions dropped only when no<br/>active snapshot can read them\"]\n    COMP --> SSTN[\"L1..Ln sstables<br/>(disjoint key ranges)\"]\n```\n\n```mermaid\nflowchart TD\n    Q[get key] --> A{active memtable<br/>contains key?}\n    A -- \"value\" --> R[value]\n    A -- \"tombstone\" --> R0[not found]\n    A -- \"absent\" --> I{immutable memtable<br/>contains key?}\n    I -- \"value\" --> R\n    I -- \"tombstone\" --> R0\n    I -- \"absent\" --> B{\"bloom filter<br/>admits key?\"}\n    B -- \"no\" --> R0\n    B -- \"yes\" --> T[SSTable probe:<br/>index binary search,<br/>then block restart points] --> R\n```\n\nReads consult sources newest-first. A tombstone terminates the search:\nolder values may still exist in older files until compaction removes\nthem. Sequence numbers define recency; log order equals sequence order.\n\n## Concurrency\n\nOne primitive, `ShardedRwLock<T>`, does both jobs in the engine:\n\n- As the **engine-wide gate**: 8 independent shards instead of one\n  lock. A reader takes a read lock on a single shard (round-robin per\n  thread), so readers on different shards never contend with each\n  other at all. A writer takes a serial lock plus every shard's write\n  lock, in ascending order — real exclusivity, no deadlock by\n  construction. A `writer_pending` flag lets an approaching reader\n  bail out early instead of piling up behind a writer; it's a liveness\n  hint only, never load-bearing for safety.\n- As the **published read view**: the same primitive, reused at a\n  smaller scope, holds a shadow memtable and a `ReadView` (memtable +\n  frozen memtable + version, swapped atomically at each structural\n  commit). `SharedKiban::get` reads through this and never touches the\n  engine-wide gate — writers and compactors no longer block readers at\n  all.\n\nEvery acquire/release interleaving of the protocol is checked with\n[loom](https://github.com/tokio-rs/loom) (`cargo test --features loom`),\nbounded to a preemption depth of 3 to keep the search tractable — loom's\nown documented answer for exhaustive search that doesn't finish, since\nalmost every real concurrency bug is reachable within a few context\nswitches. The bound isn't vacuous: a real guard-lifetime bug found\nduring development (`if gate.write().is_some() { .. }`, which drops\nthe guard before the body runs) is still caught by the model in well\nunder a second.\n\n## Correctness rules\n\n1. Acknowledged durability matches the documented contract exactly.\n2. A crash cannot cause sequence-number reuse.\n3. The MANIFEST is authoritative. Files it does not name are deleted.\n4. Internal ordering: user key ASC, sequence DESC.\n5. A snapshot reads the newest version whose sequence is at or below\n   its own.\n6. Newer invisible versions never hide older visible ones.\n7. Tombstones are dropped only when no older value can be resurrected.\n8. Point reads and scans agree.\n\nThese rules are enforced by tests, including exhaustive fault sweeps\nover pipeline syscalls (single faults and pairs) and simulated\npower-loss runs asserting exact equality between recovered state and\nthe last acknowledged state.\n\n## Failure model\n\n- `write()` reaches the kernel page cache, not the device.\n- `fsync` reaching the device is the durability boundary.\n- A rename requires an fsync of the containing directory.\n- Storage media can corrupt bytes. Every block, record, and manifest\n  carries a CRC. Readers validate before use; corruption is reported\n  as an error and never repaired in place.\n- A crash during append leaves a torn tail. Recovery truncates it.\n- `fsync` can fail after the kernel discarded dirty pages. Kiban treats\n  such failures as fatal: the engine enters a poisoned state and\n  refuses further mutations until reopen.\n\nKiban's design and research notes are private; this README is the\npublic design overview.\n\n## Performance\n\nLocal dev-workstation numbers (`cargo bench --bench basic` /\n`--bench steady_state`), treat as relative, not absolute.\n\n**Gate-free reads** — same data, hot in Kiban's own block cache before\nand after, so this isolates the gate's own cost:\n\n| workload            | threads | before          | after            |\n|----------------------|--------|-----------------|------------------|\n| 90R/10W              | 16     | 468K gets/s, p99 368us  | 4.22M gets/s, p99 7.48us (9.0x, 49x)  |\n| 95R/5W               | 32     | 280K gets/s, p99 647us  | 4.91M gets/s, p99 24.8us (17.5x, 26x) |\n| 99R/1W               | 32     | 1.91M gets/s, p99 37us  | 4.59M gets/s, p99 18.5us (2.4x, 2x)   |\n| 100R/0W              | 32     | 5.10M gets/s, p99 13us  | 8.58M gets/s, p99 4.42us (1.7x, 2.9x) |\n\n**Compaction isolation** — dedicated sequential-read-ahead reader for\ncompaction, bypassing the foreground block/file cache (tiny-buffer\nstress workload, concurrent foreground reader on a hot keyspace):\n\n| metric              | before   | after     |\n|----------------------|---------|-----------|\n| wall clock, 40K writes | 948ms  | ~470ms (2x)   |\n| GET p99               | 224us  | ~110-120us (-47%) |\n| compaction throughput | ~8.85 MB/s | ~18 MB/s (2x) |\n\n**Maintenance pacing** — best-effort sleep between background jobs\nwhile L0 has headroom, same stress workload:\n\n| metric        | before        | after                |\n|----------------|--------------|------------------------|\n| GET p99        | ~122us        | ~50-60us (2-2.4x)      |\n| GET throughput | ~71K ops/s    | ~210-315K ops/s (3-4.5x) |\n| PUT p99        | ~234us        | ~120-145us (better)    |\n\n**Compaction governor** (default `Governor` vs. `FixedPriority`) —\nsix-phase changing-workload benchmark, 3-trial median, isolating the\nread-heavy recovery phase that follows a sustained write burst:\n\n| metric                        | FixedPriority | Governor (before fix) | Governor (after fix) |\n|--------------------------------|--------------|------------------------|------------------------|\n| recovery-phase PUT p99        | ~65us         | ~1990us                | ~115us (17.2x vs. before) |\n| recovery-phase compactions/6s | 41            | 232                    | 16-18                 |\n| steady-state write amp (churny) | ~23-25x     | ~23-25x                 | ~8.6-9.5x              |\n| steady-state throughput       | baseline      | baseline                | ~3x                    |\n\nThe scoring bug: `Governor` kept stopping a compaction job the instant\nit cleared a level's *immediate* over-budget excess, so it revisited\nthe same level constantly instead of taking the larger, already-cheap\nbatch that would have held for longer — 232 separate\nforeground-excluding commits in one 6-second recovery window against\n`FixedPriority`'s 41, driving its own PUT tail worse than the\nscheduler it was meant to replace, even though its rewrite-bytes\naccounting looked fine. Fixed by widening adaptive batching so a job\ntakes the largest same-cost batch that's already justified, not the\nsmallest one that clears the threshold — job *count*, not bytes\nrewritten, was what mattered; write amplification improved as a\nside effect of the same change, not the target of it. `Scored`\n(evidence-weighted single-pass scoring, no pressure model) sits\nbetween the two and remains available for workloads that don't need\nthe adaptive behavior.\n\n**mmap hybrid** (opt-in, hot/low levels only) — modest and consistent,\nsmaller than a mmap-vs-pread microbenchmark suggests because real\nworking sets partly fit the OS page cache either way:\n\n- ~5-10% throughput improvement across 1-32 threads, no observed tail\n  regression, on a cache-miss-heavy workload.\n\n## Building\n\n```bash\ncargo test\ncargo clippy --all-targets --all-features -- -D warnings\ncargo fmt --check\n\n# exhaustive concurrency model of the sharded gate protocol\ncargo test --features loom -- --test-threads=1 loom_\n\n# benchmarks\ncargo bench --bench basic\ncargo bench --bench steady_state\n```\n\nZero non-dev dependencies (`loom` is test-only, behind a feature\nflag). Linux-only (POSIX fsync semantics are part of the contract).\n",
+      "descriptor": "A durable LSM-tree storage engine exploring WALs, memtables, SSTables, compaction, and crash recovery from first principles.",
+      "about": [
+        "An embedded LSM-tree storage engine in Rust. Single node. Zero dependencies. Byte keys, byte values, sorted.",
+        "Writes go to a write-ahead log, then to an in-memory memtable. Flushes produce sorted SSTables. Compaction merges SSTables and drops versions that no active snapshot can observe. Reads check sources from newest to oldest; sequence numbers order everything."
+      ],
+      "benchmarks": [
+        {
+          "label": "90R/10W · after · gets/s",
+          "baseline": "468K gets/s",
+          "result": "4.22M gets/s",
+          "delta": 801.7,
+          "source": "Performance\nworkload | threads | before | after\n| 90R/10W              | 16     | 468K gets/s, p99 368us  | 4.22M gets/s, p99 7.48us (9.0x, 49x)  |"
+        },
+        {
+          "label": "90R/10W · after · us",
+          "baseline": "368us",
+          "result": "7.48us",
+          "delta": -98,
+          "source": "Performance\nworkload | threads | before | after\n| 90R/10W              | 16     | 468K gets/s, p99 368us  | 4.22M gets/s, p99 7.48us (9.0x, 49x)  |"
+        },
+        {
+          "label": "95R/5W · after · gets/s",
+          "baseline": "280K gets/s",
+          "result": "4.91M gets/s",
+          "delta": 1653.6,
+          "source": "Performance\nworkload | threads | before | after\n| 95R/5W               | 32     | 280K gets/s, p99 647us  | 4.91M gets/s, p99 24.8us (17.5x, 26x) |"
+        },
+        {
+          "label": "95R/5W · after · us",
+          "baseline": "647us",
+          "result": "24.8us",
+          "delta": -96.2,
+          "source": "Performance\nworkload | threads | before | after\n| 95R/5W               | 32     | 280K gets/s, p99 647us  | 4.91M gets/s, p99 24.8us (17.5x, 26x) |"
+        },
+        {
+          "label": "99R/1W · after · gets/s",
+          "baseline": "1.91M gets/s",
+          "result": "4.59M gets/s",
+          "delta": 140.3,
+          "source": "Performance\nworkload | threads | before | after\n| 99R/1W               | 32     | 1.91M gets/s, p99 37us  | 4.59M gets/s, p99 18.5us (2.4x, 2x)   |"
+        },
+        {
+          "label": "99R/1W · after · us",
+          "baseline": "37us",
+          "result": "18.5us",
+          "delta": -50,
+          "source": "Performance\nworkload | threads | before | after\n| 99R/1W               | 32     | 1.91M gets/s, p99 37us  | 4.59M gets/s, p99 18.5us (2.4x, 2x)   |"
+        },
+        {
+          "label": "100R/0W · after · gets/s",
+          "baseline": "5.10M gets/s",
+          "result": "8.58M gets/s",
+          "delta": 68.2,
+          "source": "Performance\nworkload | threads | before | after\n| 100R/0W              | 32     | 5.10M gets/s, p99 13us  | 8.58M gets/s, p99 4.42us (1.7x, 2.9x) |"
+        },
+        {
+          "label": "100R/0W · after · us",
+          "baseline": "13us",
+          "result": "4.42us",
+          "delta": -66,
+          "source": "Performance\nworkload | threads | before | after\n| 100R/0W              | 32     | 5.10M gets/s, p99 13us  | 8.58M gets/s, p99 4.42us (1.7x, 2.9x) |"
+        },
+        {
+          "label": "wall clock, 40K writes",
+          "baseline": "948ms",
+          "result": "~470ms",
+          "delta": -50.4,
+          "source": "Performance\nmetric | before | after\n| wall clock, 40K writes | 948ms  | ~470ms (2x)   |"
+        },
+        {
+          "label": "compaction throughput",
+          "baseline": "~8.85 MB/s",
+          "result": "~18 MB/s",
+          "delta": 103.4,
+          "source": "Performance\nmetric | before | after\n| compaction throughput | ~8.85 MB/s | ~18 MB/s (2x) |"
+        },
+        {
+          "label": "recovery-phase PUT p99",
+          "baseline": "~1990us",
+          "result": "~115us",
+          "delta": -94.2,
+          "source": "Performance\nmetric | FixedPriority | Governor (before fix) | Governor (after fix)\n| recovery-phase PUT p99        | ~65us         | ~1990us                | ~115us (17.2x vs. before) |"
+        }
+      ],
+      "demos": [],
+      "image": null
+    },
+    {
+      "name": "Kurogane",
+      "slug": "kurogane",
+      "description": "Kurogane is a from-scratch Rust implementation of Raft and a replicated in-memory key/value state machine.",
+      "homepage": null,
+      "languages": [
+        "Rust"
+      ],
+      "stars": 3,
+      "pushed_at": "2026-08-23T11:51:29Z",
+      "readme": "# Kurogane\n\nKurogane is a from-scratch Rust implementation of Raft and a replicated in-memory key/value state machine. It was built transport-free deterministic core first, then controlled simulation, and only later networking, persistence, and client-facing behavior — not an imported Raft library and not aimed at being production-ready today.\n\n## Status: feature-frozen\n\nAll nine roadmap milestones are complete and the project has been reconciled end-to-end against the Raft paper (Figure 2/3, §5.4, §5.6, §6, §7, §8). One genuine correctness gap found during that audit — a local-membership check wrongly gating `AppendEntries`/`InstallSnapshot`, which could permanently strand a follower partitioned across a membership change — was fixed and regression-tested. Everything else is either compliant or an intentional, documented deviation.\n\nImplemented:\n\n- Elections, heartbeats, and `RequestVote` log-freshness voting\n- Log replication with conflict detection/truncation and leader-tracked `next_index`/`match_index`\n- A replicated key/value state machine (`Set`/`Delete`/`Get`, `Get` routed through the log for linearizability)\n- Hard-state/log persistence with crash recovery\n- A real Tokio/gRPC runtime (`kurogane-runtime`): real sockets, real disk I/O, authenticated peer identity, leader-redirecting clients\n- Snapshots and log compaction, including the `InstallSnapshot` RPC for catching up a lagging peer\n- Cluster membership changes via joint consensus (dual-majority quorum, learners, config-triggered leader step-down, a removed-server disruption guard)\n- Client-visible consistency verification: `Propose` blocks until its index applies and returns the real value; a seeded, fault-injecting harness (`kurogane-verify`) drives real replicas through partition/crash/restart scenarios checked against a hand-rolled linearizability checker\n\n\"Feature-frozen\" means frozen at this documented scope, not \"nothing left to build.\" Deliberately still open, by documented choice, not oversight:\n\n- Snapshot chunking / resumable transfer\n- Client-retry deduplication (the paper's §8 serial-number mechanism — safe today only because nothing in this project retries a `Propose` after an `Indeterminate` outcome)\n- Real-process network partition/delay fault injection (real-process fault injection today is kill/restart only)\n- A real-process history generator (the linearizability checker is currently exercised only via the deterministic simulator)\n\n## Workspace\n\n```text\ncrates/\n├── kurogane-raft/     # protocol types, node state, synchronous transitions (std only)\n├── kurogane-sim/      # deterministic cluster scheduling, fault injection, traces\n├── kurogane-kv/       # replicated key/value state machine\n├── kurogane-runtime/  # Tokio/gRPC runtime, file-based storage, kurogane-node binary\n└── kurogane-verify/   # seeded fault-injecting harness + linearizability checker\n```\n\n`kurogane-sim`, `kurogane-kv`, and `kurogane-runtime` depend one-directionally on `kurogane-raft`, which depends on nothing but the standard library — no async runtime, sockets, wall-clock timers, random source, or protobuf. `kurogane-verify` depends on `kurogane-sim` and `kurogane-kv`. `unsafe_code = \"forbid\"` is set workspace-wide.\n\n## Architecture\n\n- **`kurogane-raft`** — protocol types, node state, and synchronous state transitions (`Node::step`, `Node::propose`, `Node::recover`, `Node::compact`). Time and randomness only ever enter as explicit inputs, never read internally; persistence is the same shape — `PersistHardState`/`PersistLog`/`PersistSnapshot` are effects the owner must honor, not I/O this crate performs itself.\n- **`kurogane-sim`** — deterministic cluster ownership, scheduling, fault injection, traces, and invariant checks for the raft layer, plus simulated-disk state and node replacement for crash-and-recovery tests.\n- **`kurogane-kv`** — the replicated key/value state machine: `Command` (`Set`/`Delete`/`Get`), `StateMachine` (applies committed entries one at a time, snapshots/restores for compaction), and `Replica` (wraps a `Node`, auto-drains newly committed entries into the state machine).\n- **`kurogane-runtime`** — the real (non-simulated) runtime adapter: Tokio task ownership, gRPC transport, and file-based storage. The one place Tokio, tonic, and prost are allowed. Owns protobuf conversions, file-based persistence, the actor that exclusively owns one `Replica` per process, the gRPC peer/client services, the wall-clock timer, and the `kurogane-node` binary.\n- **`kurogane-verify`** — a deterministic-but-fault-injecting harness over real `kurogane-kv::Replica`s, plus a hand-rolled linearizability checker over the client-visible histories it produces.\n\nNode transitions are effect-driven: a `Node` consumes an `Event` (`Tick` or `Step` with a `Message`) and emits `Effect`s (e.g. `Send`) for its owner to interpret, rather than performing I/O itself. Reads (`Command::Get`) are routed through the log like writes rather than served from local state — the simplest proven linearizable-read mechanism, deliberately not the faster heartbeat-lease optimization.\n\n## Development\n\nRequires Rust 1.85+ (edition 2024).\n\n```bash\ncargo fmt --all -- --check                           # formatting check\ncargo test --workspace                                # run all tests\ncargo clippy --workspace --all-targets -- -D warnings  # lint, warnings are errors\n```\n",
+      "descriptor": "Kurogane is a from-scratch Rust implementation of Raft and a replicated in-memory key/value state machine.",
+      "about": [
+        "Kurogane is a from-scratch Rust implementation of Raft and a replicated in-memory key/value state machine. It was built transport-free deterministic core first, then controlled simulation, and only later networking, persistence, and client-facing behavior — not an imported Raft library and not aimed at being production-ready today."
+      ],
+      "benchmarks": null,
+      "demos": [],
+      "image": null
+    },
+    {
+      "name": "Styx",
+      "slug": "styx",
+      "description": "A from-scratch BitTorrent engine in Rust with peer wire, trackers, DHT, magnets, verified storage, and seeding.",
+      "homepage": null,
+      "languages": [
+        "Rust",
+        "TypeScript",
+        "CSS",
+        "Python",
+        "HTML"
+      ],
+      "stars": 3,
+      "pushed_at": "2026-07-11T16:51:11Z",
+      "readme": "# Styx\n\nA BitTorrent client written in Rust, built around strict protocol handling, verified storage, and private-by-default runtime identity.\n\nStyx is not a wrapper around an existing torrent engine. The core protocol, tracker, disk, peer policy, runtime, CLI, and desktop shell are implemented in this repository.\n\n## Status\n\nStyx is under active development. It can currently run real v1 torrent flows through the runtime path: parse `.torrent` files, announce to trackers, connect to TCP peers, download verified pieces, persist daemon state, and seed verified data back to peers.\n\nPhase 23 work is now underway: Styx has the protocol pieces for DHT/magnet support, a runtime-owned DHT worker primitive, BEP 9 metadata exchange, and an exact-peer magnet resolver. Full app-level DHT-only downloads are still being wired.\n\n| Capability | Status |\n|---|---|\n| Bencode and metainfo parsing | Implemented |\n| Peer-wire handshake and framing | Implemented |\n| HTTP and UDP trackers | Implemented |\n| Piece/block verification and disk IO | Implemented |\n| v1 peer downloads | Implemented |\n| Verified seeding/uploading | Implemented |\n| Daemon persistence | Implemented |\n| CLI, TUI, and headless mode | Implemented |\n| Tauri desktop shell | Implemented |\n| BitTorrent v2/hybrid groundwork | Implemented |\n| DHT runtime worker | Implemented |\n| DHT peer source ingestion | Implemented |\n| Magnet URI parsing | Implemented |\n| BEP 9 metadata exchange | Implemented |\n| Exact-peer magnet resolution | Implemented as runtime API |\n| DHT-only app/CLI downloads | In progress |\n| uTP runtime integration | Planned |\n| NAT traversal, encryption, proxy support | Planned |\n\n## Install\n\nPrerequisites:\n\n- Rust toolchain compatible with the workspace `rust-version`\n- Cargo\n- Bun, for the desktop frontend\n- Tauri platform dependencies if running the GUI\n\nBuild the workspace:\n\n```sh\ncargo build --workspace --locked\n```\n\nRun the test suite:\n\n```sh\ncargo test --workspace --locked\n```\n\n## Usage\n\nDownload a legal v1 torrent:\n\n```sh\ncargo run -p styx-cli -- download \\\n  --torrent /absolute/path/file.torrent \\\n  --dest /tmp/styx-download \\\n  --listen-port 6881\n```\n\nRun a one-piece real-network smoke test:\n\n```sh\ncargo run -p styx-cli -- smoke \\\n  --torrent /absolute/path/file.torrent \\\n  --dest /tmp/styx-smoke \\\n  --listen-port 6881\n```\n\nRun the daemon:\n\n```sh\ncargo run -p styx-cli -- daemon start \\\n  --state-dir /tmp/styx-state \\\n  --socket /tmp/styx.sock\n```\n\nQuery or stop it:\n\n```sh\ncargo run -p styx-cli -- daemon status --socket /tmp/styx.sock\ncargo run -p styx-cli -- daemon stop --socket /tmp/styx.sock\n```\n\nExact-peer magnet resolution is available as a runtime API for BEP 9 metadata exchange from `x.pe` peers. The CLI/GUI `add-magnet` flow and DHT-backed peer discovery are still in progress.\n\nRun the desktop app:\n\n```sh\ncd apps/styx-gui\nbun install\nbun run app:dev\n```\n\nFor frontend-only iteration:\n\n```sh\ncd apps/styx-gui\nbun run dev\n```\n\n## Workspace\n\n```text\n.\n├── apps/\n│   ├── styx-cli/       # CLI, TUI, headless mode, daemon commands\n│   └── styx-gui/       # Tauri v2 desktop shell\n├── crates/\n│   ├── styx-app/       # shared app command/snapshot/event contract\n│   ├── styx-core/      # peer policy and transfer decisions\n│   ├── styx-dht/       # DHT protocol core and UDP socket adapter\n│   ├── styx-disk/      # storage, verification, resume\n│   ├── styx-ml/        # throttling detection core\n│   ├── styx-proto/     # bencode, metainfo, peer protocol, magnets\n│   ├── styx-runtime/   # orchestration, daemon, persistence, metadata resolution\n│   ├── styx-tracker/   # HTTP/UDP tracker protocol\n│   └── styx-utp/       # uTP protocol implementation\n└── sim/\n    └── swarm-sim/      # swarm simulation experiments\n```\n\n## Architecture\n\n```text\napps/styx-cli ─┐\n               ├─ styx-app ─ styx-runtime ─┬─ styx-core\napps/styx-gui ─┘                            ├─ styx-disk\n                                            ├─ styx-tracker\n                                            ├─ styx-dht\n                                            └─ styx-proto\n\nstyx-dht, styx-utp, and styx-ml are protocol/policy crates that are being integrated progressively into the runtime.\n```\n\n## Roadmap\n\nNear-term work:\n\n- Route the daemon-owned DHT worker into active torrents\n- Add app/CLI/GUI `add-magnet` command flow\n- Persist pending magnet resolution state\n- Trackerless torrent startup\n- Peer exchange and local service discovery\n- Platform packaging\n\nLonger-term work:\n\n- Runtime uTP transport\n- NAT traversal\n- Protocol encryption and proxy support\n- Bandwidth scheduling\n- ONNX-backed throttling detection\n- Web API and web UI\n\n## License\n\nNo license has been declared yet.\n",
+      "descriptor": "A from-scratch BitTorrent engine in Rust with peer wire, trackers, DHT, magnets, verified storage, and seeding.",
+      "about": [
+        "A BitTorrent client written in Rust, built around strict protocol handling, verified storage, and private-by-default runtime identity.",
+        "Styx is not a wrapper around an existing torrent engine. The core protocol, tracker, disk, peer policy, runtime, CLI, and desktop shell are implemented in this repository."
+      ],
+      "benchmarks": null,
+      "demos": [],
+      "image": null
+    },
+    {
+      "name": "Scribe",
+      "slug": "scribe",
+      "description": "Publishing SDK that turns Markdown, MDX, and JSX into publication-grade technical articles on your own React/Next.js/Vite site.",
+      "homepage": null,
+      "languages": [
+        "TypeScript",
+        "JavaScript",
+        "Rust",
+        "CSS",
+        "MDX",
+        "HTML"
+      ],
+      "stars": 12,
+      "pushed_at": "2026-09-21T03:36:18Z",
+      "readme": "# Scribe\n\nScribe is an open-source publishing SDK that turns ordinary Markdown, MDX, semantic HTML, and JSX into beautiful technical articles on websites you already own.\n\n> Just write. Scribe handles the rest.\n\nScribe is for developers who already own a React website built with Next.js or Vite and want publication-grade typography, code, tables, banners, callouts, figures, responsive behavior, and accessibility without assembling a publishing design system themselves. It transforms semantic article content at build time and renders it through a small React component map plus scoped CSS.\n\nScribe is not a hosted blogging platform, CMS, website builder, rich-text editor, proprietary content format, collaboration service, or replacement for React, Next.js, MDX, routing, deployment, analytics, or content storage.\n\n## Packages\n\n| Package | Purpose | Public entry points |\n| --- | --- | --- |\n| `@scribe-sdk/react` | Publication boundary, component map, and editorial primitives | package root |\n| `@scribe-sdk/styles` | Scoped publishing mechanics and optional editorial presentation | `/foundation.css`, `/default.css`, `/tailwind.css` |\n| `@scribe-sdk/mdx` | Shared compile-time MDX configuration and validation | package root, `/next`, `/next-remote`, `/remark`, `/rehype` |\n| `@scribe-sdk/cli` | Validation, deliberate setup, and the local authoring Studio | `scribe` binary |\n\nEach installed package includes the same canonical `SKILL.md`. Agents can discover it at `node_modules/@scribe-sdk/<package>/SKILL.md`; the repository source of truth is [`SKILL.md`](./SKILL.md).\n\n## Install\n\nThe recommended path bootstraps through the beta CLI. It installs the four Scribe packages, connects Scribe to the project, and verifies the result as one reviewed transaction:\n\n```bash\nbunx @scribe-sdk/cli@beta integrate --dry-run   # inspect the proposed plan\nbunx @scribe-sdk/cli@beta integrate             # review, confirm, and apply\n```\n\nWith npm:\n\n```bash\nnpx @scribe-sdk/cli@beta integrate --dry-run    # inspect the proposed plan\nnpx @scribe-sdk/cli@beta integrate              # review, confirm, and apply\n```\n\n## Quickstart\n\n```bash\nbunx scribe studio init      # create a minimal article and open the local Studio\nbunx scribe validate ./content/article.mdx   # compile and validate before shipping\n```\n\n`scribe studio init` detects the content directory, writes minimal frontmatter, and opens Studio so you can write and save the article. `scribe validate` compiles it through the production pipeline before you run the host project's build.\n\n## Documentation\n\nFull guides live at **[scribeit.dev/docs](https://scribeit.dev/docs)**, including:\n\n- [Getting Started](https://scribeit.dev/docs/getting-started) — install, first integration checklist, project-local CLI\n- [CLI Reference](https://scribeit.dev/docs/cli-reference) — every command and flag\n- [Style Modes](https://scribeit.dev/docs/style-modes) — Foundation, Default, and Tailwind\n- [Next.js Integration](https://scribeit.dev/docs/nextjs) and [Vite Integration](https://scribeit.dev/docs/vite)\n- [Components](https://scribeit.dev/docs/components) — Publication, Banner, Callout, Figure, Video, code fences, Mermaid\n- [Local Studio](https://scribeit.dev/docs/studio) — the source-authoritative Markdown/MDX editor\n- [Theming & CSS Tokens](https://scribeit.dev/docs/theming) — the full token reference\n- [Validate & Troubleshoot](https://scribeit.dev/docs/troubleshooting)\n- [Migrating from `0.1.0-alpha.2`](https://scribeit.dev/docs/migration)\n- [Compatibility & Responsibility Boundary](https://scribeit.dev/docs/compatibility)\n\nScribe 0.1.0-beta is a public beta. The API may evolve before a stable release.\n\n## License\n\nLicensed under Apache-2.0. See [`LICENSE`](./LICENSE).\n",
+      "descriptor": "Publishing SDK that turns Markdown, MDX, and JSX into publication-grade technical articles on your own React/Next.js/Vite site.",
+      "about": [
+        "Scribe is an open-source publishing SDK that turns ordinary Markdown, MDX, semantic HTML, and JSX into beautiful technical articles on websites you already own.",
+        "Just write. Scribe handles the rest.",
+        "Scribe is for developers who already own a React website built with Next.js or Vite and want publication-grade typography, code, tables, banners, callouts, figures, responsive behavior, and accessibility without assembling a publishing design system themselves. It transforms semantic article content at build time and renders it through a small React component map plus scoped CSS."
+      ],
+      "benchmarks": null,
+      "demos": [],
+      "image": null
+    },
+    {
+      "name": "Raijin",
+      "slug": "raijin",
+      "description": null,
+      "homepage": null,
+      "languages": [],
+      "stars": 0,
+      "pushed_at": "2026-07-29T11:17:33Z",
+      "readme": "",
+      "descriptor": "",
+      "about": [],
+      "benchmarks": null,
+      "demos": [],
+      "image": null
+    },
+    {
+      "name": "Susano",
+      "slug": "susano",
+      "description": "A from-scratch in-memory analytical database exploring columnar storage, vectorized execution, compression, and the architecture behind modern high-performance data systems.",
+      "homepage": null,
+      "languages": [
+        "C++",
+        "CMake",
+        "Python"
+      ],
+      "stars": 1,
+      "pushed_at": "2026-08-23T20:38:29Z",
+      "readme": "# Susano\n\nSusano is a from-scratch, high-performance in-memory analytical database under active development. The project studies database systems ideas directly and will keep its implementation understandable, measurable, and independently testable.\n\nThe repository currently contains only a C++23 executable and a CTest smoke test. No query language, storage engine, catalog, or execution machinery has been implemented yet.\n\n## Requirements\n\n- CMake 3.25 or newer\n- A C++23 compiler (GCC and Clang are supported targets)\n\n## Build and Test\n\nConfigure and build the default development tree:\n\n```sh\ncmake -S . -B build\ncmake --build build\n```\n\nRun the complete test suite through CTest:\n\n```sh\nctest --test-dir build --output-on-failure\n```\n\nTo build with AddressSanitizer and UndefinedBehaviorSanitizer enabled:\n\n```sh\ncmake -S . -B build-sanitized -DSUSANO_ENABLE_SANITIZERS=ON\ncmake --build build-sanitized\nctest --test-dir build-sanitized --output-on-failure\n```\n\nThe normal build does not enable sanitizers. Keep performance-sensitive choices backed by benchmarks and correctness tests as the system grows.\n",
+      "descriptor": "A from-scratch in-memory analytical database exploring columnar storage, vectorized execution, compression, and the architecture behind modern high-performance…",
+      "about": [
+        "Susano is a from-scratch, high-performance in-memory analytical database under active development. The project studies database systems ideas directly and will keep its implementation understandable, measurable, and independently testable.",
+        "The repository currently contains only a C++23 executable and a CTest smoke test. No query language, storage engine, catalog, or execution machinery has been implemented yet."
+      ],
+      "benchmarks": null,
+      "demos": [],
+      "image": null
+    },
+    {
+      "name": "Shiden",
+      "slug": "shiden",
+      "description": "Shiden is a Redis-compatible in-memory data store written in Go, built to explore event-driven servers, protocol design, concurrency, persistence, and the internals behind fast key-value systems.",
+      "homepage": null,
+      "languages": [
+        "Go"
+      ],
+      "stars": 2,
+      "pushed_at": "2026-08-12T12:36:07Z",
+      "readme": "# Shiden\n\nShiden is a deliberately small Redis-compatible in-memory database server written from first principles in Go. It implements the complete path from a TCP byte stream through RESP2 framing and command execution to shared, synchronized process state.\n\nShiden is a learning system, not a production Redis replacement. It uses only the Go standard library.\n\n## Status\n\nComplete at its bounded scope:\n\n- TCP listener on port `6380`\n- one goroutine per client connection\n- persistent connections and pipelined commands\n- streaming RESP2 decoding and encoding\n- one process-wide binary-safe store\n- lazy expiration plus periodic expired-key cleanup\n- signal-aware shutdown for SIGINT and SIGTERM\n\n## Run\n\n```bash\ngo run ./cmd/shiden\n```\n\nThe server logs its bound address after the listener is ready. Press Ctrl-C to stop accepting clients, close active connections, and wait for connection handlers to exit.\n\n## Commands\n\n| Command | Behavior |\n|---|---|\n| `PING` | Returns `PONG` |\n| `PING message` | Returns `message` |\n| `ECHO message` | Returns `message` |\n| `SET key value` | Stores a binary-safe value and clears any previous expiry |\n| `GET key` | Returns the value, or a null bulk string when missing or expired |\n| `DEL key [key ...]` | Deletes live keys and returns the number removed |\n| `EXPIRE key seconds` | Sets a lifetime and returns `1`, or `0` when the key is missing or expired |\n\n`EXPIRE` accepts signed integer seconds. Zero or negative seconds delete a live key immediately. Options such as NX, XX, GT, and LT are intentionally unsupported.\n\n## Redis CLI\n\nShiden speaks RESP2 and works with a real Redis-compatible CLI:\n\n```bash\nredis-cli -p 6380 PING\nredis-cli -p 6380 SET name shiden\nredis-cli -p 6380 GET name\nredis-cli -p 6380 EXPIRE name 10\nredis-cli -p 6380 DEL name\n```\n\nSeparate CLI invocations use separate TCP connections while observing the same server-owned state.\n\n## Verify\n\n```bash\ngo test ./...\ngo test -race ./...\ngo vet ./...\n```\n\nThe tests cover RESP2 values and malformed frames, one-byte fragmentation, pipelining, command validation, missing versus empty values, arbitrary binary payloads, byte ownership, deterministic expiration, shared state across real TCP clients, concurrent store access, and controlled server shutdown.\n\n## Architecture\n\n- `cmd/shiden` owns process signals and starts the server.\n- `internal/server` owns the listener, active connections, buffered connection loop, cleanup loop, and shutdown.\n- `internal/resp` owns RESP2 framing and encoding.\n- `internal/command` owns command parsing, validation, and execution.\n- `internal/store` owns key/value state, expiration, byte ownership, and synchronization.\n\n## Explicit limitations\n\nShiden does not implement persistence, advanced Redis data structures, transactions, pub/sub, eviction, replication, clustering, authentication, broad Redis compatibility, production resource controls, or performance claims. Those are outside this project's finish line.\n",
+      "descriptor": "Shiden is a Redis-compatible in-memory data store written in Go, built to explore event-driven servers, protocol design, concurrency, persistence,…",
+      "about": [
+        "Shiden is a deliberately small Redis-compatible in-memory database server written from first principles in Go. It implements the complete path from a TCP byte stream through RESP2 framing and command execution to shared, synchronized process state.",
+        "Shiden is a learning system, not a production Redis replacement. It uses only the Go standard library."
+      ],
+      "benchmarks": null,
+      "demos": [],
+      "image": null
+    },
+    {
+      "name": "Konto",
+      "slug": "konto",
+      "description": "A double-entry accounting engine on PostgreSQL with typed financial primitives, enforced invariants, and agent-safe execution.",
+      "homepage": null,
+      "languages": [
+        "TypeScript",
+        "PLpgSQL",
+        "CSS",
+        "JavaScript",
+        "MDX"
+      ],
+      "stars": 1,
+      "pushed_at": "2026-05-12T13:47:25Z",
+      "readme": "## About\n\nKonto is a high-performance, strictly-typed, double-entry accounting ledger system built on PostgreSQL. It ensures financial correctness with a robust core engine and supports integration with autonomous agents.\n\n## Built With\n\n*   **TypeScript:** For robust, type-safe development across the monorepo.\n*   **PostgreSQL:** The foundation for the double-entry accounting ledger, ensuring data integrity.\n*   **pnpm:** Efficient package management for the monorepo.\n*   **Turborepo:** High-performance build system for monorepo optimization.\n\n## Getting Started\n\n### Prerequisites\n\n*   **pnpm:** Ensure you have pnpm installed globally.\n*   **Node.js:** Version 18 or higher is recommended.\n*   **PostgreSQL:** Version 16+ is required for running applications.\n\n### Installation\n\n1.  **Clone the repository:**\n    ```bash\n    git clone https://github.com/your-username/konto.git\n    cd konto\n    ```\n2.  **Install dependencies:**\n    ```bash\n    pnpm install\n    ```\n    This command installs all dependencies across the monorepo using pnpm.\n\n### Initialize and Migrate Database\n\nTo set up the database schema for applications like `mcp-server`:\n\n1.  **Initialize the schema:**\n    ```bash\n    npx @konto/cli init\n    ```\n2.  **Run migrations:**\n    ```bash\n    npx @konto/cli migrate\n    ```\n    These commands prepare your PostgreSQL instance for Konto.\n\n## Usage\n\nInteract with the Konto ledger through its core library, CLI tools, or the MCP server for agent integration.\n\n### Core Library\n\nImport and use Konto's ledger engine directly in your JavaScript/TypeScript applications. Define your ledger schema and execute transactions programmatically.\n\n### CLI Tools\n\nManage your ledger from the command line. Use commands to create accounts, post transactions, and query ledger state.\n\n### MCP Server\n\nExpose the Konto ledger to autonomous agents via the Model Context Protocol. This headless server allows LLM agents to interact with your financial data through a standard interface.\n\n## Architecture\n\n*   **Monorepo Structure:** Organizes independent packages and applications using pnpm and Turborepo.\n*   **Core Engine (`packages/core`):** The heart of Konto, responsible for ledger logic, transfers, holds, and schema enforcement.\n*   **Applications (`apps/`):** House distinct functionalities like the MCP server for autonomous agents and the Stripe webhook integration.\n*   **Tooling (`packages/cli`, `packages/types`, `packages/adapters`):** Provides utilities for database interaction, client generation, and adapter implementations.\n\n# Contributing\n\nWe welcome contributions to the Konto project! Please follow these guidelines to help us maintain a high-quality and secure codebase.\n\n## Reporting Bugs\n\n*   **Security Vulnerabilities:** Report any security issues by emailing `security@konto.dev` or by opening a private vulnerability report through GitHub security advisories. We aim to respond within 72 hours.\n*   **General Bugs:** For non-security related bugs, please open an issue on the GitHub repository. Provide a clear description of the bug, steps to reproduce it, and any relevant environment details.\n\n## Submitting Pull Requests\n\n1.  **Fork the repository** and create a new branch for your feature or fix.\n2.  **Make your changes** and ensure they are well-tested.\n3.  **Submit a pull request** with a clear description of your changes.\n4.  We will review your PR and provide feedback.\n\n## Development Focus Areas\n\nWe are actively looking for contributions in the following areas:\n\n*   **Frontend / Studio App:** Developing a graphical interface for viewing accounts, journals, and pending staged intents.\n*   **npm Publishing:** Publishing all packages (`@konto/core`, `@konto/cli`, `@konto/types`, `@konto/adapters`) to the npm registry.\n\n## License\n\nThis project is licensed under the MIT License.\n\n*   **Permissions:** Use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the software.\n*   **Conditions:** Include the original copyright notice and permission notice in all copies or substantial portions of the software.\n\nSee the [LICENSE](LICENSE) file for full details.\n\n## Roadmap\n\nThis section outlines planned features and future development for Konto.\n\n### Studio Graphical Dashboard\n\n*   **Goal:** Develop a user-friendly graphical interface for managing financial data.\n*   **Features:**\n    *   Visualize accounts and journals.\n    *   Review and approve staged financial intents.\n    *   Provide an intuitive dashboard for monitoring ledger activity.\n\n### npm Package Publishing\n\n*   **Goal:** Make Konto's core libraries readily available for public use.\n*   **Action:** Publish `@konto/core`, `@konto/cli`, `@konto/types`, and `@konto/adapters` to the npm registry.\n*   **Benefit:** Enables easier integration and adoption of Konto in other projects.\n\n---\n\n*This README was generated by [DevDoq](https://devdoq.com)*",
+      "descriptor": "A double-entry accounting engine on PostgreSQL with typed financial primitives, enforced invariants, and agent-safe execution.",
+      "about": [
+        "Konto is a high-performance, strictly-typed, double-entry accounting ledger system built on PostgreSQL. It ensures financial correctness with a robust core engine and supports integration with autonomous agents."
+      ],
+      "benchmarks": null,
+      "demos": [],
+      "image": null
+    },
+    {
+      "name": "Iris",
+      "slug": "iris",
+      "description": null,
+      "homepage": null,
+      "languages": [
+        "Rust",
+        "WGSL"
+      ],
+      "stars": 1,
+      "pushed_at": "2026-04-14T03:34:46Z",
+      "readme": "# Iris\n\nIris is a Linux image viewer built in Rust with GTK4/libadwaita and a GPU-native rendering stack.\n\nThe current direction is simple:\n\n- ship a fast, reliable Linux image viewer first\n- use zero-copy GPU presentation where the platform supports it\n- keep the architecture strong enough to grow into a programmable image tool later\n\n## Current Status\n\nIris is an active product prototype moving toward a V1 Linux release.\n\nToday the codebase already has:\n\n- GTK4/libadwaita desktop UI\n- Vulkan-based renderer\n- DMA-BUF presentation path for supported Linux environments\n- software fallback when Vulkan is unavailable\n- directory browsing and thumbnail strip\n- RAW image support\n- ICC-aware color conversion\n- zoom, pan, rotation, metadata panel\n- drag and drop for files and directories\n- directory watching\n- early compute-based image processing toggles\n\nWhat it is not yet:\n\n- a polished cross-platform app\n- a guaranteed zero-copy path on every Linux setup\n- a finished V1 release\n\n## Product Direction\n\nThe product roadmap is:\n\n- V1: stable Linux image viewer\n- V2: cross-platform support and live shader layer\n- V3: GPU-native creative platform\n\nMore detail lives in:\n\n- [Product Roadmap](/home/aetos/DevNexus/Code/Projects/iris/docs/PRODUCT_ROADMAP.md)\n- [V1 Release Criteria](/home/aetos/DevNexus/Code/Projects/iris/docs/V1_RELEASE_CRITERIA.md)\n- [V1 Execution Plan](/home/aetos/DevNexus/Code/Projects/iris/docs/V1_EXECUTION_PLAN.md)\n- [Platform Architecture Transition](/home/aetos/DevNexus/Code/Projects/iris/docs/PLATFORM_ARCHITECTURE_TRANSITION.md)\n\n## Rendering Model\n\nIris is built around a GPU-native rendering approach on Linux.\n\nPreferred path:\n\n- decode image\n- upload to GPU\n- render with Vulkan\n- export a DMA-BUF\n- present through GTK/Wayland\n\nFallback path:\n\n- if the preferred path is unavailable or rejected by the environment, Iris falls back to a slower but correct presentation path\n\nThat distinction matters. The goal is not \"Vulkan at any cost.\" The goal is a reliable app with an elite fast path where available.\n\n## Linux Support Model\n\nIris should be thought of as a Linux app with tiered rendering support:\n\n- preferred: Wayland + Vulkan + DMA-BUF path active\n- fallback: GPU rendering without zero-copy presentation\n- fallback: software rendering for correctness\n\nSee the full support framing here:\n\n- [Support Matrix](/home/aetos/DevNexus/Code/Projects/iris/docs/SUPPORT_MATRIX.md)\n\n## Features In Tree\n\n### Viewer\n\n- open files and directories\n- drag and drop files or folders\n- keyboard navigation\n- zoom in/out\n- drag pan\n- per-image rotation\n- metadata/info panel\n- persisted window state\n\n### Image Handling\n\n- common formats through the `image` crate\n- RAW camera formats through `imagepipe`/`rawloader`\n- ICC-aware conversion to sRGB\n- animated GIF support\n\n### Performance\n\n- Vulkan renderer\n- texture caching\n- directional prefetching\n- persistent thumbnail cache\n- async image decode and metadata work\n\n### Processing\n\n- compute-pass toggles for enhance, sharpen, and denoise\n- WGSL shader pipeline compiled through `naga`\n\n## Tech Stack\n\n- Rust\n- GTK4\n- libadwaita\n- Vulkan via `ash`\n- WGSL shaders via `naga`\n- image decoding via `image`\n- RAW decode via `imagepipe` and `rawloader`\n- color transforms via `lcms2`\n\n## Repo Layout\n\n```text\niris/\n├── src/\n│   ├── main.rs                  # app shell, UI, navigation, thumbnails\n│   ├── color.rs                 # ICC/profile handling\n│   ├── config.rs                # persisted config\n│   ├── raw.rs                   # RAW detection and decode helpers\n│   ├── thumbcache.rs            # thumbnail cache helpers\n│   └── viewport/\n│       ├── mod.rs               # viewport, decode flow, presentation bridge\n│       ├── camera.rs            # pan/zoom/rotation math\n│       ├── shaders/             # WGSL shaders\n│       └── vk/                  # Vulkan renderer internals\n├── docs/                        # roadmap, release, architecture docs\n├── tests/\n└── ARCHITECTURE.md\n```\n\n## Build\n\n### Prerequisites\n\nYou need:\n\n- Rust and Cargo\n- Vulkan loader and development libraries\n- GTK4 development libraries\n- libadwaita development libraries\n\nExact package names vary by distro.\n\n### Build\n\n```bash\ncargo build\n```\n\n### Run\n\n```bash\ncargo run -- /path/to/image.jpg\n```\n\nYou can also pass a directory path.\n\n## Development Notes\n\nThe repo includes a broader strategic doc set than the current code alone would suggest. That is intentional. The code is still V1-oriented, but the architecture is being evaluated against later platform ambitions.\n\nUseful docs:\n\n- [Release Checklist](/home/aetos/DevNexus/Code/Projects/iris/docs/RELEASE_CHECKLIST.md)\n- [Benchmark Plan](/home/aetos/DevNexus/Code/Projects/iris/docs/BENCHMARK_PLAN.md)\n- [Support Matrix](/home/aetos/DevNexus/Code/Projects/iris/docs/SUPPORT_MATRIX.md)\n\n## Benchmarks\n\nBenchmark claims should be treated as pending until they are backed by the benchmark plan and measured against:\n\n- eog\n- feh\n- Gwenview\n- Nomacs\n\nThe benchmark methodology is tracked here:\n\n- [Benchmark Plan](/home/aetos/DevNexus/Code/Projects/iris/docs/BENCHMARK_PLAN.md)\n\n## Known Reality\n\nIris is promising, but still under active hardening.\n\nCurrent areas that still matter for V1:\n\n- DMA-BUF compatibility across real Linux stacks\n- render-path observability\n- descriptor/cache safety\n- release packaging\n- benchmark validation\n\n## Contributing\n\nIf you want to contribute, start by reading:\n\n- [V1 Release Criteria](/home/aetos/DevNexus/Code/Projects/iris/docs/V1_RELEASE_CRITERIA.md)\n- [V1 Execution Plan](/home/aetos/DevNexus/Code/Projects/iris/docs/V1_EXECUTION_PLAN.md)\n- [Platform Architecture Transition](/home/aetos/DevNexus/Code/Projects/iris/docs/PLATFORM_ARCHITECTURE_TRANSITION.md)\n\nContributions that improve Linux reliability, rendering correctness, cache safety, or release readiness are the highest leverage for V1.\n",
+      "descriptor": "Iris is a Linux image viewer built in Rust with GTK4/libadwaita and a GPU-native rendering stack.",
+      "about": [
+        "Iris is a Linux image viewer built in Rust with GTK4/libadwaita and a GPU-native rendering stack.",
+        "The current direction is simple:"
+      ],
+      "benchmarks": null,
+      "demos": [],
+      "image": null
+    },
+    {
+      "name": "WebNotes",
+      "slug": "webnotes",
+      "description": "A local-first knowledge system with structured editing, bidirectional links, native desktop performance, and sync.",
+      "homepage": "https://web-notes-lyart.vercel.app",
+      "languages": [
+        "TypeScript",
+        "Rust",
+        "CSS",
+        "Shell",
+        "JavaScript",
+        "PowerShell"
+      ],
+      "stars": 24,
+      "pushed_at": "2026-04-08T10:17:03Z",
+      "readme": "# WebNotes\n\n**The missing link between Apple Notes and Obsidian.**\n\nWebNotes is a high-performance, local-first knowledge base designed to bring the polish of macOS-native tools to Windows and Linux, without sacrificing the power features developers need.\n\nIt runs on **Tauri (Rust)** for native performance and **Next.js** for cloud synchronization.\n\n---\n\n## Why WebNotes?\n\nMost note-taking apps force you to choose:\n\n1. **Simple & Fast:** Apple Notes, Notepad  \n   *(Limited features, platform locked)*  \n2. **Powerful & Complex:** Obsidian, Emacs  \n   *(High learning curve, ugly UI)*  \n3. **Collaborative & Slow:** Notion  \n   *(Electron bloat, online-only)*  \n\nWebNotes takes the **Block-Based Editor** of Notion, the **Bidirectional Linking** of Obsidian, and wraps it in a **Native Rust Binary** that launches instantly.\n\n---\n\n## Key Capabilities\n\n- **Zero-Latency Typing:** Sub-10ms editor response.\n- **Bidirectional Linking:** Type `[[` to instantly link or create notes.\n- **Mathematical Typesetting:** First-class LaTeX (`$E=mc^2$`) with live preview.\n- **Local-First Architecture:** Notes stored in a local SQLite database.\n- **Hybrid Sync:** Desktop for deep work, web for access anywhere.\n\n---\n\n## Technical Stack\n\n| Component | Technology | Reasoning |\n|---------|------------|-----------|\n| **Desktop Runtime** | **Tauri (Rust)** | <10MB binary, native performance, no Electron bloat. |\n| **Web Runtime** | **Next.js 15** | SSR + edge caching for global speed. |\n| **Editor Engine** | **Tiptap (ProseMirror)** | Headless, schema-based, fully extensible. |\n| **State** | **Zustand** | Predictable, optimistic UI state. |\n| **Storage (Desktop)** | **SQLite** | Instant, file-based, local ownership. |\n| **Storage (Web)** | **PostgreSQL (Neon)** | Serverless, scalable sync layer. |\n\n---\n\n## Installation\n\n### Desktop (Windows, macOS, Linux)\n\n**Mac / Linux**\n```bash\ncurl -fsSL https://web-notes-lyart.vercel.app/install.sh | sh\n````\n\n**Windows (PowerShell)**\n\n```powershell\nirm https://web-notes-lyart.vercel.app/install.ps1 | iex\n```\n\n---\n\n### Web Access\n\nVisit:\n👉 [https://web-notes-lyart.vercel.app](https://web-notes-lyart.vercel.app)\n\n---\n\n## Development\n\nWebNotes is a monorepo powering both web and desktop clients.\n\n### Prerequisites\n\n* Node.js 18+\n* Rust (stable)\n* PostgreSQL\n\n### Setup\n\n```bash\ngit clone https://github.com/aetosdios27/WebNotes.git\ncd WebNotes\nnpm install\n```\n\nCreate `.env`:\n\n```env\nDATABASE_URL=\"postgres://...\"\nAUTH_SECRET=\"...\"\nGOOGLE_CLIENT_ID=\"...\"\nGOOGLE_CLIENT_SECRET=\"...\"\n```\n\nRun:\n\n```bash\n# Web\nnpm run dev\n\n# Desktop\nnpm run tauri dev\n```\n\n---\n\n## Roadmap\n\n* [x] Wiki-Links (`[[`)\n* [x] Backlinks Sidebar\n* [ ] Graph View\n* [ ] Rust/WASM Editor Core (DOM-less, ultra-performance engine)\n\n---\n\n## License\n\nMIT © [Aetos Dios](https://github.com/aetosdios27)\n",
+      "descriptor": "A local-first knowledge system with structured editing, bidirectional links, native desktop performance, and sync.",
+      "about": [
+        "The missing link between Apple Notes and Obsidian.",
+        "WebNotes is a high-performance, local-first knowledge base designed to bring the polish of macOS-native tools to Windows and Linux, without sacrificing the power features developers need.",
+        "It runs on Tauri (Rust) for native performance and Next.js for cloud synchronization."
+      ],
+      "benchmarks": [
+        {
+          "label": "Desktop Runtime · Reasoning · MB",
+          "baseline": null,
+          "result": "<10MB",
+          "delta": null,
+          "source": "Technical Stack\nComponent | Technology | Reasoning\n| **Desktop Runtime** | **Tauri (Rust)** | <10MB binary, native performance, no Electron bloat. |"
+        },
+        {
+          "label": "Key Capabilities",
+          "baseline": null,
+          "result": "Zero-Latency Typing: Sub-10ms editor response.",
+          "delta": null,
+          "source": "- **Zero-Latency Typing:** Sub-10ms editor response."
+        }
+      ],
+      "demos": [
+        {
+          "label": "Website",
+          "url": "https://web-notes-lyart.vercel.app"
+        }
+      ],
+      "image": null
+    },
+    {
+      "name": "Axiom-core",
+      "slug": "axiom-core",
+      "description": "A canonical rule engine that translates coding standards and agent instructions into configs for Cursor, Claude, Codex, and more.",
+      "homepage": "https://axiom-core-orpin.vercel.app",
+      "languages": [
+        "TypeScript",
+        "Go",
+        "Astro",
+        "CSS",
+        "Shell",
+        "JavaScript",
+        "Dockerfile"
+      ],
+      "stars": 1,
+      "pushed_at": "2026-05-22T21:49:10Z",
+      "readme": "# Axiom Core\n\n> The immutable system of truth for AI agent style guides and coding standards.\n\n**One schema. Every platform. Zero ambiguity.**\n\n## Architecture\n\n```\naxiom-core/\n├── web/          # Astro static site — human-readable rule directory\n├── cli/          # Go binary — fetch & write agent configs\n└── registry/     # Mock data (production: separate repo)\n```\n\n- **Registry** → Raw `.json` files. No database. Version-controlled truth.\n- **Web Hub** → Astro + React + Tailwind v4. Glassmorphic brutalism. Sub-second builds.\n- **CLI Engine** → Compiled Go + Cobra. One binary, seven output formats.\n\n## Web Hub\n\n```bash\ncd web\nbun install\nbun run dev      # → http://localhost:4321\nbun run build    # → static output in dist/\n```\n\n## CLI\n\n### Install\n\n```bash\ncurl -sSL https://raw.githubusercontent.com/aetosdios27/axiom-core/main/install.sh | bash\n```\n\n### Usage\n\n```bash\n# List all available rules\naxiom list\n\n# Initialize rules for your project\naxiom init go-standard --format cursor\naxiom init typescript-strict --format claude\naxiom init go-standard --format all    # writes all 7 formats\n```\n\n### Supported Formats\n\n| Platform | Format Flag | Output File |\n|---|---|---|\n| Cursor | `cursor` | `.cursor/rules/{id}.mdc` |\n| Windsurf | `windsurf` | `.windsurfrules` |\n| Claude Code | `claude` | `CLAUDE.md` |\n| GitHub Copilot | `copilot` | `.github/copilot-instructions.md` |\n| Cline / Roo Code | `cline` | `.clinerules` |\n| Codex | `codex` | `AGENTS.md` |\n| Zed | `zed` | `.rules` |\n\n## Rule Schema\n\nBoth the CLI and web hub consume this exact JSON structure:\n\n```json\n{\n  \"id\": \"go-standard\",\n  \"name\": \"Go Canonical Style\",\n  \"ecosystem\": \"Go\",\n  \"version\": \"1.0.0\",\n  \"cli_target\": {\n    \"extensions\": [\"*.go\"],\n    \"agent_format\": \"cursor\"\n  },\n  \"human_view\": {\n    \"philosophy\": \"...\",\n    \"sections\": [{ \"title\": \"...\", \"content\": \"...\" }]\n  },\n  \"agent_view\": {\n    \"system_prompt\": \"...\",\n    \"rules\": [\"...\"],\n    \"canonical_snippet\": \"...\"\n  }\n}\n```\n\n## Links\n\n- **Registry**: [github.com/aetosdios27/axiom-registry](https://github.com/aetosdios27/axiom-registry)\n- **Core**: [github.com/aetosdios27/axiom-core](https://github.com/aetosdios27/axiom-core)\n",
+      "descriptor": "A canonical rule engine that translates coding standards and agent instructions into configs for Cursor, Claude, Codex, and more.",
+      "about": [
+        "The immutable system of truth for AI agent style guides and coding standards.",
+        "One schema. Every platform. Zero ambiguity."
+      ],
+      "benchmarks": null,
+      "demos": [
+        {
+          "label": "Website",
+          "url": "https://axiom-core-orpin.vercel.app"
+        }
+      ],
+      "image": null
+    },
+    {
+      "name": "Vmrl",
+      "slug": "vmrl",
+      "description": null,
+      "homepage": "https://vmrl-web.vercel.app",
+      "languages": [
+        "Solidity",
+        "TypeScript",
+        "Python",
+        "CSS",
+        "JavaScript"
+      ],
+      "stars": 0,
+      "pushed_at": "2026-09-16T07:51:05Z",
+      "readme": "# VMRL\n\nVMRL anchors release artifacts on an EVM chain. A publisher hashes a real release\nfile (SHA-256) and posts a **receipt** containing the repository label, tag,\nGit `HEAD`, artifact digest, timestamp, and signer address. Anyone can later\nverify a local file against one explicitly selected receipt and an independently\ntrusted publisher address.\n\nReceipts record a publisher's claim; they do not prove that a binary was built\nfrom the declared source, that it is reproducible, or that it is safe.\n\n## Repository layout\n\n| Path | Description |\n| --- | --- |\n| `packages/contracts` | `VMRL.sol` — the on-chain receipt ledger (Foundry layout) |\n| `packages/cli` | Bun/TypeScript CLI for anchoring and verifying artifacts |\n| `packages/web` | Next.js browser explorer and local artifact verifier |\n| `scripts/demo.ts` | One-command local demo (chain + contract + sample release + web) |\n\n## Requirements\n\nBun and Git. Dependencies are installed once while online:\n\n```bash\nbun install\n```\n\n## One-command local demo\n\nFrom the repository root:\n\n```bash\nbun run demo\n```\n\nThe launcher starts an in-memory Ganache EVM on `127.0.0.1:8545` (chain\n`31337`), compiles and deploys the real `packages/contracts/src/VMRL.sol`,\nbuilds a small sample application from a separate clean Git checkout, and\nanchors it through the real CLI. It also creates a copy that differs by exactly\none appended byte, checks all verification outcomes, then opens the dashboard at\n`http://127.0.0.1:3000`.\n\nUse `bun run demo --no-open` to skip opening the browser. In another terminal,\nreplay the CLI scenarios while the demo runs:\n\n```bash\nbun run demo:check\n```\n\nThis expects original/trusted verification to exit `0`, changed bytes `4`, an\nuntrusted publisher `5`, and a missing receipt `3`. `Ctrl+C` stops both\nservices; restarting creates a fresh chain, receipt, and sample checkout.\n\nEverything runs on loopback after dependencies are installed. Generated files\nlive under the ignored `.vmrl-demo/`. Override busy ports with\n`VMRL_DEMO_RPC_PORT` and `VMRL_DEMO_WEB_PORT`.\n\n**The deterministic development wallets are publicly known. Never send real\nfunds to them.**\n\n## CLI\n\nThe entry point is `packages/cli/index.ts`; run `bun run packages/cli/index.ts --help`.\nBun loads `.env` automatically. Never commit a private key.\n\n| Environment variable | Default / purpose |\n| --- | --- |\n| `VMRL_RPC_URL` | `https://sepolia.base.org` |\n| `VMRL_CHAIN_ID` | `84532` (Base Sepolia); checked against the RPC |\n| `VMRL_CONTRACT_ADDRESS` | `0xe0C0B432380a07177372d10DF61BAFedAB9D8367` |\n| `VMRL_PRIVATE_KEY` | Required only for `anchor` |\n\n### Anchor a release\n\nRun inside the release's Git working tree:\n\n```bash\nbun run packages/cli/index.ts anchor --repo owner/project --tag v1.2.3 --artifact /path/to/release.tar.gz\n```\n\nAll options are required. The CLI streams the file through SHA-256, records Git\n`HEAD`, and rejects staged or unstaged tracked changes. The transaction must\nmine successfully and emit the expected `NewReceipt` event before it is reported\nas anchored.\n\n### Verify a receipt\n\nObtain the trusted publisher address independently, not from the receipt:\n\n```bash\nbun run packages/cli/index.ts verify --repo owner/project --receipt 12 \\\n  --artifact /path/to/release.tar.gz \\\n  --trusted-signer 0xYourIndependentlyTrustedPublisherAddress\n```\n\nAdd `--commit <sha>` to also check the declared source revision. Verification\nneeds no private key or Git repository.\n\nList receipts, or revoke one you published:\n\n```bash\nbun run packages/cli/index.ts list --repo owner/project\nbun run packages/cli/index.ts revoke --receipt 12\n```\n\n`anchor`, `verify`, `list`, and `revoke` accept `--json` for scripting. `anchor`\nalso accepts `--verify-tag` to require `--tag` to resolve to `HEAD`, and can sign\nfrom an encrypted keystore with `VMRL_KEYSTORE_FILE` + `VMRL_KEYSTORE_PASSWORD`\ninstead of `VMRL_PRIVATE_KEY`. `verify` fails on revoked receipts.\n\n| Exit code | Meaning |\n| --- | --- |\n| 0 | Successful anchor, fully matched verification, or help/version |\n| 2 | Invalid options, configuration, artifact, or Git state |\n| 3 | Selected receipt does not exist |\n| 4 | Repository, requested revision, or SHA-256 mismatch |\n| 5 | Untrusted publisher |\n| 6 | RPC/network unavailable, chain mismatch, missing contract code |\n| 7 | Contract/transaction failure or missing expected mined event |\n| 8 | Receipt revoked by its signer |\n\n## Web explorer\n\nInstall dependencies from the root, then run `bun run dev` in `packages/web`\nand open http://localhost:3000. Configure via public variables in\n`packages/web/.env.local`:\n\n```dotenv\nNEXT_PUBLIC_VMRL_RPC_URL=https://sepolia.base.org\nNEXT_PUBLIC_VMRL_CONTRACT_ADDRESS=0xe0C0B432380a07177372d10DF61BAFedAB9D8367\nNEXT_PUBLIC_VMRL_CHAIN_ID=84532\n```\n\nThe dashboard reads receipts from the configured RPC and hashes a selected\nlocal file in-browser using Web Crypto. It never uploads artifact bytes and\nrequires no wallet. Publisher policy is an explicit user input and is never\nauto-filled from the receipt.\n\n## Contracts\n\n`packages/contracts/src/VMRL.sol` stores a public `Receipt[] receipts` array\n(storage slot 0) and a `repoId` hash index. It exposes `postReceipt`,\n`getRepoReceipts`, `verifyCommit`, plus `receiptCount`, paged getters,\nsigner-only revocation, and EIP-712 relayed `postReceiptWithSig`. It emits\n`NewReceipt`.\n\nWith Foundry installed:\n\n```bash\nforge build\nforge test\n```\n\n## Development\n\n```bash\nbun test             # contract + CLI suites (compile with solc, run on local Ganache)\nbun run typecheck    # CLI and demo script\nbun run lint         # web ESLint\n```\n\nCI runs all three plus a production `next build` and a Foundry compile. See\n`.github/workflows/ci.yml`.\n\n## Verification model\n\n- The digest is SHA-256 over the exact file bytes, not a filename or Git revision.\n- Publisher trust is an explicit address comparison, not a reputation claim.\n- Reads trust the configured RPC; one mined confirmation is not a finality guarantee.\n- A matching receipt does not establish source-to-build correspondence or safety.\n\nSee `packages/cli/README.md` and `packages/web/README.md` for full details.\n",
+      "descriptor": "VMRL anchors release artifacts on an EVM chain.",
+      "about": [
+        "VMRL anchors release artifacts on an EVM chain. A publisher hashes a real release file (SHA-256) and posts a receipt containing the repository label, tag, Git HEAD, artifact digest, timestamp, and signer address. Anyone can later verify a local file against one explicitly selected receipt and an independently trusted publisher address.",
+        "Receipts record a publisher's claim; they do not prove that a binary was built from the declared source, that it is reproducible, or that it is safe."
+      ],
+      "benchmarks": null,
+      "demos": [
+        {
+          "label": "Website",
+          "url": "https://vmrl-web.vercel.app"
+        }
+      ],
+      "image": null
+    },
+    {
+      "name": "Android-lab-project",
+      "slug": "android-lab-project",
+      "description": null,
+      "homepage": null,
+      "languages": [
+        "Kotlin"
+      ],
+      "stars": 0,
+      "pushed_at": "2026-09-08T19:29:25Z",
+      "readme": "# MUJ Student Portal\n\n## Overview\n\nA fully offline university Android project inspired by Manipal University Jaipur's student portal. This is an academic prototype, not an official MUJ application. It uses Kotlin, XML layouts and ordinary Activities rather than Compose or a backend.\n\n## Features\n\n- Demo login with field validation, masked password and optional remembered session.\n- Dashboard with seven explicit-Intent destinations, academic summaries and quick-access cards.\n- Calculated attendance, internal marks, registered courses and weekday timetables.\n- Notice detail dialogs.\n- Validated service request form with Spinner, RadioGroup and CheckBox; incrementing local request IDs and persistent latest request.\n- Editable phone and alternate email, local saving and logout that clears the navigation task.\n- No internet permission, remote images, Firebase, university APIs or network services.\n- Cohesive navy/teal styling, original offline vector artwork, and centered, content-fitting cards and controls.\n- Dashboard rows adapt to compact widths and larger fonts; long inputs and dialog titles wrap rather than truncate.\n\n## Screens\n\n| Activity | Purpose |\n| --- | --- |\n| SplashActivity | One-second introduction and session-based routing |\n| LoginActivity | Demo credentials, errors and Remember me |\n| DashboardActivity | Student overview and portal navigation |\n| AttendanceActivity | RecyclerView with calculated percentages and progress indicators |\n| MarksActivity | Internal marks, grades and GPA summaries |\n| TimetableActivity | Weekday Spinner dynamically updates RecyclerView |\n| CoursesActivity | Course codes, faculty, credits and registration status |\n| NoticesActivity | Notice list and full-detail AlertDialogs |\n| ServiceRequestActivity | Validated form and persistent latest request |\n| ProfileActivity | Student details, editable contacts and logout |\n\nAll seven secondary screens have toolbar Up navigation. System Back returns through the Activity stack. Successful login finishes LoginActivity; logout uses NEW_TASK and CLEAR_TASK so Back cannot reopen the dashboard.\n\n## Android Concepts Demonstrated\n\n- Standard Android Studio/Gradle app module, manifest and resources.\n- Kotlin data classes and a simple mock-data object.\n- Activity lifecycle: onCreate inflates and binds views; SplashActivity schedules in onStart and cancels in onStop; timetable saves selected day in onSaveInstanceState.\n- Explicit Intent navigation between registered Activities.\n- XML TextView, ImageView, TextInputEditText, MaterialButton, CheckBox, Spinner, RadioGroup and RadioButton.\n- RecyclerView, ViewHolder, Adapter, LinearLayoutManager and recycled binding.\n- Material cards, vector drawables, progress indicators, Toasts and dialogs.\n- Input validation before persistence; nullable text and incorrectly typed preference values have safe defaults.\n- ViewBinding gives type-safe view references without deprecated Kotlin synthetics.\n- SharedPreferences for small local key/value records.\n\n## Tech Stack\n\n- Kotlin 2.0.21\n- XML\n- Android SDK (minimum API 23; compile/target API 35)\n- RecyclerView\n- SharedPreferences\n- Material Components\n- Android Gradle Plugin 8.7.3 / Gradle 8.9\n- JDK 17 or 21\n\n## Build and Install\n\nOpen this directory in Android Studio and let Gradle sync. Install Android SDK Platform 35 and Build Tools 35.0.0 through SDK Manager. Android Studio normally writes your SDK path into the ignored `local.properties` file; update that file if building on another machine.\n\n```sh\n./gradlew :app:assembleDebug\nadb install -r app/build/outputs/apk/debug/app-debug.apk\n```\n\nThe APK is `app/build/outputs/apk/debug/app-debug.apk`. Build dependency downloads require internet on the first build; the installed application does not. Once dependencies and the Gradle distribution are cached, build with `./gradlew --offline :app:assembleDebug`.\n\n## Demo Credentials\n\nRegistration Number: **229301234**  \nPassword: **muj123**\n\nThese credentials are also visible on the login screen. They are intentionally embedded for a classroom demo, not secure authentication. Passwords are not saved to preferences.\n\n## Application Flow\n\n```text\nSplash\n  -> Login (unless an active or remembered session exists)\n  -> Dashboard\n      -> Attendance / Marks / Timetable / Courses / Notices\n      -> Service Request\n      -> Profile -> Logout -> Login (cleared back stack)\n```\n\nRemember me persists login across process termination. Without it, login lasts only for the current app process. Logout clears both session flags but deliberately retains profile edits and the latest request. Android can keep a process alive after Back, so removing an Activity is not the same as ending a session process.\n\n## Local Data\n\nAcademic information lives in `data/MockData.kt`. The model and adapter folders contain one model and RecyclerView adapter per academic module. There is no network/repository framework: Activities read the small immutable mock lists directly.\n\n`PortalPreferences` wraps the `muj_portal` SharedPreferences file for remembered-session state, phone and alternate email. `ServiceRequestActivity` uses a separate `muj_requests` file for the counter and latest full request. User data survives screen reopening and process restarts, but uninstalling/clearing app data removes it. Automatic backup is disabled. Request submission is local recording only, not delivery to a university office. The small request record and counter use one checked `commit()` before the success dialog; profile/session updates use `apply()`.\n\nOverall attendance is weighted by class count: `156 / 182 × 100 = 85.71%`, rounded to **86%**. Individual values and progress are calculated. Safe status uses the exact fraction against 75%, not a rounded percentage. GPA figures are illustrative academic summaries. The dashboard's **18 / 24** earned-credit progress and Courses' **19 registered credits** intentionally describe different demo figures, as specified in the assignment.\n\n## 60-Second Demo\n\n1. **0–10 s:** Launch, show visible demo credentials, tick Remember me and log in.\n2. **10–20 s:** Show dashboard, open Attendance and explain calculated progress; Back, open Marks.\n3. **20–30 s:** Open Timetable, change Monday to Tuesday; open Courses and show faculty/credits.\n4. **30–40 s:** Open Notices and tap an announcement to show its full dialog.\n5. **40–52 s:** Open Service Request. Demonstrate an invalid submission, then select Academic, enter `Attendance correction` and `Please review my attendance for the last lab.`, select Normal, confirm and submit. Show generated ID.\n6. **52–60 s:** Reopen the request to show persistence; open Profile, save a phone edit, then log out and demonstrate that Back does not restore Dashboard.\n\nFor a slower viva, restart the app with Remember me enabled and disabled to explain persistent versus process-local sessions.\n\n## Likely Viva Questions\n\n**Why Activities and explicit Intents?** Each module is an independent Activity. An explicit Intent names the exact destination class; Android manages the back stack.\n\n**What is onCreate?** It runs when an Activity instance is created. We inflate the XML binding, setContentView and attach listeners there. Rotation can create a new instance.\n\n**Why XML and ViewBinding?** XML separates view structure from event-handling Kotlin. ViewBinding generates typed references to XML IDs and avoids unsafe casts and synthetic properties.\n\n**How does RecyclerView work?** A LayoutManager positions items. The Adapter inflates a card into a ViewHolder and binds the record for a position. ViewHolders are reused as the list scrolls.\n\n**How does the Spinner update the timetable?** onItemSelected looks up the chosen weekday's local list, passes it to the adapter and scrolls to the first class. Selection is saved across recreation.\n\n**RadioButton versus CheckBox?** A RadioGroup permits one priority at a time. The CheckBox is an independent true/false confirmation.\n\n**How is attendance calculated?** Attended classes divided by total classes times 100. Overall attendance divides summed attended classes by summed total classes, not the average of rounded subject percentages. A zero total is guarded.\n\n**Why SharedPreferences rather than a database?** This prototype stores only a few key/value fields and one latest request. A database would be appropriate for a larger searchable request history.\n\n**apply versus commit?** apply updates memory immediately and writes asynchronously without returning a success result. commit writes synchronously and returns whether persistence succeeded. The tiny request record checks that result before confirming submission.\n\n**How is invalid input handled?** Validation returns before saving. TextInputLayout errors identify text fields; Toasts explain missing Spinner, priority or confirmation choices.\n\n**How does logout prevent going back?** It clears session state and starts LoginActivity with FLAG_ACTIVITY_NEW_TASK and FLAG_ACTIVITY_CLEAR_TASK. The prior task Activities are removed.\n\n**Is authentication secure?** No. This is an offline academic prototype with visible hardcoded demo credentials. A production app needs a trusted server, secure authentication and protected tokens.\n\n## Verification Performed\n\nThe debug APK was built and installed on an Android 15 / API 35 Pixel 5 emulator. Actual UI interactions were exercised with airplane mode enabled:\n\n- Blank registration/password and invalid credentials are rejected.\n- All seven dashboard destinations and both quick-access cards open their Activities; system Back and toolbar Up return correctly.\n- Academic RecyclerViews render records, calculated attendance and registration status.\n- The timetable changes for all five weekdays and retains selection through rotation.\n- Notice dialogs display full descriptions, dates and categories.\n- Service requests reject missing type, blank subject, short description, missing priority and unchecked confirmation.\n- Successful requests produced `SR-2026-001` and `SR-2026-002`; the latest record survived Activity reopening, process restart and logout/login.\n- Request draft text, priority and confirmation survived rotation.\n- Profile rejects invalid phone/email; saved edits survived screen reopening and process restart.\n- Remembered login survives force-stop/relaunch; unchecked Remember me returns to Login after process termination.\n- Logout removes the dashboard from the back stack.\n- All ten redesigned screens were visually inspected, including compact 320dp width with 1.3× system font scaling.\n- Long request subjects, alternate emails, validation captions and notice titles were checked for centered wrapping.\n- Dashboard cards stack on compact screens instead of breaking labels mid-word; the splash has portrait and landscape compositions.\n\nVerification used external throwaway UI automation, not a production dependency or a mocked backend. Runtime checks cover API 35; older supported Android versions were not separately exercised.\n\nFinal verification command: `./gradlew --offline :app:assembleDebug :app:lintDebug` — **BUILD SUCCESSFUL**. Android lint reports no errors; remaining non-blocking warnings include dependency-update suggestions, the explicitly requested custom SplashActivity, and presentation/localization recommendations. The report is generated at `app/build/reports/lint-results-debug.html`. No lint errors or warnings were suppressed.\n\n## Future Scope\n\n- Real university API integration\n- Secure authentication\n- Push notifications\n- Online fee payments\n- Live attendance synchronization\n",
+      "descriptor": "A fully offline university Android project inspired by Manipal University Jaipur's student portal.",
+      "about": [
+        "A fully offline university Android project inspired by Manipal University Jaipur's student portal. This is an academic prototype, not an official MUJ application. It uses Kotlin, XML layouts and ordinary Activities rather than Compose or a backend."
+      ],
+      "benchmarks": null,
+      "demos": [],
+      "image": null
+    },
+    {
+      "name": "Folio",
+      "slug": "folio",
+      "description": null,
+      "homepage": null,
+      "languages": [
+        "Rust"
+      ],
+      "stars": 0,
+      "pushed_at": "2026-05-14T06:16:09Z",
+      "readme": "# Folio\n\n![Crates.io](https://img.shields.io/crates/v/folio)\n![Rust Edition](https://img.shields.io/badge/edition-2021-orange?logo=rust)\n![License](https://img.shields.io/badge/license-MIT-blue)\n\n**A terminal UI for searching ArXiv and importing papers directly into your Obsidian vault as formatted markdown notes.**\n\n---\n\n## Features\n\n- **Instant ArXiv search** — no API key, no rate limits, results in seconds\n- **TUI-first** — browse, preview, and select papers without leaving your terminal\n- **One-command import** — selected papers land in your vault as markdown notes with YAML frontmatter containing:\n  - title\n  - authors\n  - abstract\n  - publication date\n  - ArXiv URL\n- **Paginated results** — navigate through pages of results without retyping your query\n- **Interactive onboarding** — set your vault path once on first launch; change it anytime with `--reconfigure`\n- **Direct query launch** — skip the start screen and jump straight to results with `--query`\n\n---\n\n## Installation\n\nFolio requires an [Obsidian vault](https://obsidian.md?utm_source=chatgpt.com).\n\n### Option A — Install via Crates.io (Recommended)\n\nRequires the [Rust toolchain](https://rustup.rs?utm_source=chatgpt.com).\n\n```bash\ncargo install folio-tui\n```\n\n---\n\n### Option B — Pre-built Binary (No Rust Needed)\n\nDownload the latest binary for your platform from the GitHub Releases page, extract it, and move it somewhere on your `$PATH`.\n\n#### Example — Linux x86_64\n\n```bash\ncurl -L https://github.com/aetos-dev/folio/releases/latest/download/folio-v0.2.0-x86_64-unknown-linux-gnu.tar.gz \\\n  | tar xz\n\nsudo mv folio /usr/local/bin/\n```\n\n---\n\n## Usage\n\n```bash\nfolio                         # Launch the TUI\nfolio --query \"your search\"  # Launch directly into results\nfolio --reconfigure          # Re-run onboarding\nfolio --help                 # Show help\nfolio --version              # Show version\n```\n\nOn first launch, Folio walks you through a short interactive setup to select:\n\n- your Obsidian vault\n- your papers folder\n\nAfter setup, simply run:\n\n```bash\nfolio\n```\n\n---\n\n## Keybindings\n\n| Key | Action |\n|---|---|\n| `j / k` or `↑ / ↓` | Move up / down |\n| `J / K` | Scroll preview |\n| `e` | Edit search query |\n| `Enter` | Fetch papers / Import selected |\n| `Space` | Toggle paper selection |\n| `p` | Preview selected paper |\n| `q` or `Ctrl+C` | Quit |\n\n---\n\n## Configuration\n\nConfiguration is stored at:\n\n```text\n~/.config/folio/config.toml\n```\n\nYou can edit this file directly to change:\n\n- vault path\n- papers subfolder\n- default behavior\n\nTo re-run the interactive onboarding instead:\n\n```bash\nfolio --reconfigure\n```\n\n---\n\n## License\n\nMIT\n",
+      "descriptor": "A terminal UI for searching ArXiv and importing papers directly into your Obsidian vault as formatted markdown notes.",
+      "about": [
+        "A terminal UI for searching ArXiv and importing papers directly into your Obsidian vault as formatted markdown notes."
+      ],
+      "benchmarks": null,
+      "demos": [],
+      "image": null
+    }
+  ]
+}

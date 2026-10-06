@@ -1,0 +1,25 @@
+/* Placement belongs to the integration; the published Dock is unchanged. */
+.position {
+  position: fixed;
+  left: 50%;
+  bottom: calc(var(--space-2) + env(safe-area-inset-bottom));
+  transform: translateX(-50%);
+  z-index: 15;
+  max-width: calc(100% - var(--space-4));
+}
+
+/* Color overrides only. All component geometry and motion remain native. */
+.colors {
+  --dock-bg: #000;
+  background-color: var(--dock-bg) !important;
+  color: var(--muted);
+}
+
+.colors [role="button"] { color: var(--muted); }
+.colors [role="button"]:is(:hover, :focus-visible) { color: var(--foreground); }
+.colors [role="tooltip"] {
+  background-color: var(--dock-bg) !important;
+  border-color: var(--dock-bg) !important;
+  color: var(--muted) !important;
+}
+

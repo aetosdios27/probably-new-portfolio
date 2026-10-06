@@ -38,9 +38,11 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .link:hover .name { text-decoration-color: transparent; }
   .link:hover .name::after { transform: scaleX(1); }
   .link:hover .arrow { opacity: 1; transform: translate(0, 0); }
 }
 
+.link:focus-visible .name { text-decoration-color: transparent; }
 .link:focus-visible .name::after { transform: scaleX(1); transition: none; }
 .link:focus-visible .arrow { opacity: 1; transform: translate(0, 0); transition: none; }
