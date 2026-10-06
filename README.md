@@ -29,7 +29,7 @@ Inter Tight is self-hosted through `next/font/local`. The variable font and its 
 
 - `src/content/portfolio.ts`: identity, links, Selected Work shortlist, editorial contribution descriptions, and Playground title.
 - `src/lib/open-source-policy.ts`: qualifying organization allowlist, merged-first selection, one-PR-per-repository limit, and newest-first ordering.
-- `src/lib/open-source.ts`: server-side GitHub search with hourly revalidation and an eight-second timeout. The homepage refreshes on visits after the cache expires; it does not poll or rearrange rows during reading. Set optional server-only `GITHUB_TOKEN` in deployment for higher GitHub API limits; public search also works without it.
+- `src/lib/open-source.ts`: server-side GitHub search with hourly revalidation and a three-second timeout. The homepage refreshes on visits after the cache expires; it does not poll or rearrange rows during reading. Set optional server-only `GITHUB_TOKEN` in deployment for higher GitHub API limits; public search also works without it.
 - `src/content/open-source-snapshot.json`: verified API snapshot used if GitHub is unavailable or rate limited. Both live data and fallback use the same filtering policy. Add qualifying organizations deliberately, with a matching local logo asset under `public/images/organizations`.
 - `src/content/resume-source.txt`: full text extracted from the supplied résumé, retained as an editorial source rather than displayed wholesale.
 - `src/content/resume-links.json`: embedded links extracted from the résumé.

@@ -1,10 +1,12 @@
 .page {
-  --guide-gutter: var(--space-4);
+  display: flex;
+  flex-direction: column;
   position: relative;
   width: 100%;
   max-width: 620px;
   margin-inline: auto;
-  padding-top: var(--space-12);
+  padding-top: var(--construction-top-inset);
+  padding-bottom: var(--construction-bottom-inset);
   color: var(--muted);
 }
 
@@ -12,70 +14,12 @@
   position: relative;
 }
 
-.hatch {
-  position: absolute;
-  top: calc(-1 * var(--space-4));
-  height: calc(100% + 2 * var(--space-4));
-  width: max(0px, calc(var(--canvas-width, 100vw) / 2 - 50% - var(--guide-gutter)));
-  color: var(--subtle);
-  opacity: 0.22;
-  pointer-events: none;
-}
-
-.leftHatch {
-  right: calc(100% + var(--guide-gutter));
-}
-
-.rightHatch {
-  left: calc(100% + var(--guide-gutter));
-}
-
-/* Rounded 2.5 × 1px dashes keep the weight and six-pixel rhythm identical
-   across both axes; the guides never affect the prose's layout or hit areas. */
-.rule {
-  position: absolute;
-  display: block;
-  color: var(--subtle);
-  opacity: 0.6;
-  pointer-events: none;
-}
-
-.leftRule,
-.rightRule {
-  top: 0;
-  height: 100%;
-  width: 1.5px;
-}
-
-.leftRule {
-  left: calc(-1 * var(--guide-gutter));
-}
-
-.rightRule {
-  right: calc(-1 * var(--guide-gutter));
-}
-
-.topRule,
-.bottomRule {
-  left: 50%;
-  width: var(--canvas-width, 100vw);
-  height: 1.5px;
-  transform: translateX(-50%);
-}
-
-.topRule {
-  top: calc(-1 * var(--space-4));
-}
-
-.bottomRule {
-  bottom: calc(-1 * var(--space-4));
-}
-
 .avatar {
   display: block;
   width: 40px;
   height: 40px;
-  border-radius: 4px;
+  border-radius: 12px;
+  corner-shape: squircle;
   object-fit: cover;
 }
 
@@ -130,8 +74,6 @@
 
 .highlights {
   position: relative;
-  margin-top: var(--space-12);
-  margin-bottom: var(--space-8);
   font-size: 14px;
   line-height: 1.7;
 }
@@ -153,11 +95,11 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-3);
-  padding-block: 4px;
+  padding-block: 0;
+  line-height: var(--space-3);
 }
 
-.projectRow time,
-.projectStatus {
+.projectRow time {
   flex-shrink: 0;
   color: var(--subtle);
   font-size: 12px;
@@ -165,11 +107,6 @@
 }
 
 @media (max-width: 640px) {
-  .page {
-    --guide-gutter: var(--space-2);
-    padding-top: var(--space-8);
-  }
-
   .greeting {
     margin-top: var(--space-3);
   }

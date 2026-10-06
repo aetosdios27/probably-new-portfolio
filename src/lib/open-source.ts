@@ -16,7 +16,7 @@ export async function getOpenSourceContributions() {
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
       },
       next: { revalidate: 3600 },
-      signal: AbortSignal.timeout(8000),
+      signal: AbortSignal.timeout(3000),
     });
     if (!response.ok) throw new Error(`GitHub contribution search: ${response.status}`);
     const data: { items: GitHubPullRequest[]; incomplete_results: boolean } = await response.json();

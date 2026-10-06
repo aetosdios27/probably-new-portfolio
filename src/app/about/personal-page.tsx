@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { highlightProjects, identity } from "@/content/portfolio";
 import { OpenSourceSection } from "@/components/open-source-section";
+import { GitHubActivity } from "@/components/github-activity";
 import { fractionalAge } from "./age";
 import { IdentitySentence, LiveAge } from "./living-text";
-import { DottedRule } from "./dotted-rule";
-import { Crosshatch } from "./crosshatch";
-import { DotMatrix } from "./dot-matrix";
+import { SectionBreak } from "@/components/section-break";
+import construction from "@/components/construction.module.css";
 import { PlaygroundLink } from "./playground-link";
 import { ProjectLink } from "./project-link";
 import styles from "./page.module.css";
@@ -16,14 +16,11 @@ export default function AboutPage() {
   // eslint-disable-next-line react-hooks/purity
   const initialAge = fractionalAge(Date.now());
   return (
-    <main id="main" className={styles.page}>
-      <DottedRule axis="vertical" className={`${styles.rule} ${styles.leftRule}`} />
-      <DottedRule axis="vertical" className={`${styles.rule} ${styles.rightRule}`} />
+    <main id="main" className={`${styles.page} ${construction.frame}`}>
+      <div aria-hidden="true" className={`${construction.rail} ${construction.leftRail}`} />
+      <div aria-hidden="true" className={`${construction.rail} ${construction.rightRail}`} />
+      <SectionBreak cap="top" />
       <div className={styles.content}>
-        <Crosshatch className={`${styles.hatch} ${styles.leftHatch}`} />
-        <Crosshatch className={`${styles.hatch} ${styles.rightHatch}`} />
-        <DottedRule axis="horizontal" className={`${styles.rule} ${styles.topRule}`} />
-        <DottedRule axis="horizontal" className={`${styles.rule} ${styles.bottomRule}`} />
         <Image
           src={identity.avatar}
           alt="Pushpendra’s profile picture"
@@ -42,22 +39,23 @@ export default function AboutPage() {
           <p className={styles.invitation}>Explore my <PlaygroundLink /></p>
         </div>
       </div>
+      <SectionBreak />
       <section className={styles.highlights} aria-labelledby="highlights-heading">
-        <DotMatrix className={`${styles.hatch} ${styles.leftHatch}`} />
-        <DotMatrix className={`${styles.hatch} ${styles.rightHatch}`} />
-        <DottedRule axis="horizontal" className={`${styles.rule} ${styles.topRule}`} />
-        <DottedRule axis="horizontal" className={`${styles.rule} ${styles.bottomRule}`} />
         <h2 id="highlights-heading" className={styles.sectionHeading}>Selected Work</h2>
         <ul className={styles.projectList}>
           {highlightProjects.map((project) => (
             <li key={project.name} className={styles.projectRow}>
               <ProjectLink name={project.name} href={project.href} context={project.context} />
-              {project.date ? <time dateTime={project.date}>{project.label}</time> : <span className={styles.projectStatus}>{project.label}</span>}
+              <time dateTime={project.year}>{project.year}</time>
             </li>
           ))}
         </ul>
       </section>
+      <SectionBreak />
       <OpenSourceSection />
+      <SectionBreak />
+      <GitHubActivity />
+      <SectionBreak cap="bottom" />
     </main>
   );
 }

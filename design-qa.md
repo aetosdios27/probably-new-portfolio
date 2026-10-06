@@ -1,3 +1,98 @@
+# Closing clearance symmetry and responsive checks — 2026-10-06
+
+- Measured before editing: top 23.994px (~24px), bottom 63.994px (~64px). Point the bottom inset at the same 24px band-clearance token as the top and apply it as the final section's bottom padding. Remove the closing cap's automatic margin, which absorbed fractional extra free space. Top gap and hero position unchanged.
+- Final measurements at all five requested widths: top = bottom = 23.994140625px (24px CSS). Closing band remains the last DOM element. Band height remains 44px and hatch opacity stays 0.05. No typography, copy, or contribution data changes.
+- Before full-page capture, short-viewport checks showed document.scrollWidth = clientWidth: 375/375 at a 390px window, 345/345 at 360, and 753/753 at 768 (the preview's vertical scrollbar consumes 15px). In final full-page screenshots without that scrollbar, scrollWidth equals viewport width: 390/390, 360/360, 768/768. No horizontal page scrolling in either case.
+- Graph container edges match the shared content edges; cells remain 8px minimum with internal scrolling at 390/360, and the graph fits at 768. Rails remain continuous and all five full-width bands retain their shared dimensions. No new breakpoint required. Lint and typecheck pass.
+- Re-shot and reviewed final full-page screenshots after removing the auto margin:
+- 1920: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw8ptxc-d6a703be.png
+- 1440: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw8pufn-693657a3.png
+- 768: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw8puyo-6be1bf4e.png
+- 390: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw8pvfp-33458a7e.png
+- 360: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw8pvyg-ec6b05c4.png
+
+---
+
+# Top-cap clearance refinement — 2026-10-06
+
+- User-requested follow-up reduces the top-cap-to-PFP gap to the shared 24px band clearance on desktop and mobile, replacing the previous 96px/64px inset. Browser confirms 24px; all internal intro spacing and final 0.05 hatch opacity stay unchanged.
+
+---
+
+# Responsive graph and mirrored caps — 2026-10-06
+
+- Found fixed SVG width from react-github-calendar's 9px cells and 2px gaps. Replaced the renderer with a 53-column / seven-row CSS grid using the same live public contribution endpoint, grayscale levels, caption copy, and existing Inter Tight sizes. Month labels are indexed to week columns. Square cells scale with available width; minimum grid width derives from 53 × 8px + 52 × 2px. No new dependencies or animation.
+- SectionBreak now supports top/bottom cap variants. One shared band-height token is 44px; hatch-opacity token remains exactly 0.05. Existing hero inset, closing clearance, intra-section spacing, and 24px band clearance unchanged. Top cap is at y=0 with only its bottom edge; bottom cap ends at the document bottom with only its top edge. Rails remain continuous at the existing z-index through all five bands.
+- Verified 1920, 1440, 1024, and 390px: all five bands share the same 44px size/component; mirrored edge visibility; rails first-to-last pixel; no content below bottom cap. Desktop graph left/right deltas both 0px, 53 equal tracks, seven rows, square cells. Mobile graph viewport matches content edges; 8px cells scroll internally with no horizontal page overflow. Caption remains left-aligned; live total remains 1175 in this verification.
+- Reviewed full-page screenshots at natural document heights and re-shot after checking the caps. Lint, typecheck, and production build pass.
+- 1920: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw8ip9u-0c7fc817.png
+- 1440: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw8ips6-3c3c0e90.png
+- 1024: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw8iqhr-3d7d7fe3.png
+- 390: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw8ir1u-3c392398.png
+
+---
+
+# Unified homepage construction — 2026-10-06
+
+- Audit before editing: intro and Selected Work each inserted top/bottom DottedRules styled in page.module.css; GitHubActivity separately duplicated full-width rule placement/color/opacity. Crosshatch owned SVG geometry, while homepage CSS owned intro-only gutter fills. Open source owned canvas measurement needed by other sections. The graph's intrinsic-width wrapper and auto calendar margins duplicated centering. Unused legacy heatmap, footer, and DotMatrix code left alone.
+- One SectionBreak is rendered exactly three times between the four existing content sections. Central construction.module.css tokens control dash color/opacity/length/period/thickness, band height/clearance, and hatch line/period/opacity. Each 48px band has 45-degree 1px white lines at 5% opacity, with dashed top/bottom edges; no section-owned horizontal rules or hero gutter fills remain.
+- Exactly two continuous full-main-height vertical rails at z-index 2 pass above the bands at z-index 0. Mobile gutter is 16px; desktop 32px. All decoration is aria-hidden and pointer-inert. No added dependencies, animations, content, or section components beyond SectionBreak.
+- Verified 1920, 1440, 1024, and 390px: three equal-height full-canvas bands, rails cover the full main from top to bottom, graph and heading have exactly 0px left-edge delta from the text column, and no horizontal page overflow. Every pair of horizontal lines bounds a hatched band. Mobile graph scrolls only within its own focusable container. Existing section typography, row density, intra-section spacing, links, and text interactions retained.
+- Screenshots reviewed at all four widths; complete page visible. No further visual corrections needed. Lint, typecheck, and production build pass.
+- 1920: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw86u1i-9c75bc19.png
+- 1440: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw873w0-54d3db21.png
+- 1024: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw874bh-7a18518f.png
+- 390: /home/aetos/.t3/userdata/browser-artifacts/browser-screenshot-localhost-muw874nq-8b8730e2.png
+
+---
+
+# Activity alignment and quieter Selected Work — 2026-10-06
+
+- Center the heading and heatmap as one intrinsic-width group. Desktop heading and calendar share x≈341.99; heatmap clearance is 19.50px on each side of the existing content column. No changes to cell size or typography.
+- Removed Selected Work side dot fields at user request; retained intro hatches, rails, and horizontal rules. Mobile scrolling remains usable with no horizontal page overflow. Lint and typecheck pass.
+
+---
+
+# Calendar hydration fix — 2026-10-06
+
+- The calendar library's loading render depends on browser motion preferences and injected animation styles, yielding different server/client markup. Load only the library component with next/dynamic and ssr:false inside the existing client component. The heading and reserved scroll region remain server-rendered; no styling or live-data changes.
+- Full browser reload renders live calendar cells without a new hydration error or error overlay. Lint, typecheck, and production build pass.
+
+---
+
+# Legacy activity calendar port — 2026-10-04
+
+- Ported new-portfolio/src/components/Activity.tsx using react-github-calendar and react-activity-calendar. Preserved aetosdios27 live activity source, 9px cells, 2px gaps, five monochrome intensity levels, 12px labels, and hidden color legend. Uses this site's Inter Tight and foreground tokens rather than the old Geist Mono variables.
+- Added below Open source with the approved “A little, often.” heading and shared editorial GitHub link. Existing intro, Selected Work, and Open source stay unchanged. The old unused snapshot heatmap remains untouched.
+- Browser loaded 365 real contribution cells and the live total. Desktop fits within the existing 620px column; mobile uses a single focusable horizontal scroll region (581px contents within 327px visible width), verified scroll movement and no page overflow.
+- Lint, typecheck, and production build pass.
+
+---
+
+# PR contextual descriptions — 2026-10-03
+
+- Open source now follows Selected Work disclosure: repository links reveal their existing PR descriptions through shared ContextTooltip, including its subtle pointer. Metadata remains right-aligned and visible; real PR URLs, feed selection, and logos retained.
+- Tooltip trigger is the repository link, not the entire row. No nested interactive elements or extra idle labels. Hover exposes the real description; Escape dismisses without layout movement.
+- Desktop and mobile rows measured at 24px, without horizontal overflow. Lint and typecheck pass.
+
+---
+
+# List density refinement — 2026-10-02
+
+- Both Selected Work and Open source now use a shared 24px line rhythm with no extra row padding. Project link minimum height matches that rhythm. Mobile Open source retains repository/metadata above the description, with no extra gap between those lines. Desktop measured every row at 24px; mobile descriptions wrap naturally in 24px multiples. No horizontal overflow. Type sizes, section gaps, and existing interactions retained.
+
+---
+
+# Selected Work fixes — 2026-10-02
+
+- Editorial shortlist is exactly Kiban, Kurogane, Styx, Scribe. All four retain real links and contextual tooltips; metadata is year-only 2026. Removed the now-unused pending-link branch. No visible descriptions or changes to row geometry, typography, color, tooltip styling, or existing text interactions.
+- GitHub server fetch now aborts after 3000ms. Hourly revalidation and curated selection remain unchanged. Failure and stalled-request tests verify the snapshot fallback; all seven policy tests pass.
+- The subsequent shading and centered-line experiments were rolled back at the user's request. Original intro side hatches, Selected Work side dot matrices, full-width horizontal guides, and section spacing restored.
+- Focus reveals each project's exact context; Escape dismisses all four tooltips. Rows retain identical geometry during disclosure. Native keyboard Tab shows the existing visible focus outline. Simulated reduced-motion CSS resolves link transitions to 0s. Desktop and mobile year alignment and absence of horizontal overflow verified.
+- Required checks pass: bun test src/lib/open-source-policy.test.ts, bun run lint, bun run typecheck, bun run build. Production homepage still revalidates hourly. No file moves or unrelated cleanup.
+
+---
+
 # Contextual tooltips verification — 2026-10-02
 
 - Added the unstyled @radix-ui/react-tooltip primitive and one reusable ContextTooltip, with project context stored alongside Selected Work data. Wrapped existing project links using Trigger asChild: no wrappers, nested interactive elements, row descriptions, extra labels, icons, or reserved layout space.

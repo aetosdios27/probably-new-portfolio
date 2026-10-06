@@ -1,0 +1,92 @@
+/* Homepage construction tokens: one source for rails and section punctuation. */
+.frame {
+  --guide-gutter: var(--space-4);
+  --construction-color: 242 242 242;
+  --construction-dash-opacity: 0.3;
+  --construction-dash-length: 2.5px;
+  --construction-dash-period: 6px;
+  --construction-line-width: 1px;
+  --construction-band-height: 44px;
+  --construction-top-inset: var(--construction-band-clearance);
+  --construction-bottom-inset: var(--construction-band-clearance);
+  --construction-band-clearance: var(--space-3);
+  --construction-hatch-opacity: 0.05;
+  --construction-hatch-line: 1px;
+  --construction-hatch-period: 8px;
+  isolation: isolate;
+}
+
+/* Measure available canvas width, excluding the scrollbar. */
+:global(body):has(.frame) { container-type: inline-size; }
+
+.rail {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: var(--construction-line-width);
+  z-index: 2;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgb(var(--construction-color) / var(--construction-dash-opacity)) 0 var(--construction-dash-length),
+    transparent var(--construction-dash-length) var(--construction-dash-period)
+  );
+}
+
+.leftRail { left: calc(-1 * var(--guide-gutter)); }
+.rightRail { right: calc(-1 * var(--guide-gutter)); }
+
+.break {
+  position: relative;
+  flex-shrink: 0;
+  width: 100cqw;
+  left: 50%;
+  transform: translateX(-50%);
+  height: var(--construction-band-height);
+  margin-block: var(--construction-band-clearance);
+  z-index: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    45deg,
+    rgb(var(--construction-color) / var(--construction-hatch-opacity)) 0 var(--construction-hatch-line),
+    transparent var(--construction-hatch-line) var(--construction-hatch-period)
+  );
+}
+
+.break::before,
+.break::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: var(--construction-line-width);
+  background: repeating-linear-gradient(
+    to right,
+    rgb(var(--construction-color) / var(--construction-dash-opacity)) 0 var(--construction-dash-length),
+    transparent var(--construction-dash-length) var(--construction-dash-period)
+  );
+}
+
+.break::before { top: 0; }
+.break::after { bottom: 0; }
+
+.top {
+  margin-top: calc(-1 * var(--construction-top-inset));
+  margin-bottom: var(--construction-top-inset);
+  flex-shrink: 0;
+}
+
+.top::before,
+.bottom::after { display: none; }
+
+.bottom {
+  margin-top: 0;
+  margin-bottom: calc(-1 * var(--construction-bottom-inset));
+  flex-shrink: 0;
+}
+
+@media (max-width: 640px) {
+  .frame {
+    --guide-gutter: var(--space-2);
+  }
+}

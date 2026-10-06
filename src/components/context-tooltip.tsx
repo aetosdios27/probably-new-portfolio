@@ -30,6 +30,7 @@ export function ContextTooltip({
             aria-hidden={open ? undefined : true}
           >
             {content}
+            <Tooltip.Arrow className={styles.arrow} width={8} height={4} />
           </Tooltip.Content>
         </Tooltip.Portal>
       </Tooltip.Root>

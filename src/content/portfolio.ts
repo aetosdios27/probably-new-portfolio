@@ -33,13 +33,13 @@ export const selectedWork: Project[] = [
   { name: "WebNotes", description: "Your notes. Local first.", category: "Local-first software", year: "2025–26", href: "https://github.com/aetosdios27/WebNotes" },
 ];
 
-// Dates reflect the latest implementation month on GitHub, checked 2026-10-02,
-// rather than claiming a release/completion date. Keep this shortlist at four max.
+// Editorial order, not a release timeline. Year metadata deliberately avoids
+// implying exact completion dates. Keep this shortlist at four max.
 export const highlightProjects = [
-  { name: "Kiban", href: "https://github.com/aetosdios27/kiban", date: "2026-09", label: "Sep 2026", context: "An embedded LSM-tree storage engine written from first principles in Rust." },
-  { name: "Styx", href: "https://github.com/aetosdios27/Styx", date: "2026-07", label: "Jul 2026", context: "A from-scratch BitTorrent client implementing the protocol stack in Rust." },
-  { name: "Scribe", href: "https://github.com/aetosdios27/scribe", date: "2026-08", label: "Aug 2026", context: "Publishing infrastructure and an authoring SDK for technical writing." },
-  { name: "Raijin", href: null, date: null, label: "soon", context: "Deterministic testing infrastructure for distributed systems." },
+  { name: "Kiban", href: "https://github.com/aetosdios27/kiban", year: "2026", context: "An embedded LSM-tree storage engine written from first principles in Rust." },
+  { name: "Kurogane", href: "https://github.com/aetosdios27/kurogane", year: "2026", context: "A from-scratch Raft implementation with deterministic simulation, persistence, snapshots, joint consensus, and a real networked runtime." },
+  { name: "Styx", href: "https://github.com/aetosdios27/Styx", year: "2026", context: "A from-scratch BitTorrent client implementing the protocol stack in Rust." },
+  { name: "Scribe", href: "https://github.com/aetosdios27/scribe", year: "2026", context: "Publishing infrastructure and an authoring SDK for technical writing." },
 ] as const;
 
 export const openSource = [

@@ -78,4 +78,27 @@ describe("curated contribution feed", () => {
       globalThis.fetch = original;
     }
   });
+
+  test("a stalled request aborts at the three-second budget and serves the snapshot", async () => {
+    const originalFetch = globalThis.fetch;
+    const originalTimeout = AbortSignal.timeout;
+    let requestedTimeout = 0;
+    // Exercise the real abort/fallback path without waiting three seconds.
+    AbortSignal.timeout = (milliseconds) => {
+      requestedTimeout = milliseconds;
+      return originalTimeout(1);
+    };
+    globalThis.fetch = ((_input, options) => new Promise((_resolve, reject) => {
+      const signal = options?.signal;
+      signal?.addEventListener("abort", () => reject(signal.reason), { once: true });
+    })) as typeof fetch;
+    try {
+      const result = await getOpenSourceContributions();
+      assert.equal(requestedTimeout, 3000);
+      assert.deepEqual(result.map((item) => item.href), selectContributions(snapshot.items).map((item) => item.href));
+    } finally {
+      globalThis.fetch = originalFetch;
+      AbortSignal.timeout = originalTimeout;
+    }
+  });
 });
