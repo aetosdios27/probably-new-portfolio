@@ -2,6 +2,7 @@
 
 import Scritto from "@scritto/react";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { hoverCancel, hoverIntent, nameReveal } from "@/lib/hover-sound";
 import { fractionalAge } from "./age";
 import styles from "./page.module.css";
 
@@ -19,6 +20,8 @@ function IdentityName() {
   const pointerType = useRef("");
   const revealed = hovered || focused || toggled;
 
+  useEffect(() => () => hoverCancel("identity-name"), []);
+
   return (
     <button
       type="button"
@@ -26,12 +29,17 @@ function IdentityName() {
       aria-label="aetos is Pushpendra. Reveal my name"
       aria-pressed={revealed}
       onPointerEnter={(event) => {
-        if (event.pointerType === "mouse") setHovered(true);
+        if (event.pointerType === "mouse") {
+          setHovered(true);
+          if (!revealed) hoverIntent("identity-name", nameReveal);
+        }
       }}
       onPointerLeave={(event) => {
+        hoverCancel("identity-name");
         setHovered(false);
         if (!event.currentTarget.matches(":focus-visible")) setFocused(false);
       }}
+      onPointerCancel={() => hoverCancel("identity-name")}
       onPointerDown={(event) => {
         pointerType.current = event.pointerType;
       }}

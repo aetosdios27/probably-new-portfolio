@@ -3,7 +3,7 @@ import { audio, bloop, chip, ping } from "./synth";
 
 // Hover is the easiest place to make a site noisy, so it is held to strict rules. Only a few things that
 // feel like physical objects make hover sounds: the dock, the contribution squares, a locked link and the
-// Playground word. A hover only counts after the pointer has rested on the thing for a moment, so flicking
+// Playground word and the name reveal. A hover only counts after the pointer has rested on the thing for a moment, so flicking
 // across the screen is silent; nothing sounds until the visitor has clicked or pressed a key once; only a
 // mouse with real hover counts; the whole site gets at most one hover sound every 80 ms; and the same
 // thing will not sound again for half a second.
@@ -97,4 +97,14 @@ export function playgroundBlips() {
   if (!v) return;
   const now = v.ctx.currentTime;
   [1046.5, 1318.5, 1568].forEach((freq, i) => chip(v, now + i * 0.05, freq, 0.035, 0.05));
+}
+
+/** The name resolves: a soft upward glide landing on a quiet glass note. */
+export function nameReveal() {
+  if (!soundEnabled()) return;
+  const v = audio();
+  if (!v) return;
+  const now = v.ctx.currentTime;
+  bloop(v, now, 440, 659.25, 0.035, 0.13);
+  ping(v, now + 0.07, 880, 0.025, 0.17, 2);
 }
