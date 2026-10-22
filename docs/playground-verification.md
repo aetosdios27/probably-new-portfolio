@@ -8,11 +8,11 @@ All 14 project routes checked at 360, 390 and 768 CSS px. Every document's scrol
 
 Index project names occupy one 24px line. Four generated descriptors end in an ellipsis; CSS truncation remains a narrow-column safety net. At 1440px, one descriptor cell needs the CSS safety net. Only Raijin is name-only, deliberately force-included.
 
-Real pointer hover: preview visible, zero row movement, dashed underline becomes transparent. Keyboard focus opens the same preview. The last mobile row clears the native dock by approximately 12px.
+The row hover/focus preview card was removed later; rows now only show the dashed-to-solid underline swipe. Earlier checks of the preview no longer apply.
 
 Back verified: home → Playground → Kurogane → Back → Playground → Back → home. Direct Kurogane landing → Back → home. No dock code changes. No application console errors or hydration warnings in final navigation checks.
 
-Current eligible READMEs contain no qualifying PNG/JPG/WebP screenshots, so every thumbnail uses the generated card. No screenshot example was fabricated.
+Current eligible READMEs contain no qualifying PNG/JPG/WebP screenshots. No screenshot example was fabricated, and the index no longer renders thumbnails.
 
 OG generation was attempted with Next's built-in ImageResponse and the existing Inter Tight variable font. The renderer failed to parse that font. The failing experimental route was removed; no new font or dependency was added.
 

@@ -15,3 +15,8 @@ export function getProjects(): RenderedProject[] {
     });
 }
 export function getProject(slug: string) { return getProjects().find(project => project.slug === slug); }
+
+const OWNER = 'aetosdios27';
+export function repoUrl(slug: string) { return `https://github.com/${OWNER}/${slug}`; }
+export function isSelected(slug: string) { return projectsConfig.selected.includes(slug); }
+export function siteUrl(project: Pick<Project, 'slug' | 'homepage'>) { return projectsConfig.sites[project.slug] ?? project.homepage ?? null; }

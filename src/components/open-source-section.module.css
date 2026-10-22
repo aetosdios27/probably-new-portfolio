@@ -1,8 +1,10 @@
 .heading {
-  color: var(--subtle);
-  font-size: 13px;
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
   font-weight: 400;
-  line-height: 1.7;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
 }
 
 .list {
@@ -43,8 +45,10 @@
 
 .metadata {
   color: var(--subtle);
-  font-size: 11px;
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
   font-variant-numeric: tabular-nums;
+  line-height: 1.2;
   text-align: right;
   white-space: nowrap;
 }

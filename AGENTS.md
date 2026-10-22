@@ -18,7 +18,7 @@ Read `docs/motion.md` before adding or changing animations. Use the shared motio
 
 ## Link behavior
 
-Use `EditorialLink` and `LinkLabel` from `src/components/editorial-link.tsx` for ordinary content links. The default is a subtle dashed underline at rest, a solid swipe that grows and retracts from the same left origin, and a northeast arrow visible only on hover or keyboard focus. Share this behavior rather than inventing a new effect per section. Preserve reduced motion, immediate keyboard focus, stable hit areas, and interruption. Compact navigation and the intentionally bespoke Playground word retain their established treatments; do not spread pixelation or multicolor trails to other links.
+Use `EditorialLink` and `LinkLabel` from `src/components/editorial-link.tsx` for ordinary content links. The default is a subtle dashed underline at rest, a solid swipe that grows and retracts from the same left origin, and a northeast arrow visible only on hover or keyboard focus. Share this behavior rather than inventing a new effect per section. Back links (a label that already starts with ←, or "Back to…") pass `arrow={false}` to `LinkLabel`: the northeast arrow means "leaves this page" and contradicts a back arrow. Preserve reduced motion, immediate keyboard focus, stable hit areas, and interruption. Compact navigation and the intentionally bespoke Playground word retain their established treatments; do not spread pixelation or multicolor trails to other links.
 
 ## Open-source feed
 

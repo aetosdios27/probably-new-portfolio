@@ -11,7 +11,7 @@ import styles from "./socials-dock.module.css";
 // from the previous portfolio and the already-verified local profile data.
 const CONTACT = {
   github: "https://github.com/aetosdios27",
-  x: "https://x.com/aetosdios27",
+  x: "https://x.com/aetosdios_",
   linkedin: "https://linkedin.com/in/pushpendra-singh-2ba7b9312",
   email: "aetosdios27@gmail.com",
   call: "https://cal.com/aetosdios/15min",
@@ -86,10 +86,10 @@ export function SocialsDock() {
           (event.target as HTMLElement).click();
         }
       }}>
-      <Dock className={styles.colors}>
+      <Dock className={styles.colors} panelHeight={44} maxHeight={44} magnification={40}>
         {showBack && <DockItem className="aspect-square" onClick={goBack}>
           <DockLabel>Back</DockLabel>
-          <DockIcon><LuArrowLeft role="img" aria-label="Back" className="h-full w-full" /></DockIcon>
+          <DockIcon><LuArrowLeft role="img" aria-label="Back" className={styles.icon} /></DockIcon>
         </DockItem>}
         {ITEMS.map(({ label, href, Icon }) => (
           <DockItem key={label} className="aspect-square" onClick={() => {
@@ -97,7 +97,7 @@ export function SocialsDock() {
             else window.open(href, "_blank", "noopener,noreferrer");
           }}>
             <DockLabel>{label}</DockLabel>
-            <DockIcon><Icon role="img" aria-label={label} className="h-full w-full" /></DockIcon>
+            <DockIcon><Icon role="img" aria-label={label} className={styles.icon} /></DockIcon>
           </DockItem>
         ))}
       </Dock>

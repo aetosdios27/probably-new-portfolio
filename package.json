@@ -4,27 +4,25 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "bun run projects:generate && next build",
+    "build": "next build",
     "start": "next start",
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
-    "projects:generate": "bun scripts/generate-projects.ts"
+    "projects:generate": "bun scripts/generate-projects.ts",
+    "activity:snapshot": "bun scripts/generate-repo-activity.ts"
   },
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.2.16",
     "@scritto/react": "^0.1.0",
-    "matter-js": "^0.20.0",
     "motion": "^14.0.0",
     "next": "16.3.8",
     "react": "19.2.8",
-    "react-activity-calendar": "^3.2.0",
     "react-dom": "19.2.8",
     "react-github-calendar": "^5.0.6",
     "react-icons": "^5.7.0"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
-    "@types/matter-js": "^0.20.2",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",

@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import { EditorialLink, LinkLabel } from "@/components/editorial-link";
-export const metadata: Metadata = { title: "Dispatches" };
+import { StatusPage } from "@/components/status-page";
+import styles from "@/components/status-page.module.css";
+import { PAGE_DITHERS } from "@/lib/dither-themes";
+export const metadata: Metadata = { title: "Dispatches", robots: { index: false, follow: false } };
 export default function DispatchesPage() {
-  return <main id="main" className="reading-page dispatches-page">
-    <p className="page-eyebrow">Notes from the work</p>
-    <h1>Dispatches</h1>
-    <p className="page-description">Engineering notes, build logs, and things learned along the way.</p>
-    <div className="empty-dispatches"><p>Nothing published yet.</p><EditorialLink className="text-link" href="/"><LinkLabel>Meet the person</LinkLabel></EditorialLink></div>
-  </main>;
+  return <StatusPage dither={PAGE_DITHERS.dispatches} eyebrow="Notes from the work" title="Dispatches" description="Engineering notes, build logs, and things learned along the way.">
+    <div className={styles.empty}><p>Nothing published yet.</p><EditorialLink href="/"><LinkLabel>Meet the person</LinkLabel></EditorialLink></div>
+  </StatusPage>;
 }
