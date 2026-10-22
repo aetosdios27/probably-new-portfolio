@@ -298,7 +298,7 @@ No actionable P0/P1/P2 findings remain.
 - Colors: existing #0E0E0E background and off-white/gray tokens confirmed in browser. No added colors, gradients, or panels.
 - Assets: original supplied site PFP used, with compact square crop. No generated assets required.
 - Copy: wireframe introduction, conversational university context, Aetos mention, and prose Playground invitation. Explanatory wireframe annotations and incidental “12” excluded. Projects heading omitted under the earlier explicit instruction to avoid duplicating Work.
-- Taped areas: wordmark and top header navigation removed on About only; no replacement identity banner or social strip. Existing global dock retained; other routes unchanged.
+- Taped areas: the top header (wordmark and navigation) was removed on every route; navigation is the homepage "Playground" link and the dock Back button. No replacement identity banner or social strip. Existing global dock retained.
 
 ## Comparison history
 

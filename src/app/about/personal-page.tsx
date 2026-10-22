@@ -5,7 +5,7 @@ import { GitHubActivity } from "@/components/github-activity";
 import { fractionalAge } from "./age";
 import { IdentitySentence, LiveAge } from "./living-text";
 import { SectionBreak } from "@/components/section-break";
-import construction from "@/components/construction.module.css";
+import { PageFrame } from "@/components/page-frame";
 import { PlaygroundLink } from "./playground-link";
 import { ProjectLink } from "./project-link";
 import styles from "./page.module.css";
@@ -16,10 +16,7 @@ export default function AboutPage() {
   // eslint-disable-next-line react-hooks/purity
   const initialAge = fractionalAge(Date.now());
   return (
-    <main id="main" className={`${styles.page} ${construction.frame}`}>
-      <div aria-hidden="true" className={`${construction.rail} ${construction.leftRail}`} />
-      <div aria-hidden="true" className={`${construction.rail} ${construction.rightRail}`} />
-      <SectionBreak cap="top" />
+    <PageFrame className={styles.page}>
       <div className={styles.content}>
         <Image
           src={identity.avatar}
@@ -55,7 +52,6 @@ export default function AboutPage() {
       <OpenSourceSection />
       <SectionBreak />
       <GitHubActivity />
-      <SectionBreak cap="bottom" />
-    </main>
+    </PageFrame>
   );
 }

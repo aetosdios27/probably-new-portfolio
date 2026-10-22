@@ -1,0 +1,37 @@
+.gutters {
+  display: none;
+  position: absolute;
+  top: var(--construction-band-height);
+  bottom: var(--construction-band-height);
+  left: 0;
+  right: 0;
+  z-index: 0;
+  pointer-events: none;
+}
+
+.box {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: calc((100cqw - 100%) / 2 - var(--guide-gutter));
+  opacity: 0.4;
+}
+
+.left {
+  right: calc(100% + var(--guide-gutter));
+  -webkit-mask-image: linear-gradient(to right, #000 0%, rgb(0 0 0 / 0.55) 45%, transparent 100%);
+  mask-image: linear-gradient(to right, #000 0%, rgb(0 0 0 / 0.55) 45%, transparent 100%);
+}
+.right {
+  left: calc(100% + var(--guide-gutter));
+  -webkit-mask-image: linear-gradient(to left, #000 0%, rgb(0 0 0 / 0.55) 45%, transparent 100%);
+  mask-image: linear-gradient(to left, #000 0%, rgb(0 0 0 / 0.55) 45%, transparent 100%);
+}
+
+@media (min-width: 1000px) {
+  .gutters { display: block; }
+}
+
+@media print {
+  .gutters { display: none; }
+}

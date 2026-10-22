@@ -25,13 +25,19 @@
 
 .greeting {
   margin-top: var(--space-4);
-  font-size: 14px;
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: var(--text-display);
   font-weight: 400;
-  line-height: 1.6;
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display);
 }
 
 .greeting span {
   color: var(--subtle);
+  font-family: var(--font-inter-tight), sans-serif;
+  font-size: 0.92em;
+  letter-spacing: -0.01em;
 }
 
 .identity {
@@ -69,8 +75,12 @@
 }
 
 .thoughts .invitation {
-  margin-top: var(--space-3);
+  margin-top: var(--space-4);
+  font-size: clamp(20px, 5.5vw, 24px);
+  letter-spacing: -0.015em;
+  line-height: 1.4;
 }
+
 
 .highlights {
   position: relative;
@@ -79,9 +89,12 @@
 }
 
 .sectionHeading {
-  color: var(--subtle);
-  font-size: 13px;
+  color: var(--foreground);
+  font-family: var(--font-display);
+  font-size: var(--text-h2);
   font-weight: 400;
+  line-height: 1.2;
+  letter-spacing: -0.015em;
 }
 
 .projectList {
@@ -102,13 +115,15 @@
 .projectRow time {
   flex-shrink: 0;
   color: var(--subtle);
-  font-size: 12px;
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
   font-variant-numeric: tabular-nums;
 }
 
 @media (max-width: 640px) {
   .greeting {
     margin-top: var(--space-3);
+    font-size: clamp(34px, 9vw, var(--text-display));
   }
 
 }

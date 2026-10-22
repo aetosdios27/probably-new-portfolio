@@ -29,7 +29,12 @@
 .pixel {
   position: absolute;
   left: 50%;
-  top: 8px;
+  /* Metrics are Inter Tight's: cap height 0.734em over a 7-row alphabet makes one
+     pixel 0.105em, and the baseline sits 0.5lh + 0.363em below the letter box top,
+     so the glyph starts 7 pixels above that. */
+  top: calc(0.5lh - 0.371em);
+  width: calc(var(--pixel-cols) * 0.1049em);
+  height: 0.944em;
   transform: translateX(-50%);
   display: block;
   opacity: 0;

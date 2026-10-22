@@ -2,13 +2,13 @@
 
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
+import { ACCENT_COLORS } from "@/lib/accent-palette";
 import styles from "./playground-link.module.css";
 
 const WORD = "Playground";
 const TRAIL_LENGTH = 5;
-// Luminous, slightly softened colors for the near-black canvas. Randomize
-// only on entry so a held letter keeps its color instead of flickering.
-const COLORS = ["#B6CE8A", "#E7A6BC", "#EDBA8B", "#E5D7AE", "#91C9DB", "#B9ABDF"];
+// Randomize only on entry so a held letter keeps its color instead of flickering.
+const COLORS = ACCENT_COLORS;
 // Proportional pixel glyphs: narrow letters keep their own shapes rather than
 // stretching a monospaced font into Inter's differently sized letter cells.
 const GLYPHS: Record<string, string[]> = {
@@ -24,7 +24,7 @@ const GLYPHS: Record<string, string[]> = {
   d: ["00001", "00001", "01111", "10001", "10001", "10001", "01111"],
 };
 
-export function PlaygroundLink() {
+export function PlaygroundLink({ className = "" }: { className?: string }) {
   const [colors, setColors] = useState(() => [...WORD].map((_, index) => COLORS[index % COLORS.length]));
   const [trail, setTrail] = useState<number[]>([]);
   const catchUpTimers = useRef<ReturnType<typeof setTimeout>[]>([]);
@@ -65,7 +65,7 @@ export function PlaygroundLink() {
   return (
     <Link
       href="/playground"
-      className={styles.link}
+      className={`${styles.link} ${className}`}
       aria-label="Playground"
       onPointerLeave={clearTrail}
       onPointerCancel={clearTrail}
@@ -80,7 +80,7 @@ export function PlaygroundLink() {
             className={styles.letter}
             data-active={trail.includes(index)}
             aria-hidden="true"
-            style={{ "--pixel-color": colors[index] } as CSSProperties}
+            style={{ "--pixel-color": colors[index], "--pixel-cols": width } as CSSProperties}
             onPointerEnter={(event) => {
               if (event.pointerType === "mouse" || event.pointerType === "pen") recolor(index);
             }}
@@ -89,8 +89,6 @@ export function PlaygroundLink() {
             <svg
               className={styles.pixel}
               viewBox={`0 0 ${width} 9`}
-              width={width * 1.25}
-              height={11.25}
               focusable="false"
             >
               {rows.flatMap((row, y) => [...row].flatMap((pixel, x) =>

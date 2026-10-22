@@ -1,0 +1,455 @@
+{
+  "kiban": [
+    {
+      "kind": "pull",
+      "title": "Group commit: QA tests, stronger crash oracle, deterministic slot test",
+      "url": "https://github.com/aetosdios27/kiban/pull/25",
+      "date": "2026-10-22T06:27:54Z",
+      "ref": "#25",
+      "state": "merged"
+    },
+    {
+      "kind": "pull",
+      "title": "Enable the perfect-hash point index by default",
+      "url": "https://github.com/aetosdios27/kiban/pull/24",
+      "date": "2026-10-20T06:17:42Z",
+      "ref": "#24",
+      "state": "merged"
+    },
+    {
+      "kind": "pull",
+      "title": "Group commit: acknowledge committed writes, panic-safe hand-off, close test gaps",
+      "url": "https://github.com/aetosdios27/kiban/pull/23",
+      "date": "2026-10-19T14:04:06Z",
+      "ref": "#23",
+      "state": "merged"
+    },
+    {
+      "kind": "pull",
+      "title": "Add KibanOptions::agent_memory: one-call profile for the benchmarked configuration",
+      "url": "https://github.com/aetosdios27/kiban/pull/22",
+      "date": "2026-10-19T03:37:04Z",
+      "ref": "#22",
+      "state": "merged"
+    },
+    {
+      "kind": "pull",
+      "title": "Group commit for durable shared writes: 7.5× throughput at 16 writers",
+      "url": "https://github.com/aetosdios27/kiban/pull/21",
+      "date": "2026-10-19T03:30:32Z",
+      "ref": "#21",
+      "state": "merged"
+    },
+    {
+      "kind": "pull",
+      "title": "Opt-in binary fuse filters for SSTs (XXH3), with filter-first misses",
+      "url": "https://github.com/aetosdios27/kiban/pull/20",
+      "date": "2026-10-19T03:08:26Z",
+      "ref": "#20",
+      "state": "merged"
+    },
+    {
+      "kind": "pull",
+      "title": "Small-cache point reads beat LMDB: per-value CRC, resident locators, opt-in mmap",
+      "url": "https://github.com/aetosdios27/kiban/pull/19",
+      "date": "2026-10-18T16:03:39Z",
+      "ref": "#19",
+      "state": "merged"
+    },
+    {
+      "kind": "pull",
+      "title": "Opt-in PH3 scan extension: latest-K reads faster than LMDB",
+      "url": "https://github.com/aetosdios27/kiban/pull/18",
+      "date": "2026-10-18T08:16:56Z",
+      "ref": "#18",
+      "state": "merged"
+    },
+    {
+      "kind": "pull",
+      "title": "Benchmark: Kiban vs expert-tuned RocksDB (LMDB control) on agent-memory workloads",
+      "url": "https://github.com/aetosdios27/kiban/pull/17",
+      "date": "2026-10-18T00:34:57Z",
+      "ref": "#17",
+      "state": "merged"
+    },
+    {
+      "kind": "pull",
+      "title": "Benchmark: Kiban vs tuned SQLite (LMDB control) on agent-memory workloads",
+      "url": "https://github.com/aetosdios27/kiban/pull/16",
+      "date": "2026-10-18T00:16:38Z",
+      "ref": "#16",
+      "state": "merged"
+    }
+  ],
+  "kurogane": [
+    {
+      "kind": "commit",
+      "title": "docs: inline architecture detail into README instead of pointing at CLAUDE.md",
+      "url": "https://github.com/aetosdios27/kurogane/commit/dc926e7d013722245b5b43554cedb2db80a3ab74",
+      "date": "2026-08-23T11:46:38Z",
+      "ref": "dc926e7"
+    },
+    {
+      "kind": "commit",
+      "title": "docs: drop README reference to the gitignored CLAUDE.md",
+      "url": "https://github.com/aetosdios27/kurogane/commit/48ab717ec13291a483afdb00df3358fb6ae08ac5",
+      "date": "2026-08-23T11:45:58Z",
+      "ref": "48ab717"
+    },
+    {
+      "kind": "commit",
+      "title": "docs: rewrite README to reflect feature-frozen, all-crates state",
+      "url": "https://github.com/aetosdios27/kurogane/commit/eee56baf2821e2ae3ff7a4dab6b2a9bd460f5618",
+      "date": "2026-08-23T11:45:25Z",
+      "ref": "eee56ba"
+    },
+    {
+      "kind": "commit",
+      "title": "fix: let AppendEntries/InstallSnapshot bypass the local membership gate",
+      "url": "https://github.com/aetosdios27/kurogane/commit/ce7cf2202d321ed2ee8305070a8719ead6a23371",
+      "date": "2026-08-22T18:44:57Z",
+      "ref": "ce7cf22"
+    },
+    {
+      "kind": "commit",
+      "title": "test: prove a join-mode process never self-elects without being admitted",
+      "url": "https://github.com/aetosdios27/kurogane/commit/f476da9f234f0d9bf34fc6fd7cde3a84b176a997",
+      "date": "2026-08-22T17:36:26Z",
+      "ref": "f476da9"
+    },
+    {
+      "kind": "commit",
+      "title": "test: prove the AddLearner leadership-change retry path actually runs",
+      "url": "https://github.com/aetosdios27/kurogane/commit/2956476ec7e3fde4f35779b2091512b67c7a147b",
+      "date": "2026-08-22T17:35:04Z",
+      "ref": "2956476"
+    },
+    {
+      "kind": "commit",
+      "title": "feat: report whether AddLearner's address was a well-formed URI",
+      "url": "https://github.com/aetosdios27/kurogane/commit/ecd15baa1e7c68f7e2aec59784b6c1b1c7a50417",
+      "date": "2026-08-22T17:33:26Z",
+      "ref": "ecd15ba"
+    },
+    {
+      "kind": "commit",
+      "title": "docs: correct why a crashed submit target resolves Rejected",
+      "url": "https://github.com/aetosdios27/kurogane/commit/ca64a308edcb07f44e94b63a27bf95bfbc7c03aa",
+      "date": "2026-08-22T14:35:28Z",
+      "ref": "ca64a30"
+    },
+    {
+      "kind": "commit",
+      "title": "test: prove isolate/heal actually drop and later resume delivery",
+      "url": "https://github.com/aetosdios27/kurogane/commit/fa970c7769f4f6715023905b1e273726aa7bff90",
+      "date": "2026-08-22T14:28:27Z",
+      "ref": "fa970c7"
+    },
+    {
+      "kind": "commit",
+      "title": "fix: give an Indeterminate operation its real-time lower bound back",
+      "url": "https://github.com/aetosdios27/kurogane/commit/0e47163a5004ea830ecd9f9ccbf108d23fdc5fd2",
+      "date": "2026-08-22T14:26:46Z",
+      "ref": "0e47163"
+    }
+  ],
+  "styx": [
+    {
+      "kind": "commit",
+      "title": "fix(runtime): enforce private discovery and redact logs",
+      "url": "https://github.com/aetosdios27/Styx/commit/88ad13f2d298a021f52d54cf135fbf87d6baca76",
+      "date": "2026-07-11T16:49:34Z",
+      "ref": "88ad13f"
+    },
+    {
+      "kind": "commit",
+      "title": "test(runtime): enforce session ownership invariants",
+      "url": "https://github.com/aetosdios27/Styx/commit/421258111a3c4131a2bd0cd95418287d647197fd",
+      "date": "2026-07-11T16:27:32Z",
+      "ref": "4212581"
+    },
+    {
+      "kind": "commit",
+      "title": "refactor(runtime): make daemon own session shutdown",
+      "url": "https://github.com/aetosdios27/Styx/commit/b67ec57bb1f2735968d75d7c83ed5f98d7c8f6d5",
+      "date": "2026-07-11T16:03:44Z",
+      "ref": "b67ec57"
+    },
+    {
+      "kind": "commit",
+      "title": "refactor(runtime): route app discovery through session supervisor",
+      "url": "https://github.com/aetosdios27/Styx/commit/22515a639d6b1a640078bb66bb51b516866b36be",
+      "date": "2026-07-11T15:32:31Z",
+      "ref": "22515a6"
+    },
+    {
+      "kind": "commit",
+      "title": "feat(runtime): add bounded session supervisor",
+      "url": "https://github.com/aetosdios27/Styx/commit/8604a4d18e71013ae78e35e83d3325c48e46a04f",
+      "date": "2026-07-11T08:21:31Z",
+      "ref": "8604a4d"
+    },
+    {
+      "kind": "commit",
+      "title": "refactor(runtime): separate LSD client from worker ownership",
+      "url": "https://github.com/aetosdios27/Styx/commit/0b311c7082d3fde696b4f41419eb1b023f3f555f",
+      "date": "2026-07-10T20:21:50Z",
+      "ref": "0b311c7"
+    },
+    {
+      "kind": "commit",
+      "title": "refactor(runtime): separate DHT client from worker ownership",
+      "url": "https://github.com/aetosdios27/Styx/commit/9c95b30d2e6f086772daaf9346830ba7be00087b",
+      "date": "2026-07-10T19:53:41Z",
+      "ref": "9c95b30"
+    },
+    {
+      "kind": "commit",
+      "title": "feat(runtime): add single-owner session task registry",
+      "url": "https://github.com/aetosdios27/Styx/commit/a28d1f5b775a5dcb9a9e671693e77d12df5a8fc7",
+      "date": "2026-07-10T11:43:19Z",
+      "ref": "a28d1f5"
+    },
+    {
+      "kind": "commit",
+      "title": "feat(runtime): define bounded session supervision contracts",
+      "url": "https://github.com/aetosdios27/Styx/commit/b567dd968bbd3c508da37cca1a30a8d81d873233",
+      "date": "2026-07-10T11:32:10Z",
+      "ref": "b567dd9"
+    },
+    {
+      "kind": "commit",
+      "title": "test(runtime): characterize session ownership boundaries",
+      "url": "https://github.com/aetosdios27/Styx/commit/07971d581583d0a3795bd25ef5e588b807169065",
+      "date": "2026-07-10T11:19:41Z",
+      "ref": "07971d5"
+    }
+  ],
+  "scribe": [
+    {
+      "kind": "pull",
+      "title": "chore(deps): bump the patch-updates group across 1 directory with 4 updates",
+      "url": "https://github.com/aetosdios27/scribe/pull/76",
+      "date": "2026-09-21T03:36:19Z",
+      "ref": "#76",
+      "state": "open"
+    },
+    {
+      "kind": "pull",
+      "title": "chore(deps): bump the patch-updates group across 1 directory with 3 updates",
+      "url": "https://github.com/aetosdios27/scribe/pull/75",
+      "date": "2026-09-21T03:36:11Z",
+      "ref": "#75",
+      "state": "closed"
+    },
+    {
+      "kind": "pull",
+      "title": "chore(deps): bump the patch-updates group across 1 directory with 7 updates",
+      "url": "https://github.com/aetosdios27/scribe/pull/71",
+      "date": "2026-09-14T03:36:43Z",
+      "ref": "#71",
+      "state": "closed"
+    },
+    {
+      "kind": "pull",
+      "title": "chore(deps): bump next from 16.2.11 to 16.3.3 in /tests/integration/next-css-modules",
+      "url": "https://github.com/aetosdios27/scribe/pull/74",
+      "date": "2026-09-11T06:51:49Z",
+      "ref": "#74",
+      "state": "open"
+    },
+    {
+      "kind": "pull",
+      "title": "chore(deps): bump next from 16.2.11 to 16.3.3 in /tests/integration/next",
+      "url": "https://github.com/aetosdios27/scribe/pull/73",
+      "date": "2026-09-11T06:51:45Z",
+      "ref": "#73",
+      "state": "open"
+    },
+    {
+      "kind": "pull",
+      "title": "chore(deps-dev): bump vitest from 4.1.10 to 4.1.11",
+      "url": "https://github.com/aetosdios27/scribe/pull/72",
+      "date": "2026-09-11T02:05:02Z",
+      "ref": "#72",
+      "state": "open"
+    },
+    {
+      "kind": "pull",
+      "title": "chore(deps): bump the patch-updates group across 1 directory with 9 updates",
+      "url": "https://github.com/aetosdios27/scribe/pull/70",
+      "date": "2026-09-07T03:37:27Z",
+      "ref": "#70",
+      "state": "closed"
+    },
+    {
+      "kind": "pull",
+      "title": "chore(deps): bump the patch-updates group across 1 directory with 9 updates",
+      "url": "https://github.com/aetosdios27/scribe/pull/42",
+      "date": "2026-08-24T03:36:49Z",
+      "ref": "#42",
+      "state": "closed"
+    },
+    {
+      "kind": "pull",
+      "title": "docs: shrink README to pitch + quickstart",
+      "url": "https://github.com/aetosdios27/scribe/pull/67",
+      "date": "2026-08-17T05:26:55Z",
+      "ref": "#67",
+      "state": "merged"
+    },
+    {
+      "kind": "pull",
+      "title": "chore(release): version packages (beta)",
+      "url": "https://github.com/aetosdios27/scribe/pull/69",
+      "date": "2026-08-17T05:24:28Z",
+      "ref": "#69",
+      "state": "open"
+    }
+  ],
+  "webnotes": [
+    {
+      "kind": "pull",
+      "title": "feat: Improve sidebar and context menu UX",
+      "url": "https://github.com/aetosdios27/WebNotes/pull/2",
+      "date": "2026-08-19T20:21:11Z",
+      "ref": "#2",
+      "state": "closed"
+    },
+    {
+      "kind": "commit",
+      "title": "chore: untrack cli build artifacts and sync app/cli updates",
+      "url": "https://github.com/aetosdios27/WebNotes/commit/fb5be8846a1acd40ce3fe01e519a944ad4d65981",
+      "date": "2026-04-08T10:16:44Z",
+      "ref": "fb5be88"
+    },
+    {
+      "kind": "commit",
+      "title": "feat: starting work on webnotes TUI",
+      "url": "https://github.com/aetosdios27/WebNotes/commit/29eaded3c10e9e2afda89da9ae358d131f53ef8d",
+      "date": "2026-04-07T14:09:03Z",
+      "ref": "29eaded"
+    },
+    {
+      "kind": "commit",
+      "title": "fix: removed old data.ts",
+      "url": "https://github.com/aetosdios27/WebNotes/commit/d410cb2f832f868d8f1bd0ee49a23a3480c48e08",
+      "date": "2026-02-10T02:56:00Z",
+      "ref": "d410cb2"
+    },
+    {
+      "kind": "commit",
+      "title": "fix: resolve yjsState type mismatch in VersionPreview restore callback",
+      "url": "https://github.com/aetosdios27/WebNotes/commit/44c59ab029b789afb6d4230cceae0402045e597d",
+      "date": "2026-02-09T19:44:48Z",
+      "ref": "44c59ab"
+    },
+    {
+      "kind": "commit",
+      "title": "feat: feat(core): implement stateless CRDT sync engine & zero-copy editor",
+      "url": "https://github.com/aetosdios27/WebNotes/commit/50cc90b1bae69841b2b2605547b720a09219c5e8",
+      "date": "2026-02-09T18:53:20Z",
+      "ref": "50cc90b"
+    },
+    {
+      "kind": "commit",
+      "title": "feat: changed the spinner to bloom ascii loader in the lang badge and fixed bugs",
+      "url": "https://github.com/aetosdios27/WebNotes/commit/30395c97eb656e323751f3e4d9aad2992b311dea",
+      "date": "2026-02-05T10:38:24Z",
+      "ref": "30395c9"
+    },
+    {
+      "kind": "commit",
+      "title": "feat: made codeblocks miles better with lang auto-detection and line numbers and syntax highlighting",
+      "url": "https://github.com/aetosdios27/WebNotes/commit/8a57344f0564c0edeacbbc18320127f297ae3819",
+      "date": "2026-02-05T06:19:41Z",
+      "ref": "8a57344"
+    },
+    {
+      "kind": "commit",
+      "title": "fix: massive stability overhaul + tauri sync fixes",
+      "url": "https://github.com/aetosdios27/WebNotes/commit/33be32f9fca7d1ad677aa9e825dde364077f05e4",
+      "date": "2026-02-02T10:58:53Z",
+      "ref": "33be32f"
+    },
+    {
+      "kind": "commit",
+      "title": "refactor: made the loading screen better",
+      "url": "https://github.com/aetosdios27/WebNotes/commit/7c3f3831fe7e8f11c3e2b932d6386f6e6a94739f",
+      "date": "2026-01-29T09:45:54Z",
+      "ref": "7c3f383"
+    }
+  ],
+  "konto": [
+    {
+      "kind": "commit",
+      "title": "chore: add changeset for S++ release and harden CI workflow",
+      "url": "https://github.com/aetosdios27/Konto/commit/c7c8cb4b114983b7d313116c25beeb3b86413b04",
+      "date": "2026-05-12T13:47:21Z",
+      "ref": "c7c8cb4"
+    },
+    {
+      "kind": "commit",
+      "title": "docs: update CLI and adapter documentation for S++ features",
+      "url": "https://github.com/aetosdios27/Konto/commit/288450fe029b7aceb27dc7fa95d7ac4444f0e1d0",
+      "date": "2026-05-12T13:23:48Z",
+      "ref": "288450f"
+    },
+    {
+      "kind": "commit",
+      "title": "feat(cli): s++ tier improvements for migrate, approve, and generate commands",
+      "url": "https://github.com/aetosdios27/Konto/commit/b769a6eebf25600c5cdd4e3f71f784e4769e1811",
+      "date": "2026-05-12T13:15:46Z",
+      "ref": "b769a6e"
+    },
+    {
+      "kind": "commit",
+      "title": "feat(cli): add educational comments to quickstart code block",
+      "url": "https://github.com/aetosdios27/Konto/commit/76f3816a68ec0f50b4fc722eb97a82d217e5b7e5",
+      "date": "2026-05-12T12:58:03Z",
+      "ref": "76f3816"
+    },
+    {
+      "kind": "commit",
+      "title": "fix(cli): resolve typescript error and layout issues in generate command",
+      "url": "https://github.com/aetosdios27/Konto/commit/3f93ef1a3253235fce36063dfe8c56efa2b26a48",
+      "date": "2026-05-12T12:54:44Z",
+      "ref": "3f93ef1"
+    },
+    {
+      "kind": "commit",
+      "title": "feat(cli): enhance init command communication flow with explicit steps",
+      "url": "https://github.com/aetosdios27/Konto/commit/9d0c323eb8b57e87a1da1573d422ea09299e8419",
+      "date": "2026-05-12T12:54:05Z",
+      "ref": "9d0c323"
+    },
+    {
+      "kind": "commit",
+      "title": "feat: implement prisma and drizzle adapters and interactive cli wizard",
+      "url": "https://github.com/aetosdios27/Konto/commit/dd1cca3fc6b219191d456f98a415dde827dc1106",
+      "date": "2026-05-12T12:45:08Z",
+      "ref": "dd1cca3"
+    },
+    {
+      "kind": "commit",
+      "title": "ci: setup changesets and github actions oidc release pipeline",
+      "url": "https://github.com/aetosdios27/Konto/commit/7857a097d70dce29be38b0a6089629a945b883e2",
+      "date": "2026-05-10T10:40:40Z",
+      "ref": "7857a09"
+    },
+    {
+      "kind": "commit",
+      "title": "docs: add package-specific READMEs and bump to v0.1.1",
+      "url": "https://github.com/aetosdios27/Konto/commit/14ecef0779096106c15ca28384913aee0cf7e792",
+      "date": "2026-05-10T10:23:21Z",
+      "ref": "14ecef0"
+    },
+    {
+      "kind": "commit",
+      "title": "chore: globally rename scope from @konto to @konto-ledger",
+      "url": "https://github.com/aetosdios27/Konto/commit/ec2ec54a5e703ca6d31876658fdb1429cfba910c",
+      "date": "2026-05-10T10:17:02Z",
+      "ref": "ec2ec54"
+    }
+  ]
+}

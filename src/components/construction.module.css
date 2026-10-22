@@ -13,6 +13,7 @@
   --construction-hatch-opacity: 0.05;
   --construction-hatch-line: 1px;
   --construction-hatch-period: 8px;
+  position: relative;
   isolation: isolate;
 }
 
@@ -22,7 +23,7 @@
 .rail {
   position: absolute;
   top: 0;
-  bottom: 0;
+  bottom: calc(-1 * var(--dock-clearance, 0px));
   width: var(--construction-line-width);
   z-index: 2;
   pointer-events: none;
@@ -46,7 +47,8 @@
   margin-block: var(--construction-band-clearance);
   z-index: 0;
   pointer-events: none;
-  background: repeating-linear-gradient(
+  background-color: var(--background);
+  background-image: repeating-linear-gradient(
     45deg,
     rgb(var(--construction-color) / var(--construction-hatch-opacity)) 0 var(--construction-hatch-line),
     transparent var(--construction-hatch-line) var(--construction-hatch-period)
@@ -81,8 +83,9 @@
 
 .bottom {
   margin-top: 0;
-  margin-bottom: calc(-1 * var(--construction-bottom-inset));
-  flex-shrink: 0;
+  margin-bottom: calc(-1 * (var(--construction-bottom-inset) + var(--dock-clearance, 0px)));
+  min-height: calc(var(--construction-band-height) + var(--dock-clearance, 0px));
+  flex: 1 0 auto;
 }
 
 @media (max-width: 640px) {
