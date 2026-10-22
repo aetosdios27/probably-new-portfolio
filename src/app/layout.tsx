@@ -30,7 +30,7 @@ const geistMono = localFont({
 });
 
 const siteName = "aetos";
-const siteTitle = "aetos — Pushpendra Singh";
+const siteTitle = "aetos";
 const siteDescription = "I’m aetos, a systems engineer driven mostly by curiosity and an unreasonable attention to detail.";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aetosdios.xyz";
 
@@ -38,7 +38,7 @@ export const viewport: Viewport = { themeColor: "#000000", colorScheme: "dark" }
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
-  title: { default: siteTitle, template: "%s — Pushpendra Singh" },
+  title: { default: siteTitle, template: "%s — aetos" },
   description: siteDescription,
   applicationName: siteName,
   authors: [{ name: identity.name, url: siteUrl }],

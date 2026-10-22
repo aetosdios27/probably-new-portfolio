@@ -22,7 +22,7 @@ export default function AboutPage() {
       <div className={styles.content}>
         <Image
           src={identity.avatar}
-          alt="Pushpendra’s profile picture"
+          alt="aetos’s profile picture"
           width={40}
           height={40}
           className={styles.avatar}

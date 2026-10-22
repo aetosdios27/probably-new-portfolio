@@ -1,4 +1,4 @@
-# Pushpendra Singh — Portfolio
+# aetos — Portfolio
 
 An editorial portfolio built with Next.js App Router, React, TypeScript, Tailwind v4, and Bun. The personal About composition lives at `/`; `/about` redirects home. Playground lives at `/playground`, with foundations for `/dispatches`.
 
@@ -38,7 +38,7 @@ Inter Tight is self-hosted through `next/font/local`. The variable font and its 
 - `src/content/resume-source.txt`: full text extracted from the supplied résumé. No code imports it; it is an editorial reference, not displayed wholesale.
 - `src/content/resume-links.json`: embedded links extracted from the résumé. No code imports it; it is an editorial reference.
 - `public/resume.pdf`: supplied downloadable résumé. No page links to it at present, since the socials dock does not list a résumé entry.
-- `public/images/pushpendra.jpg`: the real GitHub avatar.
+- `public/images/avatar.jpg`: the real GitHub avatar.
 
 Public repository descriptions/READMEs, the supplied résumé, and explicit user copy ground project descriptions. PR statuses were checked on 2026-10-01. Raijin’s descriptor follows the supplied third-pass brief; the booking URL is unset until supplied. About copy is a first-pass draft. Dispatches has an honest empty state with no publishing infrastructure.
 

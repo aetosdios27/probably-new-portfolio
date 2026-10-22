@@ -26,7 +26,7 @@ function IdentityName() {
     <button
       type="button"
       className={styles.identity}
-      aria-label="aetos is Pushpendra. Reveal my name"
+      aria-label={revealed ? "Pushpendra" : "Reveal my name"}
       aria-pressed={revealed}
       onPointerEnter={(event) => {
         if (event.pointerType === "mouse") {

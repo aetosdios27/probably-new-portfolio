@@ -1,8 +1,8 @@
 export const identity = {
-  name: "Pushpendra Singh",
-  intro: "Hi, I'm Pushpendra.",
+  name: "aetos",
+  intro: "Hi, I'm aetos.",
   descriptor: "I build systems, tools, and the interfaces around them.",
-  avatar: "/images/pushpendra.jpg",
+  avatar: "/images/avatar.jpg",
 };
 
 // Editorial order, not a release timeline. Year metadata deliberately avoids

@@ -8,7 +8,7 @@ import { PAGE_DITHERS } from '@/lib/dither-themes';
 
 const playgroundDescription = 'Selected projects and experiments by aetos, with descriptions, benchmarks, and links.';
 const siteOrigin = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://aetosdios.xyz';
-const shareImage = { url: new URL('/opengraph-image', siteOrigin).toString(), width: 1200, height: 630, alt: 'Pushpendra Singh, aetos — systems engineer' };
+const shareImage = { url: new URL('/opengraph-image', siteOrigin).toString(), width: 1200, height: 630, alt: 'aetos' };
 
 export const metadata: Metadata = {
   title: { absolute: 'playground' },

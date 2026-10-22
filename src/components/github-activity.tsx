@@ -18,7 +18,7 @@ export function GitHubActivity() {
   const unlocked = useSyncExternalStore(subscribeUnlocked, isUnlocked, () => false);
   const soundOn = useSyncExternalStore(subscribeSound, soundEnabled, () => true);
   // Browsers keep a page silent until the first click or key press, so say so, briefly, until then.
-  const hint = !days.length || !soundOn ? null : unlocked ? "psst, hover the squares. they ring." : "psst, click anywhere, then hover the squares.";
+  const hint = !days.length || !soundOn ? null : unlocked ? "(psst, hover the squares. they ring.)" : "(psst, click anywhere, then hover the squares.)";
 
   // Animate only while the grid is on screen and the tab is visible.
   useEffect(() => {

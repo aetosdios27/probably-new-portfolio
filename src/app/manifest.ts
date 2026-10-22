@@ -2,7 +2,7 @@ import type { MetadataRoute } from 'next';
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: 'Pushpendra Singh — aetos',
+    name: 'aetos',
     short_name: 'aetos',
     description: 'I’m aetos, a systems engineer driven mostly by curiosity and an unreasonable attention to detail.',
     start_url: '/',
