@@ -14,9 +14,11 @@ export function getProjects(): RenderedProject[] {
       return b.stars - a.stars || b.pushed_at.localeCompare(a.pushed_at) || a.slug.localeCompare(b.slug);
     });
 }
+export function getSelectedProjects() { return getProjects().filter(project => isSelected(project.slug)); }
 export function getProject(slug: string) { return getProjects().find(project => project.slug === slug); }
 
 const OWNER = 'aetosdios27';
 export function repoUrl(slug: string) { return `https://github.com/${OWNER}/${slug}`; }
 export function isSelected(slug: string) { return projectsConfig.selected.includes(slug); }
 export function siteUrl(project: Pick<Project, 'slug' | 'homepage'>) { return projectsConfig.sites[project.slug] ?? project.homepage ?? null; }
+export function isComingSoon(slug: string) { return projectsConfig.comingSoon.includes(slug); }

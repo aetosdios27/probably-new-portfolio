@@ -51,13 +51,17 @@ function values(cell: string) {
   });
 }
 
+// A table or list only counts as a benchmark when it sits under a heading about performance. Feature
+// lists ("Sub-10ms editor response") and stack tables ("<10MB binary") quote numbers without measuring.
+const performanceHeading = /perf|bench|latenc|throughput|speed|results?\b/i;
+
 export function benchmarks(readme: string): Benchmark[] | null {
   const rows: Benchmark[] = [];
   const lines = readme.replace(/```[\s\S]*?```/g, '').split('\n');
   let section = '';
   for (let i = 0; i < lines.length; i++) {
     if (/^#{1,6}\s/.test(lines[i])) section = plain(lines[i].replace(/^#+\s*/, ''));
-    if (!lines[i].includes('|') || !/^\s*\|?\s*:?-{3,}/.test(lines[i + 1] ?? '')) continue;
+    if (!performanceHeading.test(section) || !lines[i].includes('|') || !/^\s*\|?\s*:?-{3,}/.test(lines[i + 1] ?? '')) continue;
     const split = (s: string) => s.trim().replace(/^\||\|$/g, '').split('|').map(plain);
     const headers = split(lines[i]);
     let before = headers.findIndex(h => /^(baseline|old|previous|fixedpriority)$/i.test(h));
@@ -88,7 +92,7 @@ export function benchmarks(readme: string): Benchmark[] | null {
   section = '';
   for (const line of lines) {
     if (/^#{1,6}\s/.test(line)) section = plain(line.replace(/^#+\s*/, ''));
-    if (/^\s*[-*]\s/.test(line) && values(line).length) {
+    if (performanceHeading.test(section) && /^\s*[-*]\s/.test(line) && values(line).length) {
       rows.push({ label: section, baseline: null, result: plain(line.replace(/^\s*[-*]\s*/, '')), delta: null, source: line });
     }
   }

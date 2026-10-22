@@ -919,22 +919,7 @@
         "WebNotes is a high-performance, local-first knowledge base designed to bring the polish of macOS-native tools to Windows and Linux, without sacrificing the power features developers need.",
         "It runs on Tauri (Rust) for native performance and Next.js for cloud synchronization."
       ],
-      "benchmarks": [
-        {
-          "label": "Desktop Runtime · Reasoning · MB",
-          "baseline": null,
-          "result": "<10MB",
-          "delta": null,
-          "source": "Technical Stack\nComponent | Technology | Reasoning\n| **Desktop Runtime** | **Tauri (Rust)** | <10MB binary, native performance, no Electron bloat. |"
-        },
-        {
-          "label": "Key Capabilities",
-          "baseline": null,
-          "result": "Zero-Latency Typing: Sub-10ms editor response.",
-          "delta": null,
-          "source": "- **Zero-Latency Typing:** Sub-10ms editor response."
-        }
-      ],
+      "benchmarks": null,
       "demos": [
         {
           "label": "Website",

@@ -2,11 +2,12 @@ import { FaGithub } from 'react-icons/fa6';
 import { LuGlobe } from 'react-icons/lu';
 import { EditorialLink, LinkLabel } from '@/components/editorial-link';
 import { IconLink } from '@/components/icon-link';
+import { SoonLink } from '@/components/soon-link';
 import { repoUrl } from '@/lib/playground/projects';
 import type { Project } from '@/lib/playground/types';
 import styles from './playground.module.css';
 
-type IndexProject = Pick<Project, 'name' | 'slug' | 'descriptor' | 'languages'> & { site: string | null };
+type IndexProject = Pick<Project, 'name' | 'slug' | 'descriptor' | 'languages'> & { site: string | null; soon?: boolean };
 
 const languagesOf = (project: IndexProject) => project.languages.slice(0, 2).join(' · ');
 
@@ -25,7 +26,8 @@ export function ProjectIndex({ projects, selected: selectedSlugs }: { projects: 
             </span>
             <span className={styles.rowMeta}>
               {project.languages.length > 0 && <span className={styles.languages}>{languagesOf(project)}</span>}
-              {project.site && <IconLink href={project.site} icon={LuGlobe} label="" external ariaLabel={`${project.name} website`} iconOnly />}
+              {project.site && project.soon && <SoonLink icon={<LuGlobe />} ariaLabel={`${project.name} website: launching soon`} />}
+              {project.site && !project.soon && <IconLink href={project.site} icon={LuGlobe} label="" external ariaLabel={`${project.name} website`} iconOnly />}
               <IconLink href={repoUrl(project.slug)} icon={FaGithub} label="" external ariaLabel={`${project.name} on GitHub`} iconOnly />
             </span>
             <span className={styles.descriptor}>{project.descriptor}</span>

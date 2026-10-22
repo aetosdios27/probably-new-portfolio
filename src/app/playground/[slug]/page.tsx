@@ -1,10 +1,11 @@
 import type { Metadata } from 'next';
 import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { getProjects, getProject, isSelected, repoUrl, siteUrl } from '@/lib/playground/projects';
+import { getSelectedProjects, getProject, isComingSoon, isSelected, repoUrl, siteUrl } from '@/lib/playground/projects';
 import { FaGithub } from 'react-icons/fa6';
 import { LuGlobe } from 'react-icons/lu';
 import { IconLink, IconLinkRow } from '@/components/icon-link';
+import { SoonLink } from '@/components/soon-link';
 import { getRepoActivity } from '@/lib/repo-activity';
 import { RepoActivity } from '@/components/repo-activity';
 import { formatDelta } from '@/lib/playground/display';
@@ -15,21 +16,22 @@ import styles from '../playground.module.css';
 import { projectDither } from '@/lib/dither-themes';
 
 export const dynamicParams = false;
-export function generateStaticParams() { return getProjects().map(({ slug }) => ({ slug })); }
+export function generateStaticParams() { return getSelectedProjects().map(({ slug }) => ({ slug })); }
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
   const project = getProject((await params).slug);
-  if (!project) notFound();
+  if (!project || !isSelected(project.slug)) notFound();
   const title = `${project.name} | playground`;
   return {
     title: { absolute: title },
     description: project.descriptor,
     alternates: { canonical: `/playground/${project.slug}` },
-    openGraph: { title, description: project.descriptor, url: `/playground/${project.slug}` },
+    openGraph: { type: 'website', siteName: 'aetos', locale: 'en_US', title, description: project.descriptor, url: `/playground/${project.slug}` },
+    twitter: { card: 'summary_large_image', creator: '@aetosdios_', site: '@aetosdios_', title, description: project.descriptor },
   };
 }
 export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const project = getProject((await params).slug);
-  if (!project) notFound();
+  if (!project || !isSelected(project.slug)) notFound();
   const projectMeta = project.languages.slice(0, 4).join(' · ');
   const site = siteUrl(project);
   const demos = project.demos.filter(({ url }) => !site || new URL(url).host !== new URL(site).host);
@@ -41,7 +43,8 @@ export default async function ProjectPage({ params }: { params: Promise<{ slug: 
       {project.descriptor && <p className={styles.lede}>{project.descriptor}</p>}
       {projectMeta && <p className={`${styles.projectMeta} type-meta`}>{projectMeta}</p>}
       <IconLinkRow className={`${styles.projectLinks} type-meta`}>
-        {site && <IconLink href={site} icon={LuGlobe} label={siteHost} external ariaLabel={`${project.name} website: ${siteHost}`} />}
+        {site && isComingSoon(project.slug) && <SoonLink icon={<LuGlobe />} label={siteHost} ariaLabel={`${project.name} website: launching soon`} />}
+        {site && !isComingSoon(project.slug) && <IconLink href={site} icon={LuGlobe} label={siteHost} external ariaLabel={`${project.name} website: ${siteHost}`} />}
         <IconLink href={repoUrl(project.slug)} icon={FaGithub} label="GitHub" external ariaLabel={`${project.name} on GitHub`} />
       </IconLinkRow>
       {project.image && <figure className={styles.hero}>

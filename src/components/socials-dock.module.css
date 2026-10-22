@@ -87,3 +87,10 @@
   font-family: var(--font-mono);
   font-size: var(--text-meta);
 }
+
+@media (max-width: 360px) {
+  .colors [role="button"] {
+    flex-basis: 36px;
+    min-width: 0;
+  }
+}

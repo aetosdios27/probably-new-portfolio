@@ -1,0 +1,18 @@
+.pond {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  font-family: var(--font-mono);
+}
+
+@media (min-width: 1000px) {
+  .pond { display: block; }
+}
+
+@media print {
+  .pond { display: none; }
+}

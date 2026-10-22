@@ -10,6 +10,8 @@
   color: var(--muted);
 }
 
+.page > :nth-last-child(2) { margin-bottom: var(--construction-band-clearance); }
+
 .content {
   position: relative;
 }

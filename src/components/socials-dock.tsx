@@ -3,25 +3,18 @@
 import { useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
-import { LuArrowLeft, LuCalendarDays, LuMail } from "react-icons/lu";
+import { LuArrowLeft, LuCalendarDays, LuDownload, LuMail } from "react-icons/lu";
 import { Dock, DockIcon, DockItem, DockLabel } from "./ui/dock";
+import { CONTACT } from "@/content/contact";
+import { dockTick, hoverCancel, hoverIntent } from "@/lib/hover-sound";
 import styles from "./socials-dock.module.css";
-
-// Contact destinations: edit only here. All placeholders have been resolved
-// from the previous portfolio and the already-verified local profile data.
-const CONTACT = {
-  github: "https://github.com/aetosdios27",
-  x: "https://x.com/aetosdios_",
-  linkedin: "https://linkedin.com/in/pushpendra-singh-2ba7b9312",
-  email: "aetosdios27@gmail.com",
-  call: "https://cal.com/aetosdios/15min",
-};
 
 const ITEMS = [
   { label: "GitHub", href: CONTACT.github, Icon: FaGithub },
   { label: "X", href: CONTACT.x, Icon: FaXTwitter },
   { label: "LinkedIn", href: CONTACT.linkedin, Icon: FaLinkedinIn },
   { label: "Mail", href: `mailto:${CONTACT.email}`, Icon: LuMail },
+  { label: "Download résumé", href: "/resume.pdf", Icon: LuDownload },
   { label: "Book a call", href: CONTACT.call, Icon: LuCalendarDays },
 ];
 const HISTORY_KEY = "__portfolioDock";
@@ -87,13 +80,23 @@ export function SocialsDock() {
         }
       }}>
       <Dock className={styles.colors} panelHeight={44} maxHeight={44} magnification={40}>
-        {showBack && <DockItem className="aspect-square" onClick={goBack}>
+        {showBack && <DockItem className="aspect-square" onClick={goBack} onHover={() => hoverIntent("dock-0", () => dockTick(0))} onHoverEnd={() => hoverCancel("dock-0")}>
           <DockLabel>Back</DockLabel>
           <DockIcon><LuArrowLeft role="img" aria-label="Back" className={styles.icon} /></DockIcon>
         </DockItem>}
-        {ITEMS.map(({ label, href, Icon }) => (
-          <DockItem key={label} className="aspect-square" onClick={() => {
-            if (href.startsWith("mailto:")) location.href = href;
+        {ITEMS.map(({ label, href, Icon }, index) => (
+          <DockItem key={label} className="aspect-square"
+            onHover={() => hoverIntent(`dock-${index + 1}`, () => dockTick(index + 1))}
+            onHoverEnd={() => hoverCancel(`dock-${index + 1}`)}
+            onClick={() => {
+            if (href === "/resume.pdf") {
+              const link = document.createElement("a");
+              link.href = href;
+              link.download = "Pushpendra-Singh-Resume.pdf";
+              document.body.append(link);
+              link.click();
+              link.remove();
+            } else if (href.startsWith("mailto:")) location.href = href;
             else window.open(href, "_blank", "noopener,noreferrer");
           }}>
             <DockLabel>{label}</DockLabel>

@@ -6,6 +6,8 @@ import { fractionalAge } from "./age";
 import { IdentitySentence, LiveAge } from "./living-text";
 import { SectionBreak } from "@/components/section-break";
 import { PageFrame } from "@/components/page-frame";
+import { KoiPond } from "@/components/koi-pond";
+import { SiteFooter } from "@/components/site-footer";
 import { PlaygroundLink } from "./playground-link";
 import { ProjectLink } from "./project-link";
 import styles from "./page.module.css";
@@ -16,7 +18,7 @@ export default function AboutPage() {
   // eslint-disable-next-line react-hooks/purity
   const initialAge = fractionalAge(Date.now());
   return (
-    <PageFrame className={styles.page}>
+    <PageFrame className={styles.page} backdrop={<KoiPond />}>
       <div className={styles.content}>
         <Image
           src={identity.avatar}
@@ -52,6 +54,8 @@ export default function AboutPage() {
       <OpenSourceSection />
       <SectionBreak />
       <GitHubActivity />
+      <SectionBreak />
+      <SiteFooter />
     </PageFrame>
   );
 }

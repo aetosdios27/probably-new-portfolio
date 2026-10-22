@@ -1,4 +1,4 @@
-.link { text-decoration: none; }
+.link { text-decoration: none; transition: color var(--motion-hover) ease; }
 
 .label {
   display: inline-flex;
@@ -38,11 +38,13 @@
 }
 
 @media (hover: hover) and (pointer: fine) {
+  .link:hover { color: var(--accent); }
   .link:hover .name { text-decoration-color: transparent; }
   .link:hover .name::after { transform: scaleX(1); }
-  .link:hover .arrow { opacity: 1; transform: translate(0, 0); }
+  .link:hover .arrow { opacity: 1; color: currentColor; transform: translate(0, 0); }
 }
 
+.link:focus-visible { color: var(--accent); }
 .link:focus-visible .name { text-decoration-color: transparent; }
 .link:focus-visible .name::after { transform: scaleX(1); transition: none; }
-.link:focus-visible .arrow { opacity: 1; transform: translate(0, 0); transition: none; }
+.link:focus-visible .arrow { opacity: 1; color: currentColor; transform: translate(0, 0); transition: none; }

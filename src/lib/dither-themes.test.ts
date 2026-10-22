@@ -2,7 +2,7 @@ import { describe, it as test } from "node:test";
 import assert from "node:assert/strict";
 import { PAGE_DITHERS, projectDither } from "./dither-themes";
 
-const BACKGROUND = "#100f0d";
+const BACKGROUND = "#000000";
 
 function luminance(hex: string) {
   const [r, g, b] = [1, 3, 5].map((index) => {

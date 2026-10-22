@@ -1,0 +1,18 @@
+.icon {
+  display: block;
+  flex-shrink: 0;
+  fill: currentColor;
+  shape-rendering: crispEdges;
+  overflow: visible;
+}
+
+/* The waves breathe outward in whole steps, like a four-frame sprite rather than a smooth fade. */
+.wave { animation: wave 1.2s steps(1, end) infinite; }
+.wave[data-step="2"] { animation-delay: 0.3s; }
+
+@keyframes wave {
+  0% { opacity: 1; }
+  50% { opacity: 0.28; }
+}
+
+.cross { opacity: 0.55; }

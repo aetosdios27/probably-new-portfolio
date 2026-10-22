@@ -7,6 +7,7 @@ export const projectsConfig: {
   order: string[];
   selected: string[];
   sites: Record<string, string>;
+  comingSoon: string[];
   hidden: string[];
   forceInclude: string[];
   excludePatterns: RegExp[];
@@ -23,6 +24,8 @@ export const projectsConfig: {
     scribe: 'https://scribeit.dev',
     webnotes: 'https://web-notes-lyart.vercel.app',
   },
+  // Deployed sites that exist but are not public yet: shown blurred, with a "launching soon" tooltip.
+  comingSoon: ['kiban'],
   hidden: ['homebrew-axiom', 'axiom-registry', 'aisc-project', 'kiban-website', 'vmrl', 'android-lab-project'],
   forceInclude: ['kiban', 'kurogane', 'styx', 'scribe', 'raijin', 'susano', 'konto', 'iris', 'shiden', 'webnotes'],
   excludePatterns: [/clone$/i, /notes/i, /landing-page/i, /-site$/i, /portfolio/i, /solution/i, /cohort/i, /^cp-/i, /^learning-/i, /logs?$/i],

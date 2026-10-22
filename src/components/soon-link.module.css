@@ -1,0 +1,51 @@
+.soon {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: var(--space-1);
+  white-space: nowrap;
+  color: var(--subtle);
+  cursor: default;
+  user-select: none;
+  transition: color var(--motion-hover) ease;
+}
+
+.icon {
+  display: inline-flex;
+  flex: none;
+  width: 14px;
+  height: 14px;
+}
+
+.icon svg {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* Blurred past reading, and it eases a little tighter on hover or focus as if about to resolve. */
+.label {
+  filter: blur(5px);
+  transition: filter var(--motion-standard) var(--ease-out);
+}
+
+.soon:is(:hover, :focus-visible) { color: var(--accent); }
+.soon:is(:hover, :focus-visible) .label { filter: blur(3px); }
+
+.soon:focus-visible { outline: 2px solid var(--foreground); outline-offset: 4px; border-radius: 2px; }
+
+/* Same footprint as the icon-only links beside it; the glyph itself is blurred. */
+.iconOnly {
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+}
+
+.iconOnly .icon {
+  width: 16px;
+  height: 16px;
+  filter: blur(1.6px);
+  transition: filter var(--motion-standard) var(--ease-out);
+}
+
+.iconOnly:is(:hover, :focus-visible) .icon { filter: blur(0.8px); }

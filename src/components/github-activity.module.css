@@ -21,6 +21,20 @@
   letter-spacing: -0.015em;
 }
 
+/* The nugget about sound; hover sounds are mouse-only, so touch screens never see it. */
+.hint {
+  color: var(--subtle);
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  line-height: 1.4;
+  text-align: right;
+  text-wrap: balance;
+}
+
+@media (hover: none), (max-width: 640px) {
+  .hint { display: none; }
+}
+
 .calendar {
   /* Padding gives the squares' glow room inside the scroll container; the negative margin keeps the grid aligned. */
   margin: -16px;

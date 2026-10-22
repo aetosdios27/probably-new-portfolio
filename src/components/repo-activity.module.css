@@ -19,7 +19,7 @@
   transition: color var(--motion-hover) ease;
 }
 
-.row:is(:hover, :focus-visible) { color: var(--foreground); }
+.row:is(:hover, :focus-visible) { color: var(--accent); }
 
 .date,
 .ref {

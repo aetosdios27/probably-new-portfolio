@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState, type CSSProperties } from "react";
 import Link from "next/link";
 import { ACCENT_COLORS } from "@/lib/accent-palette";
+import { hoverCancel, hoverIntent, playgroundBlips } from "@/lib/hover-sound";
 import styles from "./playground-link.module.css";
 
 const WORD = "Playground";
@@ -67,7 +68,8 @@ export function PlaygroundLink({ className = "" }: { className?: string }) {
       href="/playground"
       className={`${styles.link} ${className}`}
       aria-label="Playground"
-      onPointerLeave={clearTrail}
+      onPointerEnter={(event) => { if (event.pointerType === "mouse") hoverIntent("playground-word", playgroundBlips); }}
+      onPointerLeave={() => { hoverCancel("playground-word"); clearTrail(); }}
       onPointerCancel={clearTrail}
       onBlur={clearTrail}
     >

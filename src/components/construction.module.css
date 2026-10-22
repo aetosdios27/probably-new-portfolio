@@ -13,6 +13,18 @@
   --construction-hatch-opacity: 0.05;
   --construction-hatch-line: 1px;
   --construction-hatch-period: 8px;
+  /* The bands are strongest across the content column and its rails, then dissolve toward the edges of
+     the screen. The plateau runs a little past each rail (half the 620px content column plus the gutter); on
+     screens no wider than that it collapses to nothing and the bands stay uniform. The dashed lines
+     keep a third of their strength at the very edge so the structure never disappears. */
+  --vignette-plateau: max(0px, calc(50% - 310px - var(--guide-gutter) - var(--space-3)));
+  --vignette-mask: linear-gradient(
+    to right,
+    rgb(0 0 0 / 0.35) 0,
+    #000 var(--vignette-plateau),
+    #000 calc(100% - var(--vignette-plateau)),
+    rgb(0 0 0 / 0.35) 100%
+  );
   position: relative;
   isolation: isolate;
 }
@@ -48,11 +60,21 @@
   z-index: 0;
   pointer-events: none;
   background-color: var(--background);
-  background-image: repeating-linear-gradient(
-    45deg,
-    rgb(var(--construction-color) / var(--construction-hatch-opacity)) 0 var(--construction-hatch-line),
-    transparent var(--construction-hatch-line) var(--construction-hatch-period)
-  );
+  background-image:
+    linear-gradient(
+      to right,
+      var(--background) 0,
+      color-mix(in srgb, var(--background) 55%, transparent) calc(var(--vignette-plateau) * 0.5),
+      transparent var(--vignette-plateau),
+      transparent calc(100% - var(--vignette-plateau)),
+      color-mix(in srgb, var(--background) 55%, transparent) calc(100% - var(--vignette-plateau) * 0.5),
+      var(--background) 100%
+    ),
+    repeating-linear-gradient(
+      45deg,
+      rgb(var(--construction-color) / var(--construction-hatch-opacity)) 0 var(--construction-hatch-line),
+      transparent var(--construction-hatch-line) var(--construction-hatch-period)
+    );
 }
 
 .break::before,
@@ -62,6 +84,8 @@
   left: 0;
   right: 0;
   height: var(--construction-line-width);
+  -webkit-mask-image: var(--vignette-mask);
+  mask-image: var(--vignette-mask);
   background: repeating-linear-gradient(
     to right,
     rgb(var(--construction-color) / var(--construction-dash-opacity)) 0 var(--construction-dash-length),

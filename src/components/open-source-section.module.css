@@ -55,12 +55,12 @@
 
 @media (hover: hover) and (pointer: fine) {
   .repository:hover {
-    color: var(--foreground);
+    color: var(--accent);
   }
 
 }
 
 .repository:focus-visible {
-  color: var(--foreground);
+  color: var(--accent);
   transition: none;
 }
