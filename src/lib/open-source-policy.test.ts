@@ -1,6 +1,6 @@
 import { describe, it as test } from "node:test";
 import assert from "node:assert/strict";
-import { selectContributions, type GitHubPullRequest } from "./open-source-policy";
+import { OPEN_SOURCE_ORGANIZATIONS, selectContributions, type GitHubPullRequest } from "./open-source-policy";
 import snapshot from "../content/open-source-snapshot.json";
 import { getOpenSourceContributions } from "./open-source";
 
@@ -52,7 +52,7 @@ describe("curated contribution feed", () => {
       const url = new URL(String(input));
       assert.equal(url.hostname, "api.github.com");
       assert.ok(url.searchParams.get("q")?.includes("author:aetosdios27"));
-      assert.ok(url.searchParams.get("q")?.includes("org:zed-industries"));
+      assert.ok(OPEN_SOURCE_ORGANIZATIONS.some(org => url.searchParams.get("q") === `is:pr author:aetosdios27 org:${org}`));
       assert.equal((options as RequestInit & { next: { revalidate: number } }).next.revalidate, 3600);
       return new Response(JSON.stringify({ items: [pr("facebook/rocksdb", 99)], incomplete_results: false }));
     }) as typeof fetch;
@@ -74,6 +74,16 @@ describe("curated contribution feed", () => {
           "https://github.com/facebook/rocksdb/pull/15126": "Fix JNI local-reference leaks in ByteBuffer multiGet",
           "https://github.com/tursodatabase/turso/pull/8465": "Restore SQLite numeric-affinity whitespace parity",
           "https://github.com/zilliztech/knowhere/pull/1787": "Bound DiskANN AIO pool waits and fail fast" }));
+    } finally {
+      globalThis.fetch = original;
+    }
+  });
+
+  test("an empty successful search serves the verified snapshot", async () => {
+    const original = globalThis.fetch;
+    globalThis.fetch = (async () => new Response(JSON.stringify({ items: [], incomplete_results: false }))) as typeof fetch;
+    try {
+      assert.deepEqual((await getOpenSourceContributions()).map((item) => item.href), selectContributions(snapshot.items).map((item) => item.href));
     } finally {
       globalThis.fetch = original;
     }
