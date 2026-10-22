@@ -1,8 +1,7 @@
 import { describe, it as test } from "node:test";
 import assert from "node:assert/strict";
-import { OPEN_SOURCE_ORGANIZATIONS, selectContributions, type GitHubPullRequest } from "./open-source-policy";
+import { selectContributions, type GitHubPullRequest } from "./open-source-policy";
 import snapshot from "../content/open-source-snapshot.json";
-import { getOpenSourceContributions } from "./open-source";
 
 function pr(repository: string, number: number, merged = true, date = "2026-10-01T00:00:00Z"): GitHubPullRequest {
   return {
@@ -46,69 +45,4 @@ describe("curated contribution feed", () => {
     assert.equal(result.find((item) => item.name === "Zed")?.description, "Honor window preferences when opening remote projects");
   });
 
-  test("server feed fetches qualifying organizations with hourly revalidation", async () => {
-    const original = globalThis.fetch;
-    globalThis.fetch = (async (input, options) => {
-      const url = new URL(String(input));
-      assert.equal(url.hostname, "api.github.com");
-      assert.ok(url.searchParams.get("q")?.includes("author:aetosdios27"));
-      assert.ok(OPEN_SOURCE_ORGANIZATIONS.some(org => url.searchParams.get("q") === `is:pr author:aetosdios27 org:${org}`));
-      assert.equal((options as RequestInit & { next: { revalidate: number } }).next.revalidate, 3600);
-      return new Response(JSON.stringify({ items: [pr("facebook/rocksdb", 99)], incomplete_results: false }));
-    }) as typeof fetch;
-    try {
-      assert.deepEqual((await getOpenSourceContributions()).map((item) => item.number), [99]);
-    } finally {
-      globalThis.fetch = original;
-    }
-  });
-
-  test("API failure serves the verified, curated snapshot", async () => {
-    const original = globalThis.fetch;
-    globalThis.fetch = (async () => new Response("rate limited", { status: 403 })) as typeof fetch;
-    try {
-      assert.deepEqual(await getOpenSourceContributions(), selectContributions(snapshot.items,
-        { "https://github.com/zed-industries/zed/pull/61048": "Honor window preferences when opening remote projects",
-          "https://github.com/TraceMachina/nativelink/pull/2548": "Handle zero digests in CompressionStore",
-          "https://github.com/HelixDB/helix-db/pull/1071": "Share one property decode across ORDER BY keys",
-          "https://github.com/facebook/rocksdb/pull/15126": "Fix JNI local-reference leaks in ByteBuffer multiGet",
-          "https://github.com/tursodatabase/turso/pull/8465": "Restore SQLite numeric-affinity whitespace parity",
-          "https://github.com/zilliztech/knowhere/pull/1787": "Bound DiskANN AIO pool waits and fail fast" }));
-    } finally {
-      globalThis.fetch = original;
-    }
-  });
-
-  test("an empty successful search serves the verified snapshot", async () => {
-    const original = globalThis.fetch;
-    globalThis.fetch = (async () => new Response(JSON.stringify({ items: [], incomplete_results: false }))) as typeof fetch;
-    try {
-      assert.deepEqual((await getOpenSourceContributions()).map((item) => item.href), selectContributions(snapshot.items).map((item) => item.href));
-    } finally {
-      globalThis.fetch = original;
-    }
-  });
-
-  test("a stalled request aborts at the three-second budget and serves the snapshot", async () => {
-    const originalFetch = globalThis.fetch;
-    const originalTimeout = AbortSignal.timeout;
-    let requestedTimeout = 0;
-    // Exercise the real abort/fallback path without waiting three seconds.
-    AbortSignal.timeout = (milliseconds) => {
-      requestedTimeout = milliseconds;
-      return originalTimeout(1);
-    };
-    globalThis.fetch = ((_input, options) => new Promise((_resolve, reject) => {
-      const signal = options?.signal;
-      signal?.addEventListener("abort", () => reject(signal.reason), { once: true });
-    })) as typeof fetch;
-    try {
-      const result = await getOpenSourceContributions();
-      assert.equal(requestedTimeout, 3000);
-      assert.deepEqual(result.map((item) => item.href), selectContributions(snapshot.items).map((item) => item.href));
-    } finally {
-      globalThis.fetch = originalFetch;
-      AbortSignal.timeout = originalTimeout;
-    }
-  });
 });

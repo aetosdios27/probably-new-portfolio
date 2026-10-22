@@ -64,5 +64,5 @@ export function cue(name: SoundName, options: PlayOptions = {}, key: string = na
 export function toggleSound() {
   const next = !soundEnabled();
   setSoundEnabled(next);
-  if (next) cue("toggle", { emphasis: "subtle" }, "sound-toggle", 0);
+  if (next) cue("toggle", { theme: "mech", emphasis: "subtle" }, "sound-toggle", 0);
 }

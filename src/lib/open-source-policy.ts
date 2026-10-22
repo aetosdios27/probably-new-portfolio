@@ -4,6 +4,8 @@ export const OPEN_SOURCE_ORGANIZATIONS = [
   "zed-industries", "TraceMachina", "HelixDB", "facebook", "tursodatabase", "zilliztech",
 ] as const;
 
+export const OPEN_SOURCE_AUTHOR = "aetosdios27";
+
 export type GitHubPullRequest = {
   title: string;
   html_url: string;
@@ -36,7 +38,7 @@ export function selectContributions(items: GitHubPullRequest[], descriptions: Re
     const url = new URL(item.html_url);
     const [organization, repository, kind] = url.pathname.slice(1).split("/");
     if (url.hostname !== "github.com" || kind !== "pull" || !allowed.has(organization.toLowerCase()) ||
-      item.user.login.toLowerCase() !== "aetosdios27" || item.draft || (!item.pull_request.merged_at && item.state !== "open")) return [];
+      item.user.login.toLowerCase() !== OPEN_SOURCE_AUTHOR || item.draft || (!item.pull_request.merged_at && item.state !== "open")) return [];
     return [{
       name: REPOSITORY_NAMES[repository.toLowerCase()] ?? repository,
       description: descriptions[item.html_url] ?? item.title.trim().replace(/^(?:fix|feat|refactor|perf)(?:\([^)]*\))?:\s*/i, ""),

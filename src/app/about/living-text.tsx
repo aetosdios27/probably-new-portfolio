@@ -25,6 +25,7 @@ function IdentityName() {
   return (
     <button
       type="button"
+      data-sound="identity-reveal"
       className={styles.identity}
       aria-label={revealed ? "Pushpendra" : "Reveal my name"}
       aria-pressed={revealed}

@@ -21,7 +21,7 @@ bun run start
 
 Set `NEXT_PUBLIC_SITE_URL` (for example `https://aetosdios.xyz`) in deployment. It drives `metadataBase`, canonical URLs, the sitemap, and robots; without it, the build falls back to `https://aetosdios.xyz`.
 
-`bun run build` does not call GitHub. It builds from the committed `src/data/projects.generated.json` snapshot. To refresh that snapshot, run `bun run projects:generate` manually (optionally with `GITHUB_TOKEN` set for higher API limits), then commit the result.
+Playground project data builds from the committed `src/data/projects.generated.json` snapshot. The open-source section can call GitHub during a build when `GITHUB_TOKEN` is configured. To refresh that snapshot, run `bun run projects:generate` manually (optionally with `GITHUB_TOKEN` set for higher API limits), then commit the result.
 
 ## Design foundation
 
@@ -33,7 +33,7 @@ Inter Tight is self-hosted through `next/font/local`. The variable font and its 
 
 - `src/content/portfolio.ts`: identity, the homepage highlight shortlist (`highlightProjects`), and the editorial open-source descriptions (`openSource`, read by `src/lib/open-source.ts`). Contact links are not here; they live in the `CONTACT` object in `src/components/socials-dock.tsx`.
 - `src/lib/open-source-policy.ts`: qualifying organization allowlist, merged-first selection, one-PR-per-repository limit, and newest-first ordering.
-- `src/lib/open-source.ts`: server-side GitHub search with hourly revalidation and a three-second timeout. The homepage refreshes on visits after the cache expires; it does not poll or rearrange rows during reading. Set optional server-only `GITHUB_TOKEN` in deployment for higher GitHub API limits; public search also works without it.
+- `src/lib/open-source.ts`: server-only authored-PR feed, cached after validation and refreshed hourly on visits. It traverses the public authored history with GraphQL cursors, then applies the curated policy; adding PRs to an approved organization requires no code changes. New organizations must be approved in `src/lib/open-source-policy.ts`. `GITHUB_TOKEN` is required for live GraphQL refreshes and must stay server-only. Failed, partial, empty, or timed-out refreshes cannot replace a good cached result. With no cached result, the site uses `src/content/open-source-snapshot.json`.
 - `src/content/open-source-snapshot.json`: verified API snapshot used if GitHub is unavailable or rate limited. Both live data and fallback use the same filtering policy. Add qualifying organizations deliberately, with a matching local logo asset under `public/images/organizations`.
 - `src/content/resume-source.txt`: full text extracted from the supplied résumé. No code imports it; it is an editorial reference, not displayed wholesale.
 - `src/content/resume-links.json`: embedded links extracted from the résumé. No code imports it; it is an editorial reference.
@@ -46,7 +46,9 @@ Navigation uses the compact top header on Playground and Dispatches; the persona
 
 Spacing follows an 8px scale defined as `--space-*` tokens in `globals.css`. See [the internal spacing rules](docs/spacing.md) before changing page rhythm.
 
-Ordinary content links use the shared `EditorialLink` / `LinkLabel` components: dashed idle underline, reversible solid swipe from a fixed left origin, and an arrow visible only on hover/focus. Keep the Playground word's bespoke interaction and compact navigation treatment. Run `bun test src/lib/open-source-policy.test.ts` to verify contribution filtering, ordering, freshness settings, and API-failure fallback.
+Ordinary content links use the shared `EditorialLink` / `LinkLabel` components: dashed idle underline, reversible solid swipe from a fixed left origin, and an arrow visible only on hover/focus. Keep the Playground word's bespoke interaction and compact navigation treatment. Run `bun test src/lib/open-source-policy.test.ts` to verify contribution curation and ordering. `bun test src/lib/open-source-github.test.ts scripts/generate-open-source.test.ts` verifies pagination, rejection of unusable responses, and snapshot preservation.
+
+To update the committed open-source fallback, run `bun run open-source:snapshot` with `GITHUB_TOKEN` set, review the resulting six public contributions, and commit the snapshot. The command follows pagination until all history is examined or older pages cannot change the six merged selections, then writes atomically; an API failure preserves the existing file. Unchanged results leave the file untouched. The manual snapshot is a deployment safety net; normal hourly refresh uses Next’s persistent validated-result cache.
 
 ## GitHub activity
 

@@ -70,6 +70,7 @@ export type DockItemProps = {
   onClick?: () => void;
   onHover?: () => void;
   onHoverEnd?: () => void;
+  'data-cuelume-tap'?: string;
 };
 
 export type DockLabelProps = {
@@ -160,7 +161,7 @@ function Dock({
   );
 }
 
-function DockItem({ children, className, onClick, onHover, onHoverEnd }: DockItemProps) {
+function DockItem({ children, className, onClick, onHover, onHoverEnd, ...attributes }: DockItemProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { distance, magnification, mouseX, spring } = useDock();
@@ -182,6 +183,7 @@ function DockItem({ children, className, onClick, onHover, onHoverEnd }: DockIte
 
   return (
     <motion.div
+      {...attributes}
       ref={ref}
       style={{ width }}
       onHoverStart={() => { isHovered.set(1); onHover?.(); }}

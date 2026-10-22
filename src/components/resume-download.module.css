@@ -1,0 +1,93 @@
+.download {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  touch-action: pan-y;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.download::before { display: none; }
+
+.vessel {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  overflow: hidden;
+  border-radius: 50%;
+  background: rgb(255 246 232 / 0.025);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.12), inset 0 0 0 1px rgb(255 255 255 / 0.045);
+}
+
+.vessel::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: inherit;
+  background: radial-gradient(ellipse at 30% 0%, rgb(255 255 255 / 0.12), transparent 65%);
+  box-shadow: inset 0 -1px 0 rgb(0 0 0 / 0.16);
+}
+
+.water {
+  position: absolute;
+  inset: -6px 0 0;
+  color: var(--accent);
+  transform: translateY(calc((1 - var(--hold-progress, 0)) * 110%));
+  transition: transform var(--motion-standard) var(--ease-out);
+}
+
+.download[data-holding="true"] .water { transition: none; }
+.download:is([data-complete="true"], [data-fetching="true"]) .water { transform: translateY(0); }
+
+.wave {
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 200%;
+  height: 100%;
+  fill: currentColor;
+  opacity: 0.45;
+}
+
+.back { opacity: 0.2; transform: translateX(-12.5%); }
+.download[data-holding="true"] .wave { animation: water-drift 1400ms linear infinite; }
+.download[data-holding="true"] .back { animation-duration: 1800ms; animation-direction: reverse; }
+
+.symbol { position: relative; width: 18px; height: 18px; }
+
+.tip {
+  position: absolute;
+  bottom: calc(100% + var(--space-1));
+  left: 50%;
+  width: max-content;
+  padding: 4px var(--space-1);
+  line-height: 1.4;
+  opacity: 0;
+  pointer-events: none;
+  transform: translateX(-50%);
+  transition: opacity var(--motion-hover) var(--ease-out);
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .download:hover .tip { opacity: 1; }
+}
+.download:focus-visible .tip { opacity: 1; transition: none; }
+
+@keyframes water-drift {
+  from { transform: translateX(0); }
+  to { transform: translateX(-25%); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .water, .tip { transition: none; }
+  .download[data-holding="true"] .water { transform: translateY(50%); }
+  .download:is([data-complete="true"], [data-fetching="true"]) .water { transform: translateY(0); }
+  .download[data-holding="true"] .wave { animation: none; }
+}

@@ -52,7 +52,7 @@ export function SiteFooter() {
       </div>
       <div className={styles.end}>
         <span>© {new Date().getFullYear()} {identity.name}</span>
-        <button type="button" className={styles.top} onClick={toTop}>
+        <button type="button" className={styles.top} onClick={toTop} data-cuelume-navigate="" data-cuelume-emphasis="subtle">
           Top <span aria-hidden="true">↑</span>
         </button>
       </div>

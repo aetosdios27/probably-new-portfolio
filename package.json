@@ -9,7 +9,8 @@
     "lint": "eslint",
     "typecheck": "next typegen && tsc --noEmit",
     "projects:generate": "bun scripts/generate-projects.ts",
-    "activity:snapshot": "bun scripts/generate-repo-activity.ts"
+    "activity:snapshot": "bun scripts/generate-repo-activity.ts",
+    "open-source:snapshot": "bun scripts/generate-open-source.ts"
   },
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.2.16",

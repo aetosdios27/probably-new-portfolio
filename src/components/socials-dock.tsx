@@ -1,12 +1,13 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { Fragment, useEffect, useRef } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import { FaGithub, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
-import { LuArrowLeft, LuCalendarDays, LuDownload, LuMail } from "react-icons/lu";
+import { LuArrowLeft, LuCalendarDays, LuMail } from "react-icons/lu";
 import { Dock, DockIcon, DockItem, DockLabel } from "./ui/dock";
 import { CONTACT } from "@/content/contact";
 import { dockTick, hoverCancel, hoverIntent } from "@/lib/hover-sound";
+import { ResumeDownload } from "./resume-download";
 import styles from "./socials-dock.module.css";
 
 const ITEMS = [
@@ -14,7 +15,6 @@ const ITEMS = [
   { label: "X", href: CONTACT.x, Icon: FaXTwitter },
   { label: "LinkedIn", href: CONTACT.linkedin, Icon: FaLinkedinIn },
   { label: "Mail", href: `mailto:${CONTACT.email}`, Icon: LuMail },
-  { label: "Download résumé", href: "/resume.pdf", Icon: LuDownload },
   { label: "Book a call", href: CONTACT.call, Icon: LuCalendarDays },
 ];
 const HISTORY_KEY = "__portfolioDock";
@@ -70,13 +70,13 @@ export function SocialsDock() {
   }
 
   return (
-    <nav className={styles.position} aria-label="socials"
+    <nav className={styles.position} aria-label="socials" data-cuelume-theme="default" data-cuelume-emphasis="subtle"
       onKeyDown={event => {
         // Native DockItem supplies a focusable role=button. Activate its
         // existing click action for Enter/Space without changing the primitive.
-        if ((event.key === "Enter" || event.key === " ") && (event.target as HTMLElement).getAttribute("role") === "button") {
+        if ((event.key === "Enter" || event.key === " ") && event.target instanceof HTMLElement && !(event.target instanceof HTMLButtonElement) && event.target.getAttribute("role") === "button") {
           event.preventDefault();
-          (event.target as HTMLElement).click();
+          event.target.click();
         }
       }}>
       <Dock className={styles.colors} panelHeight={44} maxHeight={44} magnification={40}>
@@ -84,25 +84,19 @@ export function SocialsDock() {
           <DockLabel>Back</DockLabel>
           <DockIcon><LuArrowLeft role="img" aria-label="Back" className={styles.icon} /></DockIcon>
         </DockItem>}
-        {ITEMS.map(({ label, href, Icon }, index) => (
-          <DockItem key={label} className="aspect-square"
+        {ITEMS.map(({ label, href, Icon }, index) => <Fragment key={label}>
+          {label === "Book a call" && <ResumeDownload />}
+          <DockItem className="aspect-square" data-cuelume-tap=""
             onHover={() => hoverIntent(`dock-${index + 1}`, () => dockTick(index + 1))}
             onHoverEnd={() => hoverCancel(`dock-${index + 1}`)}
             onClick={() => {
-            if (href === "/resume.pdf") {
-              const link = document.createElement("a");
-              link.href = href;
-              link.download = "aetos-resume.pdf";
-              document.body.append(link);
-              link.click();
-              link.remove();
-            } else if (href.startsWith("mailto:")) location.href = href;
+            if (href.startsWith("mailto:")) location.href = href;
             else window.open(href, "_blank", "noopener,noreferrer");
           }}>
             <DockLabel>{label}</DockLabel>
             <DockIcon><Icon role="img" aria-label={label} className={styles.icon} /></DockIcon>
           </DockItem>
-        ))}
+        </Fragment>)}
       </Dock>
     </nav>
   );
