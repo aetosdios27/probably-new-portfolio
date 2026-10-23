@@ -48,7 +48,7 @@ Spacing follows an 8px scale defined as `--space-*` tokens in `globals.css`. See
 
 Ordinary content links use the shared `EditorialLink` / `LinkLabel` components: dashed idle underline, reversible solid swipe from a fixed left origin, and an arrow visible only on hover/focus. Keep the Playground word's bespoke interaction and compact navigation treatment. Run `bun test src/lib/open-source-policy.test.ts` to verify contribution curation and ordering. `bun test src/lib/open-source-github.test.ts scripts/generate-open-source.test.ts` verifies pagination, rejection of unusable responses, and snapshot preservation.
 
-To update the committed open-source fallback, run `bun run open-source:snapshot` with `GITHUB_TOKEN` set, review the resulting six public contributions, and commit the snapshot. The command follows pagination until all history is examined or older pages cannot change the six merged selections, then writes atomically; an API failure preserves the existing file. Unchanged results leave the file untouched. The manual snapshot is a deployment safety net; normal hourly refresh uses Next’s persistent validated-result cache.
+To update the committed open-source fallback, run `bun run open-source:snapshot` with `GITHUB_TOKEN` set, review the resulting seven public contributions, and commit the snapshot. The command follows pagination until all history is examined or older pages cannot change the seven merged selections, then writes atomically; an API failure preserves the existing file. Unchanged results leave the file untouched. The manual snapshot is a deployment safety net; normal hourly refresh uses Next’s persistent validated-result cache.
 
 ## GitHub activity
 

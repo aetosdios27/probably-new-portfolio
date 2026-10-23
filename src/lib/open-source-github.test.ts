@@ -73,13 +73,13 @@ describe("authored contribution refresh", () => {
     assert.equal(result.length, 1);
   });
 
-  test("stops only when older pages cannot change six merged winners", async () => {
-    const winners = Array.from({ length: 6 }, (_, i) => pr(`facebook/repo-${i}`, i + 1));
+  test("stops only when older pages cannot change seven merged winners", async () => {
+    const winners = Array.from({ length: 7 }, (_, i) => pr(`facebook/repo-${i}`, i + 1));
     const boundary = { ...pr("unapproved-org/old-repo", 20), updatedAt: "2026-08-01T00:00:00Z", mergedAt: "2026-07-01T00:00:00Z" };
     const result = await fetchOpenSourceHistory({ token: "test-token", fetcher: fetchPages([page([...winners, boundary], "older-page")]) });
-    assert.equal(result.length, 6);
-    // Six merged PRs alone are insufficient: an old PR updated recently can
-    // place a more recently merged seventh repository on a later page.
+    assert.equal(result.length, 7);
+    // Seven merged PRs alone are insufficient: an old PR updated recently can
+    // place a more recently merged eighth repository on a later page.
     const newerMerge = { ...pr("zed-industries/zed", 99), mergedAt: "2026-09-15T00:00:00Z" };
     const complete = await fetchOpenSourceHistory({ token: "test-token", fetcher: fetchPages([
       page(winners, "older-page"), page([newerMerge]),

@@ -22,4 +22,4 @@ Use `EditorialLink` and `LinkLabel` from `src/components/editorial-link.tsx` for
 
 ## Open-source feed
 
-Qualifying organizations are explicitly curated in `src/lib/open-source-policy.ts`; never expand this feed to all personal/friend/startup PRs or use activity volume as a quality signal. Display at most six contributions, one per repository, selecting merged first and at most one open PR, then sort the selected list newest first. GitHub data is fetched only on the server and revalidated hourly. Keep credentials out of client code and use the verified snapshot if the API is unavailable.
+Qualifying organizations are explicitly curated in `src/lib/open-source-policy.ts`; never expand this feed to all personal/friend/startup PRs or use activity volume as a quality signal. Display at most seven contributions, one per repository, selecting merged first and at most one open PR, then sort the selected list newest first. GitHub data is fetched only on the server and revalidated hourly. Keep credentials out of client code and use the verified snapshot if the API is unavailable.

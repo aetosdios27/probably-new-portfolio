@@ -1,4 +1,4 @@
-import { OPEN_SOURCE_AUTHOR, selectContributions, type GitHubPullRequest } from "./open-source-policy";
+import { OPEN_SOURCE_AUTHOR, OPEN_SOURCE_LIMIT, selectContributions, type GitHubPullRequest } from "./open-source-policy";
 
 // An authored connection has cursor pagination; unlike search, it has no 1,000-result ceiling.
 const QUERY = `query AuthoredContributions($login: String!, $after: String) {
@@ -100,9 +100,9 @@ export async function fetchOpenSourceHistory({
       const selected = selectContributions(items);
       const oldestMerged = Math.min(...selected.map(item => Date.parse(item.activityAt)));
       const pageBoundary = Math.min(...page.items.map(item => Date.parse(item.updated_at)));
-      // Older pages cannot beat six merged winners once their update times are
+      // Older pages cannot beat a full merged list once their update times are
       // older than every selected merge. Open PRs never justify stopping early.
-      if (selected.length === 6 && selected.every(item => item.status === "Merged") && pageBoundary <= oldestMerged) break;
+      if (selected.length === OPEN_SOURCE_LIMIT && selected.every(item => item.status === "Merged") && pageBoundary <= oldestMerged) break;
     }
   } while (after);
   const selected = selectContributions(items);

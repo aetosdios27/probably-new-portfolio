@@ -32,16 +32,16 @@ describe("curated contribution feed", () => {
     assert.equal(result.filter((item) => item.status === "Open").length, 1);
   });
 
-  test("caps the list at six and never displays more than one open PR", () => {
+  test("caps the list at seven and never displays more than one open PR", () => {
     const items = Array.from({ length: 8 }, (_, i) => pr(`facebook/repo-${i}`, i + 1));
-    assert.equal(selectContributions(items).length, 6);
+    assert.equal(selectContributions(items).length, 7);
     assert.equal(selectContributions(items.map((item) => ({ ...item, state: "open", pull_request: { merged_at: null } }))).length, 1);
   });
 
   test("verified snapshot follows the live policy and preserves editorial descriptions", () => {
     const result = selectContributions(snapshot.items, { "https://github.com/zed-industries/zed/pull/61048": "Honor window preferences when opening remote projects" });
-    assert.deepEqual(result.map((item) => item.name), ["HelixDB", "Knowhere", "Turso", "RocksDB", "Zed", "NativeLink"]);
-    assert.equal(result.filter((item) => item.status === "Merged").length, 5);
+    assert.deepEqual(result.map((item) => item.name), ["DataFusion", "HelixDB", "Knowhere", "Turso", "RocksDB", "Zed", "NativeLink"]);
+    assert.equal(result.filter((item) => item.status === "Merged").length, 6);
     assert.equal(result.find((item) => item.name === "Zed")?.description, "Honor window preferences when opening remote projects");
   });
 

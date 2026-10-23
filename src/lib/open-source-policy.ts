@@ -1,10 +1,11 @@
 // Curate organizations explicitly. Friend/startup repos cannot enter this feed
 // through activity volume or popularity heuristics. Add organizations deliberately.
 export const OPEN_SOURCE_ORGANIZATIONS = [
-  "zed-industries", "TraceMachina", "HelixDB", "facebook", "tursodatabase", "zilliztech",
+  "zed-industries", "TraceMachina", "HelixDB", "facebook", "tursodatabase", "zilliztech", "apache",
 ] as const;
 
 export const OPEN_SOURCE_AUTHOR = "aetosdios27";
+export const OPEN_SOURCE_LIMIT = 7;
 
 export type GitHubPullRequest = {
   title: string;
@@ -29,7 +30,7 @@ export type Contribution = {
 
 const REPOSITORY_NAMES: Record<string, string> = {
   zed: "Zed", nativelink: "NativeLink", "helix-db": "HelixDB",
-  rocksdb: "RocksDB", turso: "Turso", knowhere: "Knowhere",
+  rocksdb: "RocksDB", turso: "Turso", knowhere: "Knowhere", datafusion: "DataFusion",
 };
 
 export function selectContributions(items: GitHubPullRequest[], descriptions: Record<string, string> = {}): Contribution[] {
@@ -62,7 +63,7 @@ export function selectContributions(items: GitHubPullRequest[], descriptions: Re
     if (item.status === "Open" && result.some((entry) => entry.status === "Open")) continue;
     seen.add(repository);
     result.push(item);
-    if (result.length === 6) break;
+    if (result.length === OPEN_SOURCE_LIMIT) break;
   }
   return result.sort(recent);
 }

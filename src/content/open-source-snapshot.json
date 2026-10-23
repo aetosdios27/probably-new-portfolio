@@ -1,6 +1,20 @@
 {
-  "checkedAt": "2026-10-22T16:59:16.460Z",
+  "checkedAt": "2026-10-23T07:22:37.500Z",
   "items": [
+    {
+      "title": "test: run microbenchmarks in extended CI",
+      "html_url": "https://github.com/apache/datafusion/pull/25836",
+      "number": 25836,
+      "state": "closed",
+      "updated_at": "2026-10-23T04:19:43Z",
+      "draft": false,
+      "user": {
+        "login": "aetosdios27"
+      },
+      "pull_request": {
+        "merged_at": "2026-10-22T10:46:32Z"
+      }
+    },
     {
       "title": "fix: reject path-traversal characters in instance names",
       "html_url": "https://github.com/HelixDB/helix-db/pull/1064",

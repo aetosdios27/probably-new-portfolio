@@ -1,7 +1,7 @@
 import { unstable_cache } from "next/cache";
 import { openSource } from "@/content/portfolio";
 import snapshot from "@/content/open-source-snapshot.json";
-import { OPEN_SOURCE_AUTHOR, OPEN_SOURCE_ORGANIZATIONS, selectContributions } from "./open-source-policy";
+import { OPEN_SOURCE_AUTHOR, OPEN_SOURCE_LIMIT, OPEN_SOURCE_ORGANIZATIONS, selectContributions } from "./open-source-policy";
 import { fetchOpenSourceHistory } from "./open-source-github";
 
 const descriptions = Object.fromEntries(openSource.map((item) => [item.href, item.description]));
@@ -10,7 +10,7 @@ const descriptions = Object.fromEntries(openSource.map((item) => [item.href, ite
 // replace a good feed. Failed hourly refreshes leave the previous cache value intact.
 const getCachedContributions = unstable_cache(
   async () => selectContributions(await fetchOpenSourceHistory({ token: process.env.GITHUB_TOKEN ?? "" }), descriptions),
-  ["authored-contributions-v1", OPEN_SOURCE_AUTHOR, JSON.stringify(OPEN_SOURCE_ORGANIZATIONS), JSON.stringify(descriptions)],
+  ["authored-contributions-v1", OPEN_SOURCE_AUTHOR, String(OPEN_SOURCE_LIMIT), JSON.stringify(OPEN_SOURCE_ORGANIZATIONS), JSON.stringify(descriptions)],
   { revalidate: 3600 },
 );
 
