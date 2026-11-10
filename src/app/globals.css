@@ -6,7 +6,6 @@
 :root,
 :root[data-theme="dark"] {
   color-scheme: dark;
-  --accent: #b6ce8a;
   --background: #000000;
   --foreground: #ece8e1;
   --muted: rgb(236 232 225 / 68%);
@@ -38,6 +37,65 @@
   --vessel-ring: inset 0 1px 0 rgb(255 255 255 / 0.12), inset 0 0 0 1px rgb(255 255 255 / 0.045);
   --vessel-sheen: rgb(255 255 255 / 0.12);
   --vessel-shade: inset 0 -1px 0 rgb(0 0 0 / 0.16);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --background: #f5f2ea;
+  --foreground: #1b1916;
+  --muted: rgb(27 25 22 / 77%);
+  --subtle: rgb(27 25 22 / 69%);
+  --border: #e0dbd0;
+  --surface: #ede9df;
+  --line: 27 25 22;
+  --line-dash: 0.26;
+  --line-hatch: 0.06;
+  --underline: rgb(var(--line) / 30%);
+  --strong: rgb(var(--line) / 88%);
+  --heat-0: rgb(var(--line) / 6%);
+  --heat-1: rgb(var(--line) / 16%);
+  --heat-2: rgb(var(--line) / 28%);
+  --heat-3: rgb(var(--line) / 42%);
+  --heat-4: rgb(var(--line) / 60%);
+  --selection: #2c2924;
+  --tap-highlight: rgb(27 25 22 / 7%);
+  /* On paper the glass is frosted rather than clear: a milky fill, a crisp white top edge and a
+     soft warm shadow that lifts it off the page. */
+  --glass-fill: linear-gradient(180deg, rgb(255 253 248 / 0.78), rgb(250 247 240 / 0.62));
+  --glass-edge: inset 0 1px 0 rgb(255 255 255 / 0.9);
+  --glass-shadow: 0 1px 2px rgb(60 48 30 / 0.08), 0 8px 28px rgb(60 48 30 / 0.12);
+  --glass-rim: linear-gradient(155deg, rgb(27 25 22 / 0.16), rgb(27 25 22 / 0.08) 40%, rgb(27 25 22 / 0.1) 70%, rgb(27 25 22 / 0.18));
+  --glass-hover: rgb(27 25 22 / 0.06);
+  --glass-hover-edge: inset 0 1px 0 rgb(255 255 255 / 0.7);
+  --glass-border: rgb(27 25 22 / 0.1);
+  --vessel-fill: rgb(27 25 22 / 0.03);
+  --vessel-ring: inset 0 1px 0 rgb(255 255 255 / 0.8), inset 0 0 0 1px rgb(27 25 22 / 0.08);
+  --vessel-sheen: rgb(255 255 255 / 0.5);
+  --vessel-shade: inset 0 -1px 0 rgb(27 25 22 / 0.06);
+}
+
+/* The accent is authored once, as a luminous hue for the night canvas (--accent-source), and each
+   theme derives the colour it actually paints (--accent). On paper the same hue is pulled down to a
+   fixed OKLCH lightness so text-sized accent clears 4.5:1; dither-themes.test.ts reads these numbers.
+   Anything that sets its own --accent-source re-derives with .accent-scope. The homepage follows the
+   season; pages with their own hue set it on PageFrame. */
+:root { --accent-source: #b6ce8a; --accent-light-l: 0.5; --accent-light-c: 1.4; }
+:root[data-season="spring"] { --accent-source: #e7a6bc; }
+:root[data-season="summer"] { --accent-source: #b6ce8a; }
+:root[data-season="monsoon"] { --accent-source: #91c9db; }
+:root[data-season="autumn"] { --accent-source: #edba8b; }
+:root[data-season="prewinter"] { --accent-source: #e5d7ae; }
+:root[data-season="winter"] { --accent-source: #b9abdf; }
+:root, .accent-scope { --accent: var(--accent-source); }
+:root[data-theme="light"],
+:root[data-theme="light"] .accent-scope {
+  --accent: color-mix(in oklab, var(--accent-source) 42%, var(--foreground));
+}
+@supports (color: oklch(from red l c h)) {
+  :root[data-theme="light"],
+  :root[data-theme="light"] .accent-scope {
+    --accent: oklch(from var(--accent-source) var(--accent-light-l) calc(c * var(--accent-light-c)) h);
+  }
 }
 
 :root {

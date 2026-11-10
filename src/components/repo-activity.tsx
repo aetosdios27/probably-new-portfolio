@@ -27,7 +27,7 @@ export function RepoActivity({ name, repoUrl, items }: { name: string; repoUrl: 
               <a className={styles.row} href={item.url} target="_blank" rel="noopener noreferrer"
                 aria-label={`${item.kind === "pull" ? `Pull request ${item.ref}, ${item.state}` : `Commit ${item.ref}`}: ${item.title}`}>
                 <time className={styles.date} dateTime={item.date}>{formatDate(item.date)}</time>
-                <Glyph aria-hidden="true" className={styles.glyph} data-kind={item.kind === "commit" ? "commit" : item.state} />
+                <Glyph aria-hidden="true" className={`${styles.glyph} accent-scope`} data-kind={item.kind === "commit" ? "commit" : item.state} />
                 <span className={styles.title}>{item.title}</span>
                 <span className={styles.ref}>{item.ref}</span>
               </a>

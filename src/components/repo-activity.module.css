@@ -31,8 +31,9 @@
 }
 
 .glyph { width: 14px; height: 14px; color: var(--subtle); }
-.glyph[data-kind="merged"] { color: #b9abdf; }
-.glyph[data-kind="open"] { color: #b6ce8a; }
+/* Lavender and pistachio from the accent palette, derived per theme like any accent. */
+.glyph[data-kind="merged"] { --accent-source: #b9abdf; color: var(--accent); }
+.glyph[data-kind="open"] { --accent-source: #b6ce8a; color: var(--accent); }
 
 .title {
   min-width: 0;

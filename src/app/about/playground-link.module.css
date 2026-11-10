@@ -43,6 +43,13 @@
   transition: opacity var(--motion-standard) var(--ease-out);
 }
 
+/* The palette is authored for the night canvas; on paper each letter takes the accent's ink lightness. */
+@supports (color: oklch(from red l c h)) {
+  :global(:root[data-theme="light"]) .pixel {
+    fill: oklch(from var(--pixel-color, var(--accent-source)) var(--accent-light-l) calc(c * var(--accent-light-c)) h);
+  }
+}
+
 /* Up to five visited letters follow the pointer, then catch up on a pause.
    Letter cells never change width, keeping every pointer target stable. */
 @media (hover: hover) and (pointer: fine) {

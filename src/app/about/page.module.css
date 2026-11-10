@@ -25,6 +25,13 @@
   object-fit: cover;
 }
 
+/* The portrait is a white-on-black ink drawing. Inverting it would turn the face into a negative, so on
+   paper it is toned instead: blacks lift to the ink colour and whites settle into the paper, like a print. */
+:global(:root[data-theme="light"]) .avatar {
+  filter: contrast(0.89) sepia(0.14);
+  box-shadow: 0 0 0 1px var(--border);
+}
+
 .greeting {
   margin-top: var(--space-4);
   color: var(--foreground);

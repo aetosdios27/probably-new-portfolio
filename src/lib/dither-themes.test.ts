@@ -1,37 +1,45 @@
 import { describe, it as test } from "node:test";
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
+import { ACCENT_COLORS } from "./accent-palette";
+import { atLightness, contrast, relativeLuminance } from "./color";
 import { PAGE_DITHERS, projectDither } from "./dither-themes";
+import { THEME_BACKGROUND } from "./theme";
 
-const BACKGROUND = "#000000";
-
-function luminance(hex: string) {
-  const [r, g, b] = [1, 3, 5].map((index) => {
-    const channel = parseInt(hex.slice(index, index + 2), 16) / 255;
-    return channel <= 0.03928 ? channel / 12.92 : ((channel + 0.055) / 1.055) ** 2.4;
-  });
-  return 0.2126 * r + 0.7152 * g + 0.0722 * b;
-}
-
-function contrast(foreground: string, background: string) {
-  const [lighter, darker] = [luminance(foreground), luminance(background)].sort((a, b) => b - a);
-  return (lighter + 0.05) / (darker + 0.05);
-}
+// The light accent is derived in CSS; read the lightness and chroma it actually uses.
+const css = readFileSync(new URL("../app/globals.css", import.meta.url), "utf8");
+const token = (name: string) => Number(css.match(new RegExp(`--${name}:\\s*([\\d.]+)`))?.[1]);
+const LIGHTNESS = token("accent-light-l");
+const CHROMA = token("accent-light-c");
 
 const themes = {
   ...PAGE_DITHERS,
   ...Object.fromEntries(["kiban", "kurogane", "styx", "scribe", "webnotes", "konto", "some-other-repo"].map((slug) => [slug, projectDither(slug)])),
 };
+// Every accent source: page and project themes, plus the six seasonal hues the homepage cycles through.
+const sources = { ...Object.fromEntries(Object.entries(themes).map(([name, theme]) => [name, theme.text])), ...Object.fromEntries(ACCENT_COLORS.map((color) => [`season ${color}`, color])) };
 
 describe("dither themes", () => {
+  test("globals.css declares the light accent derivation", () => {
+    assert.ok(LIGHTNESS > 0 && LIGHTNESS < 1, `--accent-light-l is ${LIGHTNESS}`);
+    assert.ok(CHROMA > 0, `--accent-light-c is ${CHROMA}`);
+  });
+
   // The page accent is small text (links, numbers), so it has to clear AA on the page background.
-  for (const [name, theme] of Object.entries(themes)) {
-    test(`${name}: text accent is readable on the page background`, () => {
-      assert.ok(contrast(theme.text, BACKGROUND) >= 4.5, `${name} ${theme.text} is ${contrast(theme.text, BACKGROUND).toFixed(1)}:1`);
+  for (const [name, source] of Object.entries(sources)) {
+    test(`${name}: text accent is readable on the dark background`, () => {
+      const ratio = contrast(source, THEME_BACKGROUND.dark);
+      assert.ok(ratio >= 4.5, `${name} ${source} is ${ratio.toFixed(1)}:1`);
+    });
+    test(`${name}: text accent is readable on the light background`, () => {
+      const accent = atLightness(source, LIGHTNESS, CHROMA);
+      const ratio = contrast(accent, THEME_BACKGROUND.light);
+      assert.ok(ratio >= 4.5, `${name} ${source} -> ${accent} is ${ratio.toFixed(1)}:1`);
     });
   }
 
   test("scribe keeps a darker pattern colour than its text colour", () => {
     const scribe = projectDither("scribe");
-    assert.ok(luminance(scribe.text) > luminance(scribe.color));
+    assert.ok(relativeLuminance(scribe.text) > relativeLuminance(scribe.color));
   });
 });

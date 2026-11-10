@@ -112,6 +112,15 @@
   pointer-events: none;
 }
 
+/* The vivid palette glows on black; on paper the paler hues (cream, pistachio) are pulled down a
+   little so every colour reads, and the halo tightens so it reads as ink, not a smudge. */
+@supports (color: oklch(from red l c h)) {
+  :global(:root[data-theme="light"]) .cell:not([data-level="0"])::after {
+    background: oklch(from var(--base) min(l, 0.78) c h);
+    box-shadow: 0 0 6px color-mix(in srgb, var(--base) 45%, transparent);
+  }
+}
+
 .cells[data-playing="true"] .cell:not([data-level="0"])::after {
   animation: twinkle var(--period) linear infinite;
   animation-delay: var(--delay);

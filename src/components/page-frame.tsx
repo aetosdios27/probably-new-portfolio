@@ -17,7 +17,7 @@ export function PageFrame({
   children: ReactNode;
 }) {
   return (
-    <main id="main" className={`${className ?? ""} ${construction.frame}`} style={gutters ? ({ "--accent": gutters.text } as CSSProperties) : undefined}>
+    <main id="main" className={`${className ?? ""} ${construction.frame}${gutters ? " accent-scope" : ""}`} style={gutters ? ({ "--accent-source": gutters.text } as CSSProperties) : undefined}>
       {backdrop}
       {gutters ? <GutterDither theme={gutters} /> : null}
       <div aria-hidden="true" className={`${construction.rail} ${construction.leftRail}`} />
