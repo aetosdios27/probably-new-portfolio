@@ -1,8 +1,8 @@
 .gutters {
   display: none;
   position: absolute;
-  top: var(--construction-band-height);
-  bottom: var(--construction-band-height);
+  top: 0;
+  bottom: 0;
   left: 0;
   right: 0;
   z-index: 0;
@@ -16,9 +16,6 @@
   width: calc((100cqw - 100%) / 2 - var(--guide-gutter));
   opacity: 0.4;
 }
-
-/* With no bands crossing the gutters on paper (see construction.module.css), the pattern runs edge to edge. */
-:global(:root[data-theme="light"]) .gutters { top: 0; bottom: 0; }
 
 /* Ink on paper loses more to the fade than light on black does. */
 :global(:root[data-theme="light"]) .box { opacity: 0.62; }

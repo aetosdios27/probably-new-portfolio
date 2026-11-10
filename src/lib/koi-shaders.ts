@@ -530,7 +530,11 @@ vec3 windowColor(float k) {
 // crossing it. Lit windows, lamps and carriage glass come back through the light output so they can
 // stay bright instead of being washed into the water like the silhouettes. flash is the sheet
 // lightning of the moment: it lights the sky and the cloud but not the buildings, so they stand out.
-vec3 reflection(vec2 p, float t, float flash, out vec3 lightCol, out float light) {
+// Returns the mirrored sky and silhouettes, which ambient light shows. What emits (moon or sun, its
+// glitter path, stars, lightning, lit windows and lamps) comes back through glow and lightCol/light
+// so the caller can let it reflect at full strength, the way a light does on real water.
+vec3 reflection(vec2 p, float t, float flash, out vec3 glow, out vec3 lightCol, out float light) {
+  glow = vec3(0.0);
   light = 0.0;
   lightCol = vec3(1.0, 0.8, 0.32);
   float far = smoothstep(0.0, uView.y * 0.85, p.y);
@@ -545,7 +549,7 @@ vec3 reflection(vec2 p, float t, float flash, out vec3 lightCol, out float light
     // Thick cloud is darker underneath; lightning glows from inside it.
     col = mix(col, L_cloudColor * (1.12 - 0.5 * smoothstep(edge, edge + 0.35, n)), cloud * 0.92);
   }
-  col += flash * vec3(0.62, 0.66, 0.86) * (0.3 + 0.7 * cloud) * (1.0 - 0.5 * far);
+  glow += flash * vec3(0.62, 0.66, 0.86) * (0.3 + 0.7 * cloud) * (1.0 - 0.5 * far);
 
   if (L_stars > 0.0) {
     vec2 sc = p / 11.0, si = floor(sc), sf = fract(sc) - 0.5;
@@ -553,8 +557,8 @@ vec3 reflection(vec2 p, float t, float flash, out vec3 lightCol, out float light
     if (sh > 1.0 - 0.09 * L_stars) {
       vec2 off = sf - (hash22(si) - 0.5) * 0.5;
       float twinkle = 0.55 + 0.45 * sin(t * (0.5 + sh * 17.0) + sh * 90.0);
-      // Far brighter than the sky, so a star survives the mirror and the dither as one clean dot.
-      col += vec3(0.82, 0.88, 1.0) * step(max(abs(off.x), abs(off.y)), 0.22) * twinkle * (1.0 - cloud) * (1.2 + 2.6 * fract(sh * 57.0));
+      // Stars are faint sources: only the brightest few reflect as clean dots, the rest as a glint.
+      glow += vec3(0.82, 0.88, 1.0) * step(max(abs(off.x), abs(off.y)), 0.22) * twinkle * (1.0 - cloud) * (0.25 + 0.9 * pow(fract(sh * 57.0), 3.0));
     }
   }
 
@@ -562,9 +566,9 @@ vec3 reflection(vec2 p, float t, float flash, out vec3 lightCol, out float light
   vec2 orb = vec2(uColumn.x * 0.52, uView.y * 0.2);
   float od = length(p - orb);
   float veil = 1.0 - 0.75 * cloud;
-  col += L_orb * (smoothstep(L_orbSize, L_orbSize - 5.0, od) * 1.2 + L_orbGlow * 0.55 * exp(-od * od / (L_orbSize * L_orbSize * 5.0))) * veil;
+  glow += L_orb * (smoothstep(L_orbSize, L_orbSize - 5.0, od) * 1.2 + L_orbGlow * 0.55 * exp(-od * od / (L_orbSize * L_orbSize * 5.0))) * veil;
   float glitter = exp(-pow((p.x - orb.x) / (L_orbSize * 0.57 + p.y * 0.03), 2.0)) * step(0.4, hash12(vec2(floor(p.y / 7.0), floor(t * 0.5) + floor(p.x / 12.0)))) * smoothstep(orb.y, orb.y + uView.y * 0.15, p.y) * (1.0 - smoothstep(0.4, 1.0, p.y / uView.y));
-  col += L_orb * glitter * L_glitter * veil;
+  glow += L_orb * glitter * L_glitter * veil;
 
   float w = 104.0;
   float ci = floor(p.x / w);
@@ -577,7 +581,11 @@ vec3 reflection(vec2 p, float t, float flash, out vec3 lightCol, out float light
     float pane = step(0.15, wf.x) * step(wf.x, 0.85) * step(0.2, wf.y) * step(wf.y, 0.8);
     // Unlit panes are a shade darker than the wall, which only shows on a daytime silhouette.
     col = L_skyline * (1.0 - 0.14 * pane);
-    light = pane * step(1.0 - L_windows, hash12(wid + ci * 13.0)) * (1.0 - 0.35 * p.y / tower) * L_lights;
+    // On moving water a lit window does not mirror as a crisp pane: its light smears down the
+    // surface into a column of short horizontal dashes that break and re-form with the ripples.
+    float column = smoothstep(0.18, 0.3, wf.x) * smoothstep(0.82, 0.7, wf.x);
+    float dash = smoothstep(0.42, 0.62, vnoise(vec2(p.x * 0.09 + ci * 7.0, p.y * 0.42 - t * 1.6)));
+    light = column * dash * step(1.0 - L_windows, hash12(wid + ci * 13.0)) * (1.0 - 0.35 * p.y / tower) * L_lights;
     lightCol = windowColor(hash12(vec2(wid.y, ci) * 3.1));
   }
 
@@ -666,16 +674,20 @@ void main() {
     flash = L_lightning * smoothstep(0.0, 0.28, since) * exp(-max(since - 0.28, 0.0) * 1.6) * step(0.0, since);
   }
 
-  vec3 lightCol;
+  vec3 lightCol, glow;
   float light;
-  vec3 mirrored = reflection(css + refract * 1.3 + vec2(sin(css.y * 0.045 + t * 0.7) * 6.0 + wobble.x * 5.0, 0.0) * loose, t, flash, lightCol, light);
+  vec3 mirrored = reflection(css + refract * 1.3 + vec2(sin(css.y * 0.045 + t * 0.7) * 6.0 + wobble.x * 5.0, 0.0) * loose, t, flash, glow, lightCol, light);
   float mirror = (0.22 + 0.34 * deep) * (0.65 + 0.35 * vnoise(css * 0.012 + t * 0.05)) * L_mirror;
   vec3 color = mix(body, mirrored, clamp(mirror, 0.0, 1.0)) * L_gain;
   color += flash * 0.05;
-  color = mix(color, lightCol, light * (0.85 + 0.15 * deep) * (1.0 - 0.45 * ice));
-  // Sunlight or moonlight sparking along the brightest caustic lines.
-  color += L_orb * smoothstep(0.55, 0.95, caustic) * L_glitter * 0.3;
   color += L_rippleColor * smoothstep(0.05, 0.25, abs(h)) * L_ripple * loose;
+  // Emitted light, kept apart so the scene's ambient light never dims it. A mirror loses little of
+  // a bright source, so a reflected light is nearly as bright as the light itself.
+  vec3 emit = glow * (0.75 + 0.25 * deep) + lightCol * light * (0.85 + 0.15 * deep) * (1.0 - 0.45 * ice);
+  // Sunlight or moonlight sparking along the brightest caustic lines.
+  emit += L_orb * smoothstep(0.55, 0.95, caustic) * L_glitter * 0.3;
+  // How much of the open water shows; whatever floats on it hides the reflected light beneath.
+  float open = 1.0 - ice;
 
   if (ice > 0.0) {
     // Frosted, a little snow lying on it, a bright rim where it meets open water, and fine
@@ -701,24 +713,30 @@ void main() {
     vec3 padColor;
     float pad = padAt(afloat, t, 230.0, L_pads, 0.0, padColor) * loose;
     color = mix(color, padColor, pad);
+    open *= 1.0 - pad;
     pad = padAt(afloat + 61.0, t, 128.0, L_pads * 0.55, 23.0, padColor) * loose;
     color = mix(color, padColor, pad);
+    open *= 1.0 - pad;
   }
   if (L_leaves > 0.0) {
     vec2 afloat = css + slope * 46.0;
     vec3 drift;
     float on = drifter(afloat, t, 118.0, L_leaves, 1.0, 1.0, L_leafA, L_leafB, L_leafC, drift);
     color = mix(color, drift, on);
+    open *= 1.0 - on;
     on = drifter(afloat, t, 52.0, L_leaves * 0.8, 2.0, 1.0, L_leafB, L_leafC, L_leafA, drift);
     color = mix(color, drift, on);
+    open *= 1.0 - on;
   }
   if (L_petals > 0.0) {
     vec2 afloat = css + slope * 46.0;
     vec3 drift;
     float on = drifter(afloat, t, 64.0, L_petals, 3.0, 0.0, L_petalA, L_petalB, mix(L_petalA, L_petalB, 0.5), drift);
     color = mix(color, drift, on);
+    open *= 1.0 - on;
     on = drifter(afloat, t, 30.0, L_petals * 0.7, 4.0, 0.0, L_petalB, L_petalA, L_petalB, drift);
     color = mix(color, drift, on);
+    open *= 1.0 - on;
     color = mix(color, L_petalB, faller(css, t, 150.0, L_petals * 0.5, 9.0));
   }
 
@@ -736,7 +754,7 @@ void main() {
       float d2 = dot(v, v);
       vec2 mv = (v + refract * 2.0 - vec2(0.0, 15.0)) * vec2(1.0, 0.4);
       float glow = smoothstep(30.0, 8.0, d2) + 0.5 * exp(-d2 / 110.0) + 0.5 * exp(-dot(mv, mv) / 18.0);
-      color = mix(color, vec3(0.86, 1.0, 0.42), clamp(glow * pulse, 0.0, 1.0));
+      emit += vec3(0.86, 1.0, 0.42) * clamp(glow * pulse, 0.0, 1.0) * 1.2;
     }
   }
 
@@ -748,9 +766,12 @@ void main() {
     color = mix(color, flake, clamp(falling, 0.0, 1.0));
   }
 
+  // Everything so far is lit by the scene; the night sky lights it only a little. Then the lights.
+  color = color * L_ambient + emit * open;
+
   if (L_mist > 0.0) {
     float m = billow(css * vec2(0.0021, 0.0046) + vec2(t * (0.006 + 0.03 * L_wind), t * 0.002), t * 0.015);
-    color = mix(color, L_mistColor, smoothstep(0.42, 0.78, m) * L_mist * 0.85);
+    color = mix(color, L_mistColor * L_ambient, smoothstep(0.42, 0.78, m) * L_mist * 0.85);
   }
 
   color = posterize(color, threshold, 7.0);

@@ -21,6 +21,12 @@ export const LOOK_SCALARS = {
   ripple: [0, 1],
   /** Overall exposure of the water before lights are added. */
   gain: [0.4, 1.2],
+  /**
+   * How much light falls on everything that does not shine by itself: water, bed, ice, pads, leaves,
+   * petals, snow, mist. Low at night. What emits (moon, sun, lit windows, lamps, fireflies, lightning)
+   * is never scaled by it, so at night lights stay bright over a dark pond, as they do on real water.
+   */
+  ambient: [0, 1.2],
   /** How much of the sky the water mirrors. */
   mirror: [0, 1.5],
   /** Share of skyline windows that are lit. */
@@ -109,7 +115,7 @@ const NIGHT: PondLook = {
   algae: [0.05, 0.32, 0.22], algaeAmount: 1,
   causticColor: [0.8, 0.95, 1], caustic: 0.22,
   rippleColor: [0.4, 0.65, 0.8], ripple: 0.45,
-  gain: 0.82, mirror: 1,
+  gain: 0.82, ambient: 0.66, mirror: 1,
   skyNear: [0.19, 0.31, 0.47], skyFar: [0.014, 0.022, 0.073],
   skyline: [0.04, 0.05, 0.12], windows: 0.26, lights: 1, train: [0.12, 0.16, 0.32],
   orb: [0.95, 0.97, 1], orbSize: 28, orbGlow: 0.25, glitter: 0.9, stars: 0.35,
@@ -132,7 +138,7 @@ const DAY: PondLook = {
   algae: [0.3, 0.6, 0.36], algaeAmount: 0.7,
   causticColor: [1, 1, 0.92], caustic: 0.3,
   rippleColor: [1, 1, 1], ripple: 0.4,
-  gain: 1.08, mirror: 0.28,
+  gain: 1.08, ambient: 1, mirror: 0.28,
   skyNear: [0.84, 0.91, 0.95], skyFar: [0.46, 0.68, 0.88],
   skyline: [0.6, 0.67, 0.76], windows: 0.04, lights: 0.25, train: [0.74, 0.36, 0.3],
   orb: [1, 0.97, 0.84], orbSize: 26, orbGlow: 0.7, glitter: 0.8, stars: 0,
@@ -236,7 +242,7 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
       skyNear: [0.34, 0.24, 0.3], skyFar: [0.04, 0.025, 0.08], skyline: [0.06, 0.04, 0.09],
       orb: [1, 0.76, 0.38], orbSize: 62, orbGlow: 0.6, glitter: 1.2, stars: 0.25,
       pads: 0.14, lotus: 0, padDark: [0.2, 0.26, 0.08], padLight: [0.5, 0.5, 0.18],
-      leaves: 0.62,
+      leaves: 0.42,
       glyphRipple: [0.5, 0.82, 0.86],
     },
     light: {
@@ -250,7 +256,7 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
       orb: [1, 0.8, 0.36], orbSize: 38, orbGlow: 1, glitter: 1.2,
       clouds: 0.2, cloudColor: [1, 0.93, 0.8],
       pads: 0.14, lotus: 0, padDark: [0.36, 0.42, 0.14], padLight: [0.7, 0.66, 0.26],
-      leaves: 0.65,
+      leaves: 0.42,
     },
   },
   // Hemant: the quiet one. Mist low over still, dark, clear water; bare branches; a crisp sky.
