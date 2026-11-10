@@ -69,8 +69,8 @@ export const LOOK_SCALARS = {
   haloShade: [0, 1],
   /** How fast the koi swim; cold water slows them. */
   koiPace: [0.3, 1.2],
-  /** 0 fades the pond into the page smoothly at the rails; 1 dissolves it in ordered-dither dots. */
-  edgeDither: [0, 1],
+  /** Whether a koi near the rails keeps its dark shape after the water has faded. On for a black page only. */
+  koiHold: [0, 1],
 } as const satisfies Record<string, readonly [number, number]>;
 
 /** Every colour field. */
@@ -120,7 +120,7 @@ const NIGHT: PondLook = {
   snow: 0, snowColor: [0.66, 0.74, 0.95], ice: 0, iceColor: [0.42, 0.56, 0.78],
   mist: 0, mistColor: [0.3, 0.36, 0.5], branches: 0, fireflies: 0, rain: 0,
   koiBed: [0, 0, 0], glyphRipple: [0.36, 0.84, 1], glyphShadow: [0.3, 0.45, 0.5], crest: 0.45, halo: 0.6, haloShade: 1,
-  koiPace: 1, edgeDither: 0,
+  koiPace: 1, koiHold: 1,
 };
 
 // The same pond at midday on warm paper: softened print colours, pale silhouettes where the lit
@@ -132,7 +132,7 @@ const DAY: PondLook = {
   algae: [0.3, 0.6, 0.36], algaeAmount: 0.7,
   causticColor: [1, 1, 0.92], caustic: 0.3,
   rippleColor: [1, 1, 1], ripple: 0.4,
-  gain: 1, mirror: 0.62,
+  gain: 1.08, mirror: 0.28,
   skyNear: [0.84, 0.91, 0.95], skyFar: [0.46, 0.68, 0.88],
   skyline: [0.6, 0.67, 0.76], windows: 0.04, lights: 0.25, train: [0.74, 0.36, 0.3],
   orb: [1, 0.97, 0.84], orbSize: 26, orbGlow: 0.7, glitter: 0.8, stars: 0,
@@ -141,8 +141,8 @@ const DAY: PondLook = {
   petalA: [0.98, 0.62, 0.74], petalB: [1, 0.96, 0.95],
   leafA: [0.93, 0.62, 0.16], leafB: [0.8, 0.36, 0.12], leafC: [0.7, 0.16, 0.14],
   snowColor: [1, 1, 1], iceColor: [0.88, 0.93, 0.97], mistColor: [0.95, 0.93, 0.87],
-  koiBed: [0.03, 0.1, 0.13], glyphRipple: [1, 1, 1], glyphShadow: [0.05, 0.16, 0.2], crest: 0.5, halo: 0.3, haloShade: 0,
-  edgeDither: 1,
+  koiBed: [0.05, 0.27, 0.34], glyphRipple: [1, 1, 1], glyphShadow: [0.05, 0.16, 0.2], crest: 0.5, halo: 0.3, haloShade: 0,
+  koiHold: 0,
 };
 
 export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
@@ -169,7 +169,6 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
       clouds: 0.32, cloudColor: [1, 0.93, 0.92],
       pads: 0.3, lotus: 0.5,
       petals: 0.6,
-      koiBed: [0.03, 0.12, 0.12],
     },
   },
   // Grishma: the clearest turquoise, the strongest caustics, pads in full bloom, fireflies.
@@ -193,7 +192,6 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
       orb: [1, 0.99, 0.9], orbSize: 30, orbGlow: 0.9, glitter: 1.4,
       clouds: 0.18,
       pads: 0.55, lotus: 1,
-      koiBed: [0.02, 0.1, 0.16],
     },
   },
   // Varsha: rain rings everywhere, grey-green storm water, low cloud rolling in the mirror.
@@ -224,8 +222,7 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
       orb: [0.86, 0.88, 0.86], orbGlow: 0.3, glitter: 0.1,
       clouds: 0.88, cloudColor: [0.34, 0.39, 0.44], wind: 0.8,
       pads: 0.45, lotus: 0.15, padDark: [0.08, 0.32, 0.18], padLight: [0.3, 0.58, 0.3],
-      rain: 26,
-      koiBed: [0.02, 0.08, 0.08], crest: 0.45,
+      rain: 26, crest: 0.45,
     },
   },
   // Sharad: amber, rust and crimson leaves on deep teal water, and a huge harvest moon.
@@ -254,7 +251,6 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
       clouds: 0.2, cloudColor: [1, 0.93, 0.8],
       pads: 0.14, lotus: 0, padDark: [0.36, 0.42, 0.14], padLight: [0.7, 0.66, 0.26],
       leaves: 0.65,
-      koiBed: [0.02, 0.09, 0.12],
     },
   },
   // Hemant: the quiet one. Mist low over still, dark, clear water; bare branches; a crisp sky.
@@ -285,7 +281,6 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
       pads: 0.06, lotus: 0, padDark: [0.3, 0.34, 0.16], padLight: [0.5, 0.5, 0.26],
       leaves: 0.14, leafA: [0.72, 0.5, 0.2], leafB: [0.6, 0.34, 0.14], leafC: [0.48, 0.2, 0.14],
       mist: 0.55, mistColor: [0.97, 0.94, 0.85], branches: 0.7, wind: 0.1,
-      koiBed: [0.02, 0.07, 0.11],
       koiPace: 0.85,
     },
   },
@@ -317,7 +312,6 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
       clouds: 0.5, cloudColor: [0.97, 0.98, 1], wind: 0.35,
       pads: 0, lotus: 0,
       snow: 0.9, ice: 0.72,
-      koiBed: [0.03, 0.08, 0.16],
       koiPace: 0.6,
     },
   },

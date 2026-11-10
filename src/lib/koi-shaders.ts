@@ -388,6 +388,15 @@ vec2 rot(vec2 v, float a) {
   return vec2(c * v.x - s * v.y, s * v.x + c * v.y);
 }
 
+// How much a fish, pellet or shadow covers one character cell, and whether it is a fish.
+float solidCell(ivec2 c, out float fish) {
+  c = clamp(c, ivec2(0), ivec2(uGrid) - 1);
+  ivec2 tc = ivec2(c.x, int(uGrid.y) - 1 - c.y);
+  float kind = texelFetch(uAux, tc, 0).r;
+  fish = kind < 0.05 ? 1.0 : 0.0;
+  return kind < 0.2 ? clamp(texelFetch(uField, tc, 0).a * 1.8, 0.0, 1.0) : 0.0;
+}
+
 // Distance to the nearest edge of a jittered cell lattice, in cell units.
 float cellEdge(vec2 x) {
   vec2 n = floor(x), f = fract(x), mr = vec2(0.0), mg = vec2(0.0);
@@ -748,20 +757,21 @@ void main() {
 
   // Fish, food and shadows sit on the water: darken it beneath them so the glyphs read clearly.
   // The alpha is kept, so on paper a koi is bright glyphs over its own dark shape instead of
-  // cream on cream; over a black page this is the same picture as cutting a hole.
-  ivec2 fc = ivec2(clamp(css / uCell, vec2(0.0), uGrid - 1.0));
-  ivec2 tc = ivec2(fc.x, int(uGrid.y) - 1 - fc.y);
-  float kind = texelFetch(uAux, tc, 0).r;
-  float solid = kind < 0.2 ? clamp(texelFetch(uField, tc, 0).a * 1.8, 0.0, 1.0) : 0.0;
+  // cream on cream; over a black page this is the same picture as cutting a hole. The field is one
+  // texel per character cell, so it is read bilinearly to keep that shape from stair-stepping.
+  vec2 g = css / uCell - 0.5;
+  ivec2 b = ivec2(floor(g));
+  vec2 f = fract(g);
+  float fish00, fish10, fish01, fish11;
+  float solid = mix(mix(solidCell(b, fish00), solidCell(b + ivec2(1, 0), fish10), f.x),
+                    mix(solidCell(b + ivec2(0, 1), fish01), solidCell(b + ivec2(1, 1), fish11), f.x), f.y);
+  float fish = mix(mix(fish00, fish10, f.x), mix(fish01, fish11, f.x), f.y);
   color = mix(color, L_koiBed, 0.88 * solid);
   float alpha = fade * uOpacity;
-  alpha = mix(alpha, step(threshold, fade * 1.08) * uOpacity, L_edgeDither);
-  // A koi keeps its dark shape for as long as its glyphs last, which is closer to the rails than
-  // the water reaches.
-  if (kind < 0.05) {
-    float hold = smoothstep(0.3, 0.8, solid) * clamp(rail / uGlyphFade, 0.0, 1.0);
-    alpha = max(alpha, mix(hold, step(threshold, hold), L_edgeDither));
-  }
+  // At night a koi keeps its dark shape for as long as its glyphs last, which is closer to the
+  // rails than the water reaches. On paper that shape would outlive the water as a silhouette.
+  float hold = smoothstep(0.3, 0.8, solid) * fish * clamp(rail / uGlyphFade, 0.0, 1.0) * L_koiHold;
+  alpha = max(alpha, hold);
   outColor = vec4(color * alpha, alpha);
 }`;
 

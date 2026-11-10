@@ -117,3 +117,8 @@
     --guide-gutter: var(--space-2);
   }
 }
+
+/* On paper a full-width band reads as a stripe chopping the backdrop into strips, where on black it
+   vanishes into the page. Light theme stops each band at the rails, so the column reads as a sheet laid
+   over one continuous backdrop. */
+:global(:root[data-theme="light"]) .break { width: calc(100% + 2 * var(--guide-gutter)); }

@@ -17,6 +17,9 @@
   opacity: 0.4;
 }
 
+/* With no bands crossing the gutters on paper (see construction.module.css), the pattern runs edge to edge. */
+:global(:root[data-theme="light"]) .gutters { top: 0; bottom: 0; }
+
 /* Ink on paper loses more to the fade than light on black does. */
 :global(:root[data-theme="light"]) .box { opacity: 0.62; }
 
