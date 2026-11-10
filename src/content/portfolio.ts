@@ -1,5 +1,10 @@
 export const identity = {
   name: "aetos",
+  /** Revealed on the homepage when the name is hovered. */
+  givenName: "Pushpendra",
+  summary: "I’m aetos, a systems engineer driven mostly by curiosity and an unreasonable attention to detail.",
+  status: "Pre-final year CS undergraduate by day, and a builder outside uni hours.",
+  timezone: "India (IST, UTC+5:30)",
   intro: "Hi, I'm aetos.",
   descriptor: "I build systems, tools, and the interfaces around them.",
   avatar: "/images/avatar.jpg",
@@ -23,3 +28,10 @@ export const openSource = [
   { name: "Turso", description: "Restore SQLite numeric-affinity whitespace parity", number: 8465, status: "Merged", href: "https://github.com/tursodatabase/turso/pull/8465" },
   { name: "Knowhere", description: "Bound DiskANN AIO pool waits and fail fast", number: 1787, status: "Merged", href: "https://github.com/zilliztech/knowhere/pull/1787" },
 ];
+
+// From the resume's technical skills, for the agent-readable version of the site.
+export const skills = {
+  languages: ["Rust", "C++", "Go", "TypeScript", "Python", "SQL"],
+  systems: ["Distributed systems", "Storage systems", "Network protocols", "Concurrency", "Async runtimes", "IPC", "CRDTs", "TCP/UDP", "Kademlia DHT"],
+  tools: ["Tokio", "Tauri v2", "React", "Next.js", "Bun", "PostgreSQL", "Vulkan", "GTK4", "Docker", "GitHub Actions", "Vitest", "testcontainers"],
+};
