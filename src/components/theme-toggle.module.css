@@ -1,0 +1,23 @@
+/* Sun and moon share one cell. The one shown names the theme a press switches to; the other turns
+   away and fades, so a toggle reads as one object rotating rather than two icons swapping. */
+.icons {
+  display: grid;
+  width: 18px;
+  height: 18px;
+}
+
+.sun,
+.moon {
+  grid-area: 1 / 1;
+  width: 18px;
+  height: 18px;
+  transition: opacity var(--motion-standard) var(--ease-out), transform var(--motion-standard) var(--ease-out);
+}
+
+.moon { opacity: 0; transform: rotate(-60deg) scale(0.6); }
+:global(:root[data-theme="light"]) .sun { opacity: 0; transform: rotate(60deg) scale(0.6); }
+:global(:root[data-theme="light"]) .moon { opacity: 1; transform: none; }
+
+.toDark { display: none; }
+:global(:root[data-theme="light"]) .toLight { display: none; }
+:global(:root[data-theme="light"]) .toDark { display: inline; }

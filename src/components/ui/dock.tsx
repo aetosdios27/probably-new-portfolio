@@ -1,6 +1,8 @@
 /*
 Motion Primitives Dock — published runtime source.
-Only the cloneElement ReactElement type is annotated for React 19 compatibility.
+Local changes: the cloneElement ReactElement type is annotated for React 19
+compatibility, colour classes are dropped (tokens style the dock), and an item
+may take a switch role with its own accessible name and state.
 https://github.com/ibelick/motion-primitives/blob/main/components/core/dock.tsx
 
 MIT License
@@ -71,6 +73,9 @@ export type DockItemProps = {
   onHover?: () => void;
   onHoverEnd?: () => void;
   'data-cuelume-tap'?: string;
+  role?: 'button' | 'switch';
+  'aria-label'?: string;
+  'aria-checked'?: boolean;
 };
 
 export type DockLabelProps = {
@@ -161,7 +166,7 @@ function Dock({
   );
 }
 
-function DockItem({ children, className, onClick, onHover, onHoverEnd, ...attributes }: DockItemProps) {
+function DockItem({ children, className, onClick, onHover, onHoverEnd, role = 'button', ...attributes }: DockItemProps) {
   const ref = useRef<HTMLDivElement>(null);
 
   const { distance, magnification, mouseX, spring } = useDock();
@@ -195,8 +200,8 @@ function DockItem({ children, className, onClick, onHover, onHoverEnd, ...attrib
         className
       )}
       tabIndex={0}
-      role='button'
-      aria-haspopup='true'
+      role={role}
+      aria-haspopup={role === 'button' ? 'true' : undefined}
       onClick={onClick}
     >
       {Children.map(children, (child) =>

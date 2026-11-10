@@ -28,3 +28,25 @@ export function onThemeChange(listener: (theme: Theme) => void) {
   observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
   return () => observer.disconnect();
 }
+
+/** A theme the visitor picked (stored) or is previewing (`?theme=`), as opposed to one inherited from the system. */
+function chosenTheme(): Theme | null {
+  const previewed = new URLSearchParams(location.search).get("theme");
+  if (isTheme(previewed)) return previewed;
+  try {
+    const stored = localStorage.getItem(THEME_STORAGE_KEY);
+    return isTheme(stored) ? stored : null;
+  } catch {
+    return null;
+  }
+}
+
+/** Tracks the system colour scheme live, but only while the visitor has not chosen a theme. Returns the unsubscribe. */
+export function followSystemTheme() {
+  const query = matchMedia("(prefers-color-scheme: light)");
+  const follow = () => {
+    if (!chosenTheme()) document.documentElement.dataset.theme = query.matches ? "light" : "dark";
+  };
+  query.addEventListener("change", follow);
+  return () => query.removeEventListener("change", follow);
+}

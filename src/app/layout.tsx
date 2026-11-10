@@ -5,6 +5,7 @@ import { SoundEffects } from "@/components/sound-effects";
 import { CONTACT } from "@/content/contact";
 import { identity } from "@/content/portfolio";
 import { BOOT_SCRIPT } from "@/lib/boot-script";
+import { THEME_BACKGROUND } from "@/lib/theme";
 import "./globals.css";
 
 const interTight = localFont({
@@ -35,7 +36,13 @@ const siteTitle = "aetos";
 const siteDescription = "I’m aetos, a systems engineer driven mostly by curiosity and an unreasonable attention to detail.";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aetosdios.xyz";
 
-export const viewport: Viewport = { themeColor: "#000000", colorScheme: "dark" };
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: THEME_BACKGROUND.light },
+    { media: "(prefers-color-scheme: dark)", color: THEME_BACKGROUND.dark },
+  ],
+  colorScheme: "dark light",
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),

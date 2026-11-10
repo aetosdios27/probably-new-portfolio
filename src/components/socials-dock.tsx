@@ -8,6 +8,7 @@ import { Dock, DockIcon, DockItem, DockLabel } from "./ui/dock";
 import { CONTACT } from "@/content/contact";
 import { dockTick, hoverCancel, hoverIntent } from "@/lib/hover-sound";
 import { ResumeDownload } from "./resume-download";
+import { ThemeToggle } from "./theme-toggle";
 import styles from "./socials-dock.module.css";
 
 const ITEMS = [
@@ -74,7 +75,7 @@ export function SocialsDock() {
       onKeyDown={event => {
         // Native DockItem supplies a focusable role=button. Activate its
         // existing click action for Enter/Space without changing the primitive.
-        if ((event.key === "Enter" || event.key === " ") && event.target instanceof HTMLElement && !(event.target instanceof HTMLButtonElement) && event.target.getAttribute("role") === "button") {
+        if ((event.key === "Enter" || event.key === " ") && event.target instanceof HTMLElement && !(event.target instanceof HTMLButtonElement) && ["button", "switch"].includes(event.target.getAttribute("role") ?? "")) {
           event.preventDefault();
           event.target.click();
         }
@@ -97,6 +98,7 @@ export function SocialsDock() {
             <DockIcon><Icon role="img" aria-label={label} className={styles.icon} /></DockIcon>
           </DockItem>
         </Fragment>)}
+        <ThemeToggle index={ITEMS.length + 1} />
       </Dock>
     </nav>
   );
