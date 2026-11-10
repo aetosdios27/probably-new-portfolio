@@ -4,9 +4,10 @@
 //      inside each cell: koi as signed-distance shapes (with eyes and patterned colouring), their
 //      shadows, food pellets, and ripple crests. What is seen through the surface bends with the slope
 //      of the water.
-//   2. A *water* pass draws the pond itself the way React Bits' Dither does: a warped Perlin wave field,
-//      ordered-Bayer-dithered to four levels into chunky pixels, bent and brightened by the ripples,
-//      and knocked back beneath fish so they read clearly.
+//   2. A *water* pass draws the pond itself the way React Bits' Dither does, ordered-Bayer-dithered
+//      into chunky pixels: the bed, caustics, a mirrored sky and skyline, and whatever the season
+//      puts on the surface, bent and brightened by the ripples and darkened beneath fish so they
+//      read clearly.
 //   3. A *glyph* pass runs at full resolution. Each fragment looks up its cell, reads the field at the
 //      cell centre, picks a character from a density-ordered atlas by tone, and samples that glyph
 //      with derivative-based filtering so edges stay crisp at any DPR. Characters flicker on a
@@ -15,9 +16,12 @@
 //      for a soft bloom.
 //
 // The CPU simulation in koi-pond.ts supplies the fish geometry (a texture) and the wave heights.
+// The palette and the weight of every seasonal layer come from a PondLook (pond-looks.ts), uploaded
+// as one uniform per field; the shaders never branch on season or theme.
 
 import { EXTRAS, MAX_FISH, MAX_PELLETS, Pond, SEGMENTS } from "./koi-pond";
 import { FADE_PX, type KoiRenderer } from "./koi-renderer";
+import { LOOK_COLORS, LOOK_SCALARS, type LookScalar, type PondLook } from "./pond-looks";
 
 export const GL_CELL_W = 4.5;
 export const GL_CELL_H = 8;
@@ -31,6 +35,10 @@ const WATER_PIXELS = [3, 4, 6];
 const WATER_FADE_PX = 210;
 // Characters from empty to solid; they are re-ordered by measured ink so the ramp is truly monotonic.
 const CHARSET = " .'`,:;-_~=+!ilI*vxzo0OX%#&@";
+
+const LOOK_SCALAR_KEYS = Object.keys(LOOK_SCALARS) as LookScalar[];
+// One uniform per look field, named after it: L_snow, L_bedLow, and so on.
+const LOOK_UNIFORMS = [...LOOK_SCALAR_KEYS.map((key) => `uniform float L_${key};`), ...LOOK_COLORS.map((key) => `uniform vec3 L_${key};`)].join("\n");
 
 const VERTEX = `#version 300 es
 out vec2 vUv;
@@ -65,6 +73,7 @@ uniform vec4 uParams[${MAX_FISH}];
 uniform vec4 uBounds[${MAX_FISH}];
 uniform sampler2D uFish;
 uniform sampler2D uWave;
+${LOOK_UNIFORMS}
 layout(location = 0) out vec4 outField;
 layout(location = 1) out vec4 outAux;
 ${HASH}
@@ -75,7 +84,6 @@ const vec3 ORANGE = vec3(1.0, 0.6, 0.24);
 const vec3 RED = vec3(1.0, 0.36, 0.23);
 const vec3 INK = vec3(0.54);
 const vec3 GOLD = vec3(1.0, 0.78, 0.24);
-const vec3 WATER = vec3(0.36, 0.84, 1.0);
 
 float profile(float t) {
   if (t < 0.08) return mix(0.45, 0.8, t / 0.08);
@@ -221,11 +229,11 @@ void main() {
     flicker = 0.08;
   } else if (shadowCover > 0.06) {
     tone = 0.28 * clamp(shadowCover * 2.0, 0.0, 1.0);
-    ink = vec3(0.3, 0.45, 0.5);
+    ink = L_glyphShadow;
     flicker = 0.1;
   } else {
-    tone = ripple * 0.45;
-    ink = WATER;
+    tone = ripple * L_crest;
+    ink = L_glyphRipple;
     flicker = 0.5;
   }
   outField = vec4(ink, tone);
@@ -295,8 +303,8 @@ void main() { outColor = glyphAt(gl_FragCoord.xy * uDownscale); }`;
 // ---------------------------------------------------------------------------------------------
 // The pond: one pass at one texel per dither pixel, posterised with ordered dithering so the scene
 // keeps the React Bits Dither look while carrying a rich palette. It holds the bed (sand and pebbles),
-// refraction and caustics, patches of green water, a few lily pads, a mirrored dusk sky, skyline, bridge and
-// train, and ripple highlights, and is drawn under the koi.
+// refraction and caustics, patches of green water, the mirrored sky, skyline, bridge and train, ripple
+// highlights, and the seasonal surface (pads, petals, leaves, ice, snow, mist), and is drawn under the koi.
 const NOISE = `${HASH}
 vec2 hash22(vec2 p) {
   vec3 p3 = fract(vec3(p.xyx) * vec3(0.1031, 0.1030, 0.0973));
@@ -315,11 +323,15 @@ float pnoise(vec2 p) {
     mix(dot(grad2(i + vec2(0.0, 1.0)), f - vec2(0.0, 1.0)), dot(grad2(i + vec2(1.0, 1.0)), f - vec2(1.0, 1.0)), u.x),
     u.y);
 }
-// Fractal noise remapped to roughly [0, 1].
+// Fractal noise remapped to roughly [0, 1]. Three octaves: the fourth was below a dither pixel.
 float fbm(vec2 p) {
   float v = 0.0, a = 0.5;
-  for (int i = 0; i < 4; i++) { v += a * pnoise(p); p *= 2.02; a *= 0.5; }
-  return clamp(v * 1.3 + 0.5, 0.0, 1.0);
+  for (int i = 0; i < 3; i++) { v += a * pnoise(p); p *= 2.02; a *= 0.5; }
+  return clamp(v * 1.4 + 0.5, 0.0, 1.0);
+}
+// Cheap soft billows in [0, 1] for clouds and mist.
+float billow(vec2 p, float t) {
+  return vnoise(p) * 0.55 + vnoise(p * 2.1 + vec2(3.0 + t, 1.7)) * 0.3 + vnoise(p * 4.3 - vec2(t * 1.6, 5.0)) * 0.15;
 }`;
 
 const PIXEL_COMMON = `#version 300 es
@@ -334,8 +346,10 @@ uniform vec2 uView;
 uniform float uTime;
 uniform vec2 uColumn;
 uniform float uFade;
+uniform float uGlyphFade;
 uniform float uOpacity;
 uniform sampler2D uWave;
+${LOOK_UNIFORMS}
 out vec4 outColor;
 ${NOISE}
 // 8x8 Bayer threshold in (0, 1).
@@ -346,9 +360,8 @@ float bayer8(vec2 p) {
   return (float(v) + 0.5) / 64.0;
 }
 // Ordered dithering on every channel: a smooth colour becomes a limited palette of chunky dots.
-vec3 posterize(vec3 c, vec2 pix, float levels) {
-  float t = bayer8(pix) - 0.5;
-  return floor(clamp(c + t / (levels - 1.0), 0.0, 1.0) * (levels - 1.0) + 0.5) / (levels - 1.0);
+vec3 posterize(vec3 c, float threshold, float levels) {
+  return floor(clamp(c + (threshold - 0.5) / (levels - 1.0), 0.0, 1.0) * (levels - 1.0) + 0.5) / (levels - 1.0);
 }
 float wave(ivec2 c) {
   return texelFetch(uWave, clamp(c, ivec2(0), ivec2(uGrid) - 1), 0).r;
@@ -363,13 +376,14 @@ float waveAt(vec2 css) {
 vec2 slopeAt(vec2 css) {
   return vec2(waveAt(css + vec2(uCell.x, 0.0)) - waveAt(css - vec2(uCell.x, 0.0)), waveAt(css + vec2(0.0, uCell.y)) - waveAt(css - vec2(0.0, uCell.y)));
 }
-// 0 at the dashed rails, 1 well into the margin.
-float railFade(vec2 css) {
-  float dist = css.x < uColumn.x ? uColumn.x - css.x : (css.x > uColumn.y ? css.x - uColumn.y : 0.0);
-  return smoothstep(0.0, uFade, dist);
+// Distance in css px from the dashed rails, 0 over the content column.
+float railDistance(vec2 css) {
+  return css.x < uColumn.x ? uColumn.x - css.x : (css.x > uColumn.y ? css.x - uColumn.y : 0.0);
 }
 vec2 pixelOf() { return vec2(floor(gl_FragCoord.x), uSize.y - 1.0 - floor(gl_FragCoord.y)); }`;
 
+// Every layer below is weighted by a field of the look (the L_ uniforms) and skipped when its
+// weight is zero, so a look only pays for what it shows. Nothing here knows the season or theme.
 const WATER = `${PIXEL_COMMON}
 uniform sampler2D uField;
 uniform sampler2D uAux;
@@ -382,21 +396,22 @@ vec3 stone(float id) {
   return vec3(0.72, 0.66, 0.54);
 }
 
-// A clear pond floor: pale slate sand with sparse, domed pebbles lit from the upper left. One pebble
-// per cell keeps this to a single lookup.
+// A clear pond floor: sand with sparse, domed pebbles lit from the upper left. One pebble per cell
+// keeps this to a single lookup.
 vec3 bedColor(vec2 p) {
   float n = pnoise(p * 0.011) * 0.6 + pnoise(p * 0.027) * 0.3 + 0.5;
-  vec3 sand = mix(vec3(0.16, 0.32, 0.44), vec3(0.26, 0.45, 0.56), clamp(n, 0.0, 1.0));
+  vec3 sand = mix(L_bedLow, L_bedHigh, clamp(n, 0.0, 1.0));
   vec2 g = p / 36.0, ig = floor(g), fg = fract(g);
   vec2 c = 0.32 + 0.36 * hash22(ig);
   float radius = 0.15 + 0.1 * hash12(ig + 9.1);
   vec2 rel = (fg - c) / radius;
   float d2 = dot(rel, rel);
-  float mask = step(0.5, hash12(ig + 4.4)) * smoothstep(1.0, 0.82, d2);
+  if (d2 > 1.0 || hash12(ig + 4.4) < 0.5) return sand;
   vec3 nrm = normalize(vec3(rel * 0.9, sqrt(max(0.02, 1.0 - d2))));
   float diffuse = clamp(dot(nrm, normalize(vec3(-0.5, -0.6, 0.65))), 0.0, 1.0);
-  vec3 st = stone(hash12(ig + 2.3)) * (0.5 + 0.7 * diffuse) + pow(diffuse, 10.0) * 0.12;
-  return mix(sand, st, mask * 0.38);
+  // Pebbles take on the colour of the sand around them, so one set of stones suits every season.
+  vec3 st = mix(stone(hash12(ig + 2.3)), sand * 1.5, 0.35) * (0.5 + 0.7 * diffuse) + pow(diffuse, 10.0) * 0.12;
+  return mix(sand, st, smoothstep(1.0, 0.82, d2) * 0.38 * L_pebbles);
 }
 
 vec2 rot(vec2 v, float a) {
@@ -404,36 +419,108 @@ vec2 rot(vec2 v, float a) {
   return vec2(c * v.x - s * v.y, s * v.x + c * v.y);
 }
 
-// A lily pad (with a notch) and, on a few, a lotus flower. Each pad lives wholly inside its own cell,
-// so this is one lookup per pixel. Returns the pad coverage; colour and flower come back through the
-// out parameters.
-const float PAD_CELL = 230.0;
-float padAt(vec2 p, float t, out vec3 padColor, out vec3 flowerColor, out float flower) {
+// A lily pad (with a notch) and, on some, a lotus. Each pad lives wholly inside its own lattice
+// cell, so this is one lookup per pixel, and most pixels leave before any trigonometry. Returns the
+// pad coverage; the colour (flower included) comes back through the out parameter.
+float padAt(vec2 p, float t, float cell, float density, float seed, out vec3 padColor) {
   padColor = vec3(0.0);
-  flowerColor = vec3(0.0);
-  flower = 0.0;
-  vec2 id = floor(p / PAD_CELL);
-  vec2 r = hash22(id);
-  if (r.x > 0.32) return 0.0;
-  vec2 r2 = hash22(id + 3.7), r3 = hash22(id + 8.1);
-  float radius = PAD_CELL * (0.12 + 0.06 * r.y);
-  vec2 centre = PAD_CELL * (0.3 + 0.4 * r2) + vec2(sin(t * 0.08 + r3.x * 6.0), cos(t * 0.07 + r3.y * 6.0)) * 10.0;
-  vec2 q = rot(p - id * PAD_CELL - centre, -(r3.x * 6.2832 + t * 0.03));
+  vec2 id = floor(p / cell);
+  vec2 r = hash22(id + seed);
+  if (r.x > density) return 0.0;
+  vec2 r2 = hash22(id + seed + 3.7), r3 = hash22(id + seed + 8.1);
+  float radius = cell * (0.12 + 0.06 * r.y);
+  vec2 centre = cell * (0.3 + 0.4 * r2) + vec2(sin(t * 0.08 + r3.x * 6.0), cos(t * 0.07 + r3.y * 6.0)) * cell * 0.045;
+  vec2 q = p - id * cell - centre;
   float d = length(q);
+  if (d > radius) return 0.0;
+  q = rot(q, -(r3.x * 6.2832 + t * 0.03));
   float ang = atan(q.y, q.x);
   float inside = smoothstep(radius, radius - 1.6, d) * step(0.2, abs(ang));
-  vec3 base = mix(vec3(0.07, 0.3, 0.14), vec3(0.3, 0.62, 0.26), smoothstep(radius, 0.0, d) * 0.8 + 0.2 * r2.x);
+  vec3 base = mix(L_padDark, L_padLight, smoothstep(radius, 0.0, d) * 0.8 + 0.2 * r2.x);
   base -= abs(sin(ang * 7.0)) * smoothstep(0.0, radius, d) * (1.0 - smoothstep(radius * 0.9, radius, d)) * 0.07;
   base += exp(-dot(q + radius * vec2(0.3, 0.35), q + radius * vec2(0.3, 0.35)) / (radius * radius * 0.12)) * 0.18;
-  padColor = base;
-  if (r.y > 0.6 && inside > 0.0) {
-    float fr = length(q), fa = atan(q.y, q.x);
-    float reach = radius * 0.5 * (0.55 + 0.45 * abs(cos(5.0 * fa)));
-    flower = smoothstep(reach, reach - 1.5, fr);
-    flowerColor = mix(vec3(1.0, 0.9, 0.95), vec3(1.0, 0.5, 0.72), clamp(fr / (radius * 0.5), 0.0, 1.0));
-    flowerColor = mix(flowerColor, vec3(1.0, 0.82, 0.3), smoothstep(radius * 0.13, radius * 0.1, fr));
+  // A flower opens from a tight bud to a full star as the lotus weight rises.
+  if (r.y > 1.0 - 0.62 * L_lotus) {
+    float open = 0.3 + 0.7 * L_lotus;
+    float reach = radius * 0.5 * open * (0.55 + 0.45 * abs(cos(5.0 * ang)) * open);
+    vec3 flower = mix(vec3(1.0, 0.92, 0.95), L_lotusColor, clamp(d / (radius * 0.5 * open), 0.0, 1.0));
+    flower = mix(flower, vec3(1.0, 0.82, 0.3), smoothstep(radius * 0.13, radius * 0.1, d) * L_lotus);
+    base = mix(base, flower, smoothstep(reach, reach - 1.5, d));
   }
+  padColor = base;
   return inside;
+}
+
+// Small things afloat, one per lattice cell: a petal when leafy is 0, a leaf when it is 1. The
+// whole lattice slides with the current and bends along a slow meander, each one spins and bobs at
+// its own rate, and a slow crowding field gathers them into drifts.
+float drifter(vec2 p, float t, float cell, float density, float seed, float leafy, vec3 a, vec3 b, vec3 c, out vec3 col) {
+  col = vec3(0.0);
+  vec2 flow = vec2(cos(seed * 2.4), 0.6 * sin(seed * 2.4)) * (2.5 + 12.0 * L_wind);
+  vec2 q = p - flow * t + 18.0 * vec2(sin(p.y * 0.006 + t * 0.05 + seed), cos(p.x * 0.005 - t * 0.04 + seed * 1.7));
+  vec2 id = floor(q / cell);
+  vec2 r = hash22(id + seed * 17.0);
+  float crowd = vnoise(id * 0.3 + seed * 5.0);
+  if (r.x > density * (0.1 + 1.9 * crowd * crowd)) return 0.0;
+  vec2 r2 = hash22(id + seed * 17.0 + 5.3);
+  float size = cell * (0.14 + 0.15 * r.y);
+  vec2 centre = cell * (0.32 + 0.36 * r2) + cell * 0.03 * vec2(sin(t * 0.3 + r.y * 40.0), cos(t * 0.23 + r2.x * 40.0));
+  vec2 v = q - id * cell - centre;
+  if (dot(v, v) > size * size) return 0.0;
+  v = rot(v, r2.x * 6.2832 + t * (r2.y - 0.5) * 0.5) / size;
+  float along = 1.0 - v.x * v.x;
+  float halfWidth = mix(0.62 * sqrt(max(along, 0.0)), 0.5 * along, leafy);
+  if (abs(v.y) > halfWidth) return 0.0;
+  float k = fract(r2.y * 7.31 + r.y);
+  col = k < 0.4 ? a : (k < 0.75 ? b : c);
+  // One half catches the light, and a leaf has a midrib.
+  col *= 0.86 + 0.26 * step(0.0, v.y) + 0.1 * v.x;
+  col *= 1.0 - 0.3 * leafy * step(abs(v.y), 0.09);
+  return 1.0;
+}
+
+// Things falling onto the water, seen from above: each shrinks as it drops away from the eye,
+// slides with the wind, and is gone when it lands. A new one starts somewhere else in the cell
+// every cycle, so the lattice never shows.
+float faller(vec2 p, float t, float cell, float density, float seed) {
+  vec2 id = floor(p / cell);
+  float phase = t * (0.16 + 0.1 * hash12(id + seed)) + hash12(id + seed + 2.9);
+  float cycle = floor(phase), life = phase - cycle;
+  vec2 r = hash22(id + seed + cycle * 7.13);
+  if (r.x > density) return 0.0;
+  vec2 r2 = hash22(id + seed + cycle * 3.71 + 1.3);
+  vec2 start = cell * (0.25 + 0.3 * r2);
+  vec2 slide = cell * (0.1 + 0.3 * L_wind) * vec2(0.9, 0.5) * life + cell * 0.04 * vec2(sin(life * 9.0 + r.y * 30.0), 0.0);
+  float radius = cell * (0.035 + 0.05 * r.y) * (1.25 - life);
+  float d = length(p - id * cell - start - slide);
+  return smoothstep(radius, radius - 1.2, d) * smoothstep(0.0, 0.08, life) * smoothstep(1.0, 0.9, life);
+}
+
+// The shadow of a bare tree standing just outside each margin. In polar coordinates around its
+// trunk a limb is a line of constant angle; each limb forks twice, the forks leaving their parent at
+// a radius of their own, and everything tapers toward the tips and sways a little, tips most.
+float branchShadow(vec2 p, float t) {
+  bool left = p.x < uView.x * 0.5;
+  vec2 trunk = left ? vec2(-90.0, uView.y * 0.66) : vec2(uView.x + 90.0, uView.y * 0.3);
+  vec2 v = p - trunk;
+  float r = length(v);
+  const float REACH = 640.0;
+  if (r > REACH) return 0.0;
+  float angle = atan(v.y, left ? v.x : -v.x);
+  angle += 0.22 * pnoise(vec2(r * 0.006, angle * 2.5 + (left ? 0.0 : 9.0))) + 0.012 * sin(t * 0.45 + r * 0.012) * r / REACH;
+  const float SPREAD = 0.46;
+  float limb = floor(angle / SPREAD + 0.5);
+  float a = abs(angle - limb * SPREAD);
+  vec2 h = hash22(vec2(limb, left ? 3.0 : 7.0));
+  float fork1 = 110.0 + 150.0 * h.x, fork2 = fork1 + 90.0 + 110.0 * h.y;
+  float c1 = SPREAD * 0.3 * smoothstep(fork1, fork1 + 260.0, r);
+  float c2 = SPREAD * 0.13 * smoothstep(fork2, fork2 + 200.0, r);
+  float taper = 1.0 - r / REACH;
+  float d0 = a * r, d1 = abs(a - c1) * r, d2 = abs(abs(a - c1) - c2) * r;
+  float shadow = smoothstep(1.5, 0.0, d0 - 5.5 * taper);
+  shadow = max(shadow, smoothstep(1.5, 0.0, d1 - 3.6 * taper) * step(fork1, r));
+  shadow = max(shadow, smoothstep(1.5, 0.0, d2 - 2.2 * taper) * step(fork2, r) * 0.85);
+  return shadow * smoothstep(0.0, 0.12, taper);
 }
 
 // Every lit window is a warm yellow; only the brightness varies.
@@ -441,26 +528,58 @@ vec3 windowColor(float k) {
   return mix(vec3(1.0, 0.78, 0.2), vec3(1.0, 0.93, 0.5), k);
 }
 
-// What the water mirrors: a cool dusk sky, a skyline of towers hanging from the top edge with yellow
-// windows, a moon with a broken glitter path, and a bridge with the occasional train crossing it.
-// The reflection fades with distance from the shore.
-// Lit windows, lamps and carriage glass come back through the light output so they can stay bright and yellow
-// instead of being washed into the water like the silhouettes.
-vec3 reflection(vec2 p, float t, out vec3 lightCol, out float light) {
+// What the water mirrors: the sky with its stars or clouds, a moon or sun with a broken glitter
+// path, a skyline of towers hanging from the top edge, and a bridge with the occasional train
+// crossing it. Lit windows, lamps and carriage glass come back through the light output so they can
+// stay bright instead of being washed into the water like the silhouettes. flash is the sheet
+// lightning of the moment: it lights the sky and the cloud but not the buildings, so they stand out.
+vec3 reflection(vec2 p, float t, float flash, out vec3 lightCol, out float light) {
   light = 0.0;
   lightCol = vec3(1.0, 0.8, 0.32);
   float far = smoothstep(0.0, uView.y * 0.85, p.y);
-  vec3 col = mix(vec3(0.3, 0.5, 0.76), vec3(0.05, 0.08, 0.26), far) * 0.62;
+  vec3 col = mix(L_skyNear, L_skyFar, far);
+
+  float cloud = 0.0;
+  if (L_clouds > 0.0) {
+    float drift = t * (1.5 + 13.0 * L_wind);
+    float n = billow((p + vec2(drift, drift * 0.15)) * vec2(0.0035, 0.0062), t * 0.02);
+    float edge = 0.92 - 0.72 * L_clouds;
+    cloud = smoothstep(edge - 0.1, edge + 0.1, n);
+    // Thick cloud is darker underneath; lightning glows from inside it.
+    col = mix(col, L_cloudColor * (1.12 - 0.5 * smoothstep(edge, edge + 0.35, n)), cloud * 0.92);
+  }
+  col += flash * vec3(0.62, 0.66, 0.86) * (0.3 + 0.7 * cloud) * (1.0 - 0.5 * far);
+
+  if (L_stars > 0.0) {
+    vec2 sc = p / 11.0, si = floor(sc), sf = fract(sc) - 0.5;
+    float sh = hash12(si + 31.7);
+    if (sh > 1.0 - 0.09 * L_stars) {
+      vec2 off = sf - (hash22(si) - 0.5) * 0.5;
+      float twinkle = 0.55 + 0.45 * sin(t * (0.5 + sh * 17.0) + sh * 90.0);
+      col += vec3(0.82, 0.88, 1.0) * step(max(abs(off.x), abs(off.y)), 0.2) * twinkle * (1.0 - cloud) * (0.5 + 0.9 * fract(sh * 57.0));
+    }
+  }
+
+  // The moon or sun hangs in the middle of the left margin, behind the skyline.
+  vec2 orb = vec2(uColumn.x * 0.52, uView.y * 0.2);
+  float od = length(p - orb);
+  float veil = 1.0 - 0.75 * cloud;
+  col += L_orb * (smoothstep(L_orbSize, L_orbSize - 5.0, od) * 1.2 + L_orbGlow * 0.55 * exp(-od * od / (L_orbSize * L_orbSize * 5.0))) * veil;
+  float glitter = exp(-pow((p.x - orb.x) / (L_orbSize * 0.57 + p.y * 0.03), 2.0)) * step(0.4, hash12(vec2(floor(p.y / 7.0), floor(t * 0.5) + floor(p.x / 12.0)))) * smoothstep(orb.y, orb.y + uView.y * 0.15, p.y) * (1.0 - smoothstep(0.4, 1.0, p.y / uView.y));
+  col += L_orb * glitter * L_glitter * veil;
+
   float w = 104.0;
   float ci = floor(p.x / w);
   float fx = p.x / w - ci;
-  float tower = (0.2 + 0.62 * hash12(vec2(ci, 1.7))) * uView.y;
+  // Towers beside the moon or sun stay low, so it always clears the roofline.
+  float tower = (0.2 + 0.62 * hash12(vec2(ci, 1.7))) * uView.y * mix(0.42, 1.0, smoothstep(w * 0.8, w * 2.4, abs((ci + 0.5) * w - orb.x)));
   if (fx > 0.14 && fx < 0.86 && p.y < tower * 0.65) {
     vec2 wc = vec2(fx * w, p.y) / vec2(15.0, 22.0);
     vec2 wid = floor(wc), wf = fract(wc);
-    float lit = step(0.74, hash12(wid + ci * 13.0)) * step(0.15, wf.x) * step(wf.x, 0.85) * step(0.2, wf.y) * step(wf.y, 0.8);
-    col = vec3(0.04, 0.05, 0.12);
-    light = lit * (1.0 - 0.35 * p.y / tower);
+    float pane = step(0.15, wf.x) * step(wf.x, 0.85) * step(0.2, wf.y) * step(wf.y, 0.8);
+    // Unlit panes are a shade darker than the wall, which only shows on a daytime silhouette.
+    col = L_skyline * (1.0 - 0.14 * pane);
+    light = pane * step(1.0 - L_windows, hash12(wid + ci * 13.0)) * (1.0 - 0.35 * p.y / tower) * L_lights;
     lightCol = windowColor(hash12(vec2(wid.y, ci) * 3.1));
   }
 
@@ -470,11 +589,11 @@ vec3 reflection(vec2 p, float t, out vec3 lightCol, out float light) {
   const float SPAN = 168.0;
   float u = (fract(p.x / SPAN) - 0.5) * SPAN;
   float arch = deck - 34.0 * (1.0 - (u * u) / (SPAN * SPAN * 0.25));
-  vec3 iron = vec3(0.02, 0.03, 0.08);
+  vec3 iron = L_skyline * 0.5;
   if (p.y < deck && (abs(p.y - arch) < 2.5 || (abs(mod(p.x, 24.0) - 12.0) < 1.0 && p.y > arch) || abs(u) > SPAN * 0.5 - 5.0)) { col = iron; light = 0.0; }
   if (p.y > deck - 5.0 && p.y < deck) { col = iron; light = 0.0; }
   float lamp = step(abs(mod(p.x, 42.0) - 21.0), 1.5) * step(deck, p.y) * step(p.y, deck + 4.0);
-  if (lamp > 0.0) { light = 1.0; lightCol = vec3(1.0, 0.84, 0.4); }
+  if (lamp > 0.0) { light = L_lights; lightCol = vec3(1.0, 0.84, 0.4); }
 
   // A train every 40 seconds, crossing in 15 and alternating direction.
   float trainLen = 5.0 * 74.0;
@@ -486,68 +605,165 @@ vec3 reflection(vec2 p, float t, out vec3 lightCol, out float light) {
     if (behind > 0.0 && behind < trainLen) {
       float within = mod(behind, 74.0);
       if (within < 68.0) {
-        col = p.y < deck + 2.0 ? vec3(0.34, 0.44, 0.66) : vec3(0.12, 0.16, 0.32);
         float glass = step(deck + 5.0, p.y) * step(p.y, deck + 14.0) * step(abs(mod(within, 11.0) - 5.5), 3.0);
-        light = glass;
+        col = p.y < deck + 2.0 ? mix(L_train, vec3(0.8, 0.86, 1.0), 0.3) : L_train * (1.0 - 0.45 * glass);
+        light = glass * L_lights;
         lightCol = vec3(1.0, 0.86, 0.45);
       }
     }
   }
-
-  vec2 moon = vec2(uView.x * 0.16, uView.y * 0.2);
-  float md = length(p - moon);
-  col += vec3(0.95, 0.97, 1.0) * smoothstep(30.0, 25.0, md) * 1.2;
-  float glitter = exp(-pow((p.x - moon.x) / (16.0 + p.y * 0.03), 2.0)) * step(0.4, hash12(vec2(floor(p.y / 7.0), floor(t * 0.5) + floor(p.x / 12.0)))) * smoothstep(moon.y, moon.y + uView.y * 0.15, p.y) * (1.0 - smoothstep(0.4, 1.0, p.y / uView.y));
-  col += vec3(0.85, 0.93, 1.0) * glitter * 0.9;
-  return col * (1.0 - 0.55 * far);
+  return col;
 }
 
 void main() {
   vec2 pix = pixelOf();
   vec2 css = (pix + 0.5) * uPixel;
-  float fade = railFade(css);
+  float rail = railDistance(css);
+  float fade = smoothstep(0.0, uFade, rail);
   if (fade <= 0.0) { outColor = vec4(0.0); return; }
   float t = uTime;
+  float threshold = bayer8(pix);
 
   float h = waveAt(css);
   vec2 slope = slopeAt(css);
   vec2 wobble = vec2(pnoise(css * 0.02 + vec2(t * 0.15, 0.0)), pnoise(css * 0.02 + vec2(5.0, t * 0.12)));
-  vec2 refract = slope * 70.0 + wobble * 5.0;
 
   // How deep the water is here: shallows show the bed, depths go dark and mirror the sky.
   float depth = clamp(fbm(css * 0.0032 + vec2(3.1, t * 0.004)) * 1.5 - 0.1, 0.0, 1.0);
   float deep = smoothstep(0.35, 0.75, depth);
 
-  vec3 bed = bedColor(css + refract * (1.0 - 0.6 * deep));
-  float caustic = pow(clamp(1.0 - abs(pnoise((css + refract) * 0.045 + t * 0.12) - pnoise((css + refract) * 0.055 - t * 0.1)) * 2.4, 0.0, 1.0), 6.0);
-  bed += caustic * 0.22 * (1.0 - deep) * vec3(0.8, 0.95, 1.0);
+  // Ice grows out from the shallows. It is rigid, so nothing under or on it ripples.
+  float ice = 0.0, rim = 0.0;
+  if (L_ice > 0.0) {
+    float sheet = 1.0 - depth + 0.1 * pnoise(css * 0.021 + 7.0) + 0.035 * pnoise(css * 0.07);
+    float shore = 1.02 - 0.62 * L_ice;
+    ice = smoothstep(shore, shore + 0.02, sheet);
+    rim = ice * (1.0 - smoothstep(shore + 0.02, shore + 0.07, sheet));
+  }
+  float loose = 1.0 - ice;
+  vec2 refract = (slope * 70.0 + wobble * 5.0) * loose;
 
-  vec3 tint = mix(vec3(0.04, 0.3, 0.5), vec3(0.02, 0.13, 0.34), deep);
-  // Slow patches of green water and algae keep the blue from reading as a flat swimming pool.
-  float green = smoothstep(0.44, 0.74, fbm(css * 0.0055 + 9.0));
-  tint = mix(tint, vec3(0.05, 0.32, 0.22), green * 0.75);
-  bed = mix(bed, vec3(0.12, 0.34, 0.2), green * 0.55 * (1.0 - deep));
-  vec3 body = mix(bed, tint, 0.3 + 0.4 * deep);
+  vec3 bed = bedColor(css + refract * (1.0 - 0.6 * deep));
+  float caustic = 0.0;
+  if (L_caustic > 0.0) {
+    caustic = pow(clamp(1.0 - abs(pnoise((css + refract) * 0.045 + t * 0.12) - pnoise((css + refract) * 0.055 - t * 0.1)) * 2.4, 0.0, 1.0), 6.0) * (1.0 - deep) * (1.0 - 0.7 * ice);
+    bed += caustic * L_caustic * L_causticColor;
+  }
+
+  vec3 tint = mix(L_shallow, L_deep, deep);
+  // Slow patches of green water and algae keep the pond from reading as a flat swimming pool.
+  if (L_algaeAmount > 0.0) {
+    float green = smoothstep(0.44, 0.74, fbm(css * 0.0055 + 9.0)) * L_algaeAmount;
+    tint = mix(tint, L_algae, green * 0.75);
+    bed = mix(bed, L_algae * 1.06 + 0.04, green * 0.55 * (1.0 - deep));
+  }
+  vec3 body = mix(bed, tint, clamp((0.3 + 0.4 * deep) * L_murk, 0.0, 1.0));
+
+  // Sheet lightning: one soft swell somewhere in each 31 second window, never in the first 14 s.
+  float flash = 0.0;
+  if (L_lightning > 0.0) {
+    float window = floor(t / 31.0);
+    float since = t - window * 31.0 - 14.0 - 10.0 * hash12(vec2(window, 5.7));
+    flash = L_lightning * smoothstep(0.0, 0.28, since) * exp(-max(since - 0.28, 0.0) * 1.6) * step(0.0, since);
+  }
 
   vec3 lightCol;
   float light;
-  vec3 mirrored = reflection(css + refract * 1.3 + vec2(sin(css.y * 0.045 + t * 0.7) * 6.0 + pnoise(css * 0.015 + t * 0.1) * 5.0, 0.0), t, lightCol, light);
-  float mirror = (0.22 + 0.34 * deep) * (0.65 + 0.35 * vnoise(css * 0.012 + t * 0.05));
-  vec3 color = mix(body, mirrored, mirror) * 0.82;
-  color = mix(color, lightCol, light * (0.85 + 0.15 * deep));
-  color += vec3(0.4, 0.65, 0.8) * smoothstep(0.05, 0.25, abs(h)) * 0.45;
-  vec3 padColor, flowerColor;
-  float flower;
-  float pad = padAt(css, t, padColor, flowerColor, flower);
-  color = mix(color, padColor, pad);
-  color = mix(color, flowerColor, flower * step(0.01, pad));
-  color = posterize(color, pix, 7.0);
+  vec3 mirrored = reflection(css + refract * 1.3 + vec2(sin(css.y * 0.045 + t * 0.7) * 6.0 + wobble.x * 5.0, 0.0) * loose, t, flash, lightCol, light);
+  float mirror = (0.22 + 0.34 * deep) * (0.65 + 0.35 * vnoise(css * 0.012 + t * 0.05)) * L_mirror;
+  vec3 color = mix(body, mirrored, clamp(mirror, 0.0, 1.0)) * L_gain;
+  color += flash * 0.05;
+  color = mix(color, lightCol, light * (0.85 + 0.15 * deep) * (1.0 - 0.45 * ice));
+  // Sunlight or moonlight sparking along the brightest caustic lines.
+  color += L_orb * smoothstep(0.55, 0.95, caustic) * L_glitter * 0.3;
+  color += L_rippleColor * smoothstep(0.05, 0.25, abs(h)) * L_ripple * loose;
 
-  // Fish, food and shadows sit on the water: knock it back beneath them so the glyphs read clearly.
+  if (ice > 0.0) {
+    // Frosted, a little snow lying on it, a bright rim where it meets open water, and fine
+    // cracks that are densest near that rim.
+    vec3 frost = mix(color, L_iceColor, 0.55 + 0.2 * vnoise(css * 0.03));
+    float lying = smoothstep(0.5, 0.75, vnoise(css * 0.016 + 4.0) + 0.2 * vnoise(css * 0.09)) * L_snow;
+    frost = mix(frost, L_snowColor, lying * 0.8);
+    float vein = abs(pnoise(css * 0.016 + 21.0) + 0.35 * pnoise(css * 0.05 + 2.0));
+    float crack = (1.0 - smoothstep(0.0, 0.022, vein)) * (1.0 - lying);
+    frost = mix(frost, L_iceColor * 1.25 + 0.1, crack * 0.7);
+    frost = mix(frost, L_iceColor * 1.2 + 0.12, rim * 0.8);
+    color = mix(color, frost, ice);
+  }
+
+  if (L_pads > 0.0) {
+    // Pads ride the ripples, so rain makes them bob.
+    vec2 afloat = css + slope * 46.0;
+    vec3 padColor;
+    float pad = padAt(afloat, t, 230.0, L_pads, 0.0, padColor) * loose;
+    color = mix(color, padColor, pad);
+    pad = padAt(afloat + 61.0, t, 128.0, L_pads * 0.55, 23.0, padColor) * loose;
+    color = mix(color, padColor, pad);
+  }
+  if (L_leaves > 0.0) {
+    vec2 afloat = css + slope * 46.0;
+    vec3 drift;
+    float on = drifter(afloat, t, 118.0, L_leaves, 1.0, 1.0, L_leafA, L_leafB, L_leafC, drift);
+    color = mix(color, drift, on);
+    on = drifter(afloat, t, 52.0, L_leaves * 0.8, 2.0, 1.0, L_leafB, L_leafC, L_leafA, drift);
+    color = mix(color, drift, on);
+  }
+  if (L_petals > 0.0) {
+    vec2 afloat = css + slope * 46.0;
+    vec3 drift;
+    float on = drifter(afloat, t, 64.0, L_petals, 3.0, 0.0, L_petalA, L_petalB, mix(L_petalA, L_petalB, 0.5), drift);
+    color = mix(color, drift, on);
+    on = drifter(afloat, t, 30.0, L_petals * 0.7, 4.0, 0.0, L_petalB, L_petalA, L_petalB, drift);
+    color = mix(color, drift, on);
+    color = mix(color, L_petalB, faller(css, t, 150.0, L_petals * 0.5, 9.0));
+  }
+
+  if (L_branches > 0.0) color *= 1.0 - 0.45 * L_branches * branchShadow(css, t);
+
+  if (L_fireflies > 0.0) {
+    // One wandering, slowly pulsing point per cell, and its smeared reflection in the water.
+    const float FLY = 170.0;
+    vec2 id = floor(css / FLY);
+    vec2 r = hash22(id + 12.3);
+    if (r.x < L_fireflies * 0.75) {
+      vec2 at = FLY * (0.5 + 0.2 * vec2(sin(t * 0.21 + r.y * 6.3) + 0.5 * sin(t * 0.53 + r.x * 9.0), cos(t * 0.17 + r.x * 6.3) + 0.5 * cos(t * 0.47 + r.y * 5.0)));
+      vec2 v = css - id * FLY - at;
+      float pulse = smoothstep(0.15, 0.85, 0.5 + 0.5 * sin(t * (0.5 + r.y * 0.7) + r.x * 20.0));
+      float d2 = dot(v, v);
+      vec2 mv = (v + refract * 2.0 - vec2(0.0, 15.0)) * vec2(1.0, 0.4);
+      float glow = smoothstep(16.0, 4.0, d2) + 0.4 * exp(-d2 / 70.0) + 0.45 * exp(-dot(mv, mv) / 14.0);
+      color = mix(color, vec3(0.86, 1.0, 0.42), clamp(glow * pulse, 0.0, 1.0));
+    }
+  }
+
+  if (L_snow > 0.0) {
+    // Flakes take the colour of a lit window where they fall through its light.
+    vec3 flake = mix(L_snowColor, lightCol, light * 0.7);
+    vec2 blown = css - vec2(t * 16.0 * L_wind, 0.0);
+    float falling = faller(blown, t, 46.0, L_snow * 0.85, 5.0) + faller(blown + 19.0, t, 96.0, L_snow * 0.7, 6.0);
+    color = mix(color, flake, clamp(falling, 0.0, 1.0));
+  }
+
+  if (L_mist > 0.0) {
+    float m = billow(css * vec2(0.0021, 0.0046) + vec2(t * (0.006 + 0.03 * L_wind), t * 0.002), t * 0.015);
+    color = mix(color, L_mistColor, smoothstep(0.34, 0.74, m) * L_mist * 0.78);
+  }
+
+  color = posterize(color, threshold, 7.0);
+
+  // Fish, food and shadows sit on the water: darken it beneath them so the glyphs read clearly.
+  // The alpha is kept, so on paper a koi is bright glyphs over its own dark shape instead of
+  // cream on cream; over a black page this is the same picture as cutting a hole.
   ivec2 fc = ivec2(clamp(css / uCell, vec2(0.0), uGrid - 1.0));
   ivec2 tc = ivec2(fc.x, int(uGrid.y) - 1 - fc.y);
-  float solid = texelFetch(uAux, tc, 0).r < 0.2 ? clamp(texelFetch(uField, tc, 0).a * 1.8, 0.0, 1.0) : 0.0;
-  float alpha = fade * uOpacity * (1.0 - 0.88 * solid);
+  float kind = texelFetch(uAux, tc, 0).r;
+  float solid = kind < 0.2 ? clamp(texelFetch(uField, tc, 0).a * 1.8, 0.0, 1.0) : 0.0;
+  color = mix(color, L_koiBed, 0.88 * solid);
+  float alpha = fade * uOpacity;
+  alpha = mix(alpha, step(threshold, fade * 1.08) * uOpacity, L_edgeDither);
+  // A koi keeps its dark shape for as long as its glyphs last, which is closer to the rails than
+  // the water reaches.
+  if (kind < 0.05) alpha = max(alpha, solid * clamp(rail / uGlyphFade, 0.0, 1.0));
   outColor = vec4(color * alpha, alpha);
 }`;
 
@@ -797,6 +1013,12 @@ export class KoiGL implements KoiRenderer {
     return this.pond;
   }
 
+  private bindLook(program: Program, look: PondLook) {
+    const gl = this.gl;
+    for (const key of LOOK_SCALAR_KEYS) gl.uniform1f(this.uniform(program, `L_${key}`), look[key]);
+    for (const key of LOOK_COLORS) gl.uniform3f(this.uniform(program, `L_${key}`), look[key][0], look[key][1], look[key][2]);
+  }
+
   private bindTexture(unit: number, texture: WebGLTexture | null, program: Program, name: string) {
     this.gl.activeTexture(this.gl.TEXTURE0 + unit);
     this.gl.bindTexture(this.gl.TEXTURE_2D, texture);
@@ -820,7 +1042,7 @@ export class KoiGL implements KoiRenderer {
     gl.uniform1f(this.uniform(program, "uOpacity"), 1);
   }
 
-  draw(pond: Pond, seconds: number) {
+  draw(pond: Pond, seconds: number, look: PondLook) {
     const gl = this.gl;
     if (!this.field || !this.halo || !this.atlas || !this.waveTexture || !this.water) return;
     const data = pond.gpuData();
@@ -847,6 +1069,7 @@ export class KoiGL implements KoiRenderer {
     gl.uniform1i(this.uniform(field, "uPelletCount"), data.pelletCount);
     gl.uniform4fv(this.uniform(field, "uParams"), data.params);
     gl.uniform4fv(this.uniform(field, "uBounds"), data.bounds);
+    this.bindLook(field, look);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
     // 2. Halo: glyphs at low resolution, blurred.
@@ -883,6 +1106,7 @@ export class KoiGL implements KoiRenderer {
       gl.uniform1f(this.uniform(program, "uTime"), seconds);
       gl.uniform2f(this.uniform(program, "uColumn"), this.columnCss[0], this.columnCss[1]);
       gl.uniform1f(this.uniform(program, "uFade"), WATER_FADE_PX);
+      gl.uniform1f(this.uniform(program, "uGlyphFade"), FADE_PX);
       gl.uniform1f(this.uniform(program, "uOpacity"), opacity);
     };
     const water = this.programs.water;
@@ -893,6 +1117,7 @@ export class KoiGL implements KoiRenderer {
     this.bindTexture(1, this.field.textures[0], water, "uField");
     this.bindTexture(2, this.field.textures[1], water, "uAux");
     pixelUniforms(water, 0.92);
+    this.bindLook(water, look);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
     // 4. To the screen: water, then glyphs, then the halo added on top.
@@ -916,7 +1141,7 @@ export class KoiGL implements KoiRenderer {
     const composite = this.programs.composite;
     gl.useProgram(composite.program);
     this.bindTexture(0, haloA.textures[0], composite, "uSource");
-    gl.uniform1f(this.uniform(composite, "uGlow"), 0.6);
+    gl.uniform1f(this.uniform(composite, "uGlow"), look.halo);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
   }
 
