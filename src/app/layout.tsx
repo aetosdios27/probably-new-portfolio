@@ -4,6 +4,7 @@ import { SocialsDock } from "@/components/socials-dock";
 import { SoundEffects } from "@/components/sound-effects";
 import { CONTACT } from "@/content/contact";
 import { identity } from "@/content/portfolio";
+import { BOOT_SCRIPT } from "@/lib/boot-script";
 import "./globals.css";
 
 const interTight = localFont({
@@ -82,7 +83,10 @@ const structuredData = JSON.stringify([
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${interTight.variable} ${instrumentSerif.variable} ${geistMono.variable}`}>
+    <html lang="en" className={`${interTight.variable} ${instrumentSerif.variable} ${geistMono.variable}`} suppressHydrationWarning>
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
+      </head>
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
         <a className="skip-link" href="#main">Skip to content</a>
