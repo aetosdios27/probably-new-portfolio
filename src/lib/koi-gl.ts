@@ -20,7 +20,7 @@
 // as one uniform per field; the shaders never branch on season or theme.
 
 import { EXTRAS, MAX_FISH, Pond, SEGMENTS } from "./koi-pond";
-import { FADE_PX, type KoiRenderer } from "./koi-renderer";
+import { FADE_PX, type KoiRenderer, type Pulse } from "./koi-renderer";
 import { BLUR, COMPOSITE, FIELD, GLYPH, HALO, VERTEX, WATER } from "./koi-shaders";
 import { LOOK_COLORS, LOOK_SCALARS, type LookScalar, type PondLook } from "./pond-looks";
 
@@ -275,7 +275,8 @@ export class KoiGL implements KoiRenderer {
     this.gl.uniform1i(this.uniform(program, name), unit);
   }
 
-  private bindGlyphUniforms(program: Program, seconds: number, field: Target) {
+  private bindGlyphUniforms(program: Program, seconds: number, field: Target, look: PondLook) {
+    this.gl.uniform3f(this.uniform(program, "uWhite"), look.whitePoint[0], look.whitePoint[1], look.whitePoint[2]);
     const gl = this.gl, atlas = this.atlas!, pond = this.pond!;
     this.bindTexture(0, field.textures[0], program, "uField");
     this.bindTexture(1, field.textures[1], program, "uAux");
@@ -292,7 +293,13 @@ export class KoiGL implements KoiRenderer {
     gl.uniform1f(this.uniform(program, "uOpacity"), 1);
   }
 
-  draw(pond: Pond, seconds: number, look: PondLook) {
+  private bindPulse(program: Program, pulse: Pulse | null | undefined) {
+    const gl = this.gl;
+    gl.uniform4f(this.uniform(program, "uPulse"), pulse?.x ?? 0, pulse?.y ?? 0, pulse?.radius ?? 0, Math.max(1, pulse?.reach ?? 1));
+    gl.uniform1f(this.uniform(program, "uPulseDir"), pulse?.direction ?? 0);
+  }
+
+  draw(pond: Pond, seconds: number, look: PondLook, pulse?: Pulse | null) {
     const gl = this.gl;
     if (!this.field || !this.halo || !this.atlas || !this.waveTexture || !this.water) return;
     const data = pond.gpuData();
@@ -320,6 +327,7 @@ export class KoiGL implements KoiRenderer {
     gl.uniform4fv(this.uniform(field, "uParams"), data.params);
     gl.uniform4fv(this.uniform(field, "uBounds"), data.bounds);
     this.bindLook(field, look);
+    this.bindPulse(field, pulse);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
     // 2. Halo: glyphs at low resolution, blurred.
@@ -330,7 +338,7 @@ export class KoiGL implements KoiRenderer {
     gl.clearColor(0, 0, 0, 0);
     gl.clear(gl.COLOR_BUFFER_BIT);
     gl.useProgram(halo.program);
-    this.bindGlyphUniforms(halo, seconds, this.field);
+    this.bindGlyphUniforms(halo, seconds, this.field, look);
     gl.uniform1f(this.uniform(halo, "uDownscale"), HALO_SCALE);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
@@ -368,6 +376,7 @@ export class KoiGL implements KoiRenderer {
     this.bindTexture(2, this.field.textures[1], water, "uAux");
     pixelUniforms(water, 0.92);
     this.bindLook(water, look);
+    this.bindPulse(water, pulse);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
     // 4. To the screen: water, then glyphs, then the halo added on top.
@@ -386,7 +395,7 @@ export class KoiGL implements KoiRenderer {
 
     const glyph = this.programs.glyph;
     gl.useProgram(glyph.program);
-    this.bindGlyphUniforms(glyph, seconds, this.field);
+    this.bindGlyphUniforms(glyph, seconds, this.field, look);
     gl.drawArrays(gl.TRIANGLES, 0, 3);
 
     const composite = this.programs.composite;

@@ -81,6 +81,11 @@ export const LOOK_SCALARS = {
   koiPace: [0.3, 1.2],
   /** Whether a koi near the rails keeps its dark shape after the water has faded. On for a black page only. */
   koiHold: [0, 1],
+  /**
+   * How much of the pond exists. 1 always, except while AI mode takes it away: then the glyphs thin
+   * down their density ramp to nothing and the water dissolves through its own dither pattern.
+   */
+  presence: [0, 1],
 } as const satisfies Record<string, readonly [number, number]>;
 
 /** Every colour field. */
@@ -90,6 +95,8 @@ export const LOOK_COLORS = [
   "padDark", "padLight", "lotusColor", "petalA", "petalB", "leafA", "leafB", "leafC",
   "snowColor", "iceColor", "mistColor",
   "koiBed", "glyphRipple", "glyphShadow",
+  /** Nothing in the pond is whiter than this: the page's own white, so highlights never glare. */
+  "whitePoint",
 ] as const;
 
 export type LookScalar = keyof typeof LOOK_SCALARS;
@@ -130,7 +137,7 @@ const NIGHT: PondLook = {
   snow: 0, snowColor: [0.66, 0.74, 0.95], ice: 0, iceColor: [0.42, 0.56, 0.78],
   mist: 0, mistColor: [0.3, 0.36, 0.5], branches: 0, fireflies: 0, rain: 0,
   koiBed: [0, 0, 0], glyphRipple: [0.36, 0.84, 1], glyphShadow: [0.3, 0.45, 0.5], crest: 0.45, halo: 0.6, haloShade: 1,
-  koiPace: 1, koiHold: 1,
+  koiPace: 1, koiHold: 1, presence: 1, whitePoint: [0.925, 0.91, 0.882],
 };
 
 // The same pond at midday on warm paper: softened print colours, pale silhouettes where the lit
@@ -152,7 +159,7 @@ const DAY: PondLook = {
   leafA: [0.93, 0.62, 0.16], leafB: [0.8, 0.36, 0.12], leafC: [0.7, 0.16, 0.14],
   snowColor: [1, 1, 1], iceColor: [0.88, 0.93, 0.97], mistColor: [0.95, 0.93, 0.87],
   koiBed: [0.05, 0.27, 0.34], glyphRipple: [1, 1, 1], glyphShadow: [0.05, 0.16, 0.2], crest: 0.5, halo: 0.3, haloShade: 0,
-  koiHold: 0,
+  koiHold: 0, whitePoint: [0.961, 0.949, 0.918],
 };
 
 export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
@@ -352,4 +359,9 @@ export function skyChange(from: PondLook, to: PondLook, progress: number): PondL
   if (sameBody(from, to)) return withBody(mixed, to, from.orbX + (to.orbX - from.orbX) * easeOut(t));
   if (t < 0.5) return withBody(mixed, from, from.orbX + (1 - from.orbX) * easeIn(t * 2));
   return withBody(mixed, to, -1 + (to.orbX + 1) * easeOut(t * 2 - 1));
+}
+
+/** The same look with only part of the pond still there (see `presence`). */
+export function withPresence(look: PondLook, presence: number): PondLook {
+  return presence >= 1 ? look : { ...look, presence: Math.max(0, presence) };
 }

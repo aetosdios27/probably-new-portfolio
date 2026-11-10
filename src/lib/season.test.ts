@@ -5,7 +5,7 @@ import { resolveSeason, seasonAt, seasonOf, SEASONS } from "./season";
 
 const india = (iso: string) => new Date(`${iso}T12:00:00+05:30`);
 
-function boot(search: string, now: number, stored: string | null, prefersLight: boolean) {
+function boot(search: string, now: number, stored: string | null, prefersLight: boolean, storedMode: string | null = null) {
   const dataset: Record<string, string> = {};
   const RealDate = Date;
   class FakeDate extends RealDate {
@@ -13,7 +13,7 @@ function boot(search: string, now: number, stored: string | null, prefersLight: 
     static now() { return now; }
   }
   new Function("document", "location", "localStorage", "matchMedia", "Date", BOOT_SCRIPT)(
-    { documentElement: { dataset } }, { search }, { getItem: () => stored }, () => ({ matches: prefersLight }), FakeDate);
+    { documentElement: { dataset } }, { search }, { getItem: (key: string) => (key === "aetos:mode" ? storedMode : stored) }, () => ({ matches: prefersLight }), FakeDate);
   return dataset;
 }
 
@@ -74,5 +74,14 @@ describe("boot script", () => {
     assert.equal(boot("", now, null, true).theme, "light");
     assert.equal(boot("", now, "junk", false).theme, "dark");
     for (const season of SEASONS) assert.equal(boot(`?season=${season}`, now, null, false).season, season);
+  });
+
+  test("mode: query, then stored choice, then the site", () => {
+    const now = Date.UTC(2026, 5, 1);
+    assert.equal(boot("", now, null, false).mode, "site");
+    assert.equal(boot("", now, null, false, "ai").mode, "ai");
+    assert.equal(boot("?mode=site", now, null, false, "ai").mode, "site");
+    assert.equal(boot("?mode=ai", now, null, false).mode, "ai");
+    assert.equal(boot("", now, null, false, "junk").mode, "site");
   });
 });

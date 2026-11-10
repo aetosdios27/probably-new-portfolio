@@ -5,7 +5,9 @@ import { KoiCanvas } from "@/lib/koi-canvas";
 import { KoiGL } from "@/lib/koi-gl";
 import type { Pond } from "@/lib/koi-pond";
 import type { KoiRenderer } from "@/lib/koi-renderer";
-import { LOOKS, mixLooks, skyChange, type PondLook } from "@/lib/pond-looks";
+import { currentMode } from "@/lib/mode";
+import { currentPulse } from "@/lib/mode-transition";
+import { LOOKS, mixLooks, skyChange, withPresence, type PondLook } from "@/lib/pond-looks";
 import { resolveSeason } from "@/lib/season";
 import { currentTheme, onThemeChange } from "@/lib/theme";
 import { gulp, plop } from "@/lib/pond-sound";
@@ -28,6 +30,10 @@ const LOOK_FADE_MS = 1200;
 /** The most the fade's clock moves in one frame: a 60 Hz frame. Longer frames slow it rather than skip it. */
 const SKY_FRAME_MS = 1000 / 60;
 const FRAME_SLACK_MS = 2;
+/** The pond exists everywhere but AI mode. Switching into or out of it is a pulse (mode-transition.ts). */
+function wantsPond() {
+  return currentMode() === "site";
+}
 
 /** The look for this moment of the year: the season, drifting toward its neighbour near a turn. */
 function lookNow(): PondLook {
@@ -101,6 +107,20 @@ export function KoiPond() {
       // The still frame has no animation loop to pick the change up, so redraw it by hand.
       if (reduced) renderer?.draw(pond, STILL_SECONDS, to);
     }
+    // In AI mode there is no pond: the loop stops and the GPU rests. The pulse that switches modes
+    // has already taken it away by then, or brings it back from nothing.
+    let presence = wantsPond() ? 1 : 0;
+    function onModeChange() {
+      if (disposed) return;
+      presence = wantsPond() ? 1 : 0;
+      if (presence && !pond) return build();
+      if (!presence && pond) {
+        renderer?.draw(pond, STILL_SECONDS, withPresence(to, 0));
+        cancelAnimationFrame(raf);
+        raf = 0;
+        pond = null;
+      }
+    }
     function applyWeather(current: PondLook) {
       pond?.setWeather({ rain: current.rain, pace: current.koiPace });
     }
@@ -112,6 +132,7 @@ export function KoiPond() {
       const width = innerWidth, height = innerHeight;
       if (width < MIN_WIDTH) { pond = null; return; }
       if (document.hidden) { pond = null; return; }
+      if (!wantsPond() && presence === 0) { pond = null; return; }
       const active = ensureRenderer();
       if (!active) return;
       const dpr = Math.min(devicePixelRatio || 1, QUALITY_DPR[quality], Math.sqrt(MAX_PIXELS / (width * height)));
@@ -151,21 +172,23 @@ export function KoiPond() {
       // display offers, so a change of sky draws on each one. The simulation keeps its fixed step.
       const changingSky = fadeElapsed < LOOK_FADE_MS;
       if (changingSky) fadeElapsed += Math.min(elapsed, SKY_FRAME_MS);
+      const pulse = currentPulse();
+      const smooth = changingSky || pulse !== null;
       // A little slack, so on a 60 Hz display every second frame counts as due instead of jitter
       // pushing some to the third.
-      if (accumulated < FRAME_MS - FRAME_SLACK_MS && !changingSky) return;
+      if (accumulated < FRAME_MS - FRAME_SLACK_MS && !smooth) return;
       const steps = Math.min(2, Math.floor((accumulated + FRAME_SLACK_MS) / FRAME_MS));
-      const current = look();
+      const current = withPresence(look(), presence);
       applyWeather(current);
       for (let i = 0; i < steps; i++) pond.step(1 / 30);
       if (steps > 0) {
         // Frames that arrive well past their slot mean the device cannot keep up: drop a quality
         // level. Not during a change of sky: the page snapshot for the theme crossfade costs one long
         // frame, and rebuilding the pond mid-flight would be the very stutter this avoids.
-        if (!changingSky && drawn++ >= 20 && accumulated > FRAME_MS * 1.6) late++;
-        accumulated = changingSky ? Math.max(0, accumulated - steps * FRAME_MS) : 0;
+        if (!smooth && drawn++ >= 20 && accumulated > FRAME_MS * 1.6) late++;
+        accumulated = smooth ? Math.max(0, accumulated - steps * FRAME_MS) : 0;
       }
-      renderer?.draw(pond, seconds(), current);
+      renderer?.draw(pond, seconds(), current, pulse);
       if (drawn >= GOVERNOR_FRAMES && late / (drawn - 20) > GOVERNOR_LATE && quality < QUALITY_DPR.length - 1) {
         quality++;
         build();
@@ -213,6 +236,8 @@ export function KoiPond() {
       build();
     }
     const stopWatchingTheme = onThemeChange(retarget);
+    const modeObserver = new MutationObserver(onModeChange);
+    modeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-mode"] });
     document.addEventListener("visibilitychange", onVisibilityChange);
     motion.addEventListener("change", onMotionChange);
     addEventListener("resize", onResize);
@@ -222,6 +247,7 @@ export function KoiPond() {
     return () => {
       disposed = true;
       stopWatchingTheme();
+      modeObserver.disconnect();
       cancelAnimationFrame(raf);
       cancelAnimationFrame(resizeFrame);
       document.removeEventListener("visibilitychange", onVisibilityChange);

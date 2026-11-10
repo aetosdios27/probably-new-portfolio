@@ -8,6 +8,7 @@ import { Dock, DockIcon, DockItem, DockLabel } from "./ui/dock";
 import { CONTACT } from "@/content/contact";
 import { dockTick, hoverCancel, hoverIntent } from "@/lib/hover-sound";
 import { ResumeDownload } from "./resume-download";
+import { ModeToggle } from "./mode-toggle";
 import { ThemeToggle } from "./theme-toggle";
 import styles from "./socials-dock.module.css";
 
@@ -98,7 +99,8 @@ export function SocialsDock() {
             <DockIcon><Icon role="img" aria-label={label} className={styles.icon} /></DockIcon>
           </DockItem>
         </Fragment>)}
-        <ThemeToggle index={ITEMS.length + 1} />
+        <ModeToggle index={ITEMS.length + 1} />
+        <ThemeToggle index={ITEMS.length + 2} />
       </Dock>
     </nav>
   );

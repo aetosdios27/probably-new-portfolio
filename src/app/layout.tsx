@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { AgentView } from "@/components/agent-view";
 import { SocialsDock } from "@/components/socials-dock";
 import { SoundEffects } from "@/components/sound-effects";
 import { CONTACT } from "@/content/contact";
@@ -33,7 +34,7 @@ const geistMono = localFont({
 
 const siteName = "aetos";
 const siteTitle = "aetos";
-const siteDescription = "I’m aetos, a systems engineer driven mostly by curiosity and an unreasonable attention to detail.";
+const siteDescription = identity.summary;
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://aetosdios.xyz";
 
 export const viewport: Viewport = {
@@ -51,7 +52,7 @@ export const metadata: Metadata = {
   applicationName: siteName,
   authors: [{ name: identity.name, url: siteUrl }],
   creator: identity.name,
-  alternates: { canonical: "/" },
+  alternates: { canonical: "/", types: { "text/markdown": "/index.md" } },
   openGraph: {
     type: "website",
     siteName,
@@ -97,10 +98,15 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
       <body>
         <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
         <a className="skip-link" href="#main">Skip to content</a>
-        <div className="page-shell">
+        <a className="sr-only" href="/index.md">This whole site as markdown, for AI agents</a>
+        <div className="page-shell" data-site-only>
           {children}
         </div>
-        <SocialsDock />
+        <div data-site-only data-site-dock>
+          <SocialsDock />
+        </div>
+        <AgentView />
+        <div className="pulse-ring" aria-hidden="true" />
         <SoundEffects />
       </body>
     </html>

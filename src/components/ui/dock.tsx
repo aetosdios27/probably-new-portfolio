@@ -69,7 +69,7 @@ export type DockProps = {
 export type DockItemProps = {
   className?: string;
   children: React.ReactNode;
-  onClick?: () => void;
+  onClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
   onHover?: () => void;
   onHoverEnd?: () => void;
   'data-cuelume-tap'?: string;

@@ -1,0 +1,108 @@
+/* AI mode: the site at its most basic. One column of monospace markdown on the page's own colour, no
+   decoration. The controls read as part of the text. While the mode is switching, the view is an
+   overlay whose visible part is the trailing front of the pulse (see mode-transition.ts). */
+.view {
+  display: none;
+  min-height: 100svh;
+  padding: var(--space-6) var(--space-3) var(--space-12);
+  background: var(--background);
+  color: var(--foreground);
+}
+
+:global(html[data-mode="ai"]) .view { display: block; }
+:global(html[data-transition]) .view { display: block; position: fixed; inset: 0; z-index: 30; overflow: auto; }
+:global(html[data-transition="to-ai"]) .view {
+  mask-image: radial-gradient(circle at var(--pulse-x) var(--pulse-y), #000 calc(var(--reveal-r) - 60px), transparent var(--reveal-r));
+}
+:global(html[data-transition="to-site"]) .view {
+  mask-image: radial-gradient(circle at var(--pulse-x) var(--pulse-y), transparent calc(var(--reveal-r) - 60px), #000 var(--reveal-r));
+}
+
+.controls,
+.markdown {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: var(--space-1) var(--space-2);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-4);
+  border-bottom: 1px dashed rgb(var(--line) / var(--line-dash));
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+  color: var(--subtle);
+}
+
+.mode { color: var(--foreground); margin-right: auto; }
+
+.control {
+  padding: 0;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  cursor: pointer;
+  text-decoration: underline dashed rgb(var(--line) / 30%);
+  text-underline-offset: 4px;
+  transition: color var(--motion-hover) ease;
+}
+.control:hover, .control:focus-visible { color: var(--foreground); }
+.control kbd { font: inherit; color: var(--subtle); }
+
+.openIn { position: relative; }
+
+.menu {
+  position: absolute;
+  top: calc(100% + var(--space-1));
+  right: 0;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  min-width: 22ch;
+  padding: 6px 0;
+  border: 1px dashed rgb(var(--line) / var(--line-dash));
+  background: var(--background);
+  font-family: var(--font-mono);
+  font-size: var(--text-meta);
+}
+
+.option {
+  padding: 5px 14px;
+  border: 0;
+  background: none;
+  color: var(--muted);
+  font: inherit;
+  text-align: left;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color var(--motion-feedback) ease, background-color var(--motion-feedback) ease;
+}
+.option:hover, .option:focus-visible { color: var(--foreground); background: rgb(var(--line) / 6%); outline: none; }
+.note { color: var(--subtle); }
+
+.markdown {
+  margin-top: 0;
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.7;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  tab-size: 2;
+}
+
+.link {
+  color: inherit;
+  text-decoration: underline dotted rgb(var(--line) / 35%);
+  text-underline-offset: 3px;
+  transition: color var(--motion-hover) ease;
+}
+.link:hover, .link:focus-visible { color: var(--accent); }
+
+@media (max-width: 640px) {
+  .view { padding: var(--space-4) var(--space-2) var(--space-10); }
+  .markdown { font-size: 12px; }
+}

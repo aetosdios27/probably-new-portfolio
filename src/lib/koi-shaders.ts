@@ -29,6 +29,25 @@ float vnoise(vec2 p) {
   return mix(mix(hash12(i), hash12(i + vec2(1.0, 0.0)), f.x), mix(hash12(i + vec2(0.0, 1.0)), hash12(i + vec2(1.0, 1.0)), f.x), f.y);
 }`;
 
+
+const PULSE = `
+uniform vec4 uPulse;
+uniform float uPulseDir;
+const float PULSE_BAND = 170.0;
+// How much of the pond a passing pulse leaves at p (css px): 1 with no pulse. Behind a front that is
+// taking the pond away it goes to 0 across a band, and the dither and per-cell hashes stagger it.
+float pulseKeep(vec2 p) {
+  if (uPulseDir == 0.0) return 1.0;
+  float behind = 1.0 - smoothstep(uPulse.z - PULSE_BAND, uPulse.z, length(p - uPulse.xy));
+  return uPulseDir > 0.0 ? 1.0 - behind : behind;
+}
+// The crest of the front itself, dissipating as it spreads.
+float pulseCrest(vec2 p) {
+  if (uPulseDir == 0.0) return 0.0;
+  float d = length(p - uPulse.xy) - uPulse.z;
+  return exp(-d * d / 300.0) * pow(1.0 - clamp(uPulse.z / uPulse.w, 0.0, 1.0), 0.8);
+}`;
+
 export const FIELD = `#version 300 es
 precision highp float;
 precision highp int;
@@ -43,6 +62,7 @@ uniform vec4 uBounds[${MAX_FISH}];
 uniform sampler2D uFish;
 uniform sampler2D uWave;
 ${LOOK_UNIFORMS}
+${PULSE}
 layout(location = 0) out vec4 outField;
 layout(location = 1) out vec4 outAux;
 ${HASH}
@@ -205,7 +225,20 @@ void main() {
     ink = L_glyphRipple;
     flicker = 0.5;
   }
-  outField = vec4(ink, tone);
+  // AI mode takes the pond away: each cell's character thins down the density ramp at its own
+  // moment, so the koi and ripples come apart glyph by glyph rather than fading as a sheet.
+  // A pulse does the same along its front, and its crest passes through the water as a ring of
+  // ripple glyphs.
+  vec2 cellCss = (cell + 0.5) * uCell;
+  float leave = hash12(cell * 3.17 + 0.5) * 0.7;
+  tone *= smoothstep(leave, leave + 0.3, L_presence * pulseKeep(cellCss));
+  float crest = pulseCrest(cellCss);
+  if (fishCover <= 0.12 && crest * 0.75 > tone) {
+    tone = crest * 0.75;
+    ink = L_glyphRipple;
+    flicker = 0.6;
+  }
+  outField = vec4(min(ink, L_whitePoint), tone);
   outAux = vec4(flicker, ripple, 0.0, 1.0);
 }`;
 
@@ -226,6 +259,7 @@ uniform vec2 uColumn;
 uniform float uFadeDev;
 uniform float uFlicker;
 uniform float uOpacity;
+uniform vec3 uWhite;
 ${HASH}
 vec4 glyphAt(vec2 frag) {
   vec2 px = vec2(frag.x, uResolution.y - frag.y);
@@ -253,7 +287,7 @@ vec4 glyphAt(vec2 frag) {
   vec2 uv = vec2((column + local.x) / uAtlasGrid.x, (row + local.y) / uAtlasGrid.y);
   float coverage = textureGrad(uAtlas, uv, gx, gy).a;
   float alpha = uOpacity * fade * smoothstep(0.02, 0.09, tone) * coverage;
-  vec3 ink = clamp(field.rgb * (0.6 + 0.6 * tone), 0.0, 1.0);
+  vec3 ink = min(field.rgb * (0.6 + 0.6 * tone), uWhite);
   return vec4(ink * alpha, alpha);
 }`;
 
@@ -319,6 +353,7 @@ uniform float uGlyphFade;
 uniform float uOpacity;
 uniform sampler2D uWave;
 ${LOOK_UNIFORMS}
+${PULSE}
 out vec4 outColor;
 ${NOISE}
 // 8x8 Bayer threshold in (0, 1).
@@ -690,6 +725,7 @@ void main() {
   vec3 color = mix(body, mirrored, clamp(mirror, 0.0, 1.0)) * L_gain;
   color += flash * 0.05;
   color += L_rippleColor * smoothstep(0.05, 0.25, abs(h)) * L_ripple * loose;
+  color += L_rippleColor * pulseCrest(css) * 0.4;
   // Emitted light, kept apart so the scene's ambient light never dims it. A mirror loses little of
   // a bright source, so a reflected light is nearly as bright as the light itself.
   vec3 emit = glow * (0.75 + 0.25 * deep) + lightCol * light * (0.85 + 0.15 * deep) * (1.0 - 0.45 * ice);
@@ -783,7 +819,7 @@ void main() {
     color = mix(color, L_mistColor * L_ambient, smoothstep(0.42, 0.78, m) * L_mist * 0.85);
   }
 
-  color = posterize(color, threshold, 7.0);
+  color = min(posterize(color, threshold, 7.0), L_whitePoint);
 
   // Fish, food and shadows sit on the water: darken it beneath them so the glyphs read clearly.
   // The alpha is kept, so on paper a koi is bright glyphs over its own dark shape instead of
@@ -802,6 +838,8 @@ void main() {
   // rails than the water reaches. On paper that shape would outlive the water as a silhouette.
   float hold = smoothstep(0.3, 0.8, solid) * fish * clamp(rail / uGlyphFade, 0.0, 1.0) * L_koiHold;
   alpha = max(alpha, hold);
+  // AI mode dissolves the water pixel by pixel in the order of its own dither pattern.
+  alpha *= step(threshold, L_presence * pulseKeep(css));
   outColor = vec4(color * alpha, alpha);
 }`;
 

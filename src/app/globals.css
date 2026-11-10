@@ -175,6 +175,31 @@ a:hover .external-arrow { transform: translate(2px, -2px); color: var(--accent);
   animation-duration: var(--motion-reveal);
   animation-timing-function: var(--ease-in-out);
 }
+/* AI mode. The site and its dock leave the page entirely; agent-view.module.css shows the markdown.
+   The switch is a pulse from the pressed control (src/lib/mode-transition.ts): --pulse-r is its front,
+   --reveal-r a second front that trails it. Behind the pulse the frame's flourishes go (or return);
+   the pond does the same in its shader from the same value. */
+@property --pulse-r { syntax: "<length>"; inherits: true; initial-value: 0px; }
+@property --reveal-r { syntax: "<length>"; inherits: true; initial-value: 0px; }
+html[data-mode="ai"] [data-site-only] { display: none; }
+html[data-transition="to-ai"] [data-pulse-decor] {
+  mask-image: radial-gradient(circle at var(--ox) var(--oy), transparent calc(var(--pulse-r) - 90px), #000 var(--pulse-r));
+}
+html[data-transition="to-site"] [data-pulse-decor] {
+  mask-image: radial-gradient(circle at var(--ox) var(--oy), #000 calc(var(--pulse-r) - 90px), transparent var(--pulse-r));
+}
+html[data-transition] [data-site-dock] { pointer-events: none; }
+/* The pulse's own ring: a hairline crest that thins out as it spreads. */
+.pulse-ring { display: none; position: fixed; inset: 0; z-index: 40; pointer-events: none; }
+html[data-transition] .pulse-ring {
+  display: block;
+  background: radial-gradient(circle at var(--pulse-x) var(--pulse-y),
+    transparent calc(var(--pulse-r) - 26px),
+    rgb(var(--line) / 0.07) calc(var(--pulse-r) - 3px),
+    rgb(var(--line) / 0.4) var(--pulse-r),
+    transparent calc(var(--pulse-r) + 1.5px));
+}
+
 /* The koi pond animates its own change of sky; a snapshot of the old pond would only ghost over it. */
 ::view-transition-old(koi-pond) { display: none; }
 ::view-transition-new(koi-pond) { animation: none; }
