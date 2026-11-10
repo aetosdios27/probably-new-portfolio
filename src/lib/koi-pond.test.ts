@@ -139,6 +139,94 @@ describe("behaviour", () => {
   });
 });
 
+describe("weather", () => {
+  const energy = (pond: Pond) => pond.gpuData().wave.reduce((sum, value) => sum + value * value, 0);
+  const travelled = (pond: Pond, seconds: number) => {
+    let total = 0, previous = pond.heads();
+    for (let i = 0; i < seconds / FRAME; i++) {
+      pond.step(FRAME);
+      const heads = pond.heads();
+      heads.forEach((head, f) => { total += Math.hypot(head.x - previous[f].x, head.y - previous[f].y); });
+      previous = heads;
+    }
+    return total;
+  };
+
+  test("a dry, warm pond behaves exactly as one that was never told the weather", () => {
+    const plain = new Pond(1000, 700, 5, 9, 42), told = new Pond(1000, 700, 5, 9, 42);
+    told.setWeather({ rain: 0, pace: 1 });
+    run(plain, 5);
+    run(told, 5);
+    assert.deepEqual(told.heads(), plain.heads());
+    assert.deepEqual(told.gpuData().wave, plain.gpuData().wave);
+  });
+
+  test("rain stirs the whole pond, and heavier rain stirs it more", () => {
+    const stirred = (rain: number) => {
+      const pond = new Pond(1440, 900, 5, 9, 5);
+      pond.setWeather({ rain, pace: 1 });
+      run(pond, 8);
+      return energy(pond);
+    };
+    const dry = stirred(0), drizzle = stirred(6), downpour = stirred(30);
+    assert.ok(drizzle > dry * 1.5, `drizzle ${drizzle} vs dry ${dry}`);
+    assert.ok(downpour > drizzle * 2, `downpour ${downpour} vs drizzle ${drizzle}`);
+  });
+
+  test("rain falls at the asked rate whatever the frame time", () => {
+    // Each drop lands on one cell before the water moves, so counting disturbed cells counts drops.
+    const drops = (dt: number) => {
+      const pond = new Pond(2000, 1000, 5, 9, 9);
+      pond.setWeather({ rain: 20, pace: 1 });
+      let count = 0;
+      const drop = pond.drop.bind(pond);
+      pond.drop = (x, y, strength) => { if (strength >= 0.7 && strength <= 1.8) count++; drop(x, y, strength); };
+      for (let time = 0; time < 5 - 1e-9; time += dt) pond.step(dt);
+      return count;
+    };
+    // 20 per second per megapixel over 2 megapixels for 5 seconds.
+    assert.ok(Math.abs(drops(1 / 30) - 200) <= 2, `${drops(1 / 30)} drops at 30 fps`);
+    assert.ok(Math.abs(drops(1 / 60) - 200) <= 2, `${drops(1 / 60)} drops at 60 fps`);
+  });
+
+  test("a downpour stays finite and bounded", () => {
+    const pond = new Pond(1440, 900);
+    pond.setWeather({ rain: 60, pace: 1 });
+    run(pond, 60);
+    const peak = pond.maxWave();
+    assert.ok(Number.isFinite(peak));
+    assert.ok(peak < 4, `wave height ${peak}`);
+  });
+
+  test("rain is deterministic for a given seed", () => {
+    const a = new Pond(1000, 700, 5, 9, 42), b = new Pond(1000, 700, 5, 9, 42);
+    for (const pond of [a, b]) {
+      pond.setWeather({ rain: 26, pace: 0.6 });
+      run(pond, 5);
+    }
+    assert.deepEqual(a.heads(), b.heads());
+    assert.deepEqual(a.gpuData().wave, b.gpuData().wave);
+  });
+
+  test("cold water slows the koi", () => {
+    const warm = new Pond(1440, 900), cold = new Pond(1440, 900);
+    cold.setWeather({ rain: 0, pace: 0.6 });
+    const warmDistance = travelled(warm, 20), coldDistance = travelled(cold, 20);
+    assert.ok(coldDistance < warmDistance * 0.75, `cold ${coldDistance.toFixed(0)} vs warm ${warmDistance.toFixed(0)}`);
+    assert.ok(coldDistance > warmDistance * 0.4, "the koi still swim");
+  });
+
+  test("the weather can change while the pond is running", () => {
+    const pond = new Pond(1440, 900);
+    pond.setWeather({ rain: 40, pace: 1 });
+    run(pond, 4);
+    const wet = energy(pond);
+    pond.setWeather({ rain: 0, pace: 1 });
+    run(pond, 20);
+    assert.ok(energy(pond) < wet * 0.5, "the rings die away once the rain stops");
+  });
+});
+
 describe("gpuData", () => {
   test("describes every fish with finite spine, appendage and bounds data", () => {
     const pond = new Pond(1440, 900);

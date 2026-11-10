@@ -5,10 +5,15 @@ import { KoiCanvas } from "@/lib/koi-canvas";
 import { KoiGL } from "@/lib/koi-gl";
 import type { Pond } from "@/lib/koi-pond";
 import type { KoiRenderer } from "@/lib/koi-renderer";
+import { LOOKS, mixLooks, type PondLook } from "@/lib/pond-looks";
+import { resolveSeason } from "@/lib/season";
+import { currentTheme, onThemeChange } from "@/lib/theme";
 import { gulp, plop } from "@/lib/pond-sound";
 import styles from "./koi-pond.module.css";
 
 const FRAME_MS = 1000 / 30;
+// The moment of pond time the reduced-motion still frame shows.
+const STILL_SECONDS = 12;
 const MIN_WIDTH = 1000;
 // Keep the drawing buffer reasonable on very large or dense screens.
 const MAX_PIXELS = 5_000_000;
@@ -17,10 +22,23 @@ const MAX_PIXELS = 5_000_000;
 const QUALITY_DPR = [2, 1.5, 1];
 const GOVERNOR_FRAMES = 60;
 const GOVERNOR_LATE = 0.34;
+// A theme toggle turns night into day over this long: slower than UI motion on purpose, because it
+// is the light changing over a pond, not a control responding.
+const LOOK_FADE_MS = 1200;
+
+/** The look for this moment of the year: the season, drifting toward its neighbour near a turn. */
+function lookNow(): PondLook {
+  const { season, toward, blend } = resolveSeason(location.search, new Date());
+  const theme = currentTheme();
+  return mixLooks(LOOKS[season][theme], LOOKS[toward][theme], blend);
+}
+
+const easeInOut = (t: number) => t * t * (3 - 2 * t);
 
 // A fine ASCII koi pond filling the margins. It is fixed to the viewport, so the page scrolls
 // over it and the opaque hatch bands read as windows onto the water. Nothing is drawn over the
-// content column. It renders on the GPU (see koi-gl.ts) and falls back to a 2D canvas.
+// content column. It renders on the GPU (see koi-gl.ts) and falls back to a 2D canvas. What it looks
+// like (season, night or day) is a PondLook, eased toward whatever the date and theme call for.
 export function KoiPond() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
@@ -61,6 +79,27 @@ export function KoiPond() {
     const origin = performance.now();
     const seconds = () => (performance.now() - origin) / 1000;
 
+    // The look on screen is always `from` easing into `to`. Retargeting mid-fade starts again from
+    // whatever is showing, so a quick double toggle reverses smoothly instead of jumping.
+    let from = lookNow(), to = from, fadeStart = -Infinity;
+    function look(now: number) {
+      const progress = (now - fadeStart) / LOOK_FADE_MS;
+      if (progress >= 1) from = to;
+      return mixLooks(from, to, easeInOut(Math.max(0, progress)));
+    }
+    function retarget() {
+      const now = performance.now();
+      from = reduced ? lookNow() : look(now);
+      to = lookNow();
+      fadeStart = now;
+      if (!pond) return;
+      // The still frame has no animation loop to pick the change up, so redraw it by hand.
+      if (reduced) renderer?.draw(pond, STILL_SECONDS, to);
+    }
+    function applyWeather(current: PondLook) {
+      pond?.setWeather({ rain: current.rain, pace: current.koiPace });
+    }
+
     function build() {
       if (disposed || !fontsReady) return;
       cancelAnimationFrame(raf);
@@ -83,8 +122,10 @@ export function KoiPond() {
       pond.onEat = reduced ? null : gulp;
       if (reduced) {
         // A still frame: let the water settle and the fish spread out, then draw once.
+        from = to = lookNow();
+        applyWeather(to);
         for (let i = 0; i < 240; i++) pond.step(1 / 30);
-        active.draw(pond, 12);
+        active.draw(pond, STILL_SECONDS, to);
         return;
       }
       last = 0;
@@ -102,11 +143,13 @@ export function KoiPond() {
       last = time;
       if (accumulated < FRAME_MS) return;
       const steps = Math.min(2, Math.floor(accumulated / FRAME_MS));
+      const current = look(time);
+      applyWeather(current);
       for (let i = 0; i < steps; i++) pond.step(1 / 30);
       // Frames that arrive well past their slot mean the device cannot keep up: drop a quality level.
       if (drawn++ >= 20 && accumulated > FRAME_MS * 1.6) late++;
       accumulated = 0;
-      renderer?.draw(pond, seconds());
+      renderer?.draw(pond, seconds(), current);
       if (drawn >= GOVERNOR_FRAMES && late / (drawn - 20) > GOVERNOR_LATE && quality < QUALITY_DPR.length - 1) {
         quality++;
         build();
@@ -144,6 +187,8 @@ export function KoiPond() {
       accumulated = 0;
       pond?.pointerLeave();
       if (document.hidden) return;
+      // A tab left open across a turn of season comes back to the right pond.
+      retarget();
       if (!pond) build();
       else if (!reduced) raf = requestAnimationFrame(tick);
     }
@@ -151,6 +196,7 @@ export function KoiPond() {
       reduced = motion.matches;
       build();
     }
+    const stopWatchingTheme = onThemeChange(retarget);
     document.addEventListener("visibilitychange", onVisibilityChange);
     motion.addEventListener("change", onMotionChange);
     addEventListener("resize", onResize);
@@ -159,6 +205,7 @@ export function KoiPond() {
     document.documentElement.addEventListener("pointerleave", onPointerLeave);
     return () => {
       disposed = true;
+      stopWatchingTheme();
       cancelAnimationFrame(raf);
       cancelAnimationFrame(resizeFrame);
       document.removeEventListener("visibilitychange", onVisibilityChange);

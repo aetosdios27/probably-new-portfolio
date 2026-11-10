@@ -93,6 +93,8 @@ type World = {
   ripple: (x: number, y: number, strength: number) => void;
   eat: (pellet: Pellet) => void;
   random: () => number;
+  /** Swimming speed multiplier from the weather. */
+  pace: number;
 };
 
 const PELLET_LIFE = 9;
@@ -250,7 +252,7 @@ class Koi {
     this.burst = Math.max(0, this.burst - dt * 1.9);
     this.chew = Math.max(0, this.chew - dt);
     const base = 26 + (this.length / 230) * 14;
-    this.speed = base * (0.7 + 0.4 * noise2(this.clock * 0.2, this.seed * 3)) * (0.55 + 0.9 * this.thrust) * (1 + this.burst * 2.6) * pace * (this.chew > 0 ? 0.4 : 1);
+    this.speed = base * (0.7 + 0.4 * noise2(this.clock * 0.2, this.seed * 3)) * (0.55 + 0.9 * this.thrust) * (1 + this.burst * 2.6) * pace * world.pace * (this.chew > 0 ? 0.4 : 1);
 
     this.turnRate += (Math.max(-maxTurn, Math.min(maxTurn, turn)) - this.turnRate) * Math.min(1, dt * 7);
     this.heading += this.turnRate * dt;
@@ -376,6 +378,14 @@ export type GpuData = {
   wave: Float32Array;
 };
 
+/** What the season does to the pond itself, as opposed to how it is painted. */
+export type Weather = {
+  /** Raindrops per second per million square pixels of pond. */
+  rain: number;
+  /** Swimming speed multiplier: 1 is a warm pond, lower is cold water. */
+  pace: number;
+};
+
 export class Pond {
   readonly cols: number;
   readonly rows: number;
@@ -390,7 +400,10 @@ export class Pond {
   private readonly gpu: GpuData;
   /** Called when a koi eats a pellet; the host uses it for sound. */
   onEat: (() => void) | null = null;
-  private rain = 1.5;
+  private nextDrip = 1.5;
+  private weather: Weather = { rain: 0, pace: 1 };
+  /** Fractional raindrops owed, carried between steps so any rate falls evenly. */
+  private rainOwed = 0;
   private time = 0;
   private readonly pointer: Pointer = { x: 0, y: 0, active: false, speed: 0, lastMove: -1e9, clickX: 0, clickY: 0, clickAge: 99 };
 
@@ -426,6 +439,10 @@ export class Pond {
     const cx = Math.floor(x / this.cellW), cy = Math.floor(y / this.cellH);
     if (cx < 1 || cy < 1 || cx >= this.cols - 1 || cy >= this.rows - 1) return;
     this.height0[cy * this.cols + cx] += strength;
+  }
+
+  setWeather(weather: Weather) {
+    this.weather = weather;
   }
 
   /**
@@ -484,6 +501,7 @@ export class Pond {
       pellets: this.pellets,
       fish: this.fish,
       random: this.random,
+      pace: this.weather.pace,
       ripple: (x, y, strength) => this.drop(x, y, strength),
       eat: (pellet) => {
         const index = this.pellets.indexOf(pellet);
@@ -501,10 +519,16 @@ export class Pond {
       // A fish in a hurry churns the water along its whole body.
       if (fish.burst > 0.3) for (let i = 2; i < SEGMENTS; i += 5) this.drop(fish.spine[i].x, fish.spine[i].y, 0.14 * fish.burst);
     }
-    this.rain -= dt;
-    if (this.rain <= 0) {
-      this.rain = 1.5 + this.random() * 2.5;
+    this.nextDrip -= dt;
+    if (this.nextDrip <= 0) {
+      this.nextDrip = 1.5 + this.random() * 2.5;
       this.drop(this.random() * this.width, this.random() * this.height, 2.4);
+    }
+    // Rain falls through the same water as everything else, so its rings refract the scene and
+    // show up as ASCII crests without the renderer knowing it is raining.
+    this.rainOwed += this.weather.rain * (this.width * this.height / 1e6) * dt;
+    for (; this.rainOwed >= 1; this.rainOwed--) {
+      this.drop(this.random() * this.width, this.random() * this.height, 0.7 + 1.1 * this.random());
     }
     this.advanceWater();
   }
