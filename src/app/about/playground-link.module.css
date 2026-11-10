@@ -13,7 +13,7 @@
   left: 0;
   right: 0;
   bottom: 1px;
-  border-bottom: 1px dashed rgb(242 242 242 / 26%);
+  border-bottom: 1px dashed var(--underline);
   pointer-events: none;
 }
 

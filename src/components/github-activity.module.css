@@ -79,13 +79,13 @@
   position: relative;
   aspect-ratio: 1;
   border-radius: 2px;
-  background: rgb(242 242 242 / 5%);
+  background: var(--heat-0);
 }
 
-.cell[data-level="1"] { background: rgb(242 242 242 / 16%); }
-.cell[data-level="2"] { background: rgb(242 242 242 / 28%); }
-.cell[data-level="3"] { background: rgb(242 242 242 / 42%); }
-.cell[data-level="4"] { background: rgb(242 242 242 / 62%); }
+.cell[data-level="1"] { background: var(--heat-1); }
+.cell[data-level="2"] { background: var(--heat-2); }
+.cell[data-level="3"] { background: var(--heat-3); }
+.cell[data-level="4"] { background: var(--heat-4); }
 
 /* Every active square is its own star. It rests grey for most of its cycle, rises to one
    palette colour, holds a moment and settles back. Period, starting point and brightness

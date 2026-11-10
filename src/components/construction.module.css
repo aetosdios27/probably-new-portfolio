@@ -1,8 +1,8 @@
 /* Homepage construction tokens: one source for rails and section punctuation. */
 .frame {
   --guide-gutter: var(--space-4);
-  --construction-color: 242 242 242;
-  --construction-dash-opacity: 0.3;
+  --construction-color: var(--line);
+  --construction-dash-opacity: var(--line-dash);
   --construction-dash-length: 2.5px;
   --construction-dash-period: 6px;
   --construction-line-width: 1px;
@@ -10,7 +10,7 @@
   --construction-top-inset: var(--construction-band-clearance);
   --construction-bottom-inset: var(--construction-band-clearance);
   --construction-band-clearance: var(--space-3);
-  --construction-hatch-opacity: 0.05;
+  --construction-hatch-opacity: var(--line-hatch);
   --construction-hatch-line: 1px;
   --construction-hatch-period: 8px;
   /* The bands are strongest across the content column and its rails, then dissolve toward the edges of

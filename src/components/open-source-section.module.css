@@ -29,7 +29,7 @@
   justify-self: start;
   align-items: center;
   gap: var(--space-1);
-  color: rgb(242 242 242 / 85%);
+  color: var(--strong);
   font-weight: 500;
   transition: color var(--motion-hover) ease;
 }
