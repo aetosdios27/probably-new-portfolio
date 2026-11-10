@@ -92,3 +92,9 @@
     min-width: 0;
   }
 }
+
+/* Eight items still fit a 320px screen. */
+@media (max-width: 340px) {
+  .colors { padding: 0 4px !important; }
+  .colors :is([role="button"], [role="switch"]) { flex-basis: 32px; }
+}
