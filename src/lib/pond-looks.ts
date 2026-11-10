@@ -62,6 +62,11 @@ export const LOOK_SCALARS = {
   crest: [0, 1],
   /** Strength of the bloom around the glyphs. */
   halo: [0, 1],
+  /**
+   * How much the bloom also dims what lies behind it. 1 on a black page, where that is invisible
+   * beyond the water; 0 on paper, where it would leave a grey smudge around every koi.
+   */
+  haloShade: [0, 1],
   /** How fast the koi swim; cold water slows them. */
   koiPace: [0.3, 1.2],
   /** 0 fades the pond into the page smoothly at the rails; 1 dissolves it in ordered-dither dots. */
@@ -114,7 +119,7 @@ const NIGHT: PondLook = {
   leaves: 0, leafA: [0.95, 0.62, 0.16], leafB: [0.8, 0.32, 0.1], leafC: [0.72, 0.12, 0.14],
   snow: 0, snowColor: [0.66, 0.74, 0.95], ice: 0, iceColor: [0.42, 0.56, 0.78],
   mist: 0, mistColor: [0.3, 0.36, 0.5], branches: 0, fireflies: 0, rain: 0,
-  koiBed: [0, 0, 0], glyphRipple: [0.36, 0.84, 1], glyphShadow: [0.3, 0.45, 0.5], crest: 0.45, halo: 0.6,
+  koiBed: [0, 0, 0], glyphRipple: [0.36, 0.84, 1], glyphShadow: [0.3, 0.45, 0.5], crest: 0.45, halo: 0.6, haloShade: 1,
   koiPace: 1, edgeDither: 0,
 };
 
@@ -136,7 +141,7 @@ const DAY: PondLook = {
   petalA: [0.98, 0.62, 0.74], petalB: [1, 0.96, 0.95],
   leafA: [0.93, 0.62, 0.16], leafB: [0.8, 0.36, 0.12], leafC: [0.7, 0.16, 0.14],
   snowColor: [1, 1, 1], iceColor: [0.88, 0.93, 0.97], mistColor: [0.95, 0.93, 0.87],
-  koiBed: [0.03, 0.1, 0.13], glyphRipple: [1, 1, 1], glyphShadow: [0.05, 0.16, 0.2], crest: 0.5, halo: 0.22,
+  koiBed: [0.03, 0.1, 0.13], glyphRipple: [1, 1, 1], glyphShadow: [0.05, 0.16, 0.2], crest: 0.5, halo: 0.3, haloShade: 0,
   edgeDither: 1,
 };
 
@@ -239,13 +244,13 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
     },
     light: {
       ...DAY,
-      bedLow: [0.26, 0.5, 0.5], bedHigh: [0.52, 0.66, 0.56],
-      shallow: [0.06, 0.38, 0.44], deep: [0.02, 0.22, 0.34], murk: 1.1,
+      bedLow: [0.2, 0.46, 0.48], bedHigh: [0.44, 0.62, 0.54],
+      shallow: [0.04, 0.34, 0.42], deep: [0.01, 0.19, 0.32], murk: 1.15,
       algae: [0.3, 0.44, 0.2], algaeAmount: 0.5,
       causticColor: [1, 0.9, 0.6], caustic: 0.3,
       mirror: 0.5,
-      skyNear: [1, 0.86, 0.58], skyFar: [0.74, 0.78, 0.78], skyline: [0.72, 0.56, 0.44],
-      orb: [1, 0.86, 0.5], orbSize: 36, orbGlow: 0.9, glitter: 1.1,
+      skyNear: [1, 0.82, 0.5], skyFar: [0.62, 0.68, 0.7], skyline: [0.62, 0.44, 0.34],
+      orb: [1, 0.8, 0.36], orbSize: 38, orbGlow: 1, glitter: 1.2,
       clouds: 0.2, cloudColor: [1, 0.93, 0.8],
       pads: 0.14, lotus: 0, padDark: [0.36, 0.42, 0.14], padLight: [0.7, 0.66, 0.26],
       leaves: 0.65,
@@ -279,7 +284,7 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
       clouds: 0.1, cloudColor: [1, 0.96, 0.86],
       pads: 0.06, lotus: 0, padDark: [0.3, 0.34, 0.16], padLight: [0.5, 0.5, 0.26],
       leaves: 0.14, leafA: [0.72, 0.5, 0.2], leafB: [0.6, 0.34, 0.14], leafC: [0.48, 0.2, 0.14],
-      mist: 0.7, mistColor: [0.96, 0.93, 0.84], branches: 0.7, wind: 0.1,
+      mist: 0.55, mistColor: [0.97, 0.94, 0.85], branches: 0.7, wind: 0.1,
       koiBed: [0.02, 0.07, 0.11],
       koiPace: 0.85,
     },
@@ -297,7 +302,7 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
       orb: [0.9, 0.94, 1], orbSize: 24, glitter: 0.6, stars: 0.2,
       clouds: 0.35, cloudColor: [0.2, 0.26, 0.42], wind: 0.35,
       pads: 0, lotus: 0,
-      snow: 0.8, ice: 0.6,
+      snow: 0.9, ice: 0.72,
       koiPace: 0.6,
     },
     light: {
@@ -311,7 +316,7 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
       orb: [1, 0.98, 0.92], orbSize: 22, orbGlow: 0.5, glitter: 0.35,
       clouds: 0.5, cloudColor: [0.97, 0.98, 1], wind: 0.35,
       pads: 0, lotus: 0,
-      snow: 0.8, ice: 0.6,
+      snow: 0.9, ice: 0.72,
       koiBed: [0.03, 0.08, 0.16],
       koiPace: 0.6,
     },
