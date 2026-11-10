@@ -169,6 +169,13 @@ a:hover .external-arrow { transform: translate(2px, -2px); color: var(--accent);
   :root { --section-gap: var(--space-9); }
   .page-shell { padding: 0 24px var(--dock-clearance); }
 }
+/* Theme switch: a quiet whole-page crossfade at the deliberate-reveal pace. */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: var(--motion-reveal);
+  animation-timing-function: var(--ease-in-out);
+}
+
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
