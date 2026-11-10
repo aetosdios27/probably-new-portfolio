@@ -388,6 +388,25 @@ vec2 rot(vec2 v, float a) {
   return vec2(c * v.x - s * v.y, s * v.x + c * v.y);
 }
 
+// Distance to the nearest edge of a jittered cell lattice, in cell units.
+float cellEdge(vec2 x) {
+  vec2 n = floor(x), f = fract(x), mr = vec2(0.0), mg = vec2(0.0);
+  float md = 8.0;
+  for (int j = -1; j <= 1; j++) for (int i = -1; i <= 1; i++) {
+    vec2 g = vec2(float(i), float(j));
+    vec2 r = g + 0.15 + 0.7 * hash22(n + g) - f;
+    float d = dot(r, r);
+    if (d < md) { md = d; mr = r; mg = g; }
+  }
+  md = 8.0;
+  for (int j = -1; j <= 1; j++) for (int i = -1; i <= 1; i++) {
+    vec2 g = mg + vec2(float(i), float(j));
+    vec2 r = g + 0.15 + 0.7 * hash22(n + g) - f;
+    if (dot(mr - r, mr - r) > 1e-5) md = min(md, dot(0.5 * (mr + r), normalize(r - mr)));
+  }
+  return md;
+}
+
 // A lily pad (with a notch) and, on some, a lotus. Each pad lives wholly inside its own lattice
 // cell, so this is one lookup per pixel, and most pixels leave before any trigonometry. Returns the
 // pad coverage; the colour (flower included) comes back through the out parameter.
@@ -655,9 +674,14 @@ void main() {
     vec3 frost = mix(color, L_iceColor, 0.55 + 0.2 * vnoise(css * 0.03));
     float lying = smoothstep(0.5, 0.75, vnoise(css * 0.016 + 4.0) + 0.2 * vnoise(css * 0.09)) * L_snow;
     frost = mix(frost, L_snowColor, lying * 0.8);
-    float vein = abs(pnoise(css * 0.014 + 21.0) + 0.4 * pnoise(css * 0.045 + 2.0));
-    float crack = 1.0 - smoothstep(0.012, 0.03, vein);
-    frost = mix(frost, color * 0.62, crack * 0.85);
+    // Ice breaks into angular plates: cracks follow the edges of a jittered cell lattice, gently
+    // warped so they are not ruled straight. Plates show open water through a dark seam; the fine
+    // hairlines inside them catch the light.
+    vec2 warp = vec2(pnoise(css * 0.02 + 3.0), pnoise(css * 0.02 + 11.0)) * 9.0;
+    float plate = cellEdge((css + warp) / 74.0) * 74.0;
+    float hair = cellEdge((css + warp * 0.6) / 23.0 + 5.0) * 23.0;
+    frost = mix(frost, color * 0.58, (1.0 - smoothstep(0.8, 2.2, plate)) * 0.9);
+    frost = mix(frost, L_iceColor * 1.25 + 0.15, (1.0 - smoothstep(0.4, 1.4, hair)) * 0.45 * smoothstep(2.2, 6.0, plate));
     frost = mix(frost, L_iceColor * 1.2 + 0.12, rim * 0.8);
     color = mix(color, frost, ice);
   }

@@ -2,7 +2,7 @@ import { SEASONS } from "./season";
 import { THEME_STORAGE_KEY } from "./theme";
 
 // Runs inline in <head>, before first paint, so the page never flashes the wrong theme or season.
-// It cannot import anything, so the calendar rule from season.ts is restated here; boot-script.test.ts
+// It cannot import anything, so the calendar rule from season.ts is restated here; season.test.ts
 // runs this source against seasonOf for every day of the year to keep the two in step.
 //
 //   data-theme   the stored choice, else the system preference, else dark. `?theme=` previews one.
