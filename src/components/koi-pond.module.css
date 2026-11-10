@@ -7,6 +7,8 @@
   height: 100%;
   pointer-events: none;
   font-family: var(--font-mono);
+  /* Its own layer in the theme crossfade, so the live pond is never covered by a frozen snapshot. */
+  view-transition-name: koi-pond;
 }
 
 @media (min-width: 1000px) {

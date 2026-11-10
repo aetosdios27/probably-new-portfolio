@@ -175,6 +175,9 @@ a:hover .external-arrow { transform: translate(2px, -2px); color: var(--accent);
   animation-duration: var(--motion-reveal);
   animation-timing-function: var(--ease-in-out);
 }
+/* The koi pond animates its own change of sky; a snapshot of the old pond would only ghost over it. */
+::view-transition-old(koi-pond) { display: none; }
+::view-transition-new(koi-pond) { animation: none; }
 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }

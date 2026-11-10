@@ -25,6 +25,9 @@ const GOVERNOR_LATE = 0.34;
 // A theme toggle turns night into day over this long: slower than UI motion on purpose, because it
 // is the light changing over a pond, not a control responding.
 const LOOK_FADE_MS = 1200;
+/** The most the fade's clock moves in one frame: a 60 Hz frame. Longer frames slow it rather than skip it. */
+const SKY_FRAME_MS = 1000 / 60;
+const FRAME_SLACK_MS = 2;
 
 /** The look for this moment of the year: the season, drifting toward its neighbour near a turn. */
 function lookNow(): PondLook {
@@ -79,17 +82,21 @@ export function KoiPond() {
 
     // The look on screen is always `from` easing into `to`. Retargeting mid-fade starts again from
     // whatever is showing, so a quick double toggle reverses smoothly instead of jumping.
-    let from = lookNow(), to = from, fadeStart = -Infinity;
-    function look(now: number) {
-      const progress = (now - fadeStart) / LOOK_FADE_MS;
-      if (progress >= 1) from = to;
-      return skyChange(from, to, progress);
+    //
+    // The fade runs on its own clock rather than the wall clock. A theme switch costs the browser a
+    // long frame or two (it snapshots the page for the crossfade and restyles everything), and on
+    // the wall clock the sun or moon would jump ahead across that gap. This clock only advances by
+    // frames actually drawn, at most one 60 Hz frame's worth each, so a stall delays the motion
+    // instead of skipping part of it.
+    let from = lookNow(), to = from, fadeElapsed = LOOK_FADE_MS;
+    function look() {
+      if (fadeElapsed >= LOOK_FADE_MS) from = to;
+      return skyChange(from, to, fadeElapsed / LOOK_FADE_MS);
     }
     function retarget() {
-      const now = performance.now();
-      from = reduced ? lookNow() : look(now);
+      from = reduced ? lookNow() : look();
       to = lookNow();
-      fadeStart = now;
+      fadeElapsed = 0;
       if (!pond) return;
       // The still frame has no animation loop to pick the change up, so redraw it by hand.
       if (reduced) renderer?.draw(pond, STILL_SECONDS, to);
@@ -137,16 +144,27 @@ export function KoiPond() {
       raf = 0;
       if (disposed || document.hidden || reduced || !pond) return;
       raf = requestAnimationFrame(tick);
-      accumulated += Math.min(100, time - (last || time));
+      const elapsed = Math.min(100, time - (last || time));
+      accumulated += elapsed;
       last = time;
-      if (accumulated < FRAME_MS) return;
-      const steps = Math.min(2, Math.floor(accumulated / FRAME_MS));
-      const current = look(time);
+      // The water drifts happily at 30 fps, but a sun or moon crossing the sky needs every frame the
+      // display offers, so a change of sky draws on each one. The simulation keeps its fixed step.
+      const changingSky = fadeElapsed < LOOK_FADE_MS;
+      if (changingSky) fadeElapsed += Math.min(elapsed, SKY_FRAME_MS);
+      // A little slack, so on a 60 Hz display every second frame counts as due instead of jitter
+      // pushing some to the third.
+      if (accumulated < FRAME_MS - FRAME_SLACK_MS && !changingSky) return;
+      const steps = Math.min(2, Math.floor((accumulated + FRAME_SLACK_MS) / FRAME_MS));
+      const current = look();
       applyWeather(current);
       for (let i = 0; i < steps; i++) pond.step(1 / 30);
-      // Frames that arrive well past their slot mean the device cannot keep up: drop a quality level.
-      if (drawn++ >= 20 && accumulated > FRAME_MS * 1.6) late++;
-      accumulated = 0;
+      if (steps > 0) {
+        // Frames that arrive well past their slot mean the device cannot keep up: drop a quality
+        // level. Not during a change of sky: the page snapshot for the theme crossfade costs one long
+        // frame, and rebuilding the pond mid-flight would be the very stutter this avoids.
+        if (!changingSky && drawn++ >= 20 && accumulated > FRAME_MS * 1.6) late++;
+        accumulated = changingSky ? Math.max(0, accumulated - steps * FRAME_MS) : 0;
+      }
       renderer?.draw(pond, seconds(), current);
       if (drawn >= GOVERNOR_FRAMES && late / (drawn - 20) > GOVERNOR_LATE && quality < QUALITY_DPR.length - 1) {
         quality++;
