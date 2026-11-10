@@ -37,6 +37,10 @@ export const LOOK_SCALARS = {
   orbSize: [8, 80],
   /** Soft glow around the moon or sun. */
   orbGlow: [0, 1],
+  /** 0 is a full disc (the sun); higher shades more of the moon away into a thinner crescent. */
+  crescent: [0, 1],
+  /** Where the body is on its way across the sky: 0 at rest, -1 below the west edge, 1 gone east. */
+  orbX: [-1, 1],
   /** The glitter path under the moon or sun, and sparks along the caustics. */
   glitter: [0, 1.5],
   stars: [0, 1],
@@ -118,7 +122,7 @@ const NIGHT: PondLook = {
   gain: 0.82, ambient: 0.66, mirror: 1,
   skyNear: [0.19, 0.31, 0.47], skyFar: [0.014, 0.022, 0.073],
   skyline: [0.04, 0.05, 0.12], windows: 0.26, lights: 1, train: [0.12, 0.16, 0.32],
-  orb: [0.95, 0.97, 1], orbSize: 28, orbGlow: 0.25, glitter: 0.9, stars: 0.35,
+  orb: [0.95, 0.97, 1], orbSize: 28, orbGlow: 0.25, crescent: 0.75, orbX: 0, glitter: 0.9, stars: 0.35,
   clouds: 0, cloudColor: [0.16, 0.2, 0.32], lightning: 0, wind: 0.2,
   pads: 0.32, padDark: [0.07, 0.3, 0.14], padLight: [0.3, 0.62, 0.26], lotus: 0.7, lotusColor: [1, 0.5, 0.72],
   petals: 0, petalA: [1, 0.72, 0.82], petalB: [1, 0.95, 0.96],
@@ -141,7 +145,7 @@ const DAY: PondLook = {
   gain: 1.08, ambient: 1, mirror: 0.28,
   skyNear: [0.84, 0.91, 0.95], skyFar: [0.46, 0.68, 0.88],
   skyline: [0.6, 0.67, 0.76], windows: 0.04, lights: 0.25, train: [0.74, 0.36, 0.3],
-  orb: [1, 0.97, 0.84], orbSize: 26, orbGlow: 0.7, glitter: 0.8, stars: 0,
+  orb: [1, 0.97, 0.84], orbSize: 26, orbGlow: 0.7, crescent: 0, glitter: 0.8, stars: 0,
   clouds: 0.3, cloudColor: [1, 0.99, 0.96],
   padDark: [0.16, 0.42, 0.22], padLight: [0.5, 0.74, 0.36], lotusColor: [0.98, 0.5, 0.68],
   petalA: [0.98, 0.62, 0.74], petalB: [1, 0.96, 0.95],
@@ -322,3 +326,30 @@ export const LOOKS: Record<Season, Record<Theme, PondLook>> = {
     },
   },
 };
+
+const easeIn = (t: number) => t * t * t;
+const easeOut = (t: number) => 1 - (1 - t) ** 3;
+const smooth = (t: number) => t * t * (3 - 2 * t);
+
+/** The moon and the sun are different bodies; seasons only change a body's colour and size. */
+function sameBody(a: PondLook, b: PondLook) {
+  return Math.abs(a.crescent - b.crescent) < 0.05;
+}
+
+function withBody(look: PondLook, body: PondLook, orbX: number): PondLook {
+  return { ...look, orb: body.orb, orbSize: body.orbSize, orbGlow: body.orbGlow, glitter: body.glitter, crescent: body.crescent, orbX };
+}
+
+/**
+ * The look `progress` (0 to 1) of the way from `from` to `to`. Everything blends except the body in
+ * the sky, which never morphs: when night becomes day the moon leaves to the east, then the sun
+ * arrives from the west, each with its own colour, size and shape. If the same body is still showing
+ * (a toggle reversed mid-flight) it glides back to rest instead.
+ */
+export function skyChange(from: PondLook, to: PondLook, progress: number): PondLook {
+  const t = Math.min(1, Math.max(0, progress));
+  const mixed = mixLooks(from, to, smooth(t));
+  if (sameBody(from, to)) return withBody(mixed, to, from.orbX + (to.orbX - from.orbX) * easeOut(t));
+  if (t < 0.5) return withBody(mixed, from, from.orbX + (1 - from.orbX) * easeIn(t * 2));
+  return withBody(mixed, to, -1 + (to.orbX + 1) * easeOut(t * 2 - 1));
+}

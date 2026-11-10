@@ -1,6 +1,6 @@
 import { describe, it as test } from "node:test";
 import assert from "node:assert/strict";
-import { LOOK_COLORS, LOOK_SCALARS, LOOKS, mixLooks, type LookScalar, type PondLook } from "./pond-looks";
+import { LOOK_COLORS, LOOK_SCALARS, LOOKS, mixLooks, skyChange, type LookScalar, type PondLook } from "./pond-looks";
 import { SEASONS } from "./season";
 import { THEMES } from "./theme";
 
@@ -75,5 +75,42 @@ describe("mixLooks", () => {
     const mid = mixLooks(a, b, 0.5);
     assert.notEqual(mid.bedLow, a.bedLow);
     assert.notEqual(mid.bedLow, b.bedLow);
+  });
+});
+
+describe("a change of sky", () => {
+  const night = LOOKS.autumn.dark, day = LOOKS.autumn.light;
+
+  test("the body never morphs: the moon leaves east, then the sun arrives from the west", () => {
+    let last = -Infinity;
+    for (let i = 0; i <= 100; i++) {
+      const look = skyChange(night, day, i / 100);
+      assert.ok(look.orbSize === night.orbSize || look.orbSize === day.orbSize, `size at ${i}`);
+      assert.ok(look.crescent === night.crescent || look.crescent === day.crescent, `shape at ${i}`);
+      if (i === 50) last = -Infinity;
+      assert.ok(look.orbX >= last, `moves west to east at ${i}`);
+      last = look.orbX;
+    }
+    assert.equal(skyChange(night, day, 0).orbX, 0);
+    assert.equal(skyChange(night, day, 0.49).crescent, night.crescent);
+    assert.ok(skyChange(night, day, 0.49).orbX > 0.9);
+    assert.ok(skyChange(night, day, 0.51).orbX < -0.9);
+    assert.deepEqual(skyChange(night, day, 1), { ...day, orbX: 0 });
+  });
+
+  test("a reversed toggle glides the same body back to rest", () => {
+    const leaving = skyChange(night, day, 0.3);
+    assert.equal(leaving.crescent, night.crescent);
+    const back = skyChange(leaving, night, 0.5);
+    assert.equal(back.crescent, night.crescent);
+    assert.ok(back.orbX > 0 && back.orbX < leaving.orbX);
+    assert.equal(skyChange(leaving, night, 1).orbX, 0);
+  });
+
+  test("night shows a crescent and day a full sun", () => {
+    for (const season of SEASONS) {
+      assert.ok(LOOKS[season].dark.crescent > 0.5, season);
+      assert.equal(LOOKS[season].light.crescent, 0, season);
+    }
   });
 });

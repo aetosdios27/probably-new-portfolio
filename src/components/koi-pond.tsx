@@ -5,7 +5,7 @@ import { KoiCanvas } from "@/lib/koi-canvas";
 import { KoiGL } from "@/lib/koi-gl";
 import type { Pond } from "@/lib/koi-pond";
 import type { KoiRenderer } from "@/lib/koi-renderer";
-import { LOOKS, mixLooks, type PondLook } from "@/lib/pond-looks";
+import { LOOKS, mixLooks, skyChange, type PondLook } from "@/lib/pond-looks";
 import { resolveSeason } from "@/lib/season";
 import { currentTheme, onThemeChange } from "@/lib/theme";
 import { gulp, plop } from "@/lib/pond-sound";
@@ -32,8 +32,6 @@ function lookNow(): PondLook {
   const theme = currentTheme();
   return mixLooks(LOOKS[season][theme], LOOKS[toward][theme], blend);
 }
-
-const easeInOut = (t: number) => t * t * (3 - 2 * t);
 
 // A fine ASCII koi pond filling the margins. It is fixed to the viewport, so the page scrolls
 // over it and the opaque hatch bands read as windows onto the water. Nothing is drawn over the
@@ -85,7 +83,7 @@ export function KoiPond() {
     function look(now: number) {
       const progress = (now - fadeStart) / LOOK_FADE_MS;
       if (progress >= 1) from = to;
-      return mixLooks(from, to, easeInOut(Math.max(0, progress)));
+      return skyChange(from, to, progress);
     }
     function retarget() {
       const now = performance.now();

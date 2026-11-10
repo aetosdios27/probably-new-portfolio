@@ -562,13 +562,22 @@ vec3 reflection(vec2 p, float t, float flash, out vec3 glow, out vec3 lightCol, 
     }
   }
 
-  // The moon or sun hangs in the middle of the left margin, behind the skyline.
-  vec2 orb = vec2(uColumn.x * 0.52, uView.y * 0.2);
+  // The moon or sun rests in the middle of the left margin, behind the skyline. On a change of sky it
+  // travels west to east (orbX), dipping a little toward the horizon as it nears either edge.
+  float rest = uColumn.x * 0.52;
+  vec2 orb = vec2(rest + L_orbX * (rest + L_orbSize * 2.0 + 40.0), uView.y * (0.2 + 0.06 * L_orbX * L_orbX));
   float od = length(p - orb);
   float veil = 1.0 - 0.75 * cloud;
-  glow += L_orb * (smoothstep(L_orbSize, L_orbSize - 5.0, od) * 1.2 + L_orbGlow * 0.55 * exp(-od * od / (L_orbSize * L_orbSize * 5.0))) * veil;
+  float disc = smoothstep(L_orbSize, L_orbSize - 5.0, od);
+  // A crescent: the disc less a slightly smaller one set toward the upper right. The dark part keeps a
+  // trace of earthshine, and a thinner moon throws a softer halo and a fainter path.
+  vec2 umbra = orb + normalize(vec2(0.78, -0.62)) * L_orbSize * mix(1.0, 0.36, L_crescent);
+  float shade = smoothstep(L_orbSize * 0.97, L_orbSize * 0.97 - 4.0, length(p - umbra)) * step(0.01, L_crescent);
+  float lit = disc * (1.0 - shade) + disc * shade * 0.05;
+  float strength = 1.0 - 0.45 * L_crescent;
+  glow += L_orb * (lit * 1.2 + L_orbGlow * 0.55 * strength * exp(-od * od / (L_orbSize * L_orbSize * 5.0))) * veil;
   float glitter = exp(-pow((p.x - orb.x) / (L_orbSize * 0.57 + p.y * 0.03), 2.0)) * step(0.4, hash12(vec2(floor(p.y / 7.0), floor(t * 0.5) + floor(p.x / 12.0)))) * smoothstep(orb.y, orb.y + uView.y * 0.15, p.y) * (1.0 - smoothstep(0.4, 1.0, p.y / uView.y));
-  glow += L_orb * glitter * L_glitter * veil;
+  glow += L_orb * glitter * L_glitter * strength * veil;
 
   float w = 104.0;
   float ci = floor(p.x / w);
