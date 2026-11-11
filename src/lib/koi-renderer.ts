@@ -18,5 +18,6 @@ export const FADE_PX = 70;
 /**
  * A pulse sweeping across the screen from a point (css px), as AI mode comes or goes. Behind its
  * front the pond is taken away (`direction` 1) or brought back (-1); `reach` is where it ends.
+ * `trail` is the second front, where the page swaps to or from its markdown.
  */
-export type Pulse = { x: number; y: number; radius: number; reach: number; direction: 1 | -1 };
+export type Pulse = { x: number; y: number; radius: number; reach: number; direction: 1 | -1; trail: number };

@@ -27,8 +27,10 @@ const DECOR = 'main#main > [aria-hidden="true"]:not(canvas), [data-site-dock] na
 /** The pulse now, for the pond to draw, or null when nothing is switching. */
 export function currentPulse(): Pulse | null {
   if (!active) return null;
-  const radius = parseFloat(getComputedStyle(root()).getPropertyValue("--pulse-r")) || 0;
-  return { x: active.x, y: active.y, radius, reach: active.reach, direction: active.direction };
+  const style = getComputedStyle(root());
+  const radius = parseFloat(style.getPropertyValue("--pulse-r")) || 0;
+  const trail = parseFloat(style.getPropertyValue("--reveal-r")) || 0;
+  return { x: active.x, y: active.y, radius, reach: active.reach, direction: active.direction, trail };
 }
 
 export function centerOf(element: Element): Point {
@@ -97,8 +99,7 @@ function run(next: Mode, origin: Point) {
   const timing = (delay: number, duration: number): KeyframeAnimationOptions => ({ duration, delay, easing: EASE, fill: "forwards" });
   const pulse = html.animate({ "--pulse-r": ["0px", `${reach}px`] }, timing(next === "ai" ? 0 : TRAIL_DELAY_MS, PULSE_MS));
   const trail = html.animate({ "--reveal-r": ["0px", `${reach}px`] }, timing(next === "ai" ? TRAIL_DELAY_MS : 0, TRAIL_MS));
-  const ring = document.querySelector(".pulse-ring")?.animate({ opacity: [1, 0] }, { ...timing(next === "ai" ? 0 : TRAIL_DELAY_MS, PULSE_MS), easing: "linear" });
-  const state: Active = { ...origin, reach, direction, animations: [pulse, trail, ...(ring ? [ring] : [])] };
+  const state: Active = { ...origin, reach, direction, animations: [pulse, trail] };
   active = state;
 
   Promise.all(state.animations.map((animation) => animation.finished)).then(() => {

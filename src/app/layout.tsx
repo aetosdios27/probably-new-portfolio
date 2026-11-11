@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
 import { AgentView } from "@/components/agent-view";
+import { PulseVeil } from "@/components/pulse-veil";
 import { SocialsDock } from "@/components/socials-dock";
 import { SoundEffects } from "@/components/sound-effects";
 import { CONTACT } from "@/content/contact";
@@ -106,7 +107,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <SocialsDock />
         </div>
         <AgentView />
-        <div className="pulse-ring" aria-hidden="true" />
+        <PulseVeil />
         <SoundEffects />
       </body>
     </html>

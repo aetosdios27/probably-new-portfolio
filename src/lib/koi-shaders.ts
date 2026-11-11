@@ -33,7 +33,7 @@ float vnoise(vec2 p) {
 const PULSE = `
 uniform vec4 uPulse;
 uniform float uPulseDir;
-const float PULSE_BAND = 170.0;
+const float PULSE_BAND = 240.0;
 // How much of the pond a passing pulse leaves at p (css px): 1 with no pulse. Behind a front that is
 // taking the pond away it goes to 0 across a band, and the dither and per-cell hashes stagger it.
 float pulseKeep(vec2 p) {
@@ -41,11 +41,17 @@ float pulseKeep(vec2 p) {
   float behind = 1.0 - smoothstep(uPulse.z - PULSE_BAND, uPulse.z, length(p - uPulse.xy));
   return uPulseDir > 0.0 ? 1.0 - behind : behind;
 }
-// The crest of the front itself, dissipating as it spreads.
-float pulseCrest(vec2 p) {
-  if (uPulseDir == 0.0) return 0.0;
-  float d = length(p - uPulse.xy) - uPulse.z;
-  return exp(-d * d / 300.0) * pow(1.0 - clamp(uPulse.z / uPulse.w, 0.0, 1.0), 0.8);
+// Near the front the water is lensed outward by the passing pulse and its pixels coarsen into bigger
+// blocks (returned in block), so it comes apart as its own pixels rather than fading.
+vec2 pulseWarp(vec2 p, float pixel, out float block) {
+  block = pixel;
+  if (uPulseDir == 0.0) return p;
+  vec2 away = p - uPulse.xy;
+  float x = uPulse.z - length(away);
+  float env = exp(-pow((x + (uPulseDir > 0.0 ? -60.0 : 60.0)) / 110.0, 2.0));
+  p += normalize(away + 1e-4) * 10.0 * env * sin(x / 12.0);
+  block = pixel * floor(mix(1.0, 5.0, env) + 0.5);
+  return (floor(p / block) + 0.5) * block;
 }`;
 
 export const FIELD = `#version 300 es
@@ -227,17 +233,9 @@ void main() {
   }
   // AI mode takes the pond away: each cell's character thins down the density ramp at its own
   // moment, so the koi and ripples come apart glyph by glyph rather than fading as a sheet.
-  // A pulse does the same along its front, and its crest passes through the water as a ring of
-  // ripple glyphs.
-  vec2 cellCss = (cell + 0.5) * uCell;
+  // A pulse does the same across its front.
   float leave = hash12(cell * 3.17 + 0.5) * 0.7;
-  tone *= smoothstep(leave, leave + 0.3, L_presence * pulseKeep(cellCss));
-  float crest = pulseCrest(cellCss);
-  if (fishCover <= 0.12 && crest * 0.75 > tone) {
-    tone = crest * 0.75;
-    ink = L_glyphRipple;
-    flicker = 0.6;
-  }
+  tone *= smoothstep(leave, leave + 0.3, L_presence * pulseKeep((cell + 0.5) * uCell));
   outField = vec4(min(ink, L_whitePoint), tone);
   outAux = vec4(flicker, ripple, 0.0, 1.0);
 }`;
@@ -673,6 +671,8 @@ void main() {
   if (fade <= 0.0) { outColor = vec4(0.0); return; }
   float t = uTime;
   float threshold = bayer8(pix);
+  float block;
+  css = pulseWarp(css, uPixel, block);
 
   float h = waveAt(css);
   vec2 slope = slopeAt(css);
@@ -725,7 +725,6 @@ void main() {
   vec3 color = mix(body, mirrored, clamp(mirror, 0.0, 1.0)) * L_gain;
   color += flash * 0.05;
   color += L_rippleColor * smoothstep(0.05, 0.25, abs(h)) * L_ripple * loose;
-  color += L_rippleColor * pulseCrest(css) * 0.4;
   // Emitted light, kept apart so the scene's ambient light never dims it. A mirror loses little of
   // a bright source, so a reflected light is nearly as bright as the light itself.
   vec3 emit = glow * (0.75 + 0.25 * deep) + lightCol * light * (0.85 + 0.15 * deep) * (1.0 - 0.45 * ice);
@@ -839,7 +838,8 @@ void main() {
   float hold = smoothstep(0.3, 0.8, solid) * fish * clamp(rail / uGlyphFade, 0.0, 1.0) * L_koiHold;
   alpha = max(alpha, hold);
   // AI mode dissolves the water pixel by pixel in the order of its own dither pattern.
-  alpha *= step(threshold, L_presence * pulseKeep(css));
+  // Behind the pulse the water goes block by block, in the dither order of those coarser blocks.
+  alpha *= step(bayer8(floor(css / block)), L_presence * pulseKeep(css));
   outColor = vec4(color * alpha, alpha);
 }`;
 

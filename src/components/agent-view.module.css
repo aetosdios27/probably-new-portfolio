@@ -12,10 +12,10 @@
 :global(html[data-mode="ai"]) .view { display: block; }
 :global(html[data-transition]) .view { display: block; position: fixed; inset: 0; z-index: 30; overflow: auto; }
 :global(html[data-transition="to-ai"]) .view {
-  mask-image: radial-gradient(circle at var(--pulse-x) var(--pulse-y), #000 calc(var(--reveal-r) - 60px), transparent var(--reveal-r));
+  mask-image: radial-gradient(circle at var(--pulse-x) var(--pulse-y), #000 var(--reveal-r), transparent calc(var(--reveal-r) + 1px));
 }
 :global(html[data-transition="to-site"]) .view {
-  mask-image: radial-gradient(circle at var(--pulse-x) var(--pulse-y), transparent calc(var(--reveal-r) - 60px), #000 var(--reveal-r));
+  mask-image: radial-gradient(circle at var(--pulse-x) var(--pulse-y), transparent var(--reveal-r), #000 calc(var(--reveal-r) + 1px));
 }
 
 .controls,
