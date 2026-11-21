@@ -15,6 +15,7 @@
   "dependencies": {
     "@radix-ui/react-tooltip": "^1.2.16",
     "@scritto/react": "^0.1.0",
+    "@vercel/analytics": "^2.0.1",
     "cuelume": "^0.2.8",
     "motion": "^14.0.0",
     "next": "16.3.8",
