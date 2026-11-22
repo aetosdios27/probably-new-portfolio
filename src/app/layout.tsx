@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import localFont from "next/font/local";
+import { Analytics } from "@vercel/analytics/next";
 import { AgentView } from "@/components/agent-view";
 import { PulseVeil } from "@/components/pulse-veil";
 import { SocialsDock } from "@/components/socials-dock";
@@ -109,6 +110,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         <AgentView />
         <PulseVeil />
         <SoundEffects />
+        <Analytics />
       </body>
     </html>
   );
