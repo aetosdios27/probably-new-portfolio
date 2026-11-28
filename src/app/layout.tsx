@@ -76,7 +76,9 @@ const structuredData = JSON.stringify([
     "@context": "https://schema.org",
     "@type": "Person",
     name: identity.name,
+    givenName: identity.givenName,
     alternateName: siteName,
+    description: identity.summary,
     url: siteUrl,
     image: new URL(identity.avatar, siteUrl).toString(),
     jobTitle: "Systems engineer",
@@ -96,9 +98,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="en" className={`${interTight.variable} ${instrumentSerif.variable} ${geistMono.variable}`} suppressHydrationWarning>
       <head>
         <script dangerouslySetInnerHTML={{ __html: BOOT_SCRIPT }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
       </head>
       <body>
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: structuredData }} />
         <a className="skip-link" href="#main">Skip to content</a>
         <a className="sr-only" href="/index.md">This whole site as markdown, for AI agents</a>
         <div className="page-shell" data-site-only>
